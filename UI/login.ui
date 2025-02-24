@@ -37,7 +37,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: #f2efff;</string>
   </property>
-  <widget class="QFrame" name="basepanel">
+  <widget class="QFrame" name="login_frameBase">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -47,7 +47,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#basepanel{
+    <string notr="true">#login_frameBase{
 	background-color: #FFFFFF;
 	border-radius: 20px;
 	border: 2px solid #ffffff;
@@ -55,12 +55,12 @@
 </string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QFrame" name="bluepanel">
+   <widget class="QFrame" name="login_frameBlue">
     <property name="geometry">
      <rect>
       <x>-1</x>
@@ -70,7 +70,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#bluepanel{
+     <string notr="true">#login_frameBlue{
 	background-color: #141c52;
 	border: 2px solid #141c52;
 	border-top-left-radius: 20px;  
@@ -81,13 +81,13 @@
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Shape::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Shadow::Raised</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_title2">
+   <widget class="QLabel" name="login_labelTitle2">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -100,7 +100,6 @@
      <font>
       <family>Arial</family>
       <pointsize>18</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -112,7 +111,7 @@ color: #141c52;</string>
      <string>PROFILING DATABASE SYSTEM</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="push_button_login">
+   <widget class="QPushButton" name="login_buttonLogin">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -125,7 +124,6 @@ color: #141c52;</string>
      <font>
       <family>Arial</family>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -133,16 +131,16 @@ color: #141c52;</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton {
+     <string notr="true">#login_buttonLogin {
     background-color: #141c52;
     color: white;
     border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-QPushButton:hover {
+#login_buttonLogin:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-QPushButton:pressed {
+#login_buttonLogin:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
     </property>
@@ -150,7 +148,7 @@ QPushButton:pressed {
      <string>LOGIN</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_edit_emp_id">
+   <widget class="QLineEdit" name="login_fieldEmp_id">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -166,17 +164,21 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">    border: 1px solid #b3b3b3;  /* Black border */
+     <string notr="true">#login_fieldEmp_id{
+	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
     background-color: #f2efff;  /* Gray background */
-    color: #000000; </string>
+    color: #000000; 
+}
+
+</string>
     </property>
     <property name="placeholderText">
      <string>Please Enter ID</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_emp_pin">
+   <widget class="QLabel" name="login_labelPin">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -192,7 +194,7 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_emp_pin{
+     <string notr="true">#login_labelPin{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -201,10 +203,10 @@ QPushButton:pressed {
      <string>PIN:</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_edit_emp_pin">
+   <widget class="QLineEdit" name="login_fieldPin">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -220,22 +222,31 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">    border: 1px solid #b3b3b3;  /* Black border */
+     <string notr="true">#login_fieldPin{
+    border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
     background-color: #f2efff;  /* Gray background */
-    color: #000000; </string>
+    color: #000000; 
+}
+</string>
+    </property>
+    <property name="maxLength">
+     <number>6</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::Password</enum>
     </property>
     <property name="placeholderText">
-     <string>XXXX</string>
+     <string>XXXXXX</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_title1">
+   <widget class="QLabel" name="login_labelTitle1">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>400</x>
       <y>150</y>
-      <width>251</width>
+      <width>311</width>
       <height>31</height>
      </rect>
     </property>
@@ -243,7 +254,6 @@ QPushButton:pressed {
      <font>
       <family>Arial</family>
       <pointsize>18</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -252,10 +262,10 @@ QPushButton:pressed {
 color: #141c52;</string>
     </property>
     <property name="text">
-     <string>BRGY MARIGONDON</string>
+     <string>BARANGAY MARIGONDON</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_emp_id">
+   <widget class="QLabel" name="login_labelEmp_id">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -271,7 +281,7 @@ color: #141c52;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_emp_id{
+     <string notr="true">#login_labelEmp_id{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -280,10 +290,10 @@ color: #141c52;</string>
      <string>Employee ID:</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_title1_2">
+   <widget class="QLabel" name="login_imageLogo">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -296,25 +306,27 @@ color: #141c52;</string>
      <font>
       <family>Arial</family>
       <pointsize>18</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-color: #ffffff;</string>
+     <string notr="true">#login_imageLogo{	
+	background-color: transparent;
+	color: #ffffff;
+}
+</string>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../../../Downloads/BARANGAY MARIGONDON SYSTEM.png</pixmap>
+     <pixmap>../Assets/BARANGAY MARIGONDON SYSTEM.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_rights">
+   <widget class="QLabel" name="login_labelRights">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -331,7 +343,7 @@ color: #ffffff;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_rights{
+     <string notr="true">#login_labelRights{
 	background-color: transparent;
 	border-color: transparent;
 	color: #7a7a7a;
@@ -343,19 +355,19 @@ color: #ffffff;</string>
      <string>© 2025 Barangay Marigondon. All Rights Reserved.</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <zorder>label_title2</zorder>
-   <zorder>push_button_login</zorder>
-   <zorder>line_edit_emp_id</zorder>
-   <zorder>label_emp_pin</zorder>
-   <zorder>line_edit_emp_pin</zorder>
-   <zorder>label_title1</zorder>
-   <zorder>label_emp_id</zorder>
-   <zorder>label_title1_2</zorder>
-   <zorder>label_rights</zorder>
-   <zorder>bluepanel</zorder>
+   <zorder>login_labelTitle2</zorder>
+   <zorder>login_buttonLogin</zorder>
+   <zorder>login_fieldEmp_id</zorder>
+   <zorder>login_labelPin</zorder>
+   <zorder>login_fieldPin</zorder>
+   <zorder>login_labelTitle1</zorder>
+   <zorder>login_labelEmp_id</zorder>
+   <zorder>login_imageLogo</zorder>
+   <zorder>login_labelRights</zorder>
+   <zorder>login_frameBlue</zorder>
   </widget>
  </widget>
  <resources/>
