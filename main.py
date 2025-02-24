@@ -7,7 +7,7 @@ loader = QUiLoader()
 app = QtWidgets.QApplication(sys.argv)
 window = loader.load("UI/test_login_v2.ui", None)
 
-def test() :
+def login_Button() :
     print("-- Login Attempt")
     print("Employee ID:", window.line_edit_emp_id.text(), " PIN:", window.line_edit_emp_pin.text())
 
@@ -15,6 +15,6 @@ def test() :
 
 window.setWindowTitle("Marigondon Barangay Profiling System")
 
-window.push_button_login.clicked.connect(test)
+window.push_button_login.clicked.connect(login_Button)
 window.show()
 app.exec()
