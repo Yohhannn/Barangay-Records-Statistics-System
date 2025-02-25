@@ -16,6 +16,10 @@ window.login_imageLogo.setPixmap(QtGui.QPixmap("Assets/logo_brgy.png"))
 window.setWindowIcon(QtGui.QIcon("Assets/icon_main.png"))
 window.setWindowTitle("Marigondon Barangay Profiling System")
 
+# EDMARK
+# JP
+# JODECI
+
 window.login_buttonLogin.clicked.connect(login_Button)
 window.show()
 app.exec()
