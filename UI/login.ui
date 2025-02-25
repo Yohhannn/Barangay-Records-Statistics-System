@@ -86,6 +86,28 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
+    <widget class="QLabel" name="login_imagePattern">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>291</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../Assets/image_pattern.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="login_labelTitle2">
     <property name="geometry">
@@ -320,7 +342,7 @@ color: #141c52;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/BARANGAY MARIGONDON SYSTEM.png</pixmap>
+     <pixmap>../Assets/logo_brgy.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
