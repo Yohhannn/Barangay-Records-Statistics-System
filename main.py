@@ -101,3 +101,5 @@ def logout_button_clicked():
 setup_login_ui()
 window.show()
 app.exec()
+
+#ikaw lang nya arrange ani hehe
