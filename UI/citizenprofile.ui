@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>User_dashboardWidget</class>
+ <widget class="QWidget" name="User_dashboardWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1350</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1350</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#User_dashboardWidget{
+	background-color: #f2efff;
+}</string>
+  </property>
+  <widget class="QFrame" name="baseNavFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>40</y>
+     <width>231</width>
+     <height>781</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#baseNavFrame {
+	background-color: #e7e2ff;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QFrame" name="baseNavFramesub1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>211</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#baseNavFramesub1{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="nav_buttonDashboard">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonDashboard {
+    background-color: #f2efff;
+    color: #141c52;
+    border-radius: 5px;
+	text-align: left;
+	padding: 10px;
+}
+#nav_buttonDashboard:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonDashboard:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>  DASHBOARD</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_dashboard.svg</normaloff>../Assets/icon_dashboard.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonCitizenProfiles">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonCitizenProfiles {
+    background-color: #fdfdff;
+    color: #141c52;
+    border-radius: 5px;
+	border: 2px solid #141c52; 
+	text-align: left;;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+</string>
+     </property>
+     <property name="text">
+      <string>  CITIZEN PROFILES</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_citizenprofiles.svg</normaloff>../Assets/icon_citizenprofiles.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonStatistics">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonStatistics {
+    background-color: #f2efff;
+    color: #141c52;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonStatistics:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonStatistics:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>  STATISTICS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_statistics.svg</normaloff>../Assets/icon_statistics.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonSchedules">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonSchedules {
+    background-color: #f2efff;
+    color: #141c52;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonSchedules:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonSchedules:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>  SCHEDULES</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_schedule.svg</normaloff>../Assets/icon_schedule.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonBusiness">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonBusiness {
+    background-color: #f2efff;
+    color: #141c52;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonBusiness:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonBusiness:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>  BUSINESS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_business.svg</normaloff>../Assets/icon_business.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="baseNavFramesub2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>211</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#baseNavFramesub2{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="nav_buttonAdminOverview">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonAdminOverview {
+    background-color: #f2efff;
+    color: #969696;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+/*#nav_buttonAdminOverview:hover {
+    background-color: #fdfdff;
+}
+#nav_buttonAdminOverview:pressed {
+    background-color: #e7e5f4; 
+}*/</string>
+     </property>
+     <property name="text">
+      <string>  ADMIN OVERVIEW</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Assets/icon_adminoverview_off.svg</normaloff>../Assets/icon_adminoverview_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_isLocked">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_isLocked{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+	color: #c01111;
+}</string>
+     </property>
+     <property name="text">
+      <string>  Locked Access</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../../Downloads/icon_isLocked.svg</normaloff>../../../../../../Downloads/icon_isLocked.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="nav_imageLogo">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>30</y>
+      <width>91</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>18</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#nav_imageLogo{	
+	background-color: transparent;
+	color: #ffffff;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Assets/logo_brgyClear.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logout_buttonLogout">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#logout_buttonLogout {
+    background-color: #bc1c1c;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#logout_buttonLogout:hover {
+    background-color: #d82020; /* Slightly lighter blue when hovered */
+}
+#logout_buttonLogout:pressed {
+    background-color: #8c1515; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>LOGOUT</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="baseNavFrame_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>140</y>
+      <width>231</width>
+      <height>781</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #e7e2ff;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QFrame" name="baseNavFramesub1_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>211</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#baseNavFramesub1{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="baseNavFramesub2_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>470</y>
+       <width>211</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#baseNavFramesub2{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="login_imageLogo_2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>30</y>
+       <width>91</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#login_imageLogo{	
+	background-color: transparent;
+	color: #ffffff;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../Assets/logo_brgyClear.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="logout_buttonLogout_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>740</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#logout_buttonLogout {
+    background-color: #bc1c1c;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#logout_buttonLogout:hover {
+    background-color: #d82020; /* Slightly lighter blue when hovered */
+}
+#logout_buttonLogout:pressed {
+    background-color: #8c1515; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>LOGOUT</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="border_blueLines1">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>-1</y>
+     <width>1371</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines1{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="border_blueLines2">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>820</y>
+     <width>1381</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines2{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="baseBodyFrame">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>60</y>
+     <width>1081</width>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#baseBodyFrame {
+	background-color: #e7e2ff;
+	border: none;
+	border-radius: 10px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="logout_buttonLogout_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#logout_buttonLogout {
+    background-color: #bc1c1c;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#logout_buttonLogout:hover {
+    background-color: #d82020; /* Slightly lighter blue when hovered */
+}
+#logout_buttonLogout:pressed {
+    background-color: #8c1515; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>LOGOUT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title_bodyCitizenProfile">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>381</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyCitizenProfile {
+	background-color: transparent;
+	color: #141c52;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>CITIZEN PROFILE</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
