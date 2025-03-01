@@ -100,12 +100,17 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonDashboard {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
 	padding: 10px;
+}
+#nav_buttonDashboard:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonDashboard:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
      <property name="text">
@@ -191,18 +196,14 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonStatistics {
-    background-color: #f2efff;
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonStatistics:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonStatistics:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
       <string>  STATISTICS</string>
@@ -739,7 +740,7 @@
      <string>LOGOUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="title_bodyDashboard">
+   <widget class="QLabel" name="title_bodyStatistics">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -756,38 +757,14 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyDashboard {
+     <string notr="true">#title_bodyStatistics {
 	background-color: transparent;
 	color: #141c52;
 }
 </string>
     </property>
     <property name="text">
-     <string>DASHBOARD</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_timeDashboard">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>40</y>
-      <width>261</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>48</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_timeDashboard{
-	color: #141c52;
-}</string>
-    </property>
-    <property name="text">
-     <string>## : ##</string>
+     <string>STATISTICS</string>
     </property>
    </widget>
   </widget>

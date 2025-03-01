@@ -1,5 +1,7 @@
 import sys
+
 from PySide6 import QtWidgets, QtGui
+from PySide6.QtGui import QIcon
 from PySide6.QtUiTools import QUiLoader
 from Utils.utils_corner import applyRoundedCorners
 
@@ -44,8 +46,17 @@ def setup_dashboard_ui():
     window.setWindowTitle("Dashboard - Marigondon Barangay Profiling System")
     window.setWindowIcon(QtGui.QIcon("Assets/icon_main.png"))
 
-    # Set images
+    # Set images on Navbar
     window.nav_imageLogo.setPixmap(QtGui.QPixmap("Assets/logo_brgyClear.png"))
+
+    # Set Icons on Navbar
+    window.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
+    window.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
+    window.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
+    window.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
+    window.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
+    window.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
+    window.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
 
     # Connect logout button
     window.logout_buttonLogout.clicked.connect(logout_button_clicked)

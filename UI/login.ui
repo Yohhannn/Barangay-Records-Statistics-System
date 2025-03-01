@@ -196,6 +196,9 @@ color: #141c52;</string>
 
 </string>
     </property>
+    <property name="maxLength">
+     <number>6</number>
+    </property>
     <property name="placeholderText">
      <string>Please Enter ID</string>
     </property>
