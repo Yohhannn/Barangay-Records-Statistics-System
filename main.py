@@ -1,10 +1,13 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox
-from PySide6.QtGui import QPixmap, QIcon
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton
+from PySide6.QtGui import QPixmap, QIcon, Qt
+from PySide6.QtCore import QTimer
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
 from Utils.utils_corner import applyRoundedCorners
-
+from Utils.utils_datetime import update_date_label
+from Utils.utils_realtime import update_time_label
+from Utils.util_popup import load_popup
 
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -16,11 +19,11 @@ class LoginWindow(QMainWindow):
         # Set up login UI
         self.setFixedSize(1080, 720)
         self.setWindowTitle("Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         # Set images
-        self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/logo_brgy.png"))
-        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/image_pattern.png"))
+        self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgy.png"))
+        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/Images/image_pattern.png"))
         applyRoundedCorners(
             self.login_screen.login_imagePattern,
             radius_top_left=20,
@@ -71,7 +74,6 @@ class MainWindow(QMainWindow):
         self.business_screen = self.load_ui("UI/business.ui")
         self.schedules_screen = self.load_ui("UI/schedule.ui")
 
-
         # Add the screens to the stack
         self.stack.addWidget(self.dashboard_screen)  # Index 0
         self.stack.addWidget(self.citizen_profile_screen)  # Index 1
@@ -98,22 +100,34 @@ class MainWindow(QMainWindow):
         file.close()
         return ui
 
+    # ===============================================================================================
     def setup_dashboard_ui(self):
         """Setup the dashboard UI layout and connect buttons."""
         self.setFixedSize(1350, 850)  # Set size for dashboard screen
         self.setWindowTitle("Dashboard - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         if not self.dashboard_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.dashboard_screen.nav_imageLogo.setPixmap(QPixmap("Assets/logo_brgyClear.png"))
-            self.dashboard_screen.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
-            self.dashboard_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
-            self.dashboard_screen.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
-            self.dashboard_screen.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
-            self.dashboard_screen.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
-            self.dashboard_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
-            self.dashboard_screen.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
+            self.dashboard_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.dashboard_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.dashboard_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.dashboard_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.dashboard_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
+            self.dashboard_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
+            self.dashboard_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.dashboard_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+
+            # Set the rest of the icons to the page.
+            self.dashboard_screen.acc_buttonYourAccount.setIcon(QIcon('Assets/Icons/icon_myprofile.svg'))
+
+            # Update date label
+            update_date_label(self.dashboard_screen.label_dateDashboard)
+
+            # Set up and start the timer for real-time time updates
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(lambda: update_time_label(self.dashboard_screen.label_timeDashboard))
+            self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
 
             # Connect navbar buttons
             self.dashboard_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
@@ -127,22 +141,66 @@ class MainWindow(QMainWindow):
 
             self.dashboard_initialized = True
 
+            # Connect the button to the popup method
+            self.dashboard_screen.acc_buttonYourAccount.clicked.connect(self.show_account_popup)
+
+    def show_account_popup(self):
+        print("-- Navigating to Dashboard > Your Account")
+        popup = load_popup("UI/PopUp/youraccount.ui", self)
+        popup.setWindowTitle("Your Account")  # Optional title
+        popup.setWindowModality(Qt.ApplicationModal)  # Make it modal
+
+        # Find the "Admin Override" button inside the popup UI
+        admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
+
+        if admin_override_button:
+            admin_override_button.clicked.connect(lambda: self.show_admin_override_popup(popup))
+
+        popup.show()
+
+    def show_admin_override_popup(self, first_popup):
+        print("-- Navigating to Dashboard > Your Account > Admin Override")
+        first_popup.close()  # Close the first popup
+        admin_popup = load_popup("UI/PopUp/adminoverride.ui", self)
+        admin_popup.setWindowTitle("Admin Override")
+        admin_popup.setWindowModality(Qt.ApplicationModal)  # Modal type para dili ma click ang other window na nag open.
+
+        # Find the "Return to Your Account" button inside the Admin Override popup
+        return_button = admin_popup.findChild(QPushButton, "btn_return_to_youraccount")
+
+        if return_button:
+            print("-- Found 'Return to Your Account' button")
+            return_button.clicked.connect(lambda: self.return_to_account_popup(admin_popup))
+        else:
+            print("-- Error: 'Return to Your Account' button not found!")
+
+        admin_popup.show()
+
+    def return_to_account_popup(self, current_popup):
+        print("-- Returning to Dashboard > Your Account")
+        current_popup.close()  # Close the current popup
+        self.show_account_popup()  # Reopen the 'Your Account' popup
+
+    # ===============================================================================================
+
     def setup_citizen_profile_ui(self):
         """Setup the citizen profile UI layout."""
         self.setFixedSize(1350, 850)  # Set size for citizen profile screen
         self.setWindowTitle("Citizen Profiles - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         if not self.citizen_profile_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.citizen_profile_screen.nav_imageLogo.setPixmap(QPixmap("Assets/logo_brgyClear.png"))
-            self.citizen_profile_screen.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
-            self.citizen_profile_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
-            self.citizen_profile_screen.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
-            self.citizen_profile_screen.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
-            self.citizen_profile_screen.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
-            self.citizen_profile_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
-            self.citizen_profile_screen.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
+            self.citizen_profile_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.citizen_profile_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.citizen_profile_screen.nav_buttonCitizenProfiles.setIcon(QIcon(
+                'Assets/Icons/icon_citizenprofiles.svg'))
+            self.citizen_profile_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.citizen_profile_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
+            self.citizen_profile_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
+            self.citizen_profile_screen.nav_buttonAdminOverview.setIcon(QIcon(
+                'Assets/Icons/icon_adminoverview_off.svg'))
+            self.citizen_profile_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
             self.citizen_profile_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
@@ -156,22 +214,24 @@ class MainWindow(QMainWindow):
 
             self.citizen_profile_initialized = True
 
+    # ===============================================================================================
+
     def setup_statistics_ui(self):
         """Setup the statistics UI layout."""
         self.setFixedSize(1350, 850)  # Set size for statistics screen
         self.setWindowTitle("Statistics - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         if not self.statistics_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.statistics_screen.nav_imageLogo.setPixmap(QPixmap("Assets/logo_brgyClear.png"))
-            self.statistics_screen.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
-            self.statistics_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
-            self.statistics_screen.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
-            self.statistics_screen.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
-            self.statistics_screen.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
-            self.statistics_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
-            self.statistics_screen.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
+            self.statistics_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.statistics_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.statistics_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.statistics_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.statistics_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
+            self.statistics_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
+            self.statistics_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.statistics_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
             self.statistics_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
@@ -185,22 +245,24 @@ class MainWindow(QMainWindow):
 
             self.statistics_initialized = True
 
+    # ===============================================================================================
+
     def setup_business_ui(self):
         """Setup the business UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
         self.setWindowTitle("Business - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         if not self.business_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.business_screen.nav_imageLogo.setPixmap(QPixmap("Assets/logo_brgyClear.png"))
-            self.business_screen.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
-            self.business_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
-            self.business_screen.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
-            self.business_screen.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
-            self.business_screen.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
-            self.business_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
-            self.business_screen.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
+            self.business_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.business_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.business_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.business_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.business_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
+            self.business_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
+            self.business_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.business_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
             self.business_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
@@ -214,22 +276,24 @@ class MainWindow(QMainWindow):
 
             self.business_initialized = True
 
+    # ===============================================================================================
+
     def setup_schedules_ui(self):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
         self.setWindowTitle("Schedules - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
 
         if not self.schedules_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.schedules_screen.nav_imageLogo.setPixmap(QPixmap("Assets/logo_brgyClear.png"))
-            self.schedules_screen.nav_buttonDashboard.setIcon(QIcon('Assets/icon_dashboard.svg'))
-            self.schedules_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/icon_citizenprofiles.svg'))
-            self.schedules_screen.nav_buttonStatistics.setIcon(QIcon('Assets/icon_statistics.svg'))
-            self.schedules_screen.nav_buttonBusiness.setIcon(QIcon('Assets/icon_business.svg'))
-            self.schedules_screen.nav_buttonSchedules.setIcon(QIcon('Assets/icon_schedule.svg'))
-            self.schedules_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/icon_adminoverview_off.svg'))
-            self.schedules_screen.nav_isLocked.setIcon(QIcon('Assets/icon_isLocked.svg'))
+            self.schedules_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.schedules_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.schedules_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.schedules_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.schedules_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
+            self.schedules_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
+            self.schedules_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.schedules_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
             self.schedules_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
@@ -242,6 +306,8 @@ class MainWindow(QMainWindow):
             self.schedules_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
 
             self.schedules_initialized = True
+
+    # ===============================================================================================
 
     def logout_button_clicked(self):
         """Handle logout button click."""
