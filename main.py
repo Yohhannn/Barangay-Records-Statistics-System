@@ -9,6 +9,8 @@ from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
 
+from database import Database
+
 class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -45,17 +47,36 @@ class LoginWindow(QMainWindow):
 
     def login_button_clicked(self):
         """Handle login button click."""
+
+        # only here for debugging purposes
         print("-- Login Attempt")
         print("Employee ID:", self.login_screen.login_fieldEmp_id.text(),
               " PIN:", self.login_screen.login_fieldPin.text())
 
-        # Joe insert validation logic here.
+        emp_id = self.login_screen.login_fieldEmp_id.text()
+        emp_pin = self.login_screen.login_fieldPin.text()
+
+        connection = Database()
+        cursor = connection.cursor
+        try:
+            cursor.execute("SELECT * FROM employee WHERE emp_id = %s AND emp_pin = %s", (emp_id, emp_pin))
+            employee = cursor.fetchone()
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Error occurred while fetching data: {e}")
+        finally:
+            connection.close()
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
-        self.main_window = MainWindow(self)
-        self.main_window.show()
-        self.close()
+        if employee:
+            QMessageBox.information(self, "Success", "Login successful!")
+            self.main_window = MainWindow(self)
+            self.main_window.show()
+            self.close()
+        else:
+            QMessageBox.warning(self, "Error", "Invalid username or password")
 
+        self.login_screen.login_fieldEmp_id.clear()
+        self.login_screen.login_fieldPin.clear()
 
 class MainWindow(QMainWindow):
     def __init__(self, login_window):
