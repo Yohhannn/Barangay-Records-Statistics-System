@@ -15,7 +15,7 @@ class LoginWindow(QMainWindow):
         self.loader = QUiLoader()
         self.login_screen = self.load_ui("UI/login.ui")
         self.setCentralWidget(self.login_screen)
-
+    
         # Set up login UI
         self.setFixedSize(1080, 720)
         self.setWindowTitle("Marigondon Barangay Profiling System")
