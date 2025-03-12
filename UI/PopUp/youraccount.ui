@@ -457,7 +457,7 @@
      <string notr="true">#employeeaccount_buttonAdminOverride {
     background-color: #141c52;
     color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #employeeaccount_buttonAdminOverride:hover {

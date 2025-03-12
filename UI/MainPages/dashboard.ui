@@ -113,7 +113,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_dashboard.svg</normaloff>../Assets/icon_dashboard.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_dashboard.svg</normaloff>../../Assets/Icons/icon_dashboard.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -161,7 +161,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_citizenprofiles.svg</normaloff>../Assets/icon_citizenprofiles.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_citizenprofiles.svg</normaloff>../../Assets/Icons/icon_citizenprofiles.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -209,7 +209,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_statistics.svg</normaloff>../Assets/icon_statistics.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_statistics.svg</normaloff>../../Assets/Icons/icon_statistics.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -257,7 +257,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_schedule.svg</normaloff>../Assets/icon_schedule.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_schedule.svg</normaloff>../../Assets/Icons/icon_schedule.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -305,7 +305,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_business.svg</normaloff>../Assets/icon_business.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_business.svg</normaloff>../../Assets/Icons/icon_business.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -412,7 +412,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../../Downloads/icon_isLocked.svg</normaloff>../../../../../../Downloads/icon_isLocked.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -449,7 +449,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/logo_brgyClear.png</pixmap>
+     <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -855,9 +855,9 @@
    <widget class="QLabel" name="title_employeeFirstNameDashboard">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>70</y>
-      <width>171</width>
+      <width>521</width>
       <height>41</height>
      </rect>
     </property>
@@ -871,12 +871,12 @@
     <property name="styleSheet">
      <string notr="true">#title_employeeFirstNameDashboard {
 	background-color: transparent;
-	color: #141c52;
+	color: #484d7d;
 }
 </string>
     </property>
     <property name="text">
-     <string> N/A</string>
+     <string>##</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="table_recentlyAddedCitizensDashboard">
@@ -996,7 +996,7 @@
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>411</width>
+       <width>191</width>
        <height>41</height>
       </rect>
      </property>
@@ -1004,7 +1004,7 @@
       <font>
        <family>Arial</family>
        <pointsize>12</pointsize>
-       <bold>false</bold>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -1077,7 +1077,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_myprofile.svg</normaloff>../Assets/icon_myprofile.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_myprofile.svg</normaloff>../../Assets/Icons/icon_myprofile.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1300,17 +1300,17 @@
     <widget class="QLabel" name="label_frameTitleDashboard">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>411</width>
-       <height>31</height>
+       <x>0</x>
+       <y>0</y>
+       <width>321</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Arial</family>
        <pointsize>12</pointsize>
-       <bold>false</bold>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -1321,7 +1321,10 @@
 </string>
      </property>
      <property name="text">
-      <string>Staff Account Information (YOU)</string>
+      <string>Staff Account Information</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
