@@ -11,7 +11,7 @@ class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.loader = QUiLoader()
-        self.login_screen = self.load_ui("UI/login.ui")
+        self.login_screen = self.load_ui("UI/AuthPages/login.ui")
         self.setCentralWidget(self.login_screen)
 
         # Set up login UI
