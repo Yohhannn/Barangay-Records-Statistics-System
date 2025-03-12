@@ -15,7 +15,7 @@ class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.loader = QUiLoader()
-        self.login_screen = self.load_ui("UI/login.ui")
+        self.login_screen = self.load_ui("UI/AuthPages/login.ui")
         self.setCentralWidget(self.login_screen)
 
         # Set up login UI
@@ -69,7 +69,8 @@ class LoginWindow(QMainWindow):
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
         if employee:
             QMessageBox.information(self, "Success", "Login successful!")
-            self.main_window = MainWindow(self)
+            emp_first_name = employee[2]
+            self.main_window = MainWindow(self, emp_first_name)
             self.main_window.show()
             self.close()
         else:
@@ -79,9 +80,10 @@ class LoginWindow(QMainWindow):
         self.login_screen.login_fieldPin.clear()
 
 class MainWindow(QMainWindow):
-    def __init__(self, login_window):
+    def __init__(self, login_window, emp_first_name):
         super().__init__()
         self.login_window = login_window
+        self.emp_first_name = emp_first_name
 
         # Initialize QStackedWidget
         self.stack = QStackedWidget()
@@ -89,11 +91,11 @@ class MainWindow(QMainWindow):
 
         # Load the UI files
         self.loader = QUiLoader()
-        self.dashboard_screen = self.load_ui("UI/dashboard.ui")
-        self.citizen_profile_screen = self.load_ui("UI/citizenprofile.ui")
-        self.statistics_screen = self.load_ui("UI/statistics.ui")
-        self.business_screen = self.load_ui("UI/business.ui")
-        self.schedules_screen = self.load_ui("UI/schedule.ui")
+        self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
+        self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
+        self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
+        self.business_screen = self.load_ui("UI/MainPages/business.ui")
+        self.schedules_screen = self.load_ui("UI/MainPages/schedule.ui")
 
         # Add the screens to the stack
         self.stack.addWidget(self.dashboard_screen)  # Index 0
@@ -141,6 +143,9 @@ class MainWindow(QMainWindow):
 
             # Set the rest of the icons to the page.
             self.dashboard_screen.acc_buttonYourAccount.setIcon(QIcon('Assets/Icons/icon_myprofile.svg'))
+
+            # Welcome Message Display Name
+            self.dashboard_screen.title_employeeFirstNameDashboard.setText(self.emp_first_name)
 
             # Update date label
             update_date_label(self.dashboard_screen.label_dateDashboard)

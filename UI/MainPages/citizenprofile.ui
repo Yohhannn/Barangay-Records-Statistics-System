@@ -118,7 +118,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_dashboard.svg</normaloff>../Assets/icon_dashboard.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_dashboard.svg</normaloff>../../Assets/Icons/icon_dashboard.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -162,7 +162,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_citizenprofiles.svg</normaloff>../Assets/icon_citizenprofiles.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_citizenprofiles.svg</normaloff>../../Assets/Icons/icon_citizenprofiles.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -210,7 +210,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_statistics.svg</normaloff>../Assets/icon_statistics.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_statistics.svg</normaloff>../../Assets/Icons/icon_statistics.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -258,7 +258,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_schedule.svg</normaloff>../Assets/icon_schedule.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_schedule.svg</normaloff>../../Assets/Icons/icon_schedule.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -306,7 +306,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_business.svg</normaloff>../Assets/icon_business.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_business.svg</normaloff>../../Assets/Icons/icon_business.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -381,7 +381,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_adminoverview_off.svg</normaloff>../Assets/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -413,7 +413,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../../Downloads/icon_isLocked.svg</normaloff>../../../../../../Downloads/icon_isLocked.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -450,7 +450,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/logo_brgyClear.png</pixmap>
+     <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -766,6 +766,114 @@
     <property name="text">
      <string>CITIZEN PROFILE</string>
     </property>
+   </widget>
+   <widget class="QFrame" name="table_titleFrameDashboard">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>1031</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#table_titleFrameDashboard{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_tableTitleDashboard">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_tableTitleDashboard {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Profile List</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="profileList_fieldSearch">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_fieldSearch{
+    border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Input Search</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_tableTitleDashboard_2">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>0</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_tableTitleDashboard {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Search:</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
