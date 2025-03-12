@@ -1,13 +1,13 @@
+
 import sys
-
-from PySide6.QtGui import QIcon, QPixmap
-from PySide6.QtWidgets import QMainWindow, QStackedWidget, QMessageBox, QPushButton
-from PySide6.QtCore import QFile, Qt, QTimer
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton
+from PySide6.QtGui import QPixmap, QIcon, Qt
+from PySide6.QtCore import QTimer
 from PySide6.QtUiTools import QUiLoader
-
-from Utils.util_popup import load_popup
+from PySide6.QtCore import QFile
 from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
+from Utils.util_popup import load_popup
 
 
 class MainWindow(QMainWindow):
@@ -18,11 +18,11 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.stack)
         self.loader = QUiLoader()
 
-        self.dashboard_screen = self.load_ui("UI/dashboard.ui")
-        self.citizen_profile_screen = self.load_ui("UI/citizenprofile.ui")
-        self.statistics_screen = self.load_ui("UI/statistics.ui")
-        self.business_screen = self.load_ui("UI/business.ui")
-        self.schedules_screen = self.load_ui("UI/schedule.ui")
+        self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
+        self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
+        self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
+        self.business_screen = self.load_ui("UI/MainPages/business.ui")
+        self.schedules_screen = self.load_ui("UI/MainPages/schedule.ui")
 
         self.stack.addWidget(self.dashboard_screen)
         self.stack.addWidget(self.citizen_profile_screen)
