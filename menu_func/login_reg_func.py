@@ -62,9 +62,11 @@ class LoginWindow(QMainWindow):
             connection.close()
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
-        if emp_id == "123" and emp_pin == "123":
-            main_window = MainWindow(self)  # Pass self as login_window
-            main_window.show()
+        if employee:
+            QMessageBox.information(self, "Success", "Login successful!")
+            emp_first_name = employee[2]
+            self.main_window = MainWindow(self, emp_first_name)
+            self.main_window.show()
             self.close()
         elif employee:
             QMessageBox.information(self, "Success", "Login successful!")

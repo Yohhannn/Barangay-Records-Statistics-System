@@ -11,9 +11,10 @@ from Utils.util_popup import load_popup
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, login_window):
+    def __init__(self, login_window, emp_first_name):
         super().__init__()
         self.login_window = login_window
+        self.emp_first_name = emp_first_name
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
         self.loader = QUiLoader()
@@ -71,6 +72,9 @@ class MainWindow(QMainWindow):
 
             # Update date label
             update_date_label(self.dashboard_screen.label_dateDashboard)
+
+            # Welcome Message Display Name
+            self.dashboard_screen.title_employeeFirstNameDashboard.setText(self.emp_first_name)
 
             # Set up and start the timer for real-time time updates
             self.timer = QTimer(self)
