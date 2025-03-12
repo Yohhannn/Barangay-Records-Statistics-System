@@ -769,9 +769,9 @@
    <widget class="QLabel" name="label_timeDashboard">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>640</x>
       <y>20</y>
-      <width>341</width>
+      <width>421</width>
       <height>61</height>
      </rect>
     </property>
