@@ -102,7 +102,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../Assets/image_pattern.png</pixmap>
+      <pixmap>../../Assets/Images/image_pattern.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -345,7 +345,7 @@ color: #141c52;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/logo_brgy.png</pixmap>
+     <pixmap>../../Assets/Images/logo_brgy.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
