@@ -32,6 +32,7 @@ class LoginWindow(QMainWindow):
 
         # Connect login button
         self.login_screen.login_buttonLogin.clicked.connect(self.login_button_clicked)
+        self.login_screen.login_fieldPin.returnPressed.connect(self.login_button_clicked)
 
     def load_ui(self, ui_path):
         """Utility function to load a .ui file."""
