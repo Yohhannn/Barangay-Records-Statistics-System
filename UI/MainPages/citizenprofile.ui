@@ -118,7 +118,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_dashboard.svg</normaloff>../Assets/icon_dashboard.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_dashboard.svg</normaloff>../../Assets/Icons/icon_dashboard.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -162,7 +162,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_citizenprofiles.svg</normaloff>../Assets/icon_citizenprofiles.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_citizenprofiles.svg</normaloff>../../Assets/Icons/icon_citizenprofiles.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -210,7 +210,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_statistics.svg</normaloff>../Assets/icon_statistics.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_statistics.svg</normaloff>../../Assets/Icons/icon_statistics.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -258,7 +258,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_schedule.svg</normaloff>../Assets/icon_schedule.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_schedule.svg</normaloff>../../Assets/Icons/icon_schedule.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -306,7 +306,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_business.svg</normaloff>../Assets/icon_business.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_business.svg</normaloff>../../Assets/Icons/icon_business.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -381,7 +381,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_adminoverview_off.svg</normaloff>../Assets/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -413,7 +413,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../../Downloads/icon_isLocked.svg</normaloff>../../../../../../Downloads/icon_isLocked.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -450,7 +450,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/logo_brgyClear.png</pixmap>
+     <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -765,6 +765,382 @@
     </property>
     <property name="text">
      <string>CITIZEN PROFILE</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="table_titleFrameDashboard">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>1041</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#table_titleFrameDashboard{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_tableTitleDashboard">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_tableTitleDashboard {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Profile List</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="profileList_fieldSearch">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_fieldSearch{
+    border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Search Name or ID</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_tableTitleDashboard_2">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>0</y>
+       <width>91</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_tableTitleDashboard {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Search:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonCreate">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonCreate {
+    background-color:  #1e7e34; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonCreate:hover {
+    background-color: #28a745; /* Brighter green when hovered */
+    color: white; 
+}
+
+#profileList_buttonCreate:pressed {
+    background-color:  #34c759; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   CREATE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_add.svg</normaloff>../../Assets/FuncIcons/icon_add.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonDelete">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonDelete {
+    background-color: #c9302c; /* Default red */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonDelete:hover {
+    background-color: #d9534f; /* Brighter red when hovered */
+    color: white; 
+}
+
+#profileList_buttonDelete:pressed {
+    background-color: #a52a2a; /* Darker red when pressed */
+    color: white; 
+}</string>
+     </property>
+     <property name="text">
+      <string>   DELETE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_del.svg</normaloff>../../Assets/FuncIcons/icon_del.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonSelectAll">
+     <property name="geometry">
+      <rect>
+       <x>950</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonSelectAll {
+    background-color:  #7e7e7e; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonSelectAll:hover {
+    background-color: #bfbfbf; /* Brighter green when hovered */
+    color: white; 
+}
+
+#profileList_buttonSelectAll:pressed {
+    background-color: #636363; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   ALL</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_selectall.svg</normaloff>../../Assets/FuncIcons/icon_selectall.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonSearch">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>10</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonSearch {
+    background-color:  #141c52;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#profileList_buttonSearch:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#profileList_buttonSearch:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_search_w.svg</normaloff>../../Assets/FuncIcons/icon_search_w.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableWidget" name="tableView_profileList">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>1041</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#tableView_profileList{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+   </widget>
+   <widget class="QLabel" name="message_ProfileList">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>131</y>
+      <width>381</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#message_ProfileList{
+	color: #145c52;
+}</string>
+    </property>
+    <property name="text">
+     <string>[ Search Results ]</string>
     </property>
    </widget>
   </widget>
