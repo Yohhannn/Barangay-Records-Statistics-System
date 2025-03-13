@@ -77,7 +77,7 @@ class LoginWindow(QMainWindow):
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
         if employee:
-            self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico")) # Will set the Application Icon as Active.
+            self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico")) # Will set the Application Icon as Active.
             QMessageBox.information(self, "Success", "Login successful!")
             emp_first_name = employee[2]
             self.main_window = MainWindow(self, emp_first_name)

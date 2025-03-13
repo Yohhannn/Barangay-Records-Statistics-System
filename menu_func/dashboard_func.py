@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
         """Setup the dashboard UI layout and connect buttons."""
         self.setFixedSize(1350, 850)  # Set size for dashboard screen
         self.setWindowTitle("Dashboard - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.dashboard_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
         """Setup the citizen profile UI layout."""
         self.setFixedSize(1350, 850)  # Set size for citizen profile screen
         self.setWindowTitle("Citizen Profiles - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.citizen_profile_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -178,7 +178,7 @@ class MainWindow(QMainWindow):
         """Setup the statistics UI layout."""
         self.setFixedSize(1350, 850)  # Set size for statistics screen
         self.setWindowTitle("Statistics - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -209,7 +209,7 @@ class MainWindow(QMainWindow):
         """Setup the business UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
         self.setWindowTitle("Business - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.business_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -240,7 +240,7 @@ class MainWindow(QMainWindow):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
         self.setWindowTitle("Schedules - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.schedules_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
