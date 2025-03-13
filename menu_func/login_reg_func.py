@@ -17,7 +17,7 @@ class LoginWindow(QMainWindow):
         # Set up login UI
         self.setFixedSize(1080, 720)
         self.setWindowTitle("Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_auth.ico"))
 
         # Set images
         self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgy.png"))
@@ -32,7 +32,8 @@ class LoginWindow(QMainWindow):
 
         # Connect login button
         self.login_screen.login_buttonLogin.clicked.connect(self.login_button_clicked)
-        self.login_screen.login_fieldPin.returnPressed.connect(self.login_button_clicked)
+        self.login_screen.login_fieldPin.returnPressed.connect(self.login_button_clicked) # Pin Field : Enter to Login
+        self.login_screen.login_fieldEmp_id.returnPressed.connect(self.login_button_clicked) # Emp_ID Field : Enter to Login
 
     def load_ui(self, ui_path):
         """Utility function to load a .ui file."""
@@ -44,12 +45,25 @@ class LoginWindow(QMainWindow):
 
     def login_button_clicked(self):
         """Handle login button click."""
+
+        # Get input values and strip whitespace
+        emp_id = self.login_screen.login_fieldEmp_id.text().strip()
+        emp_pin = self.login_screen.login_fieldPin.text().strip()
+
+        # Check if either field is empty and show appropriate message
+        if not emp_id and not emp_pin:
+            QMessageBox.warning(self, "Login Error", "Employee ID and PIN are required!")
+            return
+        elif not emp_id:
+            QMessageBox.warning(self, "Login Error", "Employee ID is required!")
+            return
+        elif not emp_pin:
+            QMessageBox.warning(self, "Login Error", "PIN is required!")
+            return
+
         print("-- Login Attempt")
         print("Employee ID:", self.login_screen.login_fieldEmp_id.text(),
               " PIN:", self.login_screen.login_fieldPin.text())
-
-        emp_id = self.login_screen.login_fieldEmp_id.text()
-        emp_pin = self.login_screen.login_fieldPin.text()
 
         connection = Database()
         cursor = connection.cursor
@@ -63,6 +77,7 @@ class LoginWindow(QMainWindow):
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
         if employee:
+            self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico")) # Will set the Application Icon as Active.
             QMessageBox.information(self, "Success", "Login successful!")
             emp_first_name = employee[2]
             self.main_window = MainWindow(self, emp_first_name)

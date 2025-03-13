@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
         """Setup the dashboard UI layout and connect buttons."""
         self.setFixedSize(1350, 850)  # Set size for dashboard screen
         self.setWindowTitle("Dashboard - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
 
         if not self.dashboard_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -82,7 +82,7 @@ class MainWindow(QMainWindow):
             self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
 
             # Connect navbar buttons
-            self.dashboard_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
+            # self.dashboard_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard) # UNNECESSARY
             self.dashboard_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
             self.dashboard_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
             self.dashboard_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
@@ -139,24 +139,30 @@ class MainWindow(QMainWindow):
         """Setup the citizen profile UI layout."""
         self.setFixedSize(1350, 850)  # Set size for citizen profile screen
         self.setWindowTitle("Citizen Profiles - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
 
         if not self.citizen_profile_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
             self.citizen_profile_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
             self.citizen_profile_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.citizen_profile_screen.nav_buttonCitizenProfiles.setIcon(QIcon(
-                'Assets/Icons/icon_citizenprofiles.svg'))
+            self.citizen_profile_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
             self.citizen_profile_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.citizen_profile_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
             self.citizen_profile_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.citizen_profile_screen.nav_buttonAdminOverview.setIcon(QIcon(
-                'Assets/Icons/icon_adminoverview_off.svg'))
+            self.citizen_profile_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.citizen_profile_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+
+            # Set Icons
+            self.citizen_profile_screen.profileList_buttonCreate.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
+            self.citizen_profile_screen.profileList_buttonDelete.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+            self.citizen_profile_screen.profileList_buttonSelectAll.setIcon(QIcon('Assets/FuncIcons/icon_selectall.svg'))
+            self.citizen_profile_screen.profileList_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
+
+            # SINCE SEARCHING IS EITHER NAME OR ID, CHECK FIRST IF THE INPUT IS NUMERIC OR NOT IF NUMERIC SEARCH IT AS ID IF NOT SEARCH IT BY THE NAME.
 
             # Connect navbar buttons
             self.citizen_profile_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-            self.citizen_profile_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
+            # self.citizen_profile_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles) # UNNECESSARY
             self.citizen_profile_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
             self.citizen_profile_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
             self.citizen_profile_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules)
@@ -172,7 +178,7 @@ class MainWindow(QMainWindow):
         """Setup the statistics UI layout."""
         self.setFixedSize(1350, 850)  # Set size for statistics screen
         self.setWindowTitle("Statistics - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
 
         if not self.statistics_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -203,7 +209,7 @@ class MainWindow(QMainWindow):
         """Setup the business UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
         self.setWindowTitle("Business - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
 
         if not self.business_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -234,7 +240,7 @@ class MainWindow(QMainWindow):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
         self.setWindowTitle("Schedules - Marigondon Barangay Profiling System")
-        self.setWindowIcon(QIcon("Assets/Icons/icon_main.png"))
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico"))
 
         if not self.schedules_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
@@ -305,7 +311,6 @@ class MainWindow(QMainWindow):
         self.setup_schedules_ui()  # Ensure schedules is set up
         self.stack.setCurrentIndex(4)  # Switch to schedules screen
 
-
     def logout_button_clicked(self):
         confirmation = QMessageBox.question(
             self,
@@ -314,5 +319,5 @@ class MainWindow(QMainWindow):
             QMessageBox.Yes | QMessageBox.No,
         )
         if confirmation == QMessageBox.Yes:
-            self.login_window.show()
+            self.login_window.show()  # Show the login window again
             self.close()

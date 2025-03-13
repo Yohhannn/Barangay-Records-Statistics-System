@@ -772,7 +772,7 @@
      <rect>
       <x>20</x>
       <y>80</y>
-      <width>1031</width>
+      <width>1041</width>
       <height>51</height>
      </rect>
     </property>
@@ -844,7 +844,7 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>Input Search</string>
+      <string>Search Name or ID</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_tableTitleDashboard_2">
@@ -874,6 +874,274 @@
       <string>Search:</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="profileList_buttonCreate">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonCreate {
+    background-color:  #1e7e34; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonCreate:hover {
+    background-color: #28a745; /* Brighter green when hovered */
+    color: white; 
+}
+
+#profileList_buttonCreate:pressed {
+    background-color:  #34c759; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   CREATE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_add.svg</normaloff>../../Assets/FuncIcons/icon_add.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonDelete">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonDelete {
+    background-color: #c9302c; /* Default red */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonDelete:hover {
+    background-color: #d9534f; /* Brighter red when hovered */
+    color: white; 
+}
+
+#profileList_buttonDelete:pressed {
+    background-color: #a52a2a; /* Darker red when pressed */
+    color: white; 
+}</string>
+     </property>
+     <property name="text">
+      <string>   DELETE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_del.svg</normaloff>../../Assets/FuncIcons/icon_del.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonSelectAll">
+     <property name="geometry">
+      <rect>
+       <x>950</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonSelectAll {
+    background-color:  #7e7e7e; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonSelectAll:hover {
+    background-color: #bfbfbf; /* Brighter green when hovered */
+    color: white; 
+}
+
+#profileList_buttonSelectAll:pressed {
+    background-color: #636363; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   ALL</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_selectall.svg</normaloff>../../Assets/FuncIcons/icon_selectall.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileList_buttonSearch">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>10</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonSearch {
+    background-color:  #141c52;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#profileList_buttonSearch:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#profileList_buttonSearch:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_search_w.svg</normaloff>../../Assets/FuncIcons/icon_search_w.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableWidget" name="tableView_profileList">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>1041</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#tableView_profileList{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+   </widget>
+   <widget class="QLabel" name="message_ProfileList">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>131</y>
+      <width>381</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#message_ProfileList{
+	color: #145c52;
+}</string>
+    </property>
+    <property name="text">
+     <string>[ Search Results ]</string>
+    </property>
    </widget>
   </widget>
  </widget>

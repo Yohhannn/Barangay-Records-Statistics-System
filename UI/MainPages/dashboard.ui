@@ -380,7 +380,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_adminoverview_off.svg</normaloff>../Assets/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -769,9 +769,9 @@
    <widget class="QLabel" name="label_timeDashboard">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>620</x>
       <y>20</y>
-      <width>421</width>
+      <width>441</width>
       <height>61</height>
      </rect>
     </property>
@@ -791,7 +791,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>XX:XX XX</string>
+     <string>XX:XX:XX XX</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
