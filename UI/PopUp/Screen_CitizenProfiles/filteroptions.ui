@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PopUp_citizenprofileFilterOptions</class>
+ <widget class="QDialog" name="PopUp_citizenprofileFilterOptions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>669</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#PopUp_citizenprofileFilterOptions{
+	background-color: #f2efff;
+}</string>
+  </property>
+  <widget class="QFrame" name="basePopUpBodyFrame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>631</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#basePopUpBodyFrame {
+	background-color: #e7e2ff;
+	border: none;
+	border-radius: 10px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="filteroptions_buttonSave">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>370</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_buttonSave {
+    background-color: #141c52;
+    color: white;
+    border-radius: 10px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#filteroptions_buttonSave:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#filteroptions_buttonSave:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>SAVE</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_SexOption">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>20</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_SexOption{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Sex</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Male</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Female</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelSex">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelSex {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Sex</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelCivilStatus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelCivilStatus {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Civil Status</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_CivilStatus">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>70</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_CivilStatus{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Civil Status</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Single</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Married</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Widowed</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Separated</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Divorced</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_Religion">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>120</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_Religion{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Belief</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Roman Catholic</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Islam</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Iglesia ni Cristo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Born Again</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Evangelical</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Others</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelReligion">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelReligion {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Religion</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_AgeRange">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>170</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_AgeRange{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Age</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Child ] 0 -13</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Teenager / Minor ] 14 - 17</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Young Adult ] 18 - 25</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Adult ] 26 - 35</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Middle Aged ] 36 - 59</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>[ Senior Citizen ] 60 +</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelAgeRange">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelAgeRange {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Age Range</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QFrame" name="filteroptions_frameCheckButtons">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>201</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_frameCheckButtons {
+	background-color: rgb(249, 249, 249);
+	border: none;
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QCheckBox" name="checkBox_isPWD">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_isPWD {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_isPWD:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_isPWD:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_isPWD:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>PWDs</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_is4Ps">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_is4Ps {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_is4Ps:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_is4Ps:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_is4Ps:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>4PS Members</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_isRegisteredVoter">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_isRegisteredVoter {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_isRegisteredVoter:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_isRegisteredVoter:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_isRegisteredVoter:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Registered Voters</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_isVaccinated">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_isVaccinated {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_isVaccinated:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_isVaccinated:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_isVaccinated:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Vaccinated Citizens</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_isLandOwner">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_isLandOwner {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_isLandOwner:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_isLandOwner:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_isLandOwner:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Land Owners</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_isStaff">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>260</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#checkBox_isStaff {
+    background-color: #5b5c7d;
+    color: #white;
+    font-size: 14px; /* Adjust font size if necessary */
+    border: 2px solid #ccc; /* Optional border */
+    padding: 5px; /* Space around the checkbox */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer;
+}
+
+/* Hover effect */
+#checkBox_isStaff:hover {
+    background-color: #696a91; /* Slightly lighter background on hover */
+    color: #white; /* Darker text on hover */
+}
+
+/* Focus effect */
+#checkBox_isStaff:focus {
+    outline: none;
+    box-shadow: 0 0 3px #4f4f4f; /* Subtle glow when focused */
+}
+
+/* Checked state */
+#checkBox_isStaff:checked {
+    background-color: #515270; /* Darker background for checked state */
+    color: #85ff6a; 
+	border: 2px solid #85ff6a;
+}</string>
+     </property>
+     <property name="text">
+      <string>Barangay Staffs</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QComboBox" name="comboBox_EmploymentStatus">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>220</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_EmploymentStatus{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Work Status</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Employed</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Unemployed</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Self Employed</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Retired</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Student</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelEmploymentStatus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelEmploymentStatus {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Employment Status</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelEducationalLevels">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelEducationalLevels {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Educational Levels</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_EducationalLevels">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>270</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_EducationalLevels{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Attainment</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Elementary</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>High School</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>College</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Vocational</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>No Formal Education</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelSitio">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>320</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelSitio {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Sitio / Street</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_Sitio">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>320</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_Sitio{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Street</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="filteroptions_labelIncomeDistribution">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_labelIncomeDistribution {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Income Distribution</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_IncomeDistribution">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>370</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_IncomeDistribution{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Monthly Based</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Below ₱ 500</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 501 - ₱ 2,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 2,001 - ₱ 5,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 5,001 - ₱ 10,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 10,001 - ₱ 25,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 25,001 - ₱ 50,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 50,001 - ₱ 75,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 75,001 - ₱ 100,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 100,001 - ₱ 250,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 250,001 - ₱ 500,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 500,001 - ₱ 750,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>₱ 750,001 - ₱ 1,000,000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Above ₱ 1,000,000</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="basePopUpTitleFrame">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>-10</y>
+     <width>741</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#basePopUpTitleFrame {
+	background-color: #141c52;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_titleFilterOptions">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_titleFilterOptions {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>FILTER OPTIONS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteroptions_label">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_label {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>PLEASE SELECT &amp; CHECK THE FOLLOWING OPTIONS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

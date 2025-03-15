@@ -658,6 +658,36 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
+   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>1311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyDashboardSystemTitle {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>MRSS: Marigondon Records and Statistics System</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="border_blueLines2">
    <property name="geometry">
@@ -818,9 +848,9 @@
     <widget class="QLineEdit" name="profileList_fieldSearch">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>140</x>
        <y>10</y>
-       <width>201</width>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
@@ -845,33 +875,6 @@
      </property>
      <property name="placeholderText">
       <string>Search Name or ID</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_tableTitleDashboard_2">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>0</y>
-       <width>91</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_tableTitleDashboard {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>Search:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="profileList_buttonCreate">
@@ -1006,7 +1009,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#profileList_buttonSelectAll {
-    background-color:  #7e7e7e; /* Default green */
+    background-color:  #474747;
     color: white;
     border: 1px solid #b5b5b5;
     border-radius: 10px;
@@ -1014,12 +1017,12 @@
 }
 
 #profileList_buttonSelectAll:hover {
-    background-color: #bfbfbf; /* Brighter green when hovered */
+    background-color: #636363;
     color: white; 
 }
 
 #profileList_buttonSelectAll:pressed {
-    background-color: #636363; /* Darker green when pressed */
+    background-color: #bfbfbf;
     color: white; 
 }
 </string>
@@ -1087,6 +1090,61 @@
       </size>
      </property>
     </widget>
+    <widget class="QPushButton" name="profileList_buttonFilter">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>10</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#profileList_buttonFilter {
+    background-color:  #474747;
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonFilter:hover {
+    background-color: #636363;
+    color: white; 
+}
+
+#profileList_buttonFilter:pressed {
+    background-color: #bfbfbf;
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   FILTER</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/FuncIcons/icon_filter.svg</normaloff>../../Assets/FuncIcons/icon_filter.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>18</width>
+       <height>18</height>
+      </size>
+     </property>
+    </widget>
    </widget>
    <widget class="QTableWidget" name="tableView_profileList">
     <property name="geometry">
@@ -1098,9 +1156,11 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#tableView_profileList{
-	background-color: #f2efff;
-}</string>
+     <string notr="true">#tableView_profileList {
+	background-color: white;
+	color: #black;
+}
+</string>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -1117,6 +1177,176 @@
     <attribute name="verticalHeaderCascadingSectionResizes">
      <bool>false</bool>
     </attribute>
+    <column>
+     <property name="text">
+      <string>ID</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Lastname</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Firstname</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Middlename</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sex</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Attainment</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Age</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sitio</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Religion</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="message_ProfileList">
     <property name="geometry">

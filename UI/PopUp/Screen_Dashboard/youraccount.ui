@@ -35,7 +35,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">#basePopUpBodyFrame {
-	background-color: #e7e2ff;
+	background-color: #f8f7ff;
 	border: none;
 	border-radius: 10px;
 }</string>
