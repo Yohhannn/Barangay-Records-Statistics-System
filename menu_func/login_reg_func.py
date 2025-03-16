@@ -16,12 +16,14 @@ class LoginWindow(QMainWindow):
 
         # Set up login UI
         self.setFixedSize(1080, 720)
-        self.setWindowTitle("Marigondon Barangay Profiling System")
+        self.setWindowTitle("MRSS - Marigondon Records & Statistics System")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_auth.ico"))
 
         # Set images
-        self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgy.png"))
-        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/Images/image_pattern.png"))
+        self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/Images/img_newloginpattern.png"))
+        self.login_screen.login_imageAppIcon.setPixmap(QPixmap("Assets/Images/img_mainappicon.png"))
+
         applyRoundedCorners(
             self.login_screen.login_imagePattern,
             radius_top_left=20,
@@ -51,14 +53,21 @@ class LoginWindow(QMainWindow):
         emp_pin = self.login_screen.login_fieldPin.text().strip()
 
         # Check if either field is empty and show appropriate message
+        # Check if either field contains only numeric characters
         if not emp_id and not emp_pin:
             QMessageBox.warning(self, "Login Error", "Employee ID and PIN are required!")
             return
         elif not emp_id:
             QMessageBox.warning(self, "Login Error", "Employee ID is required!")
             return
+        elif not emp_id.isdigit():
+            QMessageBox.warning(self, "Login Error", "Invalid Employee ID! It must be numeric.")
+            return
         elif not emp_pin:
             QMessageBox.warning(self, "Login Error", "PIN is required!")
+            return
+        elif not emp_pin.isdigit():
+            QMessageBox.warning(self, "Login Error", "Invalid PIN! It must be numeric.")
             return
 
         print("-- Login Attempt")
@@ -77,7 +86,7 @@ class LoginWindow(QMainWindow):
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
         if employee:
-            self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active.ico")) # Will set the Application Icon as Active.
+            self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico")) # Will set the Application Icon as Active.
             QMessageBox.information(self, "Success", "Login successful!")
             emp_first_name = employee[2]
             self.main_window = MainWindow(self, emp_first_name)

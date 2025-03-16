@@ -91,7 +91,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>291</width>
+       <width>281</width>
        <height>501</height>
       </rect>
      </property>
@@ -102,19 +102,84 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../Assets/Images/image_pattern.png</pixmap>
+      <pixmap>../../Assets/Images/img_newloginpattern.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="login_imageLogo">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>50</y>
+       <width>121</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#login_imageLogo{	
+	background-color: transparent;
+	color: #ffffff;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="login_labellocation">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>460</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#login_labellocation{
+	background-color: transparent;
+	border-color: transparent;
+	color: #white;
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximo V. Patalinghug Jr. Avenue, &lt;br/&gt;Lapu-Lapu City, Cebu&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
    <widget class="QLabel" name="login_labelTitle2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>190</y>
-      <width>381</width>
+      <x>280</x>
+      <y>230</y>
+      <width>551</width>
       <height>31</height>
      </rect>
     </property>
@@ -130,14 +195,17 @@
 color: #141c52;</string>
     </property>
     <property name="text">
-     <string>PROFILING DATABASE SYSTEM</string>
+     <string>Records and Statistics System</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="login_buttonLogin">
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>380</y>
+      <y>400</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -174,7 +242,7 @@ color: #141c52;</string>
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>259</y>
+      <y>289</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -207,7 +275,7 @@ color: #141c52;</string>
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>310</y>
+      <y>340</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -235,7 +303,7 @@ color: #141c52;</string>
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>310</y>
+      <y>340</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -269,9 +337,9 @@ color: #141c52;</string>
    <widget class="QLabel" name="login_labelTitle1">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>150</y>
-      <width>311</width>
+      <x>280</x>
+      <y>190</y>
+      <width>551</width>
       <height>31</height>
      </rect>
     </property>
@@ -287,14 +355,17 @@ color: #141c52;</string>
 color: #141c52;</string>
     </property>
     <property name="text">
-     <string>BARANGAY MARIGONDON</string>
+     <string>BRGY. Marigondon</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="login_labelEmp_id">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>259</y>
+      <y>289</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -316,39 +387,6 @@ color: #141c52;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="login_imageLogo">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>30</y>
-      <width>101</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>18</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#login_imageLogo{	
-	background-color: transparent;
-	color: #ffffff;
-}
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../Assets/Images/logo_brgy.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="login_labelRights">
@@ -377,10 +415,73 @@ color: #141c52;</string>
 </string>
     </property>
     <property name="text">
-     <string>© 2025 Barangay Marigondon. All Rights Reserved.</string>
+     <string>© 2025 Barangay Marigondon - MRSS. All Rights Reserved.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="login_imageAppIcon">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>50</y>
+      <width>131</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>18</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#login_imageAppIcon{	
+	background-color: transparent;
+	color: #ffffff;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../Assets/Images/img_mainappicon.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="login_labelDots">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>0</y>
+      <width>531</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>36</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#login_labelDots{
+	background-color: transparent;
+	color: #141c52;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
    <zorder>login_labelTitle2</zorder>
@@ -390,9 +491,10 @@ color: #141c52;</string>
    <zorder>login_fieldPin</zorder>
    <zorder>login_labelTitle1</zorder>
    <zorder>login_labelEmp_id</zorder>
-   <zorder>login_imageLogo</zorder>
    <zorder>login_labelRights</zorder>
    <zorder>login_frameBlue</zorder>
+   <zorder>login_imageAppIcon</zorder>
+   <zorder>login_labelDots</zorder>
   </widget>
  </widget>
  <resources/>
