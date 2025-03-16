@@ -151,6 +151,7 @@ class MainWindow(QMainWindow):
         popup = load_popup("UI/PopUp/Screen_Dashboard/aboutsoftware.ui", self)
         popup.setWindowTitle("About the Software")  # Set a title for the popup
         popup.aboutsoftwareinfo_imageRavenLabs.setPixmap(QPixmap("Assets/AppIcons/icon_ravenlabs.png"))
+        popup.aboutsoftwareinfo_imageCTULOGO.setPixmap(QPixmap("Assets/Images/img_ctulogo.png"))
         popup.aboutsoftwareinfo_imageLogo.setPixmap(QPixmap("Assets/Images/img_mainappicon.png"))
         popup.setWindowModality(Qt.ApplicationModal)  # Make the popup modal
         popup.show()
@@ -175,6 +176,8 @@ class MainWindow(QMainWindow):
         admin_popup = load_popup("UI/PopUp/Screen_Dashboard/adminoverride.ui", self)
         admin_popup.setWindowTitle("Admin Override")
         admin_popup.setWindowModality(Qt.ApplicationModal)  # Modal type para dili ma click ang other window na nag open.
+
+        admin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
 
         # Find the "Return to Your Account" button inside the Admin Override popup
         return_button = admin_popup.findChild(QPushButton, "btn_return_to_youraccount")

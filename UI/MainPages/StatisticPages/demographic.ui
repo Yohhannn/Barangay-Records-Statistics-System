@@ -998,7 +998,7 @@
      <zorder>demo_TotalAdults</zorder>
      <zorder>label_desc2</zorder>
     </widget>
-    <widget class="QFrame" name="demo_framePopulationOverview_2">
+    <widget class="QFrame" name="demo_frameEducationLevels">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -1008,7 +1008,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#demo_framePopulationOverview{
+      <string notr="true">#demo_frameEducationLevels{
 	background-color: #fcfcfc;
 }</string>
      </property>
@@ -1018,7 +1018,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="demo_TotalSeniors_2">
+     <widget class="QLabel" name="demo_TotalNFE">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1035,7 +1035,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalSeniors {
+       <string notr="true">#demo_TotalNFE {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1048,7 +1048,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalMinors_2">
+     <widget class="QLabel" name="demo_JHS">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1065,7 +1065,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalMinors {
+       <string notr="true">#demo_JHS {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1078,7 +1078,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalAdult_2">
+     <widget class="QLabel" name="demo_labelCollege">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1095,7 +1095,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalAdult {
+       <string notr="true">#demo_labelCollege {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1108,7 +1108,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalYoungAdults_2">
+     <widget class="QLabel" name="demo_labelSHS">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1125,7 +1125,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalYoungAdults {
+       <string notr="true">#demo_labelSHS {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1138,7 +1138,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalChild_2">
+     <widget class="QLabel" name="demo_Elementary">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1155,7 +1155,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalChild {
+       <string notr="true">#demo_Elementary {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1168,7 +1168,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalSeniors_2">
+     <widget class="QLabel" name="demo_labelTotalNFE">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1185,7 +1185,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalSeniors {
+       <string notr="true">#demo_labelTotalNFE {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1198,7 +1198,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalMiddleAges_2">
+     <widget class="QLabel" name="demo_TotalVocational">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1215,7 +1215,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalMiddleAges {
+       <string notr="true">#demo_TotalVocational {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1228,7 +1228,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalMiddleAges_2">
+     <widget class="QLabel" name="demo_labelTotalVocational">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1245,7 +1245,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalMiddleAges {
+       <string notr="true">#demo_labelTotalVocational {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1258,7 +1258,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalChild_2">
+     <widget class="QLabel" name="demo_labelElementary">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1275,7 +1275,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalChild {
+       <string notr="true">#demo_labelElementary {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1288,7 +1288,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalMinors_2">
+     <widget class="QLabel" name="demo_labelJHS">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1305,7 +1305,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalMinors {
+       <string notr="true">#demo_labelJHS {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1318,7 +1318,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalYoungAdults_2">
+     <widget class="QLabel" name="demo_SHS">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1335,7 +1335,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalYoungAdults {
+       <string notr="true">#demo_SHS {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1348,7 +1348,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalAdults_2">
+     <widget class="QLabel" name="demo_College">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1365,7 +1365,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalAdults {
+       <string notr="true">#demo_College {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1378,7 +1378,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_desc2_2">
+     <widget class="QLabel" name="label_desc_edlev">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1394,7 +1394,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_desc2{
+       <string notr="true">#label_desc_edlev{
 	color: #969696;
 }</string>
       </property>
@@ -1458,7 +1458,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="demo_framePopulationOverview_3">
+    <widget class="QFrame" name="demo_frameCivilStatusDistribution">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1468,7 +1468,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#demo_framePopulationOverview{
+      <string notr="true">#demo_frameCivilStatusDistribution{
 	background-color: #fcfcfc;
 }</string>
      </property>
@@ -1478,7 +1478,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="demo_labelTotalMale_4">
+     <widget class="QLabel" name="demo_labelTotalSingle">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1495,7 +1495,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalMale {
+       <string notr="true">#demo_labelTotalSingle {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1508,7 +1508,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalFemale_4">
+     <widget class="QLabel" name="demo_labelTotalMarried">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1525,7 +1525,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalFemale {
+       <string notr="true">#demo_labelTotalMarried {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1538,7 +1538,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalMale_4">
+     <widget class="QLabel" name="demo_TotalSingle">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1555,7 +1555,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalMale {
+       <string notr="true">#demo_TotalSingle {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1568,7 +1568,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalFemale_4">
+     <widget class="QLabel" name="demo_TotalMarried">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1585,7 +1585,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalFemale {
+       <string notr="true">#demo_TotalMarried {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1598,7 +1598,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_desc_4">
+     <widget class="QLabel" name="label_desc_civstatdis">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1614,7 +1614,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_desc{
+       <string notr="true">#label_desc_civstatdis{
 	color: #969696;
 }</string>
       </property>
@@ -1625,7 +1625,7 @@
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalFemale_5">
+     <widget class="QLabel" name="demo_TotalWidowed">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1642,7 +1642,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalFemale {
+       <string notr="true">#demo_TotalWidowed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1655,7 +1655,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalFemale_5">
+     <widget class="QLabel" name="demo_labelTotalWidowed">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1672,7 +1672,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalFemale {
+       <string notr="true">#demo_labelTotalWidowed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1685,7 +1685,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalFemale_6">
+     <widget class="QLabel" name="demo_TotalSeparated">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1702,7 +1702,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalFemale {
+       <string notr="true">#demo_TotalSeparated {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1715,7 +1715,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalFemale_6">
+     <widget class="QLabel" name="demo_labelTotalSeparated">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1732,7 +1732,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalFemale {
+       <string notr="true">#demo_labelTotalSeparated {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1850,7 +1850,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="demo_framePopulationOverview_4">
+    <widget class="QFrame" name="demo_frameEmploymentStatus">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -1860,7 +1860,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#demo_framePopulationOverview{
+      <string notr="true">#demo_frameEmploymentStatus{
 	background-color: #fcfcfc;
 }</string>
      </property>
@@ -1870,7 +1870,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="demo_TotalSeniors_4">
+     <widget class="QLabel" name="demo_NoStatus">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1887,7 +1887,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalSeniors {
+       <string notr="true">#demo_NoStatus {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1900,7 +1900,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalMinors_4">
+     <widget class="QLabel" name="demo_Unemployed">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1917,7 +1917,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalMinors {
+       <string notr="true">#demo_Unemployed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1930,7 +1930,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalAdult_4">
+     <widget class="QLabel" name="demo_labelRetired">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1947,7 +1947,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalAdult {
+       <string notr="true">#demo_labelRetired {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1960,7 +1960,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalYoungAdults_4">
+     <widget class="QLabel" name="demo_labelSelfEmployed">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1977,7 +1977,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalYoungAdults {
+       <string notr="true">#demo_labelSelfEmployed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -1990,7 +1990,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalChild_4">
+     <widget class="QLabel" name="demo_Employed">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -2007,7 +2007,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalChild {
+       <string notr="true">#demo_Employed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2020,7 +2020,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalSeniors_4">
+     <widget class="QLabel" name="demo_labelNoStatus">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2037,7 +2037,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalSeniors {
+       <string notr="true">#demo_labelNoStatus {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2050,7 +2050,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalMiddleAges_4">
+     <widget class="QLabel" name="demo_Students">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -2067,7 +2067,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalMiddleAges {
+       <string notr="true">#demo_Students {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2080,7 +2080,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalMiddleAges_4">
+     <widget class="QLabel" name="demo_labelStudents">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2097,7 +2097,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalMiddleAges {
+       <string notr="true">#demo_labelStudents {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2110,7 +2110,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalChild_4">
+     <widget class="QLabel" name="demo_labelEmployed">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2127,7 +2127,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalChild {
+       <string notr="true">#demo_labelEmployed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2140,7 +2140,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_labelTotalMinors_4">
+     <widget class="QLabel" name="demo_labelUnemployed">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2157,7 +2157,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_labelTotalMinors {
+       <string notr="true">#demo_labelUnemployed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2170,7 +2170,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalYoungAdults_4">
+     <widget class="QLabel" name="demo_SelfEmployed">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -2187,7 +2187,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalYoungAdults {
+       <string notr="true">#demo_SelfEmployed {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2200,7 +2200,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalAdults_4">
+     <widget class="QLabel" name="demo_Retired">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -2217,7 +2217,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalAdults {
+       <string notr="true">#demo_Retired {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -2230,7 +2230,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_desc2_4">
+     <widget class="QLabel" name="label_desc_empstat">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -2246,7 +2246,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_desc2{
+       <string notr="true">#label_desc_empstat{
 	color: #969696;
 }</string>
       </property>
