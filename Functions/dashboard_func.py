@@ -1,4 +1,3 @@
-
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton
 from PySide6.QtGui import QPixmap, QIcon, Qt

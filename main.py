@@ -4,7 +4,7 @@ import ctypes
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
-from menu_func.login_reg_func import LoginWindow
+from Functions.login_reg_func import LoginWindow
 
 # Initialize Tkinter (if you need it)
 root = tk.Tk()
