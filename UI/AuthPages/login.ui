@@ -367,7 +367,7 @@ color: #141c52;</string>
      <rect>
       <x>290</x>
       <y>470</y>
-      <width>301</width>
+      <width>431</width>
       <height>20</height>
      </rect>
     </property>
@@ -388,7 +388,7 @@ color: #141c52;</string>
 </string>
     </property>
     <property name="text">
-     <string>© 2025 Barangay Marigondon - MRSS. All Rights Reserved.</string>
+     <string>© 2025 MaPro - Barangay Marigondon. All Rights Reserved.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>

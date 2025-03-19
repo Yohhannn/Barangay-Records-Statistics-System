@@ -16,7 +16,7 @@ class LoginWindow(QMainWindow):
 
         # Set up login UI
         self.setFixedSize(1080, 720)
-        self.setWindowTitle("MRSS - Marigondon Records & Statistics System")
+        self.setWindowTitle("MaPro - Marigondon Records & Statistics System")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_auth.ico"))
 
         # Set images

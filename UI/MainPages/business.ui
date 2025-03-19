@@ -118,7 +118,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_dashboard.svg</normaloff>../Assets/icon_dashboard.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_dashboard.svg</normaloff>../../Assets/Icons/icon_dashboard.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -166,7 +166,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_citizenprofiles.svg</normaloff>../Assets/icon_citizenprofiles.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_citizenprofiles.svg</normaloff>../../Assets/Icons/icon_citizenprofiles.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -215,7 +215,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_statistics.svg</normaloff>../Assets/icon_statistics.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_statistics.svg</normaloff>../../Assets/Icons/icon_statistics.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -263,7 +263,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_schedule.svg</normaloff>../Assets/icon_schedule.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_schedule.svg</normaloff>../../Assets/Icons/icon_schedule.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -307,7 +307,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_business.svg</normaloff>../Assets/icon_business.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_business.svg</normaloff>../../Assets/Icons/icon_business.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -382,7 +382,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Assets/icon_adminoverview_off.svg</normaloff>../Assets/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -414,7 +414,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../../Downloads/icon_isLocked.svg</normaloff>../../../../../../Downloads/icon_isLocked.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -451,7 +451,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Assets/logo_brgyClear.png</pixmap>
+     <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -659,6 +659,36 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
+   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>471</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyDashboardSystemTitle {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>MaPro: Marigondon Records and Statistics System</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="border_blueLines2">
    <property name="geometry">

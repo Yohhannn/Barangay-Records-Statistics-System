@@ -80,7 +80,7 @@ class MainWindow(QMainWindow):
     def setup_dashboard_ui(self):
         """Setup the dashboard UI layout and connect buttons."""
         self.setFixedSize(1350, 850)  # Set size for dashboard screen
-        self.setWindowTitle("MRSS: Dashboard")
+        self.setWindowTitle("MaPro: Dashboard")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.dashboard_initialized:  # Ensure connections are made only once
@@ -199,7 +199,7 @@ class MainWindow(QMainWindow):
     def setup_citizen_profile_ui(self):
         """Setup the citizen profile UI layout."""
         self.setFixedSize(1350, 850)  # Set size for citizen profile screen
-        self.setWindowTitle("MRSS: Citizen Profiles")
+        self.setWindowTitle("MaPro: Citizen Profiles")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.citizen_profile_initialized:  # Ensure connections are made only once
@@ -261,7 +261,7 @@ class MainWindow(QMainWindow):
     def setup_statistics_ui(self):
         """Setup the statistics UI layout."""
         self.setFixedSize(1350, 850)  # Set size for statistics screen
-        self.setWindowTitle("MRSS: Statistics")
+        self.setWindowTitle("MaPro: Statistics")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_initialized:  # Ensure connections are made only once
@@ -308,7 +308,7 @@ class MainWindow(QMainWindow):
     def setup_business_ui(self):
         """Setup the business UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
-        self.setWindowTitle("MRSS: Business")
+        self.setWindowTitle("MaPro: Business")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.business_initialized:  # Ensure connections are made only once
@@ -339,7 +339,7 @@ class MainWindow(QMainWindow):
     def setup_schedules_ui(self):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Schedules")
+        self.setWindowTitle("MaPro: Schedules")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.schedules_initialized:  # Ensure connections are made only once
@@ -370,7 +370,7 @@ class MainWindow(QMainWindow):
     def setup_demographics_ui(self):
         """Setup the Demographics UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Demographics")
+        self.setWindowTitle("MaPro: Statistics > Demographics")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_demo_initialized:  # Ensure connections are made only once
@@ -388,7 +388,7 @@ class MainWindow(QMainWindow):
     def setup_geographic_ui(self):
         """Setup the Geographic UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Geographic")
+        self.setWindowTitle("MaPro: Statistics > Geographic")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_geo_initialized:  # Ensure connections are made only once
@@ -406,7 +406,7 @@ class MainWindow(QMainWindow):
     def setup_household_ui(self):
         """Setup the Household UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Household")
+        self.setWindowTitle("MaPro: Statistics > Household")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_household_initialized:  # Ensure connections are made only once
@@ -424,7 +424,7 @@ class MainWindow(QMainWindow):
     def setup_socioeco_ui(self):
         """Setup the Socio-Economic UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Socio-Economic")
+        self.setWindowTitle("MaPro: Statistics > Socio-Economic")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_socio_initialized:  # Ensure connections are made only once
@@ -442,7 +442,7 @@ class MainWindow(QMainWindow):
     def setup_voters_ui(self):
         """Setup the Voter UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Voters")
+        self.setWindowTitle("MaPro: Statistics > Voters")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_voters_initialized:  # Ensure connections are made only once
@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
     def setup_health_ui(self):
         """Setup the Health UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MRSS: Statistics > Health")
+        self.setWindowTitle("MaPro: Statistics > Health")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.statistics_health_initialized:  # Ensure connections are made only once
