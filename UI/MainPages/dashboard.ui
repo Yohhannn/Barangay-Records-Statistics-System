@@ -681,7 +681,7 @@
 </string>
     </property>
     <property name="text">
-     <string>MRSS: Marigondon Records and Statistics System</string>
+     <string>MaPro: Marigondon Records and Statistics System</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -860,7 +860,7 @@
      <rect>
       <x>20</x>
       <y>60</y>
-      <width>201</width>
+      <width>211</width>
       <height>41</height>
      </rect>
     </property>
@@ -879,15 +879,15 @@
 </string>
     </property>
     <property name="text">
-     <string>WELCOME</string>
+     <string>WELCOME,</string>
     </property>
    </widget>
    <widget class="QLabel" name="title_employeeFirstNameDashboard">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>240</x>
       <y>60</y>
-      <width>501</width>
+      <width>491</width>
       <height>41</height>
      </rect>
     </property>
@@ -1573,7 +1573,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>V.2.7 - Alpha</string>
+      <string>V.2.7.2 - Alpha</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>

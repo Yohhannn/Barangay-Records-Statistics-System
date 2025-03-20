@@ -178,7 +178,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>230</y>
+      <y>210</y>
       <width>551</width>
       <height>31</height>
      </rect>
@@ -186,7 +186,7 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>18</pointsize>
+      <pointsize>20</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -334,33 +334,6 @@ color: #141c52;</string>
      <string>XXXXXX</string>
     </property>
    </widget>
-   <widget class="QLabel" name="login_labelTitle1">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>190</y>
-      <width>551</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>18</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-color: #141c52;</string>
-    </property>
-    <property name="text">
-     <string>BRGY. Marigondon</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="login_labelEmp_id">
     <property name="geometry">
      <rect>
@@ -394,7 +367,7 @@ color: #141c52;</string>
      <rect>
       <x>290</x>
       <y>470</y>
-      <width>301</width>
+      <width>431</width>
       <height>20</height>
      </rect>
     </property>
@@ -415,7 +388,7 @@ color: #141c52;</string>
 </string>
     </property>
     <property name="text">
-     <string>© 2025 Barangay Marigondon - MRSS. All Rights Reserved.</string>
+     <string>© 2025 MaPro - Barangay Marigondon. All Rights Reserved.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -489,7 +462,6 @@ color: #141c52;</string>
    <zorder>login_fieldEmp_id</zorder>
    <zorder>login_labelPin</zorder>
    <zorder>login_fieldPin</zorder>
-   <zorder>login_labelTitle1</zorder>
    <zorder>login_labelEmp_id</zorder>
    <zorder>login_labelRights</zorder>
    <zorder>login_frameBlue</zorder>
