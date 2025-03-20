@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ProfilingSystem.iml" filepath="$PROJECT_DIR$/.idea/ProfilingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" filepath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" />
     </modules>
   </component>
 </project>

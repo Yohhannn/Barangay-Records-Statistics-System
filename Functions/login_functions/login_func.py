@@ -3,11 +3,11 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
-from Functions.dashboard_functions.dashboard_func import MainWindow
+from Functions.dashboard_functions.dashboard_func import dashboard_func
 from database import Database
 from Utils.utils_corner import applyRoundedCorners
 
-class LoginWindow(QMainWindow):
+class login_func(QMainWindow):
     def __init__(self):
         super().__init__()
         self.loader = QUiLoader()
@@ -89,14 +89,13 @@ class LoginWindow(QMainWindow):
             self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico")) # Will set the Application Icon as Active.
             QMessageBox.information(self, "Success", "Login successful!")
             emp_first_name = employee[2]
-            self.main_window = MainWindow(self, emp_first_name)
-            self.main_window.show()
+            dashboard_func(self, emp_first_name).show()
             self.close()
-        elif employee:
-            QMessageBox.information(self, "Success", "Login successful!")
-            main_window = MainWindow(self)  # Pass self as login_window
-            main_window.show()
-            self.close()
+        # elif employee:
+        #     QMessageBox.information(self, "Success", "Login successful!")
+        #     main_window = MainWindow(self)  # Pass self as login_window
+        #     main_window.show()
+        #     self.close()
         else:
             QMessageBox.warning(self, "Error", "Invalid username or password")
 

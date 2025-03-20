@@ -8,7 +8,10 @@ from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
 
-class MainWindow(QMainWindow):
+class dashboard_func(QMainWindow):
+    from PySide6.QtGui import QScreen
+    from PySide6.QtWidgets import QApplication
+
     def __init__(self, login_window, emp_first_name):
         super().__init__()
         self.login_window = login_window
@@ -17,55 +20,37 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.stack)
         self.loader = QUiLoader()
 
-        #------------------------------------------------------------------------------#
-        # MAIN PAGES SET UI
+        # Load UI pages
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
         self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
         self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
         self.business_screen = self.load_ui("UI/MainPages/business.ui")
         self.schedules_screen = self.load_ui("UI/MainPages/schedule.ui")
-        # ------------------------------------------------#
-        # SUB PAGES SET UI
-        self.statistics_demo_screen = self.load_ui("UI/MainPages/StatisticPages/demographic.ui")
-        self.statistics_geo_screen = self.load_ui("UI/MainPages/StatisticPages/geographic.ui")
-        self.statistics_household_screen = self.load_ui("UI/MainPages/StatisticPages/household.ui")
-        self.statistics_socio_screen = self.load_ui("UI/MainPages/StatisticPages/socioeconomic.ui")
-        self.statistics_voters_screen = self.load_ui("UI/MainPages/StatisticPages/voters.ui")
-        self.statistics_health_screen = self.load_ui("UI/MainPages/StatisticPages/health.ui")
-        #------------------------------------------------------------------------------#
-        # SUB PAGES ADD ON STACK
+
+        # Add pages to stack
         self.stack.addWidget(self.dashboard_screen)
         self.stack.addWidget(self.citizen_profile_screen)
         self.stack.addWidget(self.statistics_screen)
         self.stack.addWidget(self.business_screen)
         self.stack.addWidget(self.schedules_screen)
-        # ------------------------------------------------#
-        # SUB PAGES ADD ON STACK
-        self.stack.addWidget(self.statistics_demo_screen)
-        self.stack.addWidget(self.statistics_geo_screen)
-        self.stack.addWidget(self.statistics_household_screen)
-        self.stack.addWidget(self.statistics_socio_screen)
-        self.stack.addWidget(self.statistics_voters_screen)
-        self.stack.addWidget(self.statistics_health_screen)
-        # ------------------------------------------------#
-        # MAIN PAGES INITIALIZATION
+
+        # Initialize pages
         self.dashboard_initialized = False
         self.citizen_profile_initialized = False
         self.statistics_initialized = False
         self.business_initialized = False
         self.schedules_initialized = False
-        # ------------------------------------------------#
-        # SUB PAGES INITIALIZATION
-        self.statistics_demo_initialized = False
-        self.statistics_geo_initialized = False
-        self.statistics_household_initialized = False
-        self.statistics_socio_initialized = False
-        self.statistics_voters_initialized = False
-        self.statistics_health_initialized = False
-        # ------------------------------------------------------------------------------#
 
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
+
+        self.center_on_screen()
+
+    def center_on_screen(self):
+        center_point = QApplication.primaryScreen().availableGeometry().center()
+        window_geometry = self.frameGeometry()
+        window_geometry.moveCenter(center_point)
+        self.move(window_geometry.topLeft())
 
     def load_ui(self, ui_path):
         file = QFile(ui_path)
