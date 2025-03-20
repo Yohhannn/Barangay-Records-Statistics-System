@@ -20,26 +20,52 @@ class dashboard_func(QMainWindow):
         self.setCentralWidget(self.stack)
         self.loader = QUiLoader()
 
-        # Load UI pages
+        # ------------------------------------------------------------------------------#
+        # MAIN PAGES SET UI
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
         self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
         self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
         self.business_screen = self.load_ui("UI/MainPages/business.ui")
         self.schedules_screen = self.load_ui("UI/MainPages/schedule.ui")
-
-        # Add pages to stack
+        # ------------------------------------------------#
+        # SUB PAGES SET UI
+        self.statistics_demo_screen = self.load_ui("UI/MainPages/StatisticPages/demographic.ui")
+        self.statistics_geo_screen = self.load_ui("UI/MainPages/StatisticPages/geographic.ui")
+        self.statistics_household_screen = self.load_ui("UI/MainPages/StatisticPages/household.ui")
+        self.statistics_socio_screen = self.load_ui("UI/MainPages/StatisticPages/socioeconomic.ui")
+        self.statistics_voters_screen = self.load_ui("UI/MainPages/StatisticPages/voters.ui")
+        self.statistics_health_screen = self.load_ui("UI/MainPages/StatisticPages/health.ui")
+        # ------------------------------------------------------------------------------#
+        # SUB PAGES ADD ON STACK
         self.stack.addWidget(self.dashboard_screen)
         self.stack.addWidget(self.citizen_profile_screen)
         self.stack.addWidget(self.statistics_screen)
         self.stack.addWidget(self.business_screen)
         self.stack.addWidget(self.schedules_screen)
-
-        # Initialize pages
+        # ------------------------------------------------#
+        # SUB PAGES ADD ON STACK
+        self.stack.addWidget(self.statistics_demo_screen)
+        self.stack.addWidget(self.statistics_geo_screen)
+        self.stack.addWidget(self.statistics_household_screen)
+        self.stack.addWidget(self.statistics_socio_screen)
+        self.stack.addWidget(self.statistics_voters_screen)
+        self.stack.addWidget(self.statistics_health_screen)
+        # ------------------------------------------------#
+        # MAIN PAGES INITIALIZATION
         self.dashboard_initialized = False
         self.citizen_profile_initialized = False
         self.statistics_initialized = False
         self.business_initialized = False
         self.schedules_initialized = False
+        # ------------------------------------------------#
+        # SUB PAGES INITIALIZATION
+        self.statistics_demo_initialized = False
+        self.statistics_geo_initialized = False
+        self.statistics_household_initialized = False
+        self.statistics_socio_initialized = False
+        self.statistics_voters_initialized = False
+        self.statistics_health_initialized = False
+        # ------------------------------------------------------------------------------#
 
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
