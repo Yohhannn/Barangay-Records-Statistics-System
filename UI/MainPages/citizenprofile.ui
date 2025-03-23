@@ -877,7 +877,7 @@
       <string>Search Name or ID</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="profileList_buttonCreate">
+    <widget class="QPushButton" name="profileList_buttonRegister">
      <property name="geometry">
       <rect>
        <x>690</x>
@@ -899,7 +899,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#profileList_buttonCreate {
+      <string notr="true">#profileList_buttonRegister {
     background-color:  #1e7e34; /* Default green */
     color: white;
     border: 1px solid #b5b5b5;
@@ -907,19 +907,19 @@
     padding: 10px; 
 }
 
-#profileList_buttonCreate:hover {
+#profileList_buttonRegister:hover {
     background-color: #28a745; /* Brighter green when hovered */
     color: white; 
 }
 
-#profileList_buttonCreate:pressed {
+#profileList_buttonRegister:pressed {
     background-color:  #34c759; /* Darker green when pressed */
     color: white; 
 }
 </string>
      </property>
      <property name="text">
-      <string>   CREATE</string>
+      <string>   REGISTER</string>
      </property>
      <property name="icon">
       <iconset>
