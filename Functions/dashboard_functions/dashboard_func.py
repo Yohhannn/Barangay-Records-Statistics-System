@@ -252,6 +252,7 @@ class dashboard_func(QMainWindow):
         popup = load_popup("UI/PopUp/Screen_CitizenProfiles/filteroptions.ui", self)
         popup.setWindowTitle("Filter Options")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.show()
 
     def show_register_citizen_popup(self):
         print("-- Navigating to Profile List > Register New Citizen Profile")
