@@ -35,7 +35,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">#basePopUpBodyFrame {
-	background-color: #e7e2ff;
+	background-color: #f6f6ff;
 	border: none;
 	border-radius: 10px;
 }</string>
@@ -303,11 +303,6 @@
     <item>
      <property name="text">
       <string>Born Again</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Evangelical</string>
      </property>
     </item>
     <item>
