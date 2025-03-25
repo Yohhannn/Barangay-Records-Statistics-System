@@ -1,6 +1,6 @@
-import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton
-from PySide6.QtGui import QPixmap, QIcon, Qt
+import cv2
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton, QFileDialog, QLabel
+from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
@@ -9,8 +9,6 @@ from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
 
 class dashboard_func(QMainWindow):
-    from PySide6.QtGui import QScreen
-    from PySide6.QtWidgets import QApplication
 
     def __init__(self, login_window, emp_first_name):
         super().__init__()
@@ -225,7 +223,7 @@ class dashboard_func(QMainWindow):
             self.citizen_profile_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Set Icons
-            self.citizen_profile_screen.profileList_buttonCreate.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
+            self.citizen_profile_screen.profileList_buttonRegister.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
             self.citizen_profile_screen.profileList_buttonDelete.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
             self.citizen_profile_screen.profileList_buttonSelectAll.setIcon(QIcon('Assets/FuncIcons/icon_selectall.svg'))
             self.citizen_profile_screen.profileList_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
@@ -242,6 +240,7 @@ class dashboard_func(QMainWindow):
 
             # Click to Popup Filter Options
             self.citizen_profile_screen.profileList_buttonFilter.clicked.connect(self.show_filter_popup)
+            self.citizen_profile_screen.profileList_buttonRegister.clicked.connect(self.show_register_citizen_popup)
 
             # Connect logout button
             self.citizen_profile_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
@@ -251,12 +250,83 @@ class dashboard_func(QMainWindow):
     def show_filter_popup(self):
         print("-- Navigating to Profile List > Filter Options")
         popup = load_popup("UI/PopUp/Screen_CitizenProfiles/filteroptions.ui", self)
-        popup.setWindowTitle("Filter Options")  # Set a title for the popup
-        popup.setWindowModality(Qt.ApplicationModal)  # Make the popup modal
+        popup.setWindowTitle("Filter Options")
+        popup.setWindowModality(Qt.ApplicationModal)
+        popup.show()
 
-        save_button = popup.findChild(QPushButton, "filteroptions_buttonSave")
-        if save_button:
-            save_button.clicked.connect(lambda: self.save_filter_options(popup))
+    def show_register_citizen_popup(self):
+        print("-- Navigating to Profile List > Register New Citizen Profile")
+        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_profile.ui", self)
+        popup.setWindowTitle("Register New Citizen")
+        popup.setWindowModality(Qt.ApplicationModal)
+
+        # Define save_and_close function before connecting
+        def save_and_close():
+            reply = QMessageBox.question(
+                popup,
+                "Confirm Registration",
+                "Are you sure you want to register this citizen?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No  # Default option
+            )
+
+            if reply == QMessageBox.Yes:
+                QMessageBox.information(popup, "Success", "Citizen has been Registered Successfully!")
+                popup.close()  # Close popup after confirmation
+
+        # Connect the button to save_and_close function
+        popup.register_buttonSave.clicked.connect(save_and_close)
+
+        upload_button = popup.findChild(QPushButton, "uploadButton")
+        capture_button = popup.findChild(QPushButton, "captureButton")
+        image_label = popup.findChild(QLabel, "imageLabel")
+
+        # Set Button Icons
+        popup.uploadButton.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
+        popup.captureButton.setIcon(QIcon("Assets/Icons/icon_camera.svg"))
+
+        # Update date label
+        update_date_label(popup.interviewer_dateofvisit)
+
+        # Display Name of Interviewer
+        popup.interviewer_emp_name.setText(self.emp_first_name)
+
+        # Function to handle image upload
+        def upload_image():
+            file_path, _ = QFileDialog.getOpenFileName(popup, "Select an Image", "",
+                                                       "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+            if file_path:
+                pixmap = QPixmap(file_path)
+                image_label.setPixmap(pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio))
+
+        # Function to capture photo from webcam
+        def capture_photo():
+            cap = cv2.VideoCapture(0)  # Open webcam (0 = default camera)
+
+            if not cap.isOpened():
+                print("Error: Could not open webcam")
+                return
+
+            ret, frame = cap.read()  # Capture a single frame
+            cap.release()  # Release the webcam
+
+            if ret:
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+                height, width, channel = frame.shape
+                bytes_per_line = 3 * width
+                q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format_RGB888)
+                pixmap = QPixmap.fromImage(q_image)
+
+                # Display the captured photo
+                image_label.setPixmap(pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio))
+            else:
+                print("Error: Failed to capture image")
+
+        # Connect buttons to functions
+        if upload_button:
+            upload_button.clicked.connect(upload_image)
+        if capture_button:
+            capture_button.clicked.connect(capture_photo)
 
         popup.show()
 
@@ -388,6 +458,8 @@ class dashboard_func(QMainWindow):
 
             # Set images and icons
             self.statistics_demo_screen.btn_returnToStatisticsPage.setIcon(QIcon('Assets/FuncIcons/img_return.png'))
+            self.statistics_demo_screen.icon_male.setIcon(QIcon('Assets/Icons/icon_male.png'))
+            self.statistics_demo_screen.icon_female.setIcon(QIcon('Assets/Icons/icon_female.png'))
 
             # Return Button
             self.statistics_demo_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics)
