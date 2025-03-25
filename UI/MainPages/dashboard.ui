@@ -1573,7 +1573,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>V.2.7.3 - Alpha</string>
+      <string>V.2.7.4 - Alpha</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
