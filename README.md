@@ -28,7 +28,6 @@ This project was created to **modernize barangay operations**, reduce paperwork,
 - **PyQt6** – for responsive, cross-platform GUI.
 - **PostgresSQL** – as the local database engine.
 - **QTableWidgets** and **QForms** – for intuitive data entry and visualization.
-- 
 ---
 
 ### 🧑‍💻 Contributing  
