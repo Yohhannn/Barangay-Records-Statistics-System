@@ -77,7 +77,7 @@ class login_func(QMainWindow):
         connection = Database()
         cursor = connection.cursor
         try:
-            cursor.execute("SELECT * FROM SYSTEM WHERE SYS_USER_ID = %s AND SYS_USER_PIN = %s", (user_id, user_pin))
+            cursor.execute("SELECT * FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = %s AND SYS_USER_PIN = %s", (user_id, user_pin))
             SYSTEM = cursor.fetchone()
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Error occurred while fetching data: {e}")
@@ -102,9 +102,9 @@ class login_func(QMainWindow):
         self.login_screen.login_fieldEmp_id.clear()
         self.login_screen.login_fieldPin.clear()
 
-# Ensure QApplication is only created in the main script
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    login_window = LoginWindow()
-    login_window.show()
-    sys.exit(app.exec())
+# # Ensure QApplication is only created in the main script
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     login_window = LoginWindow()
+#     login_window.show()
+#     sys.exit(app.exec())
