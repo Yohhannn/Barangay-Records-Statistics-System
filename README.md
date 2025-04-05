@@ -1,4 +1,3 @@
-Sure! Here's a `README.md`-style introduction for your **Barangay Records and Statistics System** built with **PyQt6**, similar to the style you showed:
 
 ---
 
