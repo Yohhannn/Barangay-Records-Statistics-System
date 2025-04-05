@@ -356,7 +356,7 @@ color: #141c52;</string>
 }</string>
     </property>
     <property name="text">
-     <string>Employee ID:</string>
+     <string>User ID:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
