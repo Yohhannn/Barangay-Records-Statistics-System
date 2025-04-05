@@ -49,46 +49,46 @@ class login_func(QMainWindow):
         """Handle login button click."""
 
         # Get input values and strip whitespace
-        emp_id = self.login_screen.login_fieldEmp_id.text().strip()
-        emp_pin = self.login_screen.login_fieldPin.text().strip()
+        user_id = self.login_screen.login_fieldEmp_id.text().strip()
+        user_pin = self.login_screen.login_fieldPin.text().strip()
 
         # Check if either field is empty and show appropriate message
         # Check if either field contains only numeric characters
-        if not emp_id and not emp_pin:
+        if not user_id and not user_pin:
             QMessageBox.warning(self, "Login Error", "Employee ID and PIN are required!")
             return
-        elif not emp_id:
+        elif not user_id:
             QMessageBox.warning(self, "Login Error", "Employee ID is required!")
             return
-        elif not emp_id.isdigit():
+        elif not user_id.isdigit():
             QMessageBox.warning(self, "Login Error", "Invalid Employee ID! It must be numeric.")
             return
-        elif not emp_pin:
+        elif not user_pin:
             QMessageBox.warning(self, "Login Error", "PIN is required!")
             return
-        elif not emp_pin.isdigit():
+        elif not user_pin.isdigit():
             QMessageBox.warning(self, "Login Error", "Invalid PIN! It must be numeric.")
             return
 
         print("-- Login Attempt")
-        print("Employee ID:", self.login_screen.login_fieldEmp_id.text(),
-              " PIN:", self.login_screen.login_fieldPin.text())
+        print("System User ID:", self.login_screen.login_fieldEmp_id.text(),
+              " System User PIN:", self.login_screen.login_fieldPin.text())
 
         connection = Database()
         cursor = connection.cursor
         try:
-            cursor.execute("SELECT * FROM employee WHERE emp_id = %s AND emp_pin = %s", (emp_id, emp_pin))
-            employee = cursor.fetchone()
+            cursor.execute("SELECT * FROM SYSTEM WHERE SYS_USER_ID = %s AND SYS_USER_PIN = %s", (user_id, user_pin))
+            SYSTEM = cursor.fetchone()
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Error occurred while fetching data: {e}")
         finally:
             connection.close()
 
         # Open Main Application (Dashboard + Citizen Profiles and other .ui)
-        if employee:
+        if SYSTEM:
             self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico")) # Will set the Application Icon as Active.
             QMessageBox.information(self, "Success", "Login successful!")
-            emp_first_name = employee[2]
+            emp_first_name = SYSTEM[2]
             dashboard_func(self, emp_first_name).show()
             self.close()
         # elif employee:

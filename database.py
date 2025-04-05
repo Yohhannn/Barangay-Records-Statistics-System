@@ -6,9 +6,9 @@ class Database:
         try:
             self.conn = psycopg2.connect(
                 host = "localhost",
-                database = "mnhs_db",
+                database = "db_MaPro",
                 user = "postgres",
-                password = "09334932416"
+                password = "123jp"
             )
             self.cursor = self.conn.cursor()
             print("Database Connected Successfully!")
