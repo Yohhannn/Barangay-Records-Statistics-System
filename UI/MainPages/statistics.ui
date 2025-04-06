@@ -254,7 +254,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>  SCHEDULES</string>
+      <string>  TRANSACTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -302,7 +302,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>  BUSINESS</string>
+      <string>  INSTITUTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1171,58 +1171,6 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonFFU">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>330</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonFFU {
-    background-color: rgb(209, 209, 209);
-    color: rgb(135, 135, 135);
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonFFU::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>[ FUTURE UPDATE ]</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_FFU.png</normaloff>../../Assets/Images/img_FFU.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
     <widget class="QLabel" name="statistics_labelDesc">
      <property name="geometry">
       <rect>
@@ -1251,6 +1199,124 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="statistics_ButtonJobs">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>330</y>
+       <width>220</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_ButtonJobs {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#statistics_ButtonJobs:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#statistics_ButtonJobs:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#statistics_ButtonJobs::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>JOBS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_jobs.png</normaloff>../../Assets/Images/img_jobs.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="statistics_ButtonGroups">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>330</y>
+       <width>220</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_ButtonGroups {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#statistics_ButtonGroups:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#statistics_ButtonGroups:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#statistics_ButtonGroups::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>GROUPS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_groups.png</normaloff>../../Assets/Images/img_groups.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
    </widget>

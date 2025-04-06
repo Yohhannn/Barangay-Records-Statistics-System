@@ -245,21 +245,17 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonSchedules {
-    background-color: #f2efff;
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonSchedules:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonSchedules:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
-      <string>  SCHEDULES</string>
+      <string>  TRANSACTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -291,19 +287,27 @@
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonBusiness {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonBusiness:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonBusiness:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
 }
 </string>
      </property>
      <property name="text">
-      <string>  BUSINESS</string>
+      <string>  INSTITUTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -451,7 +455,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Assets/Images/logo_brgyClear.png</pixmap>
+     <pixmap>../Assets/logo_brgyClear.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -664,7 +668,7 @@
      <rect>
       <x>30</x>
       <y>0</y>
-      <width>471</width>
+      <width>451</width>
       <height>41</height>
      </rect>
     </property>
@@ -771,7 +775,7 @@
      <string>LOGOUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="title_bodyBusiness">
+   <widget class="QLabel" name="title_bodySchedule">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -788,14 +792,14 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyBusiness {
+     <string notr="true">#title_bodySchedule {
 	background-color: transparent;
 	color: #141c52;
 }
 </string>
     </property>
     <property name="text">
-     <string>BUSINESS</string>
+     <string>TRANSACTIONS</string>
     </property>
    </widget>
   </widget>
