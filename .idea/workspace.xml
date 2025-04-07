@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="[ Auth Update V2.7.5 ]&#10;+ login &amp; database minor change&#10;-JP">
-      <change afterPath="$PROJECT_DIR$/Assets/Images/img_groups.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Images/img_jobs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/groups.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/jobs.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="[ Major Update V2.7.6 ]&#10;+ Renamed Business -&gt; &quot;Institutions&quot;&#10;+ Renamed Schedules -&gt; &quot;Transactions&quot;&#10;+ Added 2 New Tabs For Statistics&#10;--- Jobs : Statistical Analysis for Jobs&#10;--- Groups : Statistical Analysis for Groups&#10;&#10;+ Added Few Images&#10;+ Renamed Multiple Code but the inner was not fully changed but the outside does.&#10;-JP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/dashboard_functions/dashboard_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/dashboard_functions/dashboard_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainPages/business.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/institutions.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainPages/citizenprofile.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/citizenprofile.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainPages/schedule.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/transactions.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainPages/statistics.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/statistics.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/StatisticPages/groups.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/groups.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/StatisticPages/health.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/health.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/StatisticPages/jobs.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/jobs.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/StatisticPages/voters.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/StatisticPages/voters.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,25 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.database.executor": "Run",
-    "Python.login_func.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/paul/Desktop/CTU 2nd Year - 2nd Semester Files/PC 225L - INFORMATION MANAGEMENT LABORATORY/PROFILING_SYSTEM/Profiling-System/UI/MainPages/StatisticPages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.login_func.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/paul/Desktop/CTU 2nd Year - 2nd Semester Files/PC 225L - INFORMATION MANAGEMENT LABORATORY/PROFILING_SYSTEM/Profiling-System/UI/MainPages/StatisticPages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\paul\Desktop\CTU 2nd Year - 2nd Semester Files\PC 225L - INFORMATION MANAGEMENT LABORATORY\PROFILING_SYSTEM\Profiling-System\UI\MainPages\StatisticPages" />
@@ -130,7 +122,8 @@
       <workItem from="1743549571896" duration="636000" />
       <workItem from="1743823088804" duration="7633000" />
       <workItem from="1743861997742" duration="3385000" />
-      <workItem from="1743927233097" duration="1894000" />
+      <workItem from="1743927233097" duration="3346000" />
+      <workItem from="1744027877635" duration="3388000" />
     </task>
     <task id="LOCAL-00001" summary="[ General Update V2.7.3 ]&#10;+ Citizen Profile Register Button&#10;+ Modified Filter Option UI&#10;+ Added Register Citizen Popup&#10;+ Functionality to Upload Photo or Capture from Device&#10;+ Statistics Page : Demographics &amp; Geographics Partially Done.&#10;&gt; More to Continue : Household, Socio-Eco, Voters, Health&#10;+ Added few Icons&#10;&gt; register_citizen_profile_2.ui is a draft copy for a different ui.&#10;+ Small Changes on Dashboard UI&#10;&#10;-JP">
       <option name="closed" value="true" />
@@ -172,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743865290989</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[ Major Update V2.7.6 ]&#10;+ Renamed Business -&gt; &quot;Institutions&quot;&#10;+ Renamed Schedules -&gt; &quot;Transactions&quot;&#10;+ Added 2 New Tabs For Statistics&#10;--- Jobs : Statistical Analysis for Jobs&#10;--- Groups : Statistical Analysis for Groups&#10;&#10;+ Added Few Images&#10;+ Renamed Multiple Code but the inner was not fully changed but the outside does.&#10;-JP">
+      <option name="closed" value="true" />
+      <created>1743929378282</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743929378282</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,13 +197,14 @@
     <MESSAGE value="[ Major Update V2.7.5 ]&#10;+ Statistics UI Overhaul&#10;+ Household / Health / SocioEco / Voters&#10;+ Dashboard UI Small Change&#10;-JP" />
     <MESSAGE value="[ Minor Update V2.7.5 ]&#10;+ register_citizen_profile.ui changes&#10;-JP" />
     <MESSAGE value="[ Auth Update V2.7.5 ]&#10;+ login &amp; database minor change&#10;-JP" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ Auth Update V2.7.5 ]&#10;+ login &amp; database minor change&#10;-JP" />
+    <MESSAGE value="[ Major Update V2.7.6 ]&#10;+ Renamed Business -&gt; &quot;Institutions&quot;&#10;+ Renamed Schedules -&gt; &quot;Transactions&quot;&#10;+ Added 2 New Tabs For Statistics&#10;--- Jobs : Statistical Analysis for Jobs&#10;--- Groups : Statistical Analysis for Groups&#10;&#10;+ Added Few Images&#10;+ Renamed Multiple Code but the inner was not fully changed but the outside does.&#10;-JP" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ Major Update V2.7.6 ]&#10;+ Renamed Business -&gt; &quot;Institutions&quot;&#10;+ Renamed Schedules -&gt; &quot;Transactions&quot;&#10;+ Added 2 New Tabs For Statistics&#10;--- Jobs : Statistical Analysis for Jobs&#10;--- Groups : Statistical Analysis for Groups&#10;&#10;+ Added Few Images&#10;+ Renamed Multiple Code but the inner was not fully changed but the outside does.&#10;-JP" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Profiling_System$utils_clock.coverage" NAME="utils_clock Coverage Results" MODIFIED="1740815852587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Utils" />
     <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$login_func.coverage" NAME="login_func Coverage Results" MODIFIED="1742465812981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Functions/login_functions" />
-    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1743929036875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744030230866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1742468209457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Profiling_System$database.coverage" NAME="database Coverage Results" MODIFIED="1741781100040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

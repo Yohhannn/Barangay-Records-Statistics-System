@@ -562,7 +562,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="voter_60">
+     <widget class="QLabel" name="voter_60P">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -579,7 +579,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#hhd_Of9_Male {
+       <string notr="true">#voter_60P {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -609,7 +609,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#hhd_Of7_Male {
+       <string notr="true">#voter_26_35 {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -639,7 +639,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#hhd_Of8_Male {
+       <string notr="true">#voter_36_59 {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -759,7 +759,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#hhd_Of6_Male {
+       <string notr="true">#voter_18_25 {
 	background-color: transparent;
 	color: #4f4f4f;
 }
