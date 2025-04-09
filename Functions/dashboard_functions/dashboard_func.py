@@ -23,8 +23,8 @@ class dashboard_func(QMainWindow):
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
         self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
         self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
-        self.business_screen = self.load_ui("UI/MainPages/business.ui")
-        self.schedules_screen = self.load_ui("UI/MainPages/schedule.ui")
+        self.business_screen = self.load_ui("UI/MainPages/institutions.ui")
+        self.schedules_screen = self.load_ui("UI/MainPages/transactions.ui")
         # ------------------------------------------------#
         # SUB PAGES SET UI
         self.statistics_demo_screen = self.load_ui("UI/MainPages/StatisticPages/demographic.ui")
@@ -33,6 +33,8 @@ class dashboard_func(QMainWindow):
         self.statistics_socio_screen = self.load_ui("UI/MainPages/StatisticPages/socioeconomic.ui")
         self.statistics_voters_screen = self.load_ui("UI/MainPages/StatisticPages/voters.ui")
         self.statistics_health_screen = self.load_ui("UI/MainPages/StatisticPages/health.ui")
+        self.statistics_jobs_screen = self.load_ui("UI/MainPages/StatisticPages/jobs.ui")
+        self.statistics_groups_screen = self.load_ui("UI/MainPages/StatisticPages/groups.ui")
         # ------------------------------------------------------------------------------#
         # SUB PAGES ADD ON STACK
         self.stack.addWidget(self.dashboard_screen)
@@ -48,6 +50,8 @@ class dashboard_func(QMainWindow):
         self.stack.addWidget(self.statistics_socio_screen)
         self.stack.addWidget(self.statistics_voters_screen)
         self.stack.addWidget(self.statistics_health_screen)
+        self.stack.addWidget(self.statistics_jobs_screen)
+        self.stack.addWidget(self.statistics_groups_screen)
         # ------------------------------------------------#
         # MAIN PAGES INITIALIZATION
         self.dashboard_initialized = False
@@ -63,6 +67,8 @@ class dashboard_func(QMainWindow):
         self.statistics_socio_initialized = False
         self.statistics_voters_initialized = False
         self.statistics_health_initialized = False
+        self.statistics_jobs_initialized = False
+        self.statistics_groups_initialized = False
         # ------------------------------------------------------------------------------#
 
         self.setup_dashboard_ui()
@@ -370,7 +376,8 @@ class dashboard_func(QMainWindow):
             self.statistics_screen.statistics_ButtonSocioEconomic.setIcon(QIcon('Assets/Images/img_socioeconomic.png'))
             self.statistics_screen.statistics_ButtonVoters.setIcon(QIcon('Assets/Images/img_voters.png'))
             self.statistics_screen.statistics_ButtonHealth.setIcon(QIcon('Assets/Images/img_health.png'))
-            self.statistics_screen.statistics_ButtonFFU.setIcon(QIcon('Assets/Images/img_FFU.png'))
+            self.statistics_screen.statistics_ButtonJobs.setIcon(QIcon('Assets/Images/img_jobs.png'))
+            self.statistics_screen.statistics_ButtonGroups.setIcon(QIcon('Assets/Images/img_groups.png'))
 
             self.statistics_screen.statistics_ButtonDemographic.clicked.connect(self.goto_demographics)
             self.statistics_screen.statistics_ButtonGeographic.clicked.connect(self.goto_geographics)
@@ -378,6 +385,8 @@ class dashboard_func(QMainWindow):
             self.statistics_screen.statistics_ButtonSocioEconomic.clicked.connect(self.goto_socioeco)
             self.statistics_screen.statistics_ButtonVoters.clicked.connect(self.goto_voters)
             self.statistics_screen.statistics_ButtonHealth.clicked.connect(self.goto_health)
+            self.statistics_screen.statistics_ButtonJobs.clicked.connect(self.goto_jobs)
+            self.statistics_screen.statistics_ButtonGroups.clicked.connect(self.goto_groups)
 
             # Connect logout button
             self.statistics_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
@@ -389,7 +398,7 @@ class dashboard_func(QMainWindow):
     def setup_business_ui(self):
         """Setup the business UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
-        self.setWindowTitle("MaPro: Business")
+        self.setWindowTitle("MaPro: Institutions")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.business_initialized:  # Ensure connections are made only once
@@ -420,7 +429,7 @@ class dashboard_func(QMainWindow):
     def setup_schedules_ui(self):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
-        self.setWindowTitle("MaPro: Schedules")
+        self.setWindowTitle("MaPro: Transactions")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         if not self.schedules_initialized:  # Ensure connections are made only once
@@ -558,6 +567,42 @@ class dashboard_func(QMainWindow):
 
     # ===============================================================================================
 
+    def setup_job_ui(self):
+        """Setup the Job UI layout."""
+        self.setFixedSize(1350, 850)  # Set size for schedules screen
+        self.setWindowTitle("MaPro: Statistics > Jobs")
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
+
+        if not self.statistics_jobs_initialized:  # Ensure connections are made only once
+
+            # Set images and icons
+            self.statistics_jobs_screen.btn_returnToStatisticsPage.setIcon(QIcon('Assets/FuncIcons/img_return.png'))
+
+            # Return Button
+            self.statistics_jobs_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics)
+
+            self.statistics_jobs_initialized = True
+
+    # ===============================================================================================
+
+    def setup_group_ui(self):
+        """Setup the Groups UI layout."""
+        self.setFixedSize(1350, 850)  # Set size for schedules screen
+        self.setWindowTitle("MaPro: Statistics > Groups")
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
+
+        if not self.statistics_groups_initialized:  # Ensure connections are made only once
+
+            # Set images and icons
+            self.statistics_groups_screen.btn_returnToStatisticsPage.setIcon(QIcon('Assets/FuncIcons/img_return.png'))
+
+            # Return Button
+            self.statistics_groups_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics)
+
+            self.statistics_groups_initialized = True
+
+    # ===============================================================================================
+
     def logout_button_clicked(self):
         """Handle logout button click."""
         confirmation = QMessageBox.question(
@@ -591,16 +636,16 @@ class dashboard_func(QMainWindow):
         self.stack.setCurrentIndex(2)  # Switch to statistics screen
 
     def goto_business(self):
-        """Handle navigation to business screen."""
-        print("-- Navigating to Business")
-        self.setup_business_ui()  # Ensure business is set up
-        self.stack.setCurrentIndex(3)  # Switch to business screen
+        """Handle navigation to Institutions screen."""
+        print("-- Navigating to Institutions")
+        self.setup_business_ui()  # Ensure Institutions is set up
+        self.stack.setCurrentIndex(3)  # Switch to Institutions screen
 
     def goto_schedules(self):
-        """Handle navigation to schedules screen."""
-        print("-- Navigating to Schedules")
-        self.setup_schedules_ui()  # Ensure schedules is set up
-        self.stack.setCurrentIndex(4)  # Switch to schedules screen
+        """Handle navigation to Transactions screen."""
+        print("-- Navigating to Transactions")
+        self.setup_schedules_ui()  # Ensure Transactions is set up
+        self.stack.setCurrentIndex(4)  # Switch to Transactions screen
 
     def goto_demographics(self):
         """Handle navigation to demographic screen."""
@@ -637,6 +682,18 @@ class dashboard_func(QMainWindow):
         print("-- Navigating to Statistics > Health")
         self.setup_health_ui()  # Ensure Health is set up
         self.stack.setCurrentIndex(10)  # Switch to Health screen
+
+    def goto_jobs(self):
+        """Handle navigation to jobs screen."""
+        print("-- Navigating to Statistics > Jobs")
+        self.setup_job_ui()  # Ensure Jobs is set up
+        self.stack.setCurrentIndex(11)  # Switch to Jobs screen
+
+    def goto_groups(self):
+        """Handle navigation to groups screen."""
+        print("-- Navigating to Statistics > Groups")
+        self.setup_group_ui()  # Ensure Groups is set up
+        self.stack.setCurrentIndex(12)  # Switch to Groups screen
 
     def logout_button_clicked(self):
         confirmation = QMessageBox.question(

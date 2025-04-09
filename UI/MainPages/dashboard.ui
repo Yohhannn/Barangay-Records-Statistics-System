@@ -253,7 +253,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>  SCHEDULES</string>
+      <string>  TRANSACTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -301,7 +301,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>  BUSINESS</string>
+      <string>  INSTITUTIONS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1573,7 +1573,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>V.2.7.3 - Alpha</string>
+      <string>V.2.7.7 - Alpha</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
