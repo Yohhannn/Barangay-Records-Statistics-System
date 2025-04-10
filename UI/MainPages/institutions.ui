@@ -224,7 +224,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="nav_buttonSchedules">
+    <widget class="QPushButton" name="nav_buttonTransactions">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -244,17 +244,17 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonSchedules {
+      <string notr="true">#nav_buttonTransactions {
     background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonSchedules:hover {
+#nav_buttonTransactions:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonSchedules:pressed {
+#nav_buttonTransactions:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
@@ -272,7 +272,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="nav_buttonBusiness">
+    <widget class="QPushButton" name="nav_buttonInstitutions">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -292,7 +292,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonBusiness {
+      <string notr="true">#nav_buttonInstitutions {
     background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
@@ -313,113 +313,6 @@
       <size>
        <width>30</width>
        <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="baseNavFramesub2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>211</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#baseNavFramesub2{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="nav_buttonAdminOverview">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>191</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>10</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#nav_buttonAdminOverview {
-    background-color: #f2efff;
-    color: #969696;
-    border-radius: 5px;
-	text-align: left;
-    padding: 10px; /* Optional: Adjusts spacing inside the button */
-}
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
-}
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
-     </property>
-     <property name="text">
-      <string>  ADMIN OVERVIEW</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="nav_isLocked">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#nav_isLocked{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-	color: #c01111;
-}</string>
-     </property>
-     <property name="text">
-      <string>  Locked Access</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
       </size>
      </property>
     </widget>
@@ -634,6 +527,161 @@
      </property>
      <property name="text">
       <string>LOGOUT</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="baseNavFramesub2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>211</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#baseNavFramesub2{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="nav_buttonAdminPanel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonAdminPanel {
+    background-color: #f2efff;
+    color: #969696;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+/*#nav_buttonAdminOverview:hover {
+    background-color: #fdfdff;
+}
+#nav_buttonAdminOverview:pressed {
+    background-color: #e7e5f4; 
+}*/</string>
+     </property>
+     <property name="text">
+      <string>  ADMIN PANEL</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_isLocked">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_isLocked{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+	color: #c01111;
+}</string>
+     </property>
+     <property name="text">
+      <string>  Locked Access</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonActivityLogs">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonActivityLogs {
+    background-color: #f2efff;
+    color: #969696;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+/*#nav_buttonAdminOverview:hover {
+    background-color: #fdfdff;
+}
+#nav_buttonAdminOverview:pressed {
+    background-color: #e7e5f4; 
+}*/</string>
+     </property>
+     <property name="text">
+      <string>  ACTIVITY LOGS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
      </property>
     </widget>
    </widget>

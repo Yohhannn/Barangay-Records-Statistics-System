@@ -215,7 +215,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>651</width>
+       <width>551</width>
        <height>51</height>
       </rect>
      </property>
@@ -236,7 +236,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>651</width>
+        <width>551</width>
         <height>51</height>
        </rect>
       </property>
@@ -267,7 +267,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>651</width>
+       <width>551</width>
        <height>581</height>
       </rect>
      </property>
@@ -276,8 +276,11 @@
 	background-color: #fcfcfc;
 }</string>
      </property>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>36</number>
+     </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>216</number>
+      <number>275</number>
      </attribute>
      <attribute name="verticalHeaderMinimumSectionSize">
       <number>29</number>
@@ -292,24 +295,6 @@
       <property name="font">
        <font>
         <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Average Income</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>9</pointsize>
        </font>
       </property>
       <property name="background">
@@ -341,7 +326,7 @@
     <widget class="QFrame" name="table_titleFrameStatistics_2">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>570</x>
        <y>10</y>
        <width>431</width>
        <height>51</height>
@@ -393,7 +378,7 @@
     <widget class="QFrame" name="stat_framePopulationOverview_2">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>570</x>
        <y>60</y>
        <width>431</width>
        <height>131</height>
@@ -500,7 +485,7 @@
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="job_label_highpaying">
+     <widget class="QLabel" name="job_label_leastpopular">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -517,14 +502,14 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#job_label_highpaying {
+       <string notr="true">#job_label_leastpopular {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>Highest Paying: </string>
+       <string>Least Popular Job:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -707,7 +692,7 @@
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="job_highpaying">
+     <widget class="QLabel" name="job_total_leastpopular">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -724,7 +709,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#job_highpaying {
+       <string notr="true">#job_total_leastpopular {
 	background-color: transparent;
 	color: #4f4f4f;
 }

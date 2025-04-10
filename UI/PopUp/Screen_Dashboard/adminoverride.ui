@@ -52,7 +52,7 @@
       <x>0</x>
       <y>20</y>
       <width>361</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -70,58 +70,19 @@
 </string>
     </property>
     <property name="text">
-     <string>PLEASE ENTER A VALID PIN:</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CHECK VALIDITY&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;* only accounts with admin access can successfully override *&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="adminoverride_fieldPin">
+   <widget class="QPushButton" name="adminoverride_buttonOverrideAsAdmin">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>70</y>
-      <width>221</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#adminoverride_fieldPin{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="maxLength">
-     <number>4</number>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::EchoMode::Password</enum>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-    <property name="placeholderText">
-     <string>XXXX</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="adminoverride_buttonConfirmPin">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>180</y>
-      <width>141</width>
-      <height>31</height>
+      <x>90</x>
+      <y>90</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -135,21 +96,21 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">#adminoverride_buttonConfirmPin {
+     <string notr="true">#adminoverride_buttonOverrideAsAdmin {
     background-color: #141c52;
     color: white;
     border-radius: 10px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#adminoverride_buttonConfirmPin:hover {
+#adminoverride_buttonOverrideAsAdmin:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-#adminoverride_buttonConfirmPin:pressed {
+#adminoverride_buttonOverrideAsAdmin:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
     </property>
     <property name="text">
-     <string>CONFIRM PIN</string>
+     <string>BECOME ADMIN</string>
     </property>
    </widget>
   </widget>
