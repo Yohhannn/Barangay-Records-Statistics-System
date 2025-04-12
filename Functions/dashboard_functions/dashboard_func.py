@@ -110,7 +110,7 @@ class dashboard_func(QMainWindow):
             self.dashboard_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.dashboard_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
             self.dashboard_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-            self.dashboard_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+            self.dashboard_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
 
             self.dashboard_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.dashboard_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
@@ -142,7 +142,7 @@ class dashboard_func(QMainWindow):
             self.dashboard_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
             self.dashboard_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
 
-            self.dashboard_screen.label_UpdateVersion.setText("V2.8.1 - Alpha")
+            self.dashboard_screen.label_UpdateVersion.setText("V2.8.2 - Alpha")
 
             # Connect logout button
             self.dashboard_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
@@ -236,7 +236,7 @@ class dashboard_func(QMainWindow):
             self.citizen_panel_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.citizen_panel_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
             self.citizen_panel_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-            self.citizen_panel_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+            self.citizen_panel_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
             # ------ ADMIN ------
             self.citizen_panel_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.citizen_panel_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
@@ -526,7 +526,7 @@ class dashboard_func(QMainWindow):
             self.statistics_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.statistics_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
             self.statistics_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-            self.statistics_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+            self.statistics_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
 
             self.statistics_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.statistics_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
@@ -580,7 +580,7 @@ class dashboard_func(QMainWindow):
             self.institutions_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.institutions_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
             self.institutions_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-            self.institutions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+            self.institutions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
 
             self.institutions_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.institutions_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
@@ -621,7 +621,7 @@ class dashboard_func(QMainWindow):
             self.transactions_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
             self.transactions_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
             self.transactions_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-            self.transactions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+            self.transactions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
 
             self.transactions_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.transactions_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
@@ -661,6 +661,10 @@ class dashboard_func(QMainWindow):
             self.history_records_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
             self.history_records_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
             self.history_records_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+
+            self.history_records_screen.hisrec_Button_CitizenHistory.setIcon(QIcon('Assets/Images/img_history_citizen.png'))
+            self.history_records_screen.hisrec_Button_MedicalHistory.setIcon(QIcon('Assets/Images/img_history_medical.png'))
+            self.history_records_screen.hisrec_Button_SettlementHistory.setIcon(QIcon('Assets/Images/img_history_settlement.png'))
 
             # Connect navbar buttons
             self.history_records_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)

@@ -899,6 +899,283 @@
      <string>HISTORY RECORDS</string>
     </property>
    </widget>
+   <widget class="QFrame" name="table_titleFrameStatistics">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>1001</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#table_titleFrameStatistics{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="statistics_labelNote">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>0</y>
+       <width>941</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>OVERVIEW OF HISTORY RECORD CATEGORIES</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>1001</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QToolButton" name="hisrec_Button_CitizenHistory">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>301</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#hisrec_Button_CitizenHistory {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 45px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 130px 130px; /* Adjust icon size */
+}
+
+#hisrec_Button_CitizenHistory:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#hisrec_Button_CitizenHistory:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#hisrec_Button_CitizenHistory::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>CITIZEN HISTORY</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_history_citizen.png</normaloff>../../Assets/Images/img_history_citizen.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>130</width>
+       <height>130</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="hisrec_Button_MedicalHistory">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>70</y>
+       <width>311</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#hisrec_Button_MedicalHistory {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 45px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 130px 130px; /* Adjust icon size */
+}
+
+#hisrec_Button_MedicalHistory:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#hisrec_Button_MedicalHistory:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#hisrec_Button_MedicalHistory::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>MEDICAL HISTORY</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_history_medical.png</normaloff>../../Assets/Images/img_history_medical.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>130</width>
+       <height>130</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statistics_labelDesc">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1001</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_labelDesc {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="hisrec_Button_SettlementHistory">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>70</y>
+       <width>311</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#hisrec_Button_SettlementHistory {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 45px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+	qproperty-iconSize: 130px 130px; /* Adjust icon size */
+}
+
+#hisrec_Button_SettlementHistory:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#hisrec_Button_SettlementHistory:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#hisrec_Button_SettlementHistory::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>SETTLEMENT HISTORY</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_history_settlement.png</normaloff>../../Assets/Images/img_history_settlement.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>130</width>
+       <height>130</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
