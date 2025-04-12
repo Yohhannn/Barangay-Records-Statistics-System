@@ -1065,9 +1065,9 @@
   <widget class="QPushButton" name="register_buttonConfirmPart1_NextToPart2">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>500</y>
-     <width>211</width>
+     <x>730</x>
+     <y>510</y>
+     <width>41</width>
      <height>41</height>
     </rect>
    </property>
@@ -1085,7 +1085,7 @@
     <string notr="true">#register_buttonConfirmPart1_NextToPart2 {
     background-color: #006f00;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #register_buttonConfirmPart1_NextToPart2:hover {
@@ -1096,7 +1096,17 @@
 }</string>
    </property>
    <property name="text">
-    <string>CONFIRM AND NEXT</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_arrow_next.svg</normaloff>../../../Assets/FuncIcons/icon_arrow_next.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
    </property>
   </widget>
   <widget class="QFrame" name="basePopUpBodyFrame_2">
@@ -1603,7 +1613,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>26</day>
+      <day>25</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -3242,9 +3252,9 @@
    <property name="geometry">
     <rect>
      <x>510</x>
-     <y>540</y>
+     <y>510</y>
      <width>211</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -3263,6 +3273,78 @@
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;⬤  &lt;span style=&quot; color:#b5b5b5;&quot;&gt;⬤  ⬤&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="register_buttonPrev">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>510</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ForbiddenCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#register_buttonPrev {
+    background-color: rgb(138, 136, 145);
+    color: white;
+    border-radius: 20px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="progress">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>540</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#progress {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>1 / 3</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>

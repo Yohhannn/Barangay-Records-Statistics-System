@@ -148,18 +148,14 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonCitizenPanel {
-    background-color: #f2efff;
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonCitizenPanel:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonCitizenPanel:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
       <string>  CITIZEN PANEL</string>
@@ -196,14 +192,18 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonStatistics {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-</string>
+#nav_buttonStatistics:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonStatistics:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  STATISTICS</string>
@@ -759,7 +759,7 @@
      <rect>
       <x>30</x>
       <y>0</y>
-      <width>1301</width>
+      <width>1311</width>
       <height>41</height>
      </rect>
     </property>
@@ -866,7 +866,7 @@
      <string>LOGOUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="title_bodyStatistics">
+   <widget class="QLabel" name="title_bodyCitizenProfile">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -883,14 +883,14 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyStatistics {
+     <string notr="true">#title_bodyCitizenProfile {
 	background-color: transparent;
 	color: #141c52;
 }
 </string>
     </property>
     <property name="text">
-     <string>STATISTICS</string>
+     <string>CITIZEN PANEL</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -913,13 +913,13 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QToolButton" name="statistics_ButtonDemographic">
+    <widget class="QToolButton" name="category_citizen">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>220</width>
-       <height>220</height>
+       <x>20</x>
+       <y>20</y>
+       <width>471</width>
+       <height>321</height>
       </rect>
      </property>
      <property name="font">
@@ -933,111 +933,52 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonDemographic {
+      <string notr="true">#category_citizen {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
+    padding: 55px; /* Adds space inside the button */
     font-size: 14px; /* Text size */
     text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+    qproperty-iconSize: 150px 150px; /* Adjust icon size */
 }
 
-#statistics_ButtonDemographic:hover {
+#category_citizen:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonDemographic:pressed {
+#category_citizen:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonDemographic::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
+#category_citizen::icon {
+    margin-bottom: 15px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>DEMOGRAPHIC</string>
+      <string>INDIVIDUAL CITIZEN</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_demographic.png</normaloff>../../Assets/Images/img_demographic.png</iconset>
+       <normaloff>../../Assets/Images/img_category_citizen.png</normaloff>../../Assets/Images/img_category_citizen.png</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>120</width>
-       <height>120</height>
+       <width>150</width>
+       <height>150</height>
       </size>
      </property>
      <property name="toolButtonStyle">
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonGeographic">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>90</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonGeographic {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonGeographic:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonGeographic:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonGeographic::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>GEOGRAPHIC</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_geographic.png</normaloff>../../Assets/Images/img_geographic.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonHousehold">
+    <widget class="QToolButton" name="category_household">
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>90</y>
-       <width>220</width>
-       <height>220</height>
+       <y>20</y>
+       <width>471</width>
+       <height>321</height>
       </rect>
      </property>
      <property name="font">
@@ -1051,364 +992,39 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonHousehold {
+      <string notr="true">#category_household {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
+    padding: 55px; /* Adds space inside the button */
     font-size: 14px; /* Text size */
     text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+    qproperty-iconSize: 150px 150px; /* Adjust icon size */
 }
 
-#statistics_ButtonHousehold:hover {
+#category_household:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonHousehold:pressed {
+#category_household:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonHousehold::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
+#category_household::icon {
+    margin-bottom: 15px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>HOUSEHOLD</string>
+      <string>FAMILY HOUSEHOLD</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_household.png</normaloff>../../Assets/Images/img_household.png</iconset>
+       <normaloff>../../Assets/Images/img_category_household.png</normaloff>../../Assets/Images/img_category_household.png</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonSocioEconomic">
-     <property name="geometry">
-      <rect>
-       <x>750</x>
-       <y>90</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonSocioEconomic {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonSocioEconomic:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonSocioEconomic:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonSocioEconomic::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>SOCIO-ECONOMIC</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_socioeconomic.png</normaloff>../../Assets/Images/img_socioeconomic.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonVoters">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>330</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonVoters {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonVoters:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonVoters:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonVoters::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>VOTERS</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_voters.png</normaloff>../../Assets/Images/img_voters.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonHealth">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>330</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonHealth {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonHealth:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonHealth:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonHealth::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>HEALTH</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_health.png</normaloff>../../Assets/Images/img_health.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="statistics_labelDesc">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>1001</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_labelDesc {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonJobs">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>330</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonJobs {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonJobs:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonJobs:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonJobs::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>JOBS</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_jobs.png</normaloff>../../Assets/Images/img_jobs.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="statistics_ButtonGroups">
-     <property name="geometry">
-      <rect>
-       <x>740</x>
-       <y>330</y>
-       <width>220</width>
-       <height>220</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_ButtonGroups {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#statistics_ButtonGroups:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#statistics_ButtonGroups:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#statistics_ButtonGroups::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>GROUPS</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_groups.png</normaloff>../../Assets/Images/img_groups.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
+       <width>150</width>
+       <height>150</height>
       </size>
      </property>
      <property name="toolButtonStyle">
@@ -1440,9 +1056,9 @@
     <widget class="QLabel" name="statistics_labelNote">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>10</x>
        <y>0</y>
-       <width>971</width>
+       <width>451</width>
        <height>51</height>
       </rect>
      </property>
@@ -1461,7 +1077,7 @@
 </string>
      </property>
      <property name="text">
-      <string>OVERVIEW OF STATISTICAL CATEGORIES</string>
+      <string>CATEGORY</string>
      </property>
     </widget>
    </widget>
