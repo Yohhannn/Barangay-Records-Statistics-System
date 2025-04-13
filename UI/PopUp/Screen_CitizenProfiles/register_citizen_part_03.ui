@@ -4959,9 +4959,9 @@
   <widget class="QPushButton" name="register_buttonConfirmPart3_SaveForm">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>500</y>
-     <width>211</width>
+     <x>730</x>
+     <y>510</y>
+     <width>201</width>
      <height>41</height>
     </rect>
    </property>
@@ -4979,7 +4979,7 @@
     <string notr="true">#register_buttonConfirmPart3_SaveForm {
     background-color: #006f00;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #register_buttonConfirmPart3_SaveForm:hover {
@@ -4990,7 +4990,17 @@
 }</string>
    </property>
    <property name="text">
-    <string>CONFIRM AND SAVE</string>
+    <string>   CONFIRM AND SAVE</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_confirm.svg</normaloff>../../../Assets/FuncIcons/icon_confirm.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
    </property>
   </widget>
   <widget class="QFrame" name="basePopUpBodyFrame_2">
@@ -5069,7 +5079,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
+      <y>70</y>
       <width>551</width>
       <height>111</height>
      </rect>
@@ -5325,7 +5335,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>210</y>
+      <y>190</y>
       <width>591</width>
       <height>31</height>
      </rect>
@@ -5375,7 +5385,7 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>50</y>
+      <y>40</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -5868,7 +5878,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>50</y>
+      <y>40</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -5898,7 +5908,7 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>50</y>
+      <y>40</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -6391,7 +6401,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>230</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -6421,7 +6431,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>250</y>
+      <y>230</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -6577,14 +6587,19 @@
       <string>Urinary Tract Infections (UTIs)</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Others</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethod">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>290</y>
+      <y>300</y>
       <width>181</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -6612,9 +6627,9 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>290</y>
+      <y>300</y>
       <width>91</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="palette">
@@ -7105,9 +7120,9 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>290</y>
+      <y>300</y>
       <width>71</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="palette">
@@ -7597,9 +7612,9 @@
    <widget class="QComboBox" name="register_citizen_comboBox_FamilyPlanningMethod">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>330</y>
-      <width>501</width>
+      <x>200</x>
+      <y>340</y>
+      <width>351</width>
       <height>31</height>
      </rect>
     </property>
@@ -7619,7 +7634,7 @@
 }</string>
     </property>
     <property name="placeholderText">
-     <string>* If Yes Select Method</string>
+     <string>* If Yes Select Method Type</string>
     </property>
     <property name="duplicatesEnabled">
      <bool>false</bool>
@@ -7694,7 +7709,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
+      <y>380</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -7724,7 +7739,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>370</y>
+      <y>380</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -7785,6 +7800,102 @@
       <string>Restarter</string>
      </property>
     </item>
+   </widget>
+   <widget class="QLineEdit" name="register_citizen_MedHis_Others">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>270</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_MedHis_Others{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+    <property name="placeholderText">
+     <string>If 'Others' Please Specify</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_citizen_labelMedicalHistory_others">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelMedicalHistory_others {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Other Medical History</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethodType">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>340</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelFamilyPlanningMethodType {
+	background-color: transparent;
+	color: #782828;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Family Plan Method:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QLabel" name="labelNote_x">
@@ -7915,9 +8026,9 @@
    <property name="geometry">
     <rect>
      <x>510</x>
-     <y>540</y>
+     <y>510</y>
      <width>211</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -7944,9 +8055,9 @@
   <widget class="QPushButton" name="register_buttonReturnToPart2_FromPart3">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>500</y>
-     <width>51</width>
+     <x>460</x>
+     <y>510</y>
+     <width>41</width>
      <height>41</height>
     </rect>
    </property>
@@ -7964,7 +8075,7 @@
     <string notr="true">#register_buttonReturnToPart2_FromPart3 {
     background-color: #006f00;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #register_buttonReturnToPart2_FromPart3:hover {
@@ -7975,7 +8086,79 @@
 }</string>
    </property>
    <property name="text">
-    <string>&lt;</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="notenote">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>490</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#notenote {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Click to Save</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="progress">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>540</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#progress {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>3 / 3</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
  </widget>

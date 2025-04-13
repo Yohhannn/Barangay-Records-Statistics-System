@@ -3194,9 +3194,9 @@
   <widget class="QPushButton" name="register_buttonConfirmPart2_NextToPart3">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>500</y>
-     <width>211</width>
+     <x>730</x>
+     <y>510</y>
+     <width>41</width>
      <height>41</height>
     </rect>
    </property>
@@ -3214,7 +3214,7 @@
     <string notr="true">#register_buttonConfirmPart2_NextToPart3 {
     background-color: #006f00;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #register_buttonConfirmPart2_NextToPart3:hover {
@@ -3225,7 +3225,17 @@
 }</string>
    </property>
    <property name="text">
-    <string>CONFIRM AND NEXT</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_arrow_next.svg</normaloff>../../../Assets/FuncIcons/icon_arrow_next.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
    </property>
   </widget>
   <widget class="QFrame" name="basePopUpBodyFrame_2">
@@ -3874,9 +3884,9 @@
    <property name="geometry">
     <rect>
      <x>510</x>
-     <y>540</y>
+     <y>510</y>
      <width>211</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -3903,9 +3913,9 @@
   <widget class="QPushButton" name="register_buttonReturnToPart1_FromPart2">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>500</y>
-     <width>51</width>
+     <x>460</x>
+     <y>510</y>
+     <width>41</width>
      <height>41</height>
     </rect>
    </property>
@@ -3923,7 +3933,7 @@
     <string notr="true">#register_buttonReturnToPart1_FromPart2 {
     background-color: #006f00;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
 #register_buttonReturnToPart1_FromPart2:hover {
@@ -3934,7 +3944,48 @@
 }</string>
    </property>
    <property name="text">
-    <string>&lt;</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</normaloff>../../../Assets/FuncIcons/icon_arrow_prev.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="progress">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>540</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#progress {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>2 / 3</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
  </widget>
