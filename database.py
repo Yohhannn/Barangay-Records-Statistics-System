@@ -7,7 +7,7 @@ class Database:
                 host="localhost",
                 database="barangay_marigondon_overhaul_data",
                 user="postgres",
-                password="123jp"
+                password=""
             )
             self.cursor = self.conn.cursor()
             print("Database Connected Successfully!")
