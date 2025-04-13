@@ -1,5 +1,6 @@
 import cv2
-from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton, QFileDialog, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QMessageBox, QPushButton, QFileDialog, QLabel, \
+    QButtonGroup, QRadioButton
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 from PySide6.QtUiTools import QUiLoader
@@ -21,10 +22,11 @@ class dashboard_func(QMainWindow):
         # ------------------------------------------------------------------------------#
         # MAIN PAGES SET UI
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
-        self.citizen_profile_screen = self.load_ui("UI/MainPages/citizenprofile.ui")
+        self.citizen_panel_screen = self.load_ui("UI/MainPages/citizenpanel.ui")
         self.statistics_screen = self.load_ui("UI/MainPages/statistics.ui")
-        self.business_screen = self.load_ui("UI/MainPages/institutions.ui")
-        self.schedules_screen = self.load_ui("UI/MainPages/transactions.ui")
+        self.institutions_screen = self.load_ui("UI/MainPages/institutions.ui")
+        self.transactions_screen = self.load_ui("UI/MainPages/transactions.ui")
+        self.history_records_screen = self.load_ui("UI/MainPages/historyrecords.ui")
         # ------------------------------------------------#
         # SUB PAGES SET UI
         self.statistics_demo_screen = self.load_ui("UI/MainPages/StatisticPages/demographic.ui")
@@ -38,10 +40,11 @@ class dashboard_func(QMainWindow):
         # ------------------------------------------------------------------------------#
         # SUB PAGES ADD ON STACK
         self.stack.addWidget(self.dashboard_screen)
-        self.stack.addWidget(self.citizen_profile_screen)
+        self.stack.addWidget(self.citizen_panel_screen)
         self.stack.addWidget(self.statistics_screen)
-        self.stack.addWidget(self.business_screen)
-        self.stack.addWidget(self.schedules_screen)
+        self.stack.addWidget(self.institutions_screen)
+        self.stack.addWidget(self.transactions_screen)
+        self.stack.addWidget(self.history_records_screen)
         # ------------------------------------------------#
         # SUB PAGES ADD ON STACK
         self.stack.addWidget(self.statistics_demo_screen)
@@ -55,10 +58,11 @@ class dashboard_func(QMainWindow):
         # ------------------------------------------------#
         # MAIN PAGES INITIALIZATION
         self.dashboard_initialized = False
-        self.citizen_profile_initialized = False
+        self.citizen_panel_initialized = False
         self.statistics_initialized = False
-        self.business_initialized = False
-        self.schedules_initialized = False
+        self.institutions_initialized = False
+        self.transactions_initialized = False
+        self.history_records_initialized = False
         # ------------------------------------------------#
         # SUB PAGES INITIALIZATION
         self.statistics_demo_initialized = False
@@ -102,11 +106,14 @@ class dashboard_func(QMainWindow):
             # Set images and icons for the navbar
             self.dashboard_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
             self.dashboard_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.dashboard_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.dashboard_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
             self.dashboard_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-            self.dashboard_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
-            self.dashboard_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.dashboard_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.dashboard_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.dashboard_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.dashboard_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+
+            self.dashboard_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.dashboard_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
             self.dashboard_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             self.dashboard_screen.dashboard_buttonAboutSoftware.setIcon(QIcon('Assets/Icons/icon_aboutsoftware.svg'))
@@ -129,10 +136,13 @@ class dashboard_func(QMainWindow):
 
             # Connect navbar buttons
             # self.dashboard_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard) # UNNECESSARY
-            self.dashboard_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
+            self.dashboard_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
             self.dashboard_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
-            self.dashboard_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
-            self.dashboard_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules)
+            self.dashboard_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            self.dashboard_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            self.dashboard_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
+
+            self.dashboard_screen.label_UpdateVersion.setText("V2.8.2 - Alpha")
 
             # Connect logout button
             self.dashboard_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
@@ -211,47 +221,54 @@ class dashboard_func(QMainWindow):
 
     # ===============================================================================================
 
-    def setup_citizen_profile_ui(self):
-        """Setup the citizen profile UI layout."""
+    def setup_citizen_panel_ui(self):
+        """Setup the citizen panel UI layout."""
         self.setFixedSize(1350, 850)  # Set size for citizen profile screen
-        self.setWindowTitle("MaPro: Citizen Profiles")
+        self.setWindowTitle("MaPro: Citizen Panel")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
-        if not self.citizen_profile_initialized:  # Ensure connections are made only once
+        if not self.citizen_panel_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.citizen_profile_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
-            self.citizen_profile_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.citizen_profile_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
-            self.citizen_profile_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-            self.citizen_profile_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
-            self.citizen_profile_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.citizen_profile_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
-            self.citizen_profile_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+            # ------ MAIN ------
+            self.citizen_panel_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.citizen_panel_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.citizen_panel_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
+            self.citizen_panel_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.citizen_panel_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.citizen_panel_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.citizen_panel_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+            # ------ ADMIN ------
+            self.citizen_panel_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.citizen_panel_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
+            self.citizen_panel_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
-            # Set Icons
-            self.citizen_profile_screen.profileList_buttonRegister.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
-            self.citizen_profile_screen.profileList_buttonDelete.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
-            self.citizen_profile_screen.profileList_buttonSelectAll.setIcon(QIcon('Assets/FuncIcons/icon_selectall.svg'))
-            self.citizen_profile_screen.profileList_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
-            self.citizen_profile_screen.profileList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
+            #Set Icons
+            self.citizen_panel_screen.profileList_buttonRegister.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
+            self.citizen_panel_screen.profileList_buttonRegisterHousehold.setIcon(QIcon('Assets/FuncIcons/icon_household.svg'))
+            self.citizen_panel_screen.profileList_buttonDelete.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+            self.citizen_panel_screen.profileList_buttonUpdate.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
+            self.citizen_panel_screen.profileList_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
+            self.citizen_panel_screen.profileList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
             # SINCE SEARCHING IS EITHER NAME OR ID, CHECK FIRST IF THE INPUT IS NUMERIC OR NOT IF NUMERIC SEARCH IT AS ID IF NOT SEARCH IT BY THE NAME.
 
             # Connect navbar buttons
-            self.citizen_profile_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-            # self.citizen_profile_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles) # UNNECESSARY
-            self.citizen_profile_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
-            self.citizen_profile_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
-            self.citizen_profile_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules)
+            self.citizen_panel_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
+            # self.citizen_profile_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_panel)
+            self.citizen_panel_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
+            self.citizen_panel_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            self.citizen_panel_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            self.citizen_panel_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
 
             # Click to Popup Filter Options
-            self.citizen_profile_screen.profileList_buttonFilter.clicked.connect(self.show_filter_popup)
-            self.citizen_profile_screen.profileList_buttonRegister.clicked.connect(self.show_register_citizen_popup)
+            self.citizen_panel_screen.profileList_buttonFilter.clicked.connect(self.show_filter_popup)
+            self.citizen_panel_screen.profileList_buttonRegister.clicked.connect(self.show_register_citizen_part_01_popup)
+            #self.citizen_panel_screen.profileList_buttonRegister.clicked.connect(self.show_register_citizen_popup)
 
             # Connect logout button
-            self.citizen_profile_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
+            self.citizen_panel_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
 
-            self.citizen_profile_initialized = True
+            self.citizen_panel_initialized = True
 
     def show_filter_popup(self):
         print("-- Navigating to Profile List > Filter Options")
@@ -260,44 +277,47 @@ class dashboard_func(QMainWindow):
         popup.setWindowModality(Qt.ApplicationModal)
         popup.show()
 
-    def show_register_citizen_popup(self):
-        print("-- Navigating to Profile List > Register New Citizen Profile")
-        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_profile.ui", self)
+    # ==================================
+
+    def show_register_citizen_part_01_popup(self):
+        print("-- Register New Citizen Profile")
+        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_01.ui", self)
         popup.setWindowTitle("Register New Citizen")
         popup.setWindowModality(Qt.ApplicationModal)
 
-        # Define save_and_close function before connecting
-        def save_and_close():
-            reply = QMessageBox.question(
-                popup,
-                "Confirm Registration",
-                "Are you sure you want to register this citizen?",
-                QMessageBox.Yes | QMessageBox.No,
-                QMessageBox.No  # Default option
-            )
+        popup.register_buttonPrev.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
+        popup.register_buttonConfirmPart1_NextToPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
 
-            if reply == QMessageBox.Yes:
-                QMessageBox.information(popup, "Success", "Citizen has been Registered Successfully!")
-                popup.close()  # Close popup after confirmation
+        # Connect 'Next to Part 2' button
+        next_btn = popup.findChild(QPushButton, "register_buttonConfirmPart1_NextToPart2")
+        if next_btn:
+            next_btn.clicked.connect(lambda: self.show_register_citizen_part_02_popup(popup))
 
-        # Connect the button to save_and_close function
-        popup.register_buttonSave.clicked.connect(save_and_close)
+        def setup_radio_button_groups_01():
+            # Sex
+            radio_sex = QButtonGroup(popup)
+            radio_male = popup.findChild(QRadioButton, "radioButton_male")
+            radio_female = popup.findChild(QRadioButton, "radioButton_female")
+            if radio_male and radio_female:
+                radio_sex.addButton(radio_male)
+                radio_sex.addButton(radio_female)
 
+        setup_radio_button_groups_01()
+
+        # Upload and capture image setup
         upload_button = popup.findChild(QPushButton, "uploadButton")
         capture_button = popup.findChild(QPushButton, "captureButton")
         image_label = popup.findChild(QLabel, "imageLabel")
 
-        # Set Button Icons
-        popup.uploadButton.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
-        popup.captureButton.setIcon(QIcon("Assets/Icons/icon_camera.svg"))
+        if upload_button:
+            upload_button.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
+        if capture_button:
+            capture_button.setIcon(QIcon("Assets/Icons/icon_camera.svg"))
 
-        # Update date label
+        # Update interviewer info
         update_date_label(popup.interviewer_dateofvisit)
-
-        # Display Name of Interviewer
         popup.interviewer_emp_name.setText(self.emp_first_name)
 
-        # Function to handle image upload
         def upload_image():
             file_path, _ = QFileDialog.getOpenFileName(popup, "Select an Image", "",
                                                        "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
@@ -305,30 +325,24 @@ class dashboard_func(QMainWindow):
                 pixmap = QPixmap(file_path)
                 image_label.setPixmap(pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio))
 
-        # Function to capture photo from webcam
         def capture_photo():
-            cap = cv2.VideoCapture(0)  # Open webcam (0 = default camera)
-
+            cap = cv2.VideoCapture(0)
             if not cap.isOpened():
                 print("Error: Could not open webcam")
                 return
 
-            ret, frame = cap.read()  # Capture a single frame
-            cap.release()  # Release the webcam
-
+            ret, frame = cap.read()
+            cap.release()
             if ret:
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 height, width, channel = frame.shape
                 bytes_per_line = 3 * width
                 q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format_RGB888)
                 pixmap = QPixmap.fromImage(q_image)
-
-                # Display the captured photo
                 image_label.setPixmap(pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio))
             else:
                 print("Error: Failed to capture image")
 
-        # Connect buttons to functions
         if upload_button:
             upload_button.clicked.connect(upload_image)
         if capture_button:
@@ -336,12 +350,165 @@ class dashboard_func(QMainWindow):
 
         popup.show()
 
+    # ==================================
+
+    def show_register_citizen_part_02_popup(self, part_one_popup):
+        print("-- Register New Citizen Profile Part 2")
+        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_02.ui", self)
+        popup.setWindowTitle("Register New Citizen - Part 2")
+        popup.setWindowModality(Qt.ApplicationModal)
+        part_one_popup.close()
+
+        popup.register_buttonReturnToPart1_FromPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
+        popup.register_buttonConfirmPart2_NextToPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
+
+        # Update interviewer info
+        update_date_label(popup.interviewer_dateofvisit)
+        popup.interviewer_emp_name.setText(self.emp_first_name)
+
+        def setup_radio_button_groups_02():
+            # Government Worker
+            radio_gov = QButtonGroup(popup)
+            gov_yes = popup.findChild(QRadioButton, "radioButton_IsGov_Yes")
+            gov_no = popup.findChild(QRadioButton, "radioButton_IsGov_No")
+            if gov_yes and gov_no:
+                radio_gov.addButton(gov_yes)
+                radio_gov.addButton(gov_no)
+
+            # Philhealth Member
+            radio_phil = QButtonGroup(popup)
+            phil_yes = popup.findChild(QRadioButton, "radioButton_IsPhilMem_Yes")
+            phil_no = popup.findChild(QRadioButton, "radioButton_IsPhilMem_No")
+            if phil_yes and phil_no:
+                radio_phil.addButton(phil_yes)
+                radio_phil.addButton(phil_no)
+
+        setup_radio_button_groups_02()
+
+        # Go to Part 3
+        next_btn = popup.findChild(QPushButton, "register_buttonConfirmPart2_NextToPart3")
+        if next_btn:
+            next_btn.clicked.connect(lambda: self.show_register_citizen_part_03_popup(popup))
+
+        # Return to Part 1
+        back_btn = popup.findChild(QPushButton, "register_buttonReturnToPart1_FromPart2")
+        if back_btn:
+            back_btn.clicked.connect(lambda: self.show_register_citizen_part_01_popup_and_close(popup))
+
+        popup.show()
+
+    # ==================================
+
+    def show_register_citizen_part_01_popup_and_close(self, current_popup):
+        current_popup.close()
+        self.show_register_citizen_part_01_popup()
+
+    # ==================================
+
+    def show_register_citizen_part_03_popup(self, part_two_popup):
+        print("-- Register New Citizen Profile Part 3")
+        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_03.ui", self)
+        popup.setWindowTitle("Register New Citizen - Part 3")
+        popup.setWindowModality(Qt.ApplicationModal)
+        part_two_popup.close()
+
+        popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
+        popup.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm'))
+
+        # Update interviewer info
+        update_date_label(popup.interviewer_dateofvisit)
+        popup.interviewer_emp_name.setText(self.emp_first_name)
+
+        def setup_radio_button_groups_03():
+            # Student
+            radio_student = QButtonGroup(popup)
+            student_yes = popup.findChild(QRadioButton, "radioButton_IsStudent_Yes")
+            student_no = popup.findChild(QRadioButton, "radioButton_IsStudent_No")
+            if student_yes and student_no:
+                radio_student.addButton(student_yes)
+                radio_student.addButton(student_no)
+
+            # Family Planning
+            radio_famplan = QButtonGroup(popup)
+            famplan_yes = popup.findChild(QRadioButton, "radioButton_IsFamPlan_Yes")
+            famplan_no = popup.findChild(QRadioButton, "radioButton_IsFamPlan_No")
+            if student_yes and student_no:
+                radio_famplan.addButton(famplan_yes)
+                radio_famplan.addButton(famplan_no)
+
+            # PWD
+            radio_pwd = QButtonGroup(popup)
+            pwd_yes = popup.findChild(QRadioButton, "register_citizen_IsPWD_Yes")
+            pwd_no = popup.findChild(QRadioButton, "register_citizen_IsPWD_No")
+            if pwd_yes and pwd_no:
+                radio_pwd.addButton(pwd_yes)
+                radio_pwd.addButton(pwd_no)
+
+            # Registered Voter
+            radio_voter = QButtonGroup(popup)
+            vote_yes = popup.findChild(QRadioButton, "register_citizen_RegVote_Yes")
+            vote_no = popup.findChild(QRadioButton, "register_citizen_RegVote_No")
+            if vote_yes and vote_no:
+                radio_voter.addButton(vote_yes)
+                radio_voter.addButton(vote_no)
+
+            # Deceased
+            radio_deceased = QButtonGroup(popup)
+            deceased_yes = popup.findChild(QRadioButton, "register_citizen_Deceased_Yes")
+            deceased_no = popup.findChild(QRadioButton, "register_citizen_Deceased_No")
+            if deceased_yes and deceased_no:
+                radio_deceased.addButton(deceased_yes)
+                radio_deceased.addButton(deceased_no)
+
+            # Indigenous Group
+            radio_indigenous = QButtonGroup(popup)
+            ind_yes = popup.findChild(QRadioButton, "register_citizen_IndGroup_Yes")
+            ind_no = popup.findChild(QRadioButton, "register_citizen_IndGroup_No")
+            if ind_yes and ind_no:
+                radio_indigenous.addButton(ind_yes)
+                radio_indigenous.addButton(ind_no)
+
+        setup_radio_button_groups_03()
+
+        # Save final form with confirmation
+        save_btn = popup.findChild(QPushButton, "register_buttonConfirmPart3_SaveForm")
+        if save_btn:
+            def confirm_and_save():
+                reply = QMessageBox.question(
+                    popup,
+                    "Confirm Registration",
+                    "Are you sure you want to register this citizen?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No
+                )
+
+                if reply == QMessageBox.Yes:
+                    print("-- Form Submitted")
+                    QMessageBox.information(popup, "Success", "Citizen successfully registered!")
+                    popup.close()
+
+            save_btn.clicked.connect(confirm_and_save)
+
+        # Return to Part 2
+        back_btn = popup.findChild(QPushButton, "register_buttonReturnToPart2_FromPart3")
+        if back_btn:
+            back_btn.clicked.connect(lambda: self.show_register_citizen_part_02_popup_and_close(popup))
+
+        popup.show()
+
+    # ==================================
+
+    def show_register_citizen_part_02_popup_and_close(self, current_popup):
+        current_popup.close()
+        self.show_register_citizen_part_02_popup(current_popup)
+
+    # ==================================
+
     # PLEASE ADD FUNCTIONALITY ARI NA MO SAVE ANG CHANGES NYA BASTA
     def save_filter_options(self, popup):
         print("Filter options saved.")
         self.filter_options_changed = False  # Reset the change flag
         popup.close()
-
 
     # ===============================================================================================
 
@@ -355,19 +522,23 @@ class dashboard_func(QMainWindow):
             # Set images and icons for the navbar
             self.statistics_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
             self.statistics_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.statistics_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
+            self.statistics_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
             self.statistics_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-            self.statistics_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
-            self.statistics_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.statistics_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.statistics_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.statistics_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.statistics_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+
+            self.statistics_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.statistics_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
             self.statistics_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
             self.statistics_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-            self.statistics_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
+            self.statistics_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
             # self.statistics_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics) # UNNECESSARY
-            self.statistics_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
-            self.statistics_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules)
+            self.statistics_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            self.statistics_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            self.statistics_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
 
             # Set Images for the Statistics Categories
             self.statistics_screen.statistics_ButtonDemographic.setIcon(QIcon('Assets/Images/img_demographic.png'))
@@ -395,65 +566,118 @@ class dashboard_func(QMainWindow):
 
     # ===============================================================================================
 
-    def setup_business_ui(self):
-        """Setup the business UI layout."""
+    def setup_institutions_ui(self):
+        """Setup the institutions UI layout."""
         self.setFixedSize(1350, 850)  # Set size for business screen
         self.setWindowTitle("MaPro: Institutions")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
-        if not self.business_initialized:  # Ensure connections are made only once
+        if not self.institutions_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.business_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
-            self.business_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.business_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
-            self.business_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-            self.business_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
-            self.business_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.business_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
-            self.business_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+            self.institutions_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.institutions_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.institutions_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
+            self.institutions_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.institutions_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.institutions_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.institutions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+
+            self.institutions_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.institutions_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
+            self.institutions_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+
+            self.institutions_screen.inst_ButtonCategory_Business.setIcon(QIcon('Assets/Images/img_category_business.png'))
+            self.institutions_screen.inst_ButtonCategory_Infrastructure.setIcon(QIcon('Assets/Images/img_category_infrastructure.png'))
 
             # Connect navbar buttons
-            self.business_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-            self.business_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
-            self.business_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
-            # self.business_screen.nav_buttonBusiness.clicked.connect(self.goto_business) # UNNECESSARY
-            self.business_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules)
+            self.institutions_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
+            self.institutions_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
+            self.institutions_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
+            # self.institutions.screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            self.institutions_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            self.institutions_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
+
+            # self.institutions_screen.inst_ButtonCategory_Business.clicked.connect()
+            # self.institutions_screen.inst_ButtonCategory_Infrastructure.clicked.connect()
 
             # Connect logout button
-            self.business_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
+            self.institutions_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
 
-            self.business_initialized = True
+            self.institutions_initialized = True
 
     # ===============================================================================================
 
-    def setup_schedules_ui(self):
+    def setup_transactions_ui(self):
         """Setup the schedules UI layout."""
         self.setFixedSize(1350, 850)  # Set size for schedules screen
         self.setWindowTitle("MaPro: Transactions")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
-        if not self.schedules_initialized:  # Ensure connections are made only once
+        if not self.transactions_initialized:  # Ensure connections are made only once
             # Set images and icons for the navbar
-            self.schedules_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
-            self.schedules_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-            self.schedules_screen.nav_buttonCitizenProfiles.setIcon(QIcon('Assets/Icons/icon_citizenprofiles.svg'))
-            self.schedules_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-            self.schedules_screen.nav_buttonBusiness.setIcon(QIcon('Assets/Icons/icon_business.svg'))
-            self.schedules_screen.nav_buttonSchedules.setIcon(QIcon('Assets/Icons/icon_schedule.svg'))
-            self.schedules_screen.nav_buttonAdminOverview.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
-            self.schedules_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+            self.transactions_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.transactions_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.transactions_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
+            self.transactions_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.transactions_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.transactions_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.transactions_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+
+            self.transactions_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.transactions_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
+            self.transactions_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
             # Connect navbar buttons
-            self.schedules_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-            self.schedules_screen.nav_buttonCitizenProfiles.clicked.connect(self.goto_citizen_profiles)
-            self.schedules_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
-            self.schedules_screen.nav_buttonBusiness.clicked.connect(self.goto_business)
-            # self.schedules_screen.nav_buttonSchedules.clicked.connect(self.goto_schedules) # UNNECESSARY
+            self.transactions_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
+            self.transactions_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
+            self.transactions_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
+            self.transactions_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            # self.transactions_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            self.transactions_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
 
             # Connect logout button
-            self.schedules_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
+            self.transactions_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
 
-            self.schedules_initialized = True
+            self.transactions_initialized = True
+
+    # ===============================================================================================
+
+    def setup_history_records_ui(self):
+        """Setup the history records UI layout."""
+        self.setFixedSize(1350, 850)  # Set size for schedules screen
+        self.setWindowTitle("MaPro: History Records")
+        self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
+
+        if not self.history_records_initialized:  # Ensure connections are made only once
+            # Set images and icons for the navbar
+            self.history_records_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
+            self.history_records_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
+            self.history_records_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
+            self.history_records_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
+            self.history_records_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
+            self.history_records_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
+            self.history_records_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord.svg'))
+
+            self.history_records_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
+            self.history_records_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
+            self.history_records_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+
+            self.history_records_screen.hisrec_Button_CitizenHistory.setIcon(QIcon('Assets/Images/img_history_citizen.png'))
+            self.history_records_screen.hisrec_Button_MedicalHistory.setIcon(QIcon('Assets/Images/img_history_medical.png'))
+            self.history_records_screen.hisrec_Button_SettlementHistory.setIcon(QIcon('Assets/Images/img_history_settlement.png'))
+
+            # Connect navbar buttons
+            self.history_records_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
+            self.history_records_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
+            self.history_records_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics)
+            self.history_records_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions)
+            self.history_records_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions)
+            # self.history_records_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_records)
+
+            # Connect logout button
+            self.history_records_screen.logout_buttonLogout.clicked.connect(self.logout_button_clicked)
+
+            self.history_records_initialized = True
 
     # ===============================================================================================
 
@@ -623,11 +847,11 @@ class dashboard_func(QMainWindow):
         self.setup_dashboard_ui()  # Ensure dashboard is set up
         self.stack.setCurrentIndex(0)  # Switch to dashboard screen
 
-    def goto_citizen_profiles(self):
-        """Handle navigation to citizen profiles screen."""
-        print("-- Navigating to Citizen Profiles")
-        self.setup_citizen_profile_ui()  # Ensure citizen profile is set up
-        self.stack.setCurrentIndex(1)  # Switch to citizen profile screen
+    def goto_citizen_panel(self):
+        """Handle navigation to citizen panel screen."""
+        print("-- Navigating to Citizen Panel")
+        self.setup_citizen_panel_ui()  # Ensure citizen panel is set up
+        self.stack.setCurrentIndex(1)  # Switch to citizen panel screen
 
     def goto_statistics(self):
         """Handle navigation to statistics screen."""
@@ -635,65 +859,71 @@ class dashboard_func(QMainWindow):
         self.setup_statistics_ui()  # Ensure statistics is set up
         self.stack.setCurrentIndex(2)  # Switch to statistics screen
 
-    def goto_business(self):
+    def goto_institutions(self):
         """Handle navigation to Institutions screen."""
         print("-- Navigating to Institutions")
-        self.setup_business_ui()  # Ensure Institutions is set up
+        self.setup_institutions_ui()  # Ensure Institutions is set up
         self.stack.setCurrentIndex(3)  # Switch to Institutions screen
 
-    def goto_schedules(self):
+    def goto_transactions(self):
         """Handle navigation to Transactions screen."""
         print("-- Navigating to Transactions")
-        self.setup_schedules_ui()  # Ensure Transactions is set up
+        self.setup_transactions_ui()  # Ensure Transactions is set up
         self.stack.setCurrentIndex(4)  # Switch to Transactions screen
+
+    def goto_history_records(self):
+        """Handle navigation to History Records screen."""
+        print("-- Navigating to History Records")
+        self.setup_history_records_ui()  # Ensure History Records is set up
+        self.stack.setCurrentIndex(5)  # Switch to History Records screen
 
     def goto_demographics(self):
         """Handle navigation to demographic screen."""
         print("-- Navigating to Statistics > Demographics")
         self.setup_demographics_ui()  # Ensure Demographics is set up
-        self.stack.setCurrentIndex(5)  # Switch to Demographics screen
+        self.stack.setCurrentIndex(6)  # Switch to Demographics screen
 
     def goto_geographics(self):
         """Handle navigation to geographic screen."""
         print("-- Navigating to Statistics > Geographics")
         self.setup_geographic_ui()  # Ensure Geographics is set up
-        self.stack.setCurrentIndex(6)  # Switch to Geographics screen
+        self.stack.setCurrentIndex(7)  # Switch to Geographics screen
 
     def goto_household(self):
         """Handle navigation to household screen."""
         print("-- Navigating to Statistics > Household")
         self.setup_household_ui()  # Ensure Household is set up
-        self.stack.setCurrentIndex(7)  # Switch to Household screen
+        self.stack.setCurrentIndex(8)  # Switch to Household screen
 
     def goto_socioeco(self):
         """Handle navigation to socio-economic screen."""
         print("-- Navigating to Statistics > Socio-Economic")
         self.setup_socioeco_ui()  # Ensure Socio-Economic is set up
-        self.stack.setCurrentIndex(8)  # Switch to Socio-Economic screen
+        self.stack.setCurrentIndex(9)  # Switch to Socio-Economic screen
 
     def goto_voters(self):
         """Handle navigation to voters screen."""
         print("-- Navigating to Statistics > Voters")
         self.setup_voters_ui()  # Ensure Voters is set up
-        self.stack.setCurrentIndex(9)  # Switch to Voters screen
+        self.stack.setCurrentIndex(10)  # Switch to Voters screen
 
     def goto_health(self):
         """Handle navigation to health screen."""
         print("-- Navigating to Statistics > Health")
         self.setup_health_ui()  # Ensure Health is set up
-        self.stack.setCurrentIndex(10)  # Switch to Health screen
+        self.stack.setCurrentIndex(11)  # Switch to Health screen
 
     def goto_jobs(self):
         """Handle navigation to jobs screen."""
         print("-- Navigating to Statistics > Jobs")
         self.setup_job_ui()  # Ensure Jobs is set up
-        self.stack.setCurrentIndex(11)  # Switch to Jobs screen
+        self.stack.setCurrentIndex(12)  # Switch to Jobs screen
 
     def goto_groups(self):
         """Handle navigation to groups screen."""
         print("-- Navigating to Statistics > Groups")
         self.setup_group_ui()  # Ensure Groups is set up
-        self.stack.setCurrentIndex(12)  # Switch to Groups screen
+        self.stack.setCurrentIndex(13)  # Switch to Groups screen
 
     def logout_button_clicked(self):
         confirmation = QMessageBox.question(

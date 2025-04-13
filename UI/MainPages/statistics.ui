@@ -54,9 +54,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>150</y>
       <width>211</width>
-      <height>281</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -127,7 +127,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="nav_buttonCitizenProfiles">
+    <widget class="QPushButton" name="nav_buttonCitizenPanel">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -147,22 +147,22 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonCitizenProfiles {
+      <string notr="true">#nav_buttonCitizenPanel {
     background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
 	text-align: left;;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonCitizenProfiles:hover {
+#nav_buttonCitizenPanel:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonCitizenProfiles:pressed {
+#nav_buttonCitizenPanel:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
      <property name="text">
-      <string>  CITIZEN PROFILES</string>
+      <string>  CITIZEN PANEL</string>
      </property>
      <property name="icon">
       <iconset>
@@ -219,7 +219,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="nav_buttonSchedules">
+    <widget class="QPushButton" name="nav_buttonTransactions">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -239,17 +239,17 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonSchedules {
+      <string notr="true">#nav_buttonTransactions {
     background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonSchedules:hover {
+#nav_buttonTransactions:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonSchedules:pressed {
+#nav_buttonTransactions:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
@@ -258,7 +258,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_schedule.svg</normaloff>../../Assets/Icons/icon_schedule.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_transaction.svg</normaloff>../../Assets/Icons/icon_transaction.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -267,7 +267,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="nav_buttonBusiness">
+    <widget class="QPushButton" name="nav_buttonInstitutions">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -287,17 +287,17 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonBusiness {
+      <string notr="true">#nav_buttonInstitutions {
     background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonBusiness:hover {
+#nav_buttonInstitutions:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonBusiness:pressed {
+#nav_buttonInstitutions:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
@@ -306,7 +306,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_business.svg</normaloff>../../Assets/Icons/icon_business.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_institutions.svg</normaloff>../../Assets/Icons/icon_institutions.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -315,38 +315,11 @@
       </size>
      </property>
     </widget>
-   </widget>
-   <widget class="QFrame" name="baseNavFramesub2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>211</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#baseNavFramesub2{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="nav_buttonAdminOverview">
+    <widget class="QPushButton" name="nav_buttonHistoryRecords">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>260</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -359,66 +332,34 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonAdminOverview {
+      <string notr="true">#nav_buttonHistoryRecords {
     background-color: #f2efff;
-    color: #969696;
+    color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
+#nav_buttonHistoryRecords:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+#nav_buttonHistoryRecords:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
-      <string>  ADMIN OVERVIEW</string>
+      <string>  HISTORY RECORDS</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../Assets/Icons/icon_historyrecord.svg</normaloff>../../Assets/Icons/icon_historyrecord.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
        <width>30</width>
        <height>30</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="nav_isLocked">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#nav_isLocked{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-	color: #c01111;
-}</string>
-     </property>
-     <property name="text">
-      <string>  Locked Access</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
       </size>
      </property>
     </widget>
@@ -633,6 +574,161 @@
      </property>
      <property name="text">
       <string>LOGOUT</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="baseNavFramesub2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>211</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#baseNavFramesub2{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="nav_buttonAdminPanel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonAdminPanel {
+    background-color: #f2efff;
+    color: #969696;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+/*#nav_buttonAdminOverview:hover {
+    background-color: #fdfdff;
+}
+#nav_buttonAdminOverview:pressed {
+    background-color: #e7e5f4; 
+}*/</string>
+     </property>
+     <property name="text">
+      <string>  ADMIN PANEL</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_isLocked">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_isLocked{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+	color: #c01111;
+}</string>
+     </property>
+     <property name="text">
+      <string>  Requires Admin Access</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonActivityLogs">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonActivityLogs {
+    background-color: #f2efff;
+    color: #969696;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+/*#nav_buttonAdminOverview:hover {
+    background-color: #fdfdff;
+}
+#nav_buttonAdminOverview:pressed {
+    background-color: #e7e5f4; 
+}*/</string>
+     </property>
+     <property name="text">
+      <string>  ACTIVITY LOGS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
      </property>
     </widget>
    </widget>
@@ -1344,9 +1440,9 @@
     <widget class="QLabel" name="statistics_labelNote">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>30</x>
        <y>0</y>
-       <width>451</width>
+       <width>941</width>
        <height>51</height>
       </rect>
      </property>

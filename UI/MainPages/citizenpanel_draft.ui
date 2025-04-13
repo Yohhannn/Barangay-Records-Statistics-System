@@ -148,18 +148,14 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonCitizenPanel {
-    background-color: #f2efff;
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonCitizenPanel:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonCitizenPanel:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
       <string>  CITIZEN PANEL</string>
@@ -207,8 +203,7 @@
 }
 #nav_buttonStatistics:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
-}
-</string>
+}</string>
      </property>
      <property name="text">
       <string>  STATISTICS</string>
@@ -245,14 +240,18 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonTransactions {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-</string>
+#nav_buttonTransactions:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonTransactions:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  TRANSACTIONS</string>
@@ -287,9 +286,6 @@
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonInstitutions {
     background-color: #f2efff;
@@ -303,8 +299,7 @@
 }
 #nav_buttonInstitutions:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
-}
-</string>
+}</string>
      </property>
      <property name="text">
       <string>  INSTITUTIONS</string>
@@ -764,7 +759,7 @@
      <rect>
       <x>30</x>
       <y>0</y>
-      <width>451</width>
+      <width>1311</width>
       <height>41</height>
      </rect>
     </property>
@@ -871,7 +866,7 @@
      <string>LOGOUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="title_bodySchedule">
+   <widget class="QLabel" name="title_bodyCitizenProfile">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -888,15 +883,203 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodySchedule {
+     <string notr="true">#title_bodyCitizenProfile {
 	background-color: transparent;
 	color: #141c52;
 }
 </string>
     </property>
     <property name="text">
-     <string>TRANSACTIONS</string>
+     <string>CITIZEN PANEL</string>
     </property>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>1001</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QToolButton" name="category_citizen">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>471</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#category_citizen {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 55px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 150px 150px; /* Adjust icon size */
+}
+
+#category_citizen:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#category_citizen:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#category_citizen::icon {
+    margin-bottom: 15px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>INDIVIDUAL CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_category_citizen.png</normaloff>../../Assets/Images/img_category_citizen.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>150</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="category_household">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>20</y>
+       <width>471</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#category_household {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 55px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 150px 150px; /* Adjust icon size */
+}
+
+#category_household:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#category_household:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#category_household::icon {
+    margin-bottom: 15px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>FAMILY HOUSEHOLD</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Images/img_category_household.png</normaloff>../../Assets/Images/img_category_household.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>150</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="table_titleFrameStatistics">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>1001</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#table_titleFrameStatistics{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="statistics_labelNote">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>451</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>CATEGORY</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

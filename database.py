@@ -1,14 +1,13 @@
 import psycopg2
 
-
 class Database:
     def __init__(self):
         try:
             self.conn = psycopg2.connect(
-                host = "localhost",
-                database = "barangay_marigondon_overhaul_data",
-                user = "postgres",
-                password = "09334932416"
+                host="localhost",
+                database="barangay_marigondon_overhaul_data",
+                user="postgres",
+                password="123jp"
             )
             self.cursor = self.conn.cursor()
             print("Database Connected Successfully!")
@@ -18,7 +17,7 @@ class Database:
     def close(self):
         if self.cursor:
             self.cursor.close()
-            print("cursor closed successfully!")
+            print("Cursor closed successfully!")
         if self.conn:
             self.conn.close()
             print("Database Connection Closed Successfully!")
