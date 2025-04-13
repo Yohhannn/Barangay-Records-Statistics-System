@@ -110,7 +110,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>BECOME ADMIN</string>
+     <string>SYSTEM OVERRIDE</string>
     </property>
    </widget>
   </widget>

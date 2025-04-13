@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="[ Major Update V2.8.1 ]&#10;~ Citizen Profile --&gt; &quot;Citizen Panel&quot;&#10;+ History Records Page &#10;+ Updated Institutions Page&#10;+ Updated Navigation Bars&#10;+ Few Added Images &amp; Icons&#10;+ Register Citizen &quot;Next&quot; as Arrows&#10;&#10;- Tiwas buntag lol&#10;-JP">
-      <change afterPath="$PROJECT_DIR$/mnhs_db_test.sql" afterDir="false" />
+    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="- Fixed SQL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions/login_functions/login_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/login_functions/login_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/citizenprofile.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/citizenprofile.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/PopUp/Screen_Dashboard/adminoverride.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/PopUp/Screen_Dashboard/adminoverride.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/marigondon_database_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marigondon_database_query.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +205,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744477254596</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- Re-organized files.&#10;- Added full code for sql">
+      <option name="closed" value="true" />
+      <created>1744541545164</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744541545164</updated>
+    </task>
+    <task id="LOCAL-00011" summary="- Fixed SQL">
+      <option name="closed" value="true" />
+      <created>1744541707698</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744541707698</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +249,9 @@
     <MESSAGE value="[ Major Update V2.7.7 ]&#10;+ Updated Stat UI&#10;-- Health&#10;-- Jobs&#10;-- Voters&#10;-- Groups&#10;&#10;-JP" />
     <MESSAGE value="[ General Update V2.8.0 ]&#10;+ Added 3 Pages Form for Citizen Register&#10;+ New Changes to the UI&#10;+ Fully Changed Business to Institutions&#10;+ Fully Changed Schedule to Transactions&#10;+ Modified Statistics Sub Pages&#10;+ Added Radio Button Groups &#10;+ Admin Override From PIN to Button&#10;+ Added a few Icons&#10;&#10;NOTE: Ang mo himo sa backend kamo lang butang validation/required og more if logic.&#10;&#10;-JP" />
     <MESSAGE value="[ Major Update V2.8.1 ]&#10;~ Citizen Profile --&gt; &quot;Citizen Panel&quot;&#10;+ History Records Page &#10;+ Updated Institutions Page&#10;+ Updated Navigation Bars&#10;+ Few Added Images &amp; Icons&#10;+ Register Citizen &quot;Next&quot; as Arrows&#10;&#10;- Tiwas buntag lol&#10;-JP" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ Major Update V2.8.1 ]&#10;~ Citizen Profile --&gt; &quot;Citizen Panel&quot;&#10;+ History Records Page &#10;+ Updated Institutions Page&#10;+ Updated Navigation Bars&#10;+ Few Added Images &amp; Icons&#10;+ Register Citizen &quot;Next&quot; as Arrows&#10;&#10;- Tiwas buntag lol&#10;-JP" />
+    <MESSAGE value="- Re-organized files.&#10;- Added full code for sql" />
+    <MESSAGE value="- Fixed SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed SQL" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -239,6 +261,6 @@
     <SUITE FILE_PATH="coverage/Profiling_System$database.coverage" NAME="database Coverage Results" MODIFIED="1741781100040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744478508212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$database.coverage" NAME="database Coverage Results" MODIFIED="1742465660967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744541354300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744545499261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
