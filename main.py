@@ -3,7 +3,7 @@ import tkinter as tk
 import ctypes
 from PySide6.QtWidgets import QApplication
 
-from Functions.login_functions.login_func import login_func
+from Functions.login_functions.login_func import LoginWindow
 
 # Initialize Tkinter (if you need it)
 root = tk.Tk()
@@ -17,7 +17,7 @@ root.withdraw()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    login_window = login_func()
+    login_window = LoginWindow()
     login_window.show()
 
     sys.exit(app.exec())
