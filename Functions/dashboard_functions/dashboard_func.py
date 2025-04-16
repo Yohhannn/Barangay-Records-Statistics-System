@@ -5,6 +5,7 @@ from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 
 from Functions.base_file_func import base_file_func
+from Functions.institution_functions.institution_func import institutions_func
 from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
@@ -63,8 +64,11 @@ class dashboard_func(base_file_func):
         self.dashboard_screen.dashboard_buttonViewEmployees.clicked.connect(self.show_employee_popup)
         self.dashboard_screen.dashboard_buttonBarangayInfo.clicked.connect(self.show_barangayinfo_popup)
         self.dashboard_screen.dashboard_buttonAboutSoftware.clicked.connect(self.show_aboutsoftware_popup)
+
+        # CATEGORY BUTTONS
         self.dashboard_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
         self.dashboard_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics_panel)
+        self.dashboard_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions_panel)
 
     def goto_citizen_panel(self):
         """Handle navigation to citizen panel screen."""
@@ -85,6 +89,16 @@ class dashboard_func(base_file_func):
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
         self.setWindowTitle("MaPro: Statistics")
+
+    def goto_institutions_panel(self):
+        """Handle navigation to citizen panel screen."""
+        if not hasattr(self, 'insitutions'):
+            from Functions.institution_functions.institution_func import institutions_func
+            self.institutions_panel = institutions_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.institutions_panel.institutions_screen)
+
+        self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
+        self.setWindowTitle("MaPro: Institutions")
 
 
     def show_employee_popup(self):
