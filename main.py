@@ -3,9 +3,7 @@ import tkinter as tk
 import ctypes
 from PySide6.QtWidgets import QApplication
 
-from Functions.citizen_functions.citizen_func import citizen_func
-from Functions.dashboard_functions.dashboard_func import dashboard_func
-from Functions.login_functions.login_func import LoginWindow
+from Functions.Auth.Login.login_func import LoginWindow
 
 # Initialize Tkinter (if you need it)
 root = tk.Tk()

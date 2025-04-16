@@ -1,67 +1,42 @@
 import cv2
-from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QLabel, QButtonGroup, QRadioButton
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QMessageBox, QPushButton, QLabel, QFileDialog, QButtonGroup, QRadioButton
 
 from Functions.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
 from Utils.util_popup import load_popup
 
-class citizen_func(base_file_func):
+class citizen_profile_func(base_file_func):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.citizen_panel_screen = self.load_ui("UI/MainPages/citizenpanel.ui")
-        self.setup_ui()
+        self.cp_profile_screen = self.load_ui("UI/MainPages/CitizenPanelPages/cp_citizenprofile.ui")
+        self.setup_profile_ui()
         self.center_on_screen()
 
-    def setup_ui(self):
-        """Setup the citizen panel UI layout."""
+    def setup_profile_ui(self):
+        """Setup the Citizen Profile UI layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Citizen Panel")
+        self.setWindowTitle("MaPro: Citizen Profile")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
-        # Set images and icons for the navbar
-        self.citizen_panel_screen.nav_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
-        self.citizen_panel_screen.nav_buttonDashboard.setIcon(QIcon('Assets/Icons/icon_dashboard.svg'))
-        self.citizen_panel_screen.nav_buttonCitizenPanel.setIcon(QIcon('Assets/Icons/icon_citizenpanel.svg'))
-        self.citizen_panel_screen.nav_buttonStatistics.setIcon(QIcon('Assets/Icons/icon_statistics.svg'))
-        self.citizen_panel_screen.nav_buttonInstitutions.setIcon(QIcon('Assets/Icons/icon_institutions.svg'))
-        self.citizen_panel_screen.nav_buttonTransactions.setIcon(QIcon('Assets/Icons/icon_transaction.svg'))
-        self.citizen_panel_screen.nav_buttonHistoryRecords.setIcon(QIcon('Assets/Icons/icon_historyrecord_closed.svg'))
+    # Set images and icons
+        self.cp_profile_screen.btn_returnToCitizenPanelPage.setIcon(QIcon('Assets/FuncIcons/img_return.png'))
+        self.cp_profile_screen.cp_CitizenName_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
+        self.cp_profile_screen.cp_citizen_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
+        self.cp_profile_screen.cp_citizen_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
+        self.cp_profile_screen.cp_citizen_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
 
-        self.citizen_panel_screen.nav_buttonAdminPanel.setIcon(QIcon('Assets/Icons/icon_adminoverview_off.svg'))
-        self.citizen_panel_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
-        self.citizen_panel_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
+        # Return Button
+        self.cp_profile_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
 
-        # Set Icons
-        self.citizen_panel_screen.profileList_buttonRegister.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
-        self.citizen_panel_screen.profileList_buttonRegisterHousehold.setIcon(QIcon('Assets/FuncIcons/icon_household.svg'))
-        self.citizen_panel_screen.profileList_buttonDelete.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
-        self.citizen_panel_screen.profileList_buttonUpdate.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
-        self.citizen_panel_screen.profileList_buttonSearch.setIcon(QIcon('Assets/FuncIcons/icon_search_w.svg'))
-        self.citizen_panel_screen.profileList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
-
-        # Connect buttons
-        self.citizen_panel_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard)
-        self.citizen_panel_screen.profileList_buttonFilter.clicked.connect(self.show_filter_popup)
-        self.citizen_panel_screen.profileList_buttonRegister.clicked.connect(self.show_register_citizen_part_01_popup)
-
-    def goto_dashboard(self):
-        """Return to dashboard screen"""
-        self.stack.setCurrentIndex(0)
-        self.setWindowTitle("MaPro: Dashboard")
-
-    def show_filter_popup(self):
-        print("-- Navigating to Profile List > Filter Options")
-        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/filteroptions.ui", self)
-        popup.setWindowTitle("Filter Options")
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+        # REGISTER BUTTON
+        self.cp_profile_screen.cp_citizen_button_register.clicked.connect(self.show_register_citizen_part_01_popup)
 
     def show_register_citizen_part_01_popup(self):
         print("-- Register New Citizen Profile")
-        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_01.ui", self)
+        popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_01.ui", self)
         popup.setWindowTitle("Register New Citizen")
         popup.setWindowModality(Qt.ApplicationModal)
 
@@ -132,7 +107,7 @@ class citizen_func(base_file_func):
 
     def show_register_citizen_part_02_popup(self, part_one_popup):
         print("-- Register New Citizen Profile Part 2")
-        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_02.ui", self)
+        popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_02.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 2")
         popup.setWindowModality(Qt.ApplicationModal)
         part_one_popup.close()
@@ -181,7 +156,7 @@ class citizen_func(base_file_func):
 
     def show_register_citizen_part_03_popup(self, part_two_popup):
         print("-- Register New Citizen Profile Part 3")
-        popup = load_popup("UI/PopUp/Screen_CitizenProfiles/register_citizen_part_03.ui", self)
+        popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_03.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 3")
         popup.setWindowModality(Qt.ApplicationModal)
         part_two_popup.close()
@@ -273,3 +248,14 @@ class citizen_func(base_file_func):
     def show_register_citizen_part_02_popup_and_close(self, current_popup):
         current_popup.close()
         self.show_register_citizen_part_02_popup(current_popup)
+
+    def goto_citizen_panel(self):
+        """Handle navigation to Citizen Panel screen."""
+        print("-- Navigating to Citizen Panel")
+        if not hasattr(self, 'citizen_panel'):
+            from Functions.Main.Citizen_Panel.citizen_func import citizen_func
+            self.citizen_panel = citizen_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
+
+        self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
+        self.setWindowTitle("MaPro: Citizen Panel")

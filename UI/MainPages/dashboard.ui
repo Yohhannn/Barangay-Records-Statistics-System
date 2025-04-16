@@ -157,7 +157,7 @@
 }</string>
      </property>
      <property name="text">
-      <string> CITIZEN PANEL</string>
+      <string>  CITIZEN PANEL</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1092,7 +1092,24 @@
     </column>
     <column>
      <property name="text">
-      <string>Full Name</string>
+      <string>Family Name</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>First Name</string>
      </property>
      <property name="font">
       <font>
@@ -1126,24 +1143,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Date Added</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Time Added</string>
+      <string>Time Stamp</string>
      </property>
      <property name="font">
       <font>
@@ -1405,7 +1405,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>%has_permission%</string>
+      <string>N/A</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1433,7 +1433,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>%employee_name%</string>
+      <string>N/A</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1461,7 +1461,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>%employee_id%</string>
+      <string>N/A</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1669,7 +1669,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>V#.#.# - XXX</string>
+      <string>N/A</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>

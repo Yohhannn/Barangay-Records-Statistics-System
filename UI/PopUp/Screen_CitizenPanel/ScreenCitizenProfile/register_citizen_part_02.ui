@@ -3244,7 +3244,7 @@
      <x>20</x>
      <y>60</y>
      <width>591</width>
-     <height>421</height>
+     <height>311</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -3530,7 +3530,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
+       <width>591</width>
        <height>31</height>
       </rect>
      </property>
@@ -3548,19 +3548,19 @@
 }</string>
      </property>
      <property name="text">
-      <string>Environmental Information</string>
+      <string>Household Information</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="register_citizen_labelWaterSource">
+   <widget class="QLabel" name="register_citizen_labelHouseholdID">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>40</x>
       <y>260</y>
-      <width>171</width>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
@@ -3571,25 +3571,25 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_citizen_labelWaterSource {
+     <string notr="true">#register_citizen_labelHouseholdID {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
     </property>
     <property name="text">
-     <string>Type of Water Source:</string>
+     <string>Household ID:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QComboBox" name="register_citizen_comboBox_WaterSource">
+   <widget class="QLineEdit" name="register_citizen_HouseholdID">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>260</y>
-      <width>381</width>
+      <width>351</width>
       <height>31</height>
      </rect>
     </property>
@@ -3600,141 +3600,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_citizen_comboBox_WaterSource{
-	background-color: rgb(239, 239, 239); /* Correct property name */
-    color: #242424; /* Set text color to black for better contrast */
-    border: 1px solid #ccc; /* Optional: Add a light border */
-    padding: 5px; /* Optional: Add some padding */
-    border-radius: 4px; /* Optional: Rounded corners */
-}</string>
-    </property>
-    <property name="placeholderText">
-     <string>Select Type</string>
-    </property>
-    <property name="duplicatesEnabled">
-     <bool>false</bool>
-    </property>
-    <item>
-     <property name="text">
-      <string>Level 1 - Point Source</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Level 2 - Communal Faucet</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Level 3 - Individual Connection</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Others</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QFrame" name="basePopUpBodyFrame_5">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>300</y>
-      <width>551</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#basePopUpBodyFrame_5 {
-	background-color: rgb(247, 247, 247);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QLabel" name="labelNote_4">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>551</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>10</pointsize>
-       <italic>true</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#labelNote_4 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>* If Others please specify *</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="register_citizen_labelOthers">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>161</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#register_citizen_labelOthers {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>Other Types:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="register_citizen_Others">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>40</y>
-       <width>311</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#register_citizen_Others{
+     <string notr="true">#register_citizen_HouseholdID{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -3743,17 +3609,16 @@
 }
 
 </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="maxLength">
-      <number>30</number>
-     </property>
-     <property name="placeholderText">
-      <string>Ex. Tabay</string>
-     </property>
-    </widget>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>30</number>
+    </property>
+    <property name="placeholderText">
+     <string>Input Household ID</string>
+    </property>
    </widget>
   </widget>
   <widget class="QLabel" name="labelNote_x">

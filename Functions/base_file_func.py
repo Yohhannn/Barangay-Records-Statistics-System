@@ -2,8 +2,6 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
 
-
-
 class base_file_func(QMainWindow):
     def __init__(self, login_window, emp_first_name):
         super().__init__()

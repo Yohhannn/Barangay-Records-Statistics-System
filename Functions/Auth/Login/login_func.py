@@ -1,9 +1,8 @@
-import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
-from Functions.dashboard_functions.dashboard_func import dashboard_func
+from Functions.Main.Dashboard.dashboard_func import dashboard_func
 from database import Database
 from Utils.utils_corner import applyRoundedCorners
 
