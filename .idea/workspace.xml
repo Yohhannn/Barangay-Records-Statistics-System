@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="- Separated function files&#10;- Optimized and cleaned some uncessary use of Libraries">
-      <change beforePath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="- Fixed logout issue. &#10;- Fixed auto clear login fields upon logging out">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Auth/Login/login_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Auth/Login/login_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/Citizen_Panel/citizen_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Citizen_Panel/citizen_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/Dashboard/dashboard_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Dashboard/dashboard_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/History_Records/history_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/History_Records/history_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/Institutions/institution_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Institutions/institution_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/Statistics/statistics_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Statistics/statistics_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Main/Transactions/transaction_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Transactions/transaction_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marigondon_database_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marigondon_database_query.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +29,12 @@
     &quot;assignee&quot;: &quot;Yohhannn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Yohhannn/Barangay-Records-Statistics-System.git",
-    "accountId": "b4d2e5cf-b977-4b5e-ac7e-69ed97193482"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Yohhannn/Barangay-Records-Statistics-System.git&quot;,
+    &quot;accountId&quot;: &quot;b4d2e5cf-b977-4b5e-ac7e-69ed97193482&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -55,26 +47,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.database.executor": "Run",
-    "Python.login_func.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/joeha/Downloads/Barangay-Records-Statistics-System",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.login_func.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/joeha/Downloads/Barangay-Records-Statistics-System&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\paul\PycharmProjects\MaPro_System\UI\PopUp\Screen_CitizenProfiles" />
@@ -156,7 +148,8 @@
       <workItem from="1744207556974" duration="38912000" />
       <workItem from="1744744047678" duration="16994000" />
       <workItem from="1744791326872" duration="25859000" />
-      <workItem from="1744819555707" duration="4841000" />
+      <workItem from="1744819555707" duration="10662000" />
+      <workItem from="1744901028587" duration="98000" />
     </task>
     <task id="LOCAL-00001" summary="[ General Update V2.7.3 ]&#10;+ Citizen Profile Register Button&#10;+ Modified Filter Option UI&#10;+ Added Register Citizen Popup&#10;+ Functionality to Upload Photo or Capture from Device&#10;+ Statistics Page : Demographics &amp; Geographics Partially Done.&#10;&gt; More to Continue : Household, Socio-Eco, Voters, Health&#10;+ Added few Icons&#10;&gt; register_citizen_profile_2.ui is a draft copy for a different ui.&#10;+ Small Changes on Dashboard UI&#10;&#10;-JP">
       <option name="closed" value="true" />
@@ -254,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744789672299</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- Fixed logout issue. &#10;- Fixed auto clear login fields upon logging out">
+      <option name="closed" value="true" />
+      <created>1744868539851</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744868539851</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,11 +286,12 @@
     <MESSAGE value="- Re-organized files.&#10;- Added full code for sql" />
     <MESSAGE value="- Fixed SQL" />
     <MESSAGE value="- Separated function files&#10;- Optimized and cleaned some uncessary use of Libraries" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Separated function files&#10;- Optimized and cleaned some uncessary use of Libraries" />
+    <MESSAGE value="- Fixed logout issue. &#10;- Fixed auto clear login fields upon logging out" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed logout issue. &#10;- Fixed auto clear login fields upon logging out" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744868476914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744874295727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
     <SUITE FILE_PATH="coverage/Profiling_System$utils_clock.coverage" NAME="utils_clock Coverage Results" MODIFIED="1740815852587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Utils" />
     <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
