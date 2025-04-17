@@ -53,7 +53,7 @@ class dashboard_func(base_file_func):
         self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
 
         # APPLICATION VERSION DISPLAY
-        self.dashboard_screen.label_UpdateVersion.setText("V3.0.1 - Alpha")
+        self.dashboard_screen.label_UpdateVersion.setText("V3.0.2 - Alpha")
 
         # SCREEN BUTTONS --> POPUP
         self.dashboard_screen.acc_buttonYourAccount.clicked.connect(self.show_account_popup)
