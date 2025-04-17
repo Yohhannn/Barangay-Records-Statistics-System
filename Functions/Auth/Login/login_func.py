@@ -25,6 +25,11 @@ class LoginWindow(QMainWindow):
         self.setup_rounded_corners()
         self.setup_event_handlers()
 
+        # self.login_screen.login_fieldEmp_id.clear()
+        # self.login_screen.login_fieldPin.clear()
+        self.clear_fields()
+
+
     def load_ui(self, ui_path):
         file = QFile(ui_path)
         if not file.open(QFile.ReadOnly):

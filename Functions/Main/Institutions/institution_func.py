@@ -1,6 +1,6 @@
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox, QApplication
 
 from Functions.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
@@ -142,5 +142,9 @@ class institutions_func(base_file_func):
             QMessageBox.Yes | QMessageBox.No,
         )
         if confirmation == QMessageBox.Yes:
-            self.login_window.show()  # Show the login window again
-            self.close()
+            QApplication.closeAllWindows()
+
+            self.login_window.show()
+            self.login_window.clear_fields()
+
+

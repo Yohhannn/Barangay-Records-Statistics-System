@@ -1,5 +1,5 @@
 import cv2
-from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QLabel, QButtonGroup, QRadioButton
+from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QLabel, QButtonGroup, QRadioButton, QApplication
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 
@@ -134,8 +134,11 @@ class citizen_func(base_file_func):
             QMessageBox.Yes | QMessageBox.No,
         )
         if confirmation == QMessageBox.Yes:
-            self.login_window.show()  # Show the login window again
-            self.close()
+            QApplication.closeAllWindows()
+
+            self.login_window.show()
+            self.login_window.clear_fields()
+
 
     # SCREEN POPUPS ================================
     # def show_filter_popup(self):

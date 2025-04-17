@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QPushButton, QMessageBox
+from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from PySide6.QtCore import QTimer
 
@@ -140,8 +140,13 @@ class dashboard_func(base_file_func):
             QMessageBox.Yes | QMessageBox.No,
         )
         if confirmation == QMessageBox.Yes:
-            self.login_window.show()  # Show the login window again
-            self.close()
+
+            QApplication.closeAllWindows()
+
+            self.login_window.show()
+            self.login_window.clear_fields()
+            # self.login_window.show()  # Show the login window again ALTERNATIVE YET THERES A BETTER WAY
+            # self.close()
 
     # SCREEN POPUPS ================================
     def show_employee_popup(self):
