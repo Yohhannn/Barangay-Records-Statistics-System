@@ -70,12 +70,12 @@ class household_func(base_file_func):
                 reply = QMessageBox.question(
                     popup,
                     "Confirm Registration",
-                    "Are you sure you want to register this infrastructure?",
+                    "Are you sure you want to register this household?",
                     QMessageBox.Yes | QMessageBox.No,
                     QMessageBox.No
                 )
 
-                if reply == QMessageBox.Yes:
+                if reply == QMessageBox.Yes:s
                     print("-- Form Submitted")
                     QMessageBox.information(popup, "Success", "Citizen successfully registered!")
                     popup.close()
