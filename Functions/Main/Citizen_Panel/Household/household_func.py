@@ -75,7 +75,7 @@ class household_func(base_file_func):
                     QMessageBox.No
                 )
 
-                if reply == QMessageBox.Yes:s
+                if reply == QMessageBox.Yes:
                     print("-- Form Submitted")
                     QMessageBox.information(popup, "Success", "Citizen successfully registered!")
                     popup.close()

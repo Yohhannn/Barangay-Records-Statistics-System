@@ -7,11 +7,13 @@ from Functions.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
+APP_NAME = "MaPro "
 
 class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
+        self.app_version = "V3.0.4 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
@@ -20,7 +22,7 @@ class dashboard_func(base_file_func):
     def setup_dashboard_ui(self):
         """Setup the dashboard UI layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Dashboard")
+        self.setWindowTitle(f"{APP_NAME}{self.app_version}")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         # SET NAVIGATION MAIN ASSETS
@@ -53,7 +55,7 @@ class dashboard_func(base_file_func):
         self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
 
         # APPLICATION VERSION DISPLAY
-        self.dashboard_screen.label_UpdateVersion.setText("V3.0.3 - Alpha")
+        self.dashboard_screen.label_UpdateVersion.setText(self.app_version)
 
         # SCREEN BUTTONS --> POPUP
         self.dashboard_screen.acc_buttonYourAccount.clicked.connect(self.show_account_popup)
@@ -75,7 +77,6 @@ class dashboard_func(base_file_func):
     #     """Return to dashboard screen"""
     #     print("-- Navigating to Dashboard")
     #     self.stack.setCurrentIndex(0)
-    #     self.setWindowTitle("MaPro: Dashboard")
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
@@ -86,7 +87,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
-        self.setWindowTitle("MaPro: Citizen Panel")
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
@@ -97,7 +97,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
-        self.setWindowTitle("MaPro: Statistics")
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""
@@ -108,7 +107,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
-        self.setWindowTitle("MaPro: Institutions")
 
     def goto_transactions_panel(self):
         """Handle navigation to Transactions Panel screen."""
@@ -119,7 +117,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
-        self.setWindowTitle("MaPro: Transactions")
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
@@ -130,7 +127,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
-        self.setWindowTitle("MaPro: History Records")
 
     def logout(self):
         confirmation = QMessageBox.question(

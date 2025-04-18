@@ -34,6 +34,12 @@ class transaction_func(base_file_func):
         self.transactions_screen.nav_buttonActivityLogs.setIcon(QIcon('Assets/Icons/icon_activitylogs_off.svg'))
         self.transactions_screen.nav_isLocked.setIcon(QIcon('Assets/Icons/icon_isLocked.svg'))
 
+        # SET MAIN TRANSACTION PAGES ASSETS
+        self.transactions_screen.trans_ButtonCategory_Services.setIcon(QIcon('Assets/Images/img_transaction_papers.png'))
+
+        # SUBPAGES : SERVICES --> GOTO
+        self.transactions_screen.trans_ButtonCategory_Services.clicked.connect(self.goto_services_panel)
+
         # NAVIGATIONAL BUTTONS --> GOTO
         self.transactions_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard_panel)
         self.transactions_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
@@ -104,6 +110,19 @@ class transaction_func(base_file_func):
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
         self.setWindowTitle("MaPro: History Records")
+
+    # SUBPAGES : GOTO ===========
+    def goto_services_panel(self):
+        """Handle navigation to Services Panel screen."""
+        self.setWindowTitle("MaPro: Services")
+        print("-- Navigating to Services")
+        if not hasattr(self, 'services'):
+            from Functions.Main.Transactions.Services.services_func import services_func
+            self.services_panel = services_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.services_panel.trans_services_screen)
+
+        self.stack.setCurrentWidget(self.services_panel.trans_services_screen)
+
 
     def logout(self):
         confirmation = QMessageBox.question(
