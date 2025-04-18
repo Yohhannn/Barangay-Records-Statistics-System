@@ -27,40 +27,41 @@ class settlement_history_func(base_file_func):
         self.hist_settlement_history_screen.histrec_settlementhistory_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
         self.hist_settlement_history_screen.settlementhistoryList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
-        # # REGISTER BUTTON
-        # self.hist_citizen_history_screen.trans_Transact_button_create.clicked.connect(self.show_citizen_history_popup)
+        # RECORD BUTTON
+        self.hist_settlement_history_screen.histrec_settlementhistory_button_record.clicked.connect(self.show_settlement_history_popup)
 
         # Return Button
         self.hist_settlement_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
 
-    # def show_citizen_history_popup(self):
-    #     print("-- Create Citizen History Popup")
-    #     popup = load_popup("UI/PopUp/Screen_Transactions/create_transaction.ui", self)
-    #     popup.setWindowTitle("Mapro: Create New Transaction")
-    #
-    #     popup.register_buttonConfirmTransaction_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
-    #
-    #     # Save final form with confirmation
-    #     save_btn = popup.findChild(QPushButton, "register_buttonConfirmTransaction_SaveForm")
-    #     if save_btn:
-    #         def confirm_and_save():
-    #             reply = QMessageBox.question(
-    #                 popup,
-    #                 "Confirm Creation",
-    #                 "Are you sure you want to create this transaction?",
-    #                 QMessageBox.Yes | QMessageBox.No,
-    #                 QMessageBox.No
-    #             )
-    #
-    #             if reply == QMessageBox.Yes:
-    #                 print("-- Form Submitted")
-    #                 QMessageBox.information(popup, "Success", "Transaction successfully registered!")
-    #                 popup.close()
-    #
-    #         save_btn.clicked.connect(confirm_and_save)
-    #
-    #     popup.setWindowModality(Qt.ApplicationModal)
-    #     popup.show()
+
+    def show_settlement_history_popup(self):
+        print("-- Record Settlement History Popup")
+        popup = load_popup("UI/PopUp/Screen_HistoryRecords/record_settlement_history.ui", self)
+        popup.setWindowTitle("Mapro: Record New Settlement History")
+
+        popup.record_buttonConfirmSettlementHistory_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
+
+        # Save final form with confirmation
+        save_btn = popup.findChild(QPushButton, "record_buttonConfirmSettlementHistory_SaveForm")
+        if save_btn:
+            def confirm_and_save():
+                reply = QMessageBox.question(
+                    popup,
+                    "Confirm Creation",
+                    "Are you sure you want to record this?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No
+                )
+
+                if reply == QMessageBox.Yes:
+                    print("-- Form Submitted")
+                    QMessageBox.information(popup, "Success", "Settlement History Successfully Recorded!")
+                    popup.close()
+
+            save_btn.clicked.connect(confirm_and_save)
+
+        popup.setWindowModality(Qt.ApplicationModal)
+        popup.show()
 
 
     def goto_history_panel(self):

@@ -336,16 +336,16 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_HistoryID_buttonSearch {
+       <string notr="true">#histrecMedHistoryID_buttonSearch {
     background-color:  #141c52;
     color: white;
     border-radius: 5px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#histrec_HistoryID_buttonSearch:hover {
+#histrecMedHistoryID_buttonSearch:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-#histrec_HistoryID_buttonSearch:pressed {
+#histrecMedHistoryID_buttonSearch:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
       </property>
