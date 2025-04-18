@@ -1,10 +1,12 @@
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QMessageBox, QPushButton, QButtonGroup, QRadioButton
+from PySide6.QtWidgets import QMessageBox, QPushButton, QButtonGroup, QRadioButton, QTableWidgetItem
 
 from Functions.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
 from Utils.util_popup import load_popup
+from database import Database
+
 
 class infrastructure_func(base_file_func):
     def __init__(self, login_window, emp_first_name, stack):
@@ -13,6 +15,9 @@ class infrastructure_func(base_file_func):
         self.inst_infrastructure_screen = self.load_ui("UI/MainPages/InstitutionPages/infrastructure.ui")
         self.setup_infrastructure_ui()
         self.center_on_screen()
+        self.load_data_infrastructure()
+
+        self.inst_infrastructure_screen.inst_tableView_List_RegInfra.cellClicked.connect(self.handle_row_click_infrastructure)
 
     def setup_infrastructure_ui(self):
         """Setup the Infrastructure UI layout."""
@@ -83,3 +88,59 @@ class infrastructure_func(base_file_func):
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
         self.setWindowTitle("MaPro: Institutions")
+
+    def load_data_infrastructure(self):
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            cursor.execute(""" 
+                SELECT 
+                    INF.INF_ID,
+                    INF.INF_NAME,
+                    INF.INF_ACCESS_TYPE,
+                    INF.INF_DATE_REGISTERED,
+                    CONCAT(IO.INFO_FIRST_NAME, ' ',COALESCE(NULLIF(LEFT(IO.INFO_MI, 1), '') || '. ', ''), IO.INFO_LAST_NAME) AS INFRASTRUCTURE_OWNER,
+                    IT.INFT_TYPE_NAME,
+                    INF.INF_ADDRESS_DESCRIPTION,
+                    S.SITIO_NAME,
+                    INF.INF_DESCRIPTION
+                FROM INFRASTRUCTURE INF
+                JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
+                JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID=IT.INFT_ID
+                JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID; 
+           """)
+
+            rows = cursor.fetchall()
+            self.rows = rows
+
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setRowCount(len(rows))
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnCount(len(rows[4]))
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setHorizontalHeaderLabels(
+                ["ID", "Infrastructure Name", "Public/Private", "Date Registered"]
+            )
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
+                    item = QTableWidgetItem(str(value))
+                    self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setItem(row_idx, col_idx, item)
+
+
+        except Exception as e:
+            QMessageBox.critical(self.inst_infrastructure_screen,'Error',str(e))
+
+    def handle_row_click_infrastructure(self, row):
+        selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
+
+        for record in self.rows:
+            if str(record[0]) == selected_id:
+                self.inst_infrastructure_screen.inst_displayInfraID.setText(str(record[0]))
+                self.inst_infrastructure_screen.inst_displayInfraName.setText(record[1])
+                self.inst_infrastructure_screen.inst_displayInfraOwnerName.setText(record[4])
+                self.inst_infrastructure_screen.inst_displayInfraType.setText(record[5])
+                self.inst_infrastructure_screen.inst_displayInfraAddress.setText(record[6])
+                self.inst_infrastructure_screen.inst_displayInfraSitio.setText(record[7])
+                self.inst_infrastructure_screen.inst_displayInfraPP.setText(record[2])
+                self.inst_infrastructure_screen.inst_InfraDescription.setText(record[8])
+                self.inst_infrastructure_screen.inst_displayInfraDateRegistered.setText(str(record[3]))
+                break
+
