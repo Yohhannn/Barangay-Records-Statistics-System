@@ -26,6 +26,7 @@ class infrastructure_func(base_file_func):
         self.inst_infrastructure_screen.inst_infra_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.inst_infrastructure_screen.inst_infra_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.inst_infrastructure_screen.inst_infra_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.inst_infrastructure_screen.InfrastructureList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.inst_infrastructure_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)

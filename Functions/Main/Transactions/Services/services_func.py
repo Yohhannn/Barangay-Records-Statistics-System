@@ -26,6 +26,7 @@ class services_func(base_file_func):
         self.trans_services_screen.trans_Transact_button_create.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.trans_services_screen.trans_Transact_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.trans_services_screen.trans_Transact_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.trans_services_screen.transactionList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # REGISTER BUTTON
         self.trans_services_screen.trans_Transact_button_create.clicked.connect(self.show_transaction_popup)

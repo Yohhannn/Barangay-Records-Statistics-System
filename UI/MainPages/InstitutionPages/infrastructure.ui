@@ -285,9 +285,9 @@
      <widget class="QLineEdit" name="inst_InfraName_fieldSearch">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>20</x>
         <y>40</y>
-        <width>401</width>
+        <width>431</width>
         <height>31</height>
        </rect>
       </property>
@@ -317,7 +317,7 @@
      <widget class="QPushButton" name="inst_InfraName_buttonSearch">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>420</x>
         <y>40</y>
         <width>31</width>
         <height>31</height>
@@ -466,6 +466,61 @@
         </color>
        </property>
       </column>
+     </widget>
+     <widget class="QPushButton" name="InfrastructureList_buttonFilter">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>40</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#InfrastructureList_buttonFilter {
+    background-color:  #474747;
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#InfrastructureList_buttonFilter:hover {
+    background-color: #636363;
+    color: white; 
+}
+
+#InfrastructureList_buttonFilter:pressed {
+    background-color: #bfbfbf;
+    color: white; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>   FILTER OPTIONS</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
      </widget>
     </widget>
     <widget class="QPushButton" name="inst_infra_button_remove">

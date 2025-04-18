@@ -27,6 +27,7 @@ class citizen_profile_func(base_file_func):
         self.cp_profile_screen.cp_citizen_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.cp_profile_screen.cp_citizen_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.cp_profile_screen.cp_citizen_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.cp_profile_screen.profileList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.cp_profile_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
