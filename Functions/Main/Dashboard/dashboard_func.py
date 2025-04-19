@@ -13,7 +13,7 @@ class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
-        self.app_version = "V3.3.1 - Alpha"
+        self.app_version = "V3.3.2 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
