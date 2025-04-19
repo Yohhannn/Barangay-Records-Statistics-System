@@ -26,6 +26,7 @@ class infrastructure_func(base_file_func):
         self.inst_infrastructure_screen.inst_infra_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.inst_infrastructure_screen.inst_infra_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.inst_infrastructure_screen.inst_infra_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.inst_infrastructure_screen.InfrastructureList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.inst_infrastructure_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
@@ -37,6 +38,7 @@ class infrastructure_func(base_file_func):
         print("-- Register Infrastructure Popup")
         popup = load_popup("UI/PopUp/Screen_Institutions/register_infrastructure.ui", self)
         popup.setWindowTitle("Mapro: Register New Infrastructure")
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmInfra_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 
@@ -65,7 +67,7 @@ class infrastructure_func(base_file_func):
 
                 if reply == QMessageBox.Yes:
                     print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Citizen successfully registered!")
+                    QMessageBox.information(popup, "Success", "infrastructure Successfully Registered!")
                     popup.close()
 
             save_btn.clicked.connect(confirm_and_save)

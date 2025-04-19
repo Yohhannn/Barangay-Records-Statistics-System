@@ -26,6 +26,7 @@ class business_func(base_file_func):
         self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
@@ -37,6 +38,7 @@ class business_func(base_file_func):
         print("-- Register Business Popup")
         popup = load_popup("UI/PopUp/Screen_Institutions/register_business.ui", self)
         popup.setWindowTitle("Mapro: Register New Business")
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
         popup.inst_DTIuploadButton.setIcon(QIcon('Assets/Icons/icon_upload_image.png'))

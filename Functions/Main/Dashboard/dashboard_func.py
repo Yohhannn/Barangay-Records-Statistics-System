@@ -7,11 +7,13 @@ from Functions.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
 from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup
+APP_NAME = "MaPro "
 
 class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
+        self.app_version = "V3.3.1 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
@@ -20,7 +22,7 @@ class dashboard_func(base_file_func):
     def setup_dashboard_ui(self):
         """Setup the dashboard UI layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Dashboard")
+        self.setWindowTitle(f"{APP_NAME}{self.app_version}")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         # SET NAVIGATION MAIN ASSETS
@@ -53,7 +55,7 @@ class dashboard_func(base_file_func):
         self.timer.start(1000)  # Update every 1000 milliseconds (1 second)
 
         # APPLICATION VERSION DISPLAY
-        self.dashboard_screen.label_UpdateVersion.setText("V3.0.1 - Alpha")
+        self.dashboard_screen.label_UpdateVersion.setText(self.app_version)
 
         # SCREEN BUTTONS --> POPUP
         self.dashboard_screen.acc_buttonYourAccount.clicked.connect(self.show_account_popup)
@@ -75,7 +77,6 @@ class dashboard_func(base_file_func):
     #     """Return to dashboard screen"""
     #     print("-- Navigating to Dashboard")
     #     self.stack.setCurrentIndex(0)
-    #     self.setWindowTitle("MaPro: Dashboard")
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
@@ -86,7 +87,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
-        self.setWindowTitle("MaPro: Citizen Panel")
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
@@ -97,7 +97,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
-        self.setWindowTitle("MaPro: Statistics")
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""
@@ -108,7 +107,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
-        self.setWindowTitle("MaPro: Institutions")
 
     def goto_transactions_panel(self):
         """Handle navigation to Transactions Panel screen."""
@@ -119,7 +117,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
-        self.setWindowTitle("MaPro: Transactions")
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
@@ -130,7 +127,6 @@ class dashboard_func(base_file_func):
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
-        self.setWindowTitle("MaPro: History Records")
 
     def logout(self):
         confirmation = QMessageBox.question(
@@ -154,6 +150,7 @@ class dashboard_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_Dashboard/listofemployees.ui", self)
         popup.setWindowTitle("List of Employees")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_barangayinfo_popup(self):
@@ -162,6 +159,7 @@ class dashboard_func(base_file_func):
         popup.setWindowTitle("Barangay Information")
         popup.brgyinfo_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_aboutsoftware_popup(self):
@@ -172,6 +170,7 @@ class dashboard_func(base_file_func):
         popup.aboutsoftwareinfo_imageCTULOGO.setPixmap(QPixmap("Assets/Images/img_ctulogo.png"))
         popup.aboutsoftwareinfo_imageLogo.setPixmap(QPixmap("Assets/Images/img_mainappicon.png"))
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_account_popup(self):
@@ -179,10 +178,18 @@ class dashboard_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_Dashboard/youraccount.ui", self)
         popup.setWindowTitle("Your Account")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
+
+        popup.employeeaccount_buttonChangePIN.setIcon(QIcon('Assets/FuncIcons/icon_changepin2.svg'))
+        popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Assets/FuncIcons/icon_adminoverride.svg'))
 
         admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
         if admin_override_button:
             admin_override_button.clicked.connect(lambda: self.show_admin_override_popup(popup))
+
+        change_pin_button = popup.findChild(QPushButton, "employeeaccount_buttonChangePIN")
+        if change_pin_button:
+            change_pin_button.clicked.connect(lambda: self.show_change_pin_popup(popup))
 
         popup.show()
 
@@ -192,7 +199,10 @@ class dashboard_func(base_file_func):
         admin_popup = load_popup("UI/PopUp/Screen_Dashboard/adminoverride.ui", self)
         admin_popup.setWindowTitle("Admin Override")
         admin_popup.setWindowModality(Qt.ApplicationModal)
+        admin_popup.setFixedSize(admin_popup.size())
+
         admin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
+        admin_popup.adminoverride_buttonOverrideAsAdmin.setIcon(QIcon('Assets/FuncIcons/icon_override.svg'))
 
         return_button = admin_popup.findChild(QPushButton, "btn_return_to_youraccount")
         if return_button:
@@ -202,6 +212,45 @@ class dashboard_func(base_file_func):
             print("-- Error: 'Return to Your Account' button not found!")
 
         admin_popup.show()
+
+    def show_change_pin_popup(self, first_popup):
+        print("-- Navigating to Dashboard > Your Account > Change Pin")
+        first_popup.close()
+        changepin_popup = load_popup("UI/PopUp/Screen_Dashboard/changepin.ui", self)
+        changepin_popup.setWindowTitle("Change PIN")
+        changepin_popup.setWindowModality(Qt.ApplicationModal)
+        changepin_popup.setFixedSize(changepin_popup.size())
+
+        changepin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
+        changepin_popup.acc_buttonConfirmChangePIN_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
+
+        # Save final form with confirmation
+        save_btn = changepin_popup.findChild(QPushButton, "acc_buttonConfirmChangePIN_SaveForm")
+        if save_btn:
+            def confirm_and_save():
+                reply = QMessageBox.question(
+                    changepin_popup,
+                    "Confirm Registration",
+                    "Are you sure to Change your PIN?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No
+                )
+
+                if reply == QMessageBox.Yes:
+                    print("-- Form Submitted")
+                    QMessageBox.information(changepin_popup, "Success", "PIN Successfully Changed!")
+                    changepin_popup.close()
+
+            save_btn.clicked.connect(confirm_and_save)
+
+        return_button = changepin_popup.findChild(QPushButton, "btn_return_to_youraccount")
+        if return_button:
+            print("-- Found 'Return to Your Account' button")
+            return_button.clicked.connect(lambda: self.return_to_account_popup(changepin_popup))
+        else:
+            print("-- Error: 'Return to Your Account' button not found!")
+
+        changepin_popup.show()
 
     def return_to_account_popup(self, current_popup):
         print("-- Returning to Dashboard > Your Account")

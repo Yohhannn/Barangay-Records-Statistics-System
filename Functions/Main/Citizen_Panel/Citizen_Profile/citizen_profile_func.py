@@ -27,6 +27,7 @@ class citizen_profile_func(base_file_func):
         self.cp_profile_screen.cp_citizen_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.cp_profile_screen.cp_citizen_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.cp_profile_screen.cp_citizen_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.cp_profile_screen.profileList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.cp_profile_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
@@ -39,6 +40,7 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_01.ui", self)
         popup.setWindowTitle("Register New Citizen")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonPrev.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart1_NextToPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
@@ -69,9 +71,9 @@ class citizen_profile_func(base_file_func):
         if capture_button:
             capture_button.setIcon(QIcon("Assets/Icons/icon_camera.svg"))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def upload_image():
             file_path, _ = QFileDialog.getOpenFileName(popup, "Select an Image", "",
@@ -110,14 +112,15 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_02.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 2")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         part_one_popup.close()
 
         popup.register_buttonReturnToPart1_FromPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart2_NextToPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def setup_radio_button_groups_02():
             # Government Worker
@@ -159,14 +162,15 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_03.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 3")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         part_two_popup.close()
 
         popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm'))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def setup_radio_button_groups_03():
             # Student

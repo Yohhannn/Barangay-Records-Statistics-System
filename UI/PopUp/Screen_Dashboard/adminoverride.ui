@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>232</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,7 +30,7 @@
      <x>20</x>
      <y>50</y>
      <width>361</width>
-     <height>231</height>
+     <height>171</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -79,9 +79,9 @@
    <widget class="QPushButton" name="adminoverride_buttonOverrideAsAdmin">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>80</x>
       <y>90</y>
-      <width>171</width>
+      <width>191</width>
       <height>51</height>
      </rect>
     </property>
@@ -110,7 +110,17 @@
 }</string>
     </property>
     <property name="text">
-     <string>SYSTEM OVERRIDE</string>
+     <string>  SYSTEM OVERRIDE</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/icon_override.svg</normaloff>../../../Assets/FuncIcons/icon_override.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
     </property>
    </widget>
   </widget>

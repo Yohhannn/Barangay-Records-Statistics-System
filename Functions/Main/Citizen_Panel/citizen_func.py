@@ -18,7 +18,6 @@ class citizen_func(base_file_func):
     def setup_citizen_panel_ui(self):
         """Setup the citizen panel UI layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Citizen Panel")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
 
         # SET NAVIGATION MAIN ASSETS
@@ -57,7 +56,6 @@ class citizen_func(base_file_func):
         """Return to dashboard screen"""
         print("-- Navigating to Dashboard")
         self.stack.setCurrentIndex(0)
-        self.setWindowTitle("MaPro: Dashboard")
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
@@ -68,7 +66,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
-        self.setWindowTitle("MaPro: Statistics")
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""
@@ -79,7 +76,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
-        self.setWindowTitle("MaPro: Institutions")
 
     def goto_transactions_panel(self):
         """Handle navigation to Transactions Panel screen."""
@@ -90,7 +86,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
-        self.setWindowTitle("MaPro: Transactions")
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
@@ -101,7 +96,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
-        self.setWindowTitle("MaPro: History Records")
 
     # SUBPAGES : GOTO =================
     def goto_citizenprofile_panel(self):
@@ -113,7 +107,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.profile_panel.cp_profile_screen)
 
         self.stack.setCurrentWidget(self.profile_panel.cp_profile_screen)
-        self.setWindowTitle("MaPro: Citizen Profiles")
 
     def goto_household_panel(self):
         """Handle navigation to Household Panel screen."""
@@ -124,7 +117,6 @@ class citizen_func(base_file_func):
             self.stack.addWidget(self.household_panel.cp_household_screen)
 
         self.stack.setCurrentWidget(self.household_panel.cp_household_screen)
-        self.setWindowTitle("MaPro: Household")
 
     def logout(self):
         confirmation = QMessageBox.question(
@@ -144,7 +136,6 @@ class citizen_func(base_file_func):
     # def show_filter_popup(self):
     #     print("-- Navigating to Profile List > Filter Options")
     #     popup = load_popup("UI/PopUp/Screen_CitizenProfiles/filteroptions.ui", self)
-    #     popup.setWindowTitle("Filter Options")
     #     popup.setWindowModality(Qt.ApplicationModal)
     #     popup.show()
 

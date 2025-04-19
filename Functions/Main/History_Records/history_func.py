@@ -39,6 +39,11 @@ class history_func(base_file_func):
         self.history_screen.hisrec_Button_MedicalHistory.setIcon(QIcon('Assets/Images/img_history_medical.png'))
         self.history_screen.hisrec_Button_SettlementHistory.setIcon(QIcon('Assets/Images/img_history_settlement.png'))
 
+        # SUBPAGES : NAVIGATIONAL BUTTONS --> GOTO
+        self.history_screen.hisrec_Button_CitizenHistory.clicked.connect(self.goto_citizen_history_panel)
+        self.history_screen.hisrec_Button_MedicalHistory.clicked.connect(self.goto_medical_history_panel)
+        self.history_screen.hisrec_Button_SettlementHistory.clicked.connect(self.goto_settlement_history_panel)
+
         # NAVIGATIONAL BUTTONS --> GOTO
         self.history_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard_panel)
         self.history_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
@@ -99,16 +104,37 @@ class history_func(base_file_func):
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
         self.setWindowTitle("MaPro: Transactions")
 
-    # def goto_history_panel(self):
-    #     """Handle navigation to History Records Panel screen."""
-    #     print("-- Navigating to History Records")
-    #     if not hasattr(self, 'history'):
-    #         from Functions.Main.History_Records.history_func import history_func
-    #         self.history_panel = history_func(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.history_panel.history_screen)
-    #
-    #     self.stack.setCurrentWidget(self.history_panel.history_screen)
-    #     self.setWindowTitle("MaPro: History Records")
+    # SUBPAGES : GOTO ================
+
+    def goto_citizen_history_panel(self):
+        """Handle navigation to Citizen History Panel screen."""
+        print("-- Navigating to Citizen History")
+        if not hasattr(self, 'citizen_history'):
+            from Functions.Main.History_Records.Citizen_History.citizen_history_func import citizen_history_func
+            self.citizen_history_panel = citizen_history_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.citizen_history_panel.hist_citizen_history_screen)
+
+        self.stack.setCurrentWidget(self.citizen_history_panel.hist_citizen_history_screen)
+
+    def goto_medical_history_panel(self):
+        """Handle navigation to Medical History Panel screen."""
+        print("-- Navigating to Medical History")
+        if not hasattr(self, 'medical_history'):
+            from Functions.Main.History_Records.Medical_History.medical_history_func import medical_history_func
+            self.medical_history_panel = medical_history_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.medical_history_panel.hist_medical_history_screen)
+
+        self.stack.setCurrentWidget(self.medical_history_panel.hist_medical_history_screen)
+
+    def goto_settlement_history_panel(self):
+        """Handle navigation to Settlement History Panel screen."""
+        print("-- Navigating to Settlement History")
+        if not hasattr(self, 'settlement_history'):
+            from Functions.Main.History_Records.Settlement_History.settlement_history_func import settlement_history_func
+            self.settlement_history_panel = settlement_history_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.settlement_history_panel.hist_settlement_history_screen)
+
+        self.stack.setCurrentWidget(self.settlement_history_panel.hist_settlement_history_screen)
 
     def logout(self):
         confirmation = QMessageBox.question(

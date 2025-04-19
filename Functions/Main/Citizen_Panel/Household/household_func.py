@@ -27,6 +27,7 @@ class household_func(base_file_func):
         self.cp_household_screen.cp_household_button_register.setIcon(QIcon('Assets/FuncIcons/icon_add.svg'))
         self.cp_household_screen.cp_household_button_update.setIcon(QIcon('Assets/FuncIcons/icon_edit.svg'))
         self.cp_household_screen.cp_household_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
+        self.cp_household_screen.householdList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.cp_household_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
@@ -39,6 +40,7 @@ class household_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", self)
         popup.setWindowTitle("Mapro: Register New Household")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 
@@ -70,7 +72,7 @@ class household_func(base_file_func):
                 reply = QMessageBox.question(
                     popup,
                     "Confirm Registration",
-                    "Are you sure you want to register this infrastructure?",
+                    "Are you sure you want to register this household?",
                     QMessageBox.Yes | QMessageBox.No,
                     QMessageBox.No
                 )
