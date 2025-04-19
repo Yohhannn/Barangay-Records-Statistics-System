@@ -37,6 +37,7 @@ class medical_history_func(base_file_func):
         print("-- Record Medical History Popup")
         popup = load_popup("UI/PopUp/Screen_HistoryRecords/record_medical_history.ui", self)
         popup.setWindowTitle("Mapro: Record New Medical History")
+        popup.setFixedSize(popup.size())
 
         popup.record_buttonConfirmMedicalHistory_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 

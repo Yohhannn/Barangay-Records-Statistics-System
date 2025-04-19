@@ -13,7 +13,7 @@ class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
-        self.app_version = "V3.2.1 - Alpha"
+        self.app_version = "V3.2.2 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
@@ -150,6 +150,7 @@ class dashboard_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_Dashboard/listofemployees.ui", self)
         popup.setWindowTitle("List of Employees")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_barangayinfo_popup(self):
@@ -158,6 +159,7 @@ class dashboard_func(base_file_func):
         popup.setWindowTitle("Barangay Information")
         popup.brgyinfo_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_aboutsoftware_popup(self):
@@ -168,6 +170,7 @@ class dashboard_func(base_file_func):
         popup.aboutsoftwareinfo_imageCTULOGO.setPixmap(QPixmap("Assets/Images/img_ctulogo.png"))
         popup.aboutsoftwareinfo_imageLogo.setPixmap(QPixmap("Assets/Images/img_mainappicon.png"))
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         popup.show()
 
     def show_account_popup(self):
@@ -175,6 +178,7 @@ class dashboard_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_Dashboard/youraccount.ui", self)
         popup.setWindowTitle("Your Account")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
 
         admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
         if admin_override_button:
@@ -188,6 +192,8 @@ class dashboard_func(base_file_func):
         admin_popup = load_popup("UI/PopUp/Screen_Dashboard/adminoverride.ui", self)
         admin_popup.setWindowTitle("Admin Override")
         admin_popup.setWindowModality(Qt.ApplicationModal)
+        admin_popup.setFixedSize(admin_popup.size())
+
         admin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
 
         return_button = admin_popup.findChild(QPushButton, "btn_return_to_youraccount")

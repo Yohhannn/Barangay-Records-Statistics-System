@@ -40,6 +40,7 @@ class household_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", self)
         popup.setWindowTitle("Mapro: Register New Household")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 

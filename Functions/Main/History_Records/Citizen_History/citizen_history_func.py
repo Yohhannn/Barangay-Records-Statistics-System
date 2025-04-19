@@ -37,6 +37,7 @@ class citizen_history_func(base_file_func):
         print("-- Record Citizen History Popup")
         popup = load_popup("UI/PopUp/Screen_HistoryRecords/record_citizen_history.ui", self)
         popup.setWindowTitle("Mapro: Record New Citizen History")
+        popup.setFixedSize(popup.size())
 
         popup.record_buttonConfirmCitizenHistory_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 

@@ -38,6 +38,7 @@ class settlement_history_func(base_file_func):
         print("-- Record Settlement History Popup")
         popup = load_popup("UI/PopUp/Screen_HistoryRecords/record_settlement_history.ui", self)
         popup.setWindowTitle("Mapro: Record New Settlement History")
+        popup.setFixedSize(popup.size())
 
         popup.record_buttonConfirmSettlementHistory_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 

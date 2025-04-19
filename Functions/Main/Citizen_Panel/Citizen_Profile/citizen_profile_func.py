@@ -40,6 +40,7 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_01.ui", self)
         popup.setWindowTitle("Register New Citizen")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonPrev.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart1_NextToPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
@@ -111,6 +112,7 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_02.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 2")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         part_one_popup.close()
 
         popup.register_buttonReturnToPart1_FromPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
@@ -160,6 +162,7 @@ class citizen_profile_func(base_file_func):
         popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_03.ui", self)
         popup.setWindowTitle("Register New Citizen - Part 3")
         popup.setWindowModality(Qt.ApplicationModal)
+        popup.setFixedSize(popup.size())
         part_two_popup.close()
 
         popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))

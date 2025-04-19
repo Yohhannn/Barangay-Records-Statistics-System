@@ -38,6 +38,7 @@ class infrastructure_func(base_file_func):
         print("-- Register Infrastructure Popup")
         popup = load_popup("UI/PopUp/Screen_Institutions/register_infrastructure.ui", self)
         popup.setWindowTitle("Mapro: Register New Infrastructure")
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmInfra_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 

@@ -38,6 +38,7 @@ class business_func(base_file_func):
         print("-- Register Business Popup")
         popup = load_popup("UI/PopUp/Screen_Institutions/register_business.ui", self)
         popup.setWindowTitle("Mapro: Register New Business")
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
         popup.inst_DTIuploadButton.setIcon(QIcon('Assets/Icons/icon_upload_image.png'))

@@ -38,6 +38,7 @@ class services_func(base_file_func):
         print("-- Create Transaction Popup")
         popup = load_popup("UI/PopUp/Screen_Transactions/create_transaction.ui", self)
         popup.setWindowTitle("Mapro: Create New Transaction")
+        popup.setFixedSize(popup.size())
 
         popup.register_buttonConfirmTransaction_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 
