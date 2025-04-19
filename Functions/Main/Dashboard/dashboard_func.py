@@ -13,7 +13,7 @@ class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
-        self.app_version = "V3.2.2 - Alpha"
+        self.app_version = "V3.3.0 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
@@ -180,9 +180,16 @@ class dashboard_func(base_file_func):
         popup.setWindowModality(Qt.ApplicationModal)
         popup.setFixedSize(popup.size())
 
+        popup.employeeaccount_buttonChangePIN.setIcon(QIcon('Assets/FuncIcons/icon_changepin2.svg'))
+        popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Assets/FuncIcons/icon_adminoverride.svg'))
+
         admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
         if admin_override_button:
             admin_override_button.clicked.connect(lambda: self.show_admin_override_popup(popup))
+
+        change_pin_button = popup.findChild(QPushButton, "employeeaccount_buttonChangePIN")
+        if change_pin_button:
+            change_pin_button.clicked.connect(lambda: self.show_change_pin_popup(popup))
 
         popup.show()
 
@@ -195,6 +202,7 @@ class dashboard_func(base_file_func):
         admin_popup.setFixedSize(admin_popup.size())
 
         admin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
+        admin_popup.adminoverride_buttonOverrideAsAdmin.setIcon(QIcon('Assets/FuncIcons/icon_override.svg'))
 
         return_button = admin_popup.findChild(QPushButton, "btn_return_to_youraccount")
         if return_button:
@@ -204,6 +212,45 @@ class dashboard_func(base_file_func):
             print("-- Error: 'Return to Your Account' button not found!")
 
         admin_popup.show()
+
+    def show_change_pin_popup(self, first_popup):
+        print("-- Navigating to Dashboard > Your Account > Change Pin")
+        first_popup.close()
+        changepin_popup = load_popup("UI/PopUp/Screen_Dashboard/changepin.ui", self)
+        changepin_popup.setWindowTitle("Change PIN")
+        changepin_popup.setWindowModality(Qt.ApplicationModal)
+        changepin_popup.setFixedSize(changepin_popup.size())
+
+        changepin_popup.btn_return_to_youraccount.setIcon(QIcon('Assets/Icons/icon_return_light.svg'))
+        changepin_popup.acc_buttonConfirmChangePIN_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
+
+        # Save final form with confirmation
+        save_btn = changepin_popup.findChild(QPushButton, "acc_buttonConfirmChangePIN_SaveForm")
+        if save_btn:
+            def confirm_and_save():
+                reply = QMessageBox.question(
+                    changepin_popup,
+                    "Confirm Registration",
+                    "Are you sure to Change your PIN?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No
+                )
+
+                if reply == QMessageBox.Yes:
+                    print("-- Form Submitted")
+                    QMessageBox.information(changepin_popup, "Success", "PIN Successfully Changed!")
+                    changepin_popup.close()
+
+            save_btn.clicked.connect(confirm_and_save)
+
+        return_button = changepin_popup.findChild(QPushButton, "btn_return_to_youraccount")
+        if return_button:
+            print("-- Found 'Return to Your Account' button")
+            return_button.clicked.connect(lambda: self.return_to_account_popup(changepin_popup))
+        else:
+            print("-- Error: 'Return to Your Account' button not found!")
+
+        changepin_popup.show()
 
     def return_to_account_popup(self, current_popup):
         print("-- Returning to Dashboard > Your Account")

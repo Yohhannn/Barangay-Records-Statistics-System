@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>400</height>
+    <height>312</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,7 +30,7 @@
      <x>20</x>
      <y>50</y>
      <width>461</width>
-     <height>331</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -110,7 +110,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>80</y>
+      <y>70</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -140,7 +140,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
+      <y>100</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -170,7 +170,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>170</y>
+      <y>120</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -200,7 +200,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>200</y>
+      <y>140</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -220,7 +220,7 @@
 </string>
     </property>
     <property name="text">
-     <string>Family Name:</string>
+     <string>Last Name:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -230,7 +230,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>250</y>
+      <y>160</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -250,7 +250,7 @@
 </string>
     </property>
     <property name="text">
-     <string>Access:</string>
+     <string>Admin Access:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -260,7 +260,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>170</y>
+      <y>120</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -280,7 +280,7 @@
 </string>
     </property>
     <property name="text">
-     <string>%staff_middle_name%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -290,7 +290,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>200</y>
+      <y>140</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -310,7 +310,7 @@
 </string>
     </property>
     <property name="text">
-     <string>%staff_family_name%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -320,7 +320,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>250</y>
+      <y>160</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -338,7 +338,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>%is_admin%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -368,7 +368,7 @@
 </string>
     </property>
     <property name="text">
-     <string>%emp_id%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -378,7 +378,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>140</y>
+      <y>100</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -398,7 +398,7 @@
 </string>
     </property>
     <property name="text">
-     <string>%staff_first_name%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -408,7 +408,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>80</y>
+      <y>70</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -428,7 +428,7 @@
 </string>
     </property>
     <property name="text">
-     <string>%citizen_id%</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -437,9 +437,9 @@
    <widget class="QPushButton" name="employeeaccount_buttonAdminOverride">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>290</y>
-      <width>231</width>
+      <x>20</x>
+      <y>200</y>
+      <width>201</width>
       <height>31</height>
      </rect>
     </property>
@@ -468,7 +468,64 @@
 }</string>
     </property>
     <property name="text">
-     <string>ADMIN OVERRIDE</string>
+     <string>  ADMIN OVERRIDE</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/icon_adminoverride.svg</normaloff>../../../Assets/FuncIcons/icon_adminoverride.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="employeeaccount_buttonChangePIN">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>200</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#employeeaccount_buttonChangePIN {
+    background-color: #141c52;
+    color: white;
+    border-radius: 10px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#employeeaccount_buttonChangePIN:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#employeeaccount_buttonChangePIN:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>  CHANGE PIN</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/icon_changepin2.svg</normaloff>../../../Assets/FuncIcons/icon_changepin2.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
     </property>
    </widget>
   </widget>

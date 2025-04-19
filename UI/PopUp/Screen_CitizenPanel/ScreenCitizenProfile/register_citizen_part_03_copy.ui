@@ -502,7 +502,7 @@
      <x>620</x>
      <y>60</y>
      <width>531</width>
-     <height>361</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -572,7 +572,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>320</y>
+      <y>380</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -602,7 +602,7 @@
    <widget class="QRadioButton" name="register_citizen_IndGroup_Yes">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>310</x>
       <y>180</y>
       <width>71</width>
       <height>31</height>
@@ -1095,9 +1095,9 @@
    <widget class="QRadioButton" name="register_citizen_IndGroup_No">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>420</x>
       <y>180</y>
-      <width>61</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -1588,7 +1588,7 @@
    <widget class="QLabel" name="register_citizen_label_IndGroup">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>180</y>
       <width>271</width>
       <height>31</height>
@@ -1738,9 +1738,9 @@
    <widget class="QRadioButton" name="register_citizen_RegVote_No">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>420</x>
       <y>100</y>
-      <width>61</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -2231,7 +2231,7 @@
    <widget class="QRadioButton" name="register_citizen_RegVote_Yes">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>310</x>
       <y>100</y>
       <width>71</width>
       <height>31</height>
@@ -2724,7 +2724,7 @@
    <widget class="QLabel" name="register_citizen_labelRegVote">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>100</y>
       <width>271</width>
       <height>31</height>
@@ -2754,7 +2754,7 @@
    <widget class="QRadioButton" name="register_citizen_IsPWD_Yes">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>310</x>
       <y>60</y>
       <width>71</width>
       <height>31</height>
@@ -3247,9 +3247,9 @@
    <widget class="QRadioButton" name="register_citizen_IsPWD_No">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>420</x>
       <y>60</y>
-      <width>61</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -3740,7 +3740,7 @@
    <widget class="QLabel" name="register_citizen_labelIsPWD">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>60</y>
       <width>271</width>
       <height>31</height>
@@ -3770,7 +3770,7 @@
    <widget class="QRadioButton" name="register_citizen_Deceased_Yes">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>310</x>
       <y>140</y>
       <width>71</width>
       <height>31</height>
@@ -4263,9 +4263,9 @@
    <widget class="QRadioButton" name="register_citizen_Deceased_No">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>420</x>
       <y>140</y>
-      <width>61</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -4756,7 +4756,7 @@
    <widget class="QLabel" name="register_citizen_labelDeceased">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>140</y>
       <width>271</width>
       <height>31</height>
@@ -4781,6 +4781,97 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_HouseOwnerStatus">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>320</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#comboBox_HouseOwnerStatus{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Ownership Status</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Owned</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rented</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Leased</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Informal Settler</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Others</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="register_citizen_labelHouseOwner">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelHouseOwner {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>House Ownership:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
@@ -4918,7 +5009,7 @@
      <x>20</x>
      <y>60</y>
      <width>591</width>
-     <height>361</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -5283,7 +5374,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>Planning Information</string>
+      <string>Medical Informarion</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -5293,7 +5384,7 @@
    <widget class="QRadioButton" name="radioButton_IsStudent_No">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>320</x>
       <y>40</y>
       <width>91</width>
       <height>31</height>
@@ -5816,7 +5907,7 @@
    <widget class="QRadioButton" name="radioButton_IsStudent_Yes">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>210</x>
       <y>40</y>
       <width>71</width>
       <height>31</height>
@@ -6306,11 +6397,207 @@
      <string>Yes</string>
     </property>
    </widget>
+   <widget class="QLabel" name="register_citizen_labelMedicalHistory">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelMedicalHistory {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Medical History:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="register_citizen_comboBox_MedicalHistoryOption">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>230</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_comboBox_MedicalHistoryOption{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Medical History</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Alzheimer’s</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Asthma</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Anemia</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Autism Spectrum Disorder (ASD)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Breast Cancer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Colon Cancer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Diabetes</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Down Syndrome</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hypertension (High Blood Pressure)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hypotension (Low Blood Pressure)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Heart Disease</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hepatitis (A, B, or C)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Infertility</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Kidney Disease</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Leukemia</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Migraines or Chronic Headaches</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Malnutrition</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Post-Traumatic Stress Disorder</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Prostate Cancer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tuberculosis</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ulcers (Stomach or Intestinal)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Schizophrenia</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Stroke</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Surgery</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Urinary Tract Infections (UTIs)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Others</string>
+     </property>
+    </item>
+   </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethod">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>230</y>
+      <x>10</x>
+      <y>300</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -6339,8 +6626,8 @@
    <widget class="QRadioButton" name="radioButton_IsFamPlan_No">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>230</y>
+      <x>320</x>
+      <y>300</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -6832,8 +7119,8 @@
    <widget class="QRadioButton" name="radioButton_IsFamPlan_Yes">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>230</y>
+      <x>210</x>
+      <y>300</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -7325,8 +7612,8 @@
    <widget class="QComboBox" name="register_citizen_comboBox_FamilyPlanningMethod">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>270</y>
+      <x>200</x>
+      <y>340</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -7421,8 +7708,8 @@
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningStatus">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>310</y>
+      <x>10</x>
+      <y>380</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -7451,8 +7738,8 @@
    <widget class="QComboBox" name="register_citizen_comboBox_FamPlanStatus">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>310</y>
+      <x>200</x>
+      <y>380</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -7514,11 +7801,77 @@
      </property>
     </item>
    </widget>
+   <widget class="QLineEdit" name="register_citizen_MedHis_Others">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>270</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_MedHis_Others{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+    <property name="placeholderText">
+     <string>If 'Others' Please Specify</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_citizen_labelMedicalHistory_others">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelMedicalHistory_others {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Other Medical History</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethodType">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>270</y>
+      <x>10</x>
+      <y>340</y>
       <width>181</width>
       <height>31</height>
      </rect>

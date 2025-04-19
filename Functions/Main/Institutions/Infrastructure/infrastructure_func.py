@@ -67,7 +67,7 @@ class infrastructure_func(base_file_func):
 
                 if reply == QMessageBox.Yes:
                     print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Citizen successfully registered!")
+                    QMessageBox.information(popup, "Success", "infrastructure Successfully Registered!")
                     popup.close()
 
             save_btn.clicked.connect(confirm_and_save)

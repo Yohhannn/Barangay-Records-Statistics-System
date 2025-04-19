@@ -744,6 +744,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -828,6 +829,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -856,6 +858,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -940,6 +943,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -991,6 +995,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1075,6 +1080,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1103,6 +1109,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1210,6 +1217,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1371,6 +1379,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1399,6 +1408,7 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
