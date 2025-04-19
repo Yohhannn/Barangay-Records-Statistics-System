@@ -70,9 +70,9 @@ class citizen_profile_func(base_file_func):
         if capture_button:
             capture_button.setIcon(QIcon("Assets/Icons/icon_camera.svg"))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def upload_image():
             file_path, _ = QFileDialog.getOpenFileName(popup, "Select an Image", "",
@@ -116,9 +116,9 @@ class citizen_profile_func(base_file_func):
         popup.register_buttonReturnToPart1_FromPart2.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart2_NextToPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_next'))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def setup_radio_button_groups_02():
             # Government Worker
@@ -165,9 +165,9 @@ class citizen_profile_func(base_file_func):
         popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
         popup.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm'))
 
-        # Update interviewer info
-        update_date_label(popup.interviewer_dateofvisit)
-        popup.interviewer_emp_name.setText(self.emp_first_name)
+        # # Update interviewer info
+        # update_date_label(popup.interviewer_dateofvisit)
+        # popup.interviewer_emp_name.setText(self.emp_first_name)
 
         def setup_radio_button_groups_03():
             # Student

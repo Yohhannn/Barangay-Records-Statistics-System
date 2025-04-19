@@ -693,7 +693,7 @@
        <x>690</x>
        <y>70</y>
        <width>561</width>
-       <height>571</height>
+       <height>511</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -846,118 +846,6 @@
         <bool>true</bool>
        </property>
       </widget>
-     </widget>
-     <widget class="QLabel" name="histrec_displayDateRecorded">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>490</y>
-        <width>351</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_displayDateRecorded{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="histrec_labelDateRecorded">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>490</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_labelDateRecorded{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Date Recorded:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="histrec_labelLastUpdated">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>520</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_labelLastUpdated{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Last Updated:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="histrec_displayLastUpdated">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>520</y>
-        <width>351</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_displayLastUpdated{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
      </widget>
      <widget class="QLabel" name="histrec_labelHistoryID">
       <property name="geometry">
@@ -1320,6 +1208,276 @@
         <bool>true</bool>
        </property>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="basePopUpBodyFrame_4">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>590</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#basePopUpBodyFrame_4 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_DateEncoded">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>0</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#label_DateEncoded{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Date Encoded:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="display_DateEncoded">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>0</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#display_DateEncoded{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="display_EncodedBy">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>20</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#display_EncodedBy{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_EncodedBy">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#label_EncodedBy{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Encoded By:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="basePopUpBodyFrame_5">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>590</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#basePopUpBodyFrame_5 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_DateUpdated">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>0</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#label_DateUpdated{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Date Updated:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="display_DateUpdated">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>0</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#display_DateUpdated{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="display_UpdatedBy">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>20</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#display_UpdatedBy{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_UpdatedBy">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#label_UpdatedBy{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Updated By:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
      </widget>
     </widget>
    </widget>

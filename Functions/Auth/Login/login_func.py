@@ -40,7 +40,7 @@ class LoginWindow(QMainWindow):
 
     def setup_images(self):
         self.login_screen.login_imageLogo.setPixmap(QPixmap("Assets/Images/logo_brgyClear.png"))
-        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/Images/img_newloginpattern.png"))
+        self.login_screen.login_imagePattern.setPixmap(QPixmap("Assets/Images/img_banner_mapro.png"))
         self.login_screen.login_imageAppIcon.setPixmap(QPixmap("Assets/Images/img_mainappicon.png"))
 
     def setup_rounded_corners(self):
