@@ -522,29 +522,6 @@
        </size>
       </property>
      </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_6">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>400</y>
-        <width>521</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_6 {
-	background-color: rgb(247, 247, 247);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-     </widget>
     </widget>
     <widget class="QPushButton" name="cp_citizen_button_remove">
      <property name="geometry">
