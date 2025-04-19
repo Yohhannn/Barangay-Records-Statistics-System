@@ -2792,7 +2792,7 @@
 }</string>
        </property>
        <property name="text">
-        <string>Cebu Technological University</string>
+        <string>N/A</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
