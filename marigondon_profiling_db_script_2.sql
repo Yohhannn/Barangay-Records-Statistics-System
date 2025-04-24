@@ -2,50 +2,46 @@
 CREATE DATABASE marigondon_profiling_db;
 --
 -- Table: SITIO
+-- TABLES WITH NO FOREIGN KEYS
 CREATE TABLE SITIO (
                        SITIO_ID SERIAL PRIMARY KEY,
                        SITIO_NAME VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE CLASSIFICATION_AGE(
-    CLAG_ID SERIAL PRIMARY KEY,
-    CLAG_CLASSIFICATION_NAME VARCHAR(50) NOT NULL
+                                   CLAG_ID SERIAL PRIMARY KEY,
+                                   CLAG_CLASSIFICATION_NAME VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE CLASSIFICATION_HEALTH_RISK(
-    CLAH_ID SERIAL PRIMARY KEY,
-    CLAH_CLASSIFICATION_NAME VARCHAR(50) NOT NULL
+                                           CLAH_ID SERIAL PRIMARY KEY,
+                                           CLAH_CLASSIFICATION_NAME VARCHAR(50) NOT NULL
 );
--- Table: CLASSIFICATION (Age/Risk)
-CREATE TABLE CLASSIFICATION (
-    CLA_ID SERIAL PRIMARY KEY,
-    CLAG_ID INT REFERENCES CLASSIFICATION_AGE(CLAG_ID),
-    CLAH_ID INT REFERENCES CLASSIFICATION_HEALTH_RISK(CLAH_ID)
-);
+
 
 -- Table: ETHNICITY
 CREATE TABLE ETHNICITY (
-    ETH_ID SERIAL PRIMARY KEY,
-    ETH_TRIBE_NAME VARCHAR(100) NOT NULL
+                           ETH_ID SERIAL PRIMARY KEY,
+                           ETH_TRIBE_NAME VARCHAR(100) NOT NULL
 );
 
 -- Table: RELIGION
 CREATE TABLE RELIGION (
-    REL_ID SERIAL PRIMARY KEY,
-    REL_NAME VARCHAR(100) NOT NULL
+                          REL_ID SERIAL PRIMARY KEY,
+                          REL_NAME VARCHAR(100) NOT NULL
 );
 
 -- Table: SOCIO_ECONOMIC_STATUS
 CREATE TABLE SOCIO_ECONOMIC_STATUS (
-    SOEC_ID SERIAL PRIMARY KEY,
-    SOEC_STATUS VARCHAR(100) NOT NULL CHECK (
-        SOEC_STATUS IN ('NHTS', 'Non-NHTS', 'Other')
-        ),
-    SOEC_NUMBER VARCHAR(50),
-    CONSTRAINT chk_socio_status CHECK (
-        (SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps') AND SOEC_NUMBER IS NOT NULL) OR
-        (SOEC_STATUS = 'Non-NHTS' AND SOEC_NUMBER IS NULL)
-        )
+                                       SOEC_ID SERIAL PRIMARY KEY,
+                                       SOEC_STATUS VARCHAR(100) NOT NULL CHECK (
+                                           SOEC_STATUS IN ('NHTS', 'Non-NHTS', 'Other')
+                                           ),
+                                       SOEC_NUMBER VARCHAR(50),
+                                       CONSTRAINT chk_socio_status CHECK (
+                                           (SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps') AND SOEC_NUMBER IS NOT NULL) OR
+                                           (SOEC_STATUS = 'Non-NHTS' AND SOEC_NUMBER IS NULL)
+                                           )
 );
 
 CREATE TYPE blood_type_enum AS ENUM(
@@ -62,21 +58,7 @@ CREATE TYPE role_type_enum AS ENUM(
     'Super Admin'
     );
 
-CREATE TABLE SYSTEM_ACCOUNT (
-                                SYS_ID SERIAL PRIMARY KEY,
-                                SYS_USER_ID INT UNIQUE DEFAULT NEXTVAL('SYS_USER_ID_SEQ'),
-                                SYS_PIN VARCHAR(6) NOT NULL,
-                                SYS_ROLE_NAME role_type_enum NOT NULL,
-                                SYS_IS_ACTIVE BOOLEAN DEFAULT TRUE,
-                                SYS_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                BE_ID INT,
-                                CONSTRAINT FK_BE FOREIGN KEY (BE_ID) REFERENCES BARANGAY_EMPLOYEE(BE_ID) ON DELETE SET NULL,
-                                CONSTRAINT chk_role_type CHECK (
-                                    (SYS_ROLE_NAME = 'Super Admin' AND BE_ID IS NULL) OR
-                                    (SYS_ROLE_NAME = 'Staff' AND BE_ID IS NOT NULL) OR
-                                    (SYS_ROLE_NAME = 'Admin' AND BE_ID IS NOT NULL)
-                                    )
-);
+
 
 -- Table: WATER_SOURCE
 CREATE TABLE WATER_SOURCE(
@@ -96,136 +78,35 @@ CREATE TABLE RELATIONSHIP_TYPE (
                                    RTH_RELATIONSHIP_NAME VARCHAR(100)
 );
 
--- Table: HOUSEHOLD_INFO
-CREATE TABLE HOUSEHOLD_INFO (
-                                HH_ID SERIAL PRIMARY KEY,
-                                HH_HOUSE_NUMBER VARCHAR(50) UNIQUE NOT NULL,
-                                HH_ADDRESS TEXT,
-                                HH_OWNERSHIP_STATUS VARCHAR(50),
-                                HH_HOME_IMAGE TEXT NOT NULL,
-                                HH_HOME_LINK TEXT NOT NULL,
-                                WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
-                                TOILET_TYPE INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
-                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
-                                CONSTRAINT chk_valid_home_link CHECK(
-                                    HH_HOME_LINK ~ 'https?://[^\s/$.?#].[^\s]*$]' AND
-                                    length(HH_HOME_LINK) <= 1024 AND
-                                    HH_HOME_LINK !~ '[<>''"\s]'
-                                    )
-);
-
 -- Table: EDUCATIONAL_ATTAINMENT
 CREATE TABLE EDUCATIONAL_ATTAINMENT (
                                         EDAT_ID SERIAL PRIMARY KEY,
                                         EDAT_LEVEL VARCHAR(100)
 );
 
--- Table: EDUCATION_STATUS
-CREATE TABLE EDUCATION_STATUS (
-                                  EDU_ID SERIAL PRIMARY KEY,
-                                  EDU_IS_CURRENTLY_STUDENT BOOLEAN,
-                                  EDU_INSTITUTION_NAME VARCHAR(255),
-                                  EDAT_ID INT REFERENCES EDUCATIONAL_ATTAINMENT(EDAT_ID)
-);
+
 
 CREATE SEQUENCE SYS_CTZ_ID_SEQ START 1001;
 
--- Table: CITIZEN
-CREATE TABLE CITIZEN (
-    CTZ_ID SERIAL PRIMARY KEY,
-    CTZ_UUID INT UNIQUE DEFAULT NEXTVAL('SYS_CTZ_ID_SEQ'),
-    CTZ_FIRST_NAME VARCHAR(100) NOT NULL,
-    CTZ_MIDDLE_NAME VARCHAR(100),
-    CTZ_LAST_NAME VARCHAR(100) NOT NULL,
-    CTZ_SUFFIX VARCHAR(10),
-    CTZ_DATE_OF_BIRTH DATE NOT NULL,
-    CTZ_SEX CHAR(1) NOT NULL CHECK(
-            CTZ_SEX IN ('M', 'F')
-        ),
-    CTZ_CIVIL_STATUS civil_status_type NOT NULL,
-    CTZ_BLOOD_TYPE blood_type_enum,
-    CTZ_IS_ALIVE BOOLEAN DEFAULT TRUE,
-    CTZ_IS_REGISTERED_VOTER BOOLEAN DEFAULT FALSE,
-    CTZ_IS_IP BOOLEAN DEFAULT FALSE,
-    CTZ_PLACE_OF_BIRTH TEXT NOT NULL,
-    CTZ_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
-    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID),
-    EDU_ID INT REFERENCES EDUCATION_STATUS(EDU_ID),
-    SOEC_ID INT NOT NULL REFERENCES SOCIO_ECONOMIC_STATUS(SOEC_ID),
-    PHEA_ID INT REFERENCES PHILHEALTH(PHEA_ID),
-    REL_ID INT REFERENCES RELIGION(REL_ID),
-    ETH_ID INT REFERENCES ETHNICITY(ETH_ID),
-    CLA_ID INT NOT NULL REFERENCES CLASSIFICATION(CLA_ID),
-    RTH_ID INT NOT NULL REFERENCES RELATIONSHIP_TYPE(RTH_ID),
-    HH_ID INT NOT NULL REFERENCES HOUSEHOLD_INFO(HH_ID),
-    SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
-    CONSTRAINT chk_ethnicity CHECK(
-        (CTZ_IS_IP = TRUE AND ETH_ID IS NOT NULL) OR
-        (CTZ_IS_IP = FALSE AND ETH_ID IS NULL)
-        )
-);
-
--- Table: CONTACT
-CREATE TABLE CONTACT (
-    CON_ID SERIAL PRIMARY KEY,
-    CON_PHONE VARCHAR(20) UNIQUE NOT NULL,
-    CON_EMAIL VARCHAR(100) UNIQUE NOT NULL,
-    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
-);
-
+=
 -- Table: INFRASTRUCTURE_TYPE
 CREATE TABLE INFRASTRUCTURE_TYPE (
                                      INFT_ID SERIAL PRIMARY KEY,
                                      INFT_TYPE_NAME VARCHAR(100) NOT NULL
 );
 
--- Table: INFRASTRUCTURE_OWNER
-CREATE TABLE INFRASTRUCTURE_OWNER (
-                                      INFO_ID SERIAL PRIMARY KEY,
-                                      INFO_LAST_NAME VARCHAR(100) NOT NULL,
-                                      INFO_FIRST_NAME VARCHAR(100) NOT NULL,
-                                      INFO_MI VARCHAR(100),
-                                      CTZ_ID INT REFERENCES CITIZEN(CTZ_ID)
-);
-
--- Table: INFRASTRUCTURE
-CREATE TABLE INFRASTRUCTURE (
-                                INF_ID SERIAL PRIMARY KEY,
-                                INF_NAME VARCHAR(100) NOT NULL,
-                                INF_ACCESS_TYPE VARCHAR(10) NOT NULL CHECK ( INF_ACCESS_TYPE IN ('Public', 'Private')),
-                                INF_DESCRIPTION TEXT,
-                                INF_ADDRESS_DESCRIPTION TEXT,
-                                INF_DATE_REGISTERED DATE NOT NULL,
-                                INFT_ID INT NOT NULL REFERENCES INFRASTRUCTURE_TYPE(INFT_ID),
-                                INFO_ID INT REFERENCES INFRASTRUCTURE_OWNER(INFO_ID),
-                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
-                                CONSTRAINT chk_access_type CHECK (
-                                    (INF_ACCESS_TYPE = 'Private' AND INFO_ID IS NOT NULL) OR
-                                    (INF_ACCESS_TYPE = 'Public' AND INFO_ID IS NULL)
-                                    )
-);
 
 
 -- Table: FAMILY_PLANNING_METHOD
 CREATE TABLE FAMILY_PLANNING_METHOD (
-    FPM_ID SERIAL PRIMARY KEY,
-    FPM_METHOD VARCHAR(100)
+                                        FPM_ID SERIAL PRIMARY KEY,
+                                        FPM_METHOD VARCHAR(100)
 );
 
 -- Table: FPM_STATUS
 CREATE TABLE FPM_STATUS (
-    FPMS_ID SERIAL PRIMARY KEY,
-    FPMS_STATUS_NAME VARCHAR(100)
-);
-
--- Table: FAMILY_PLANNING
-CREATE TABLE FAMILY_PLANNING (
-    FP_ID SERIAL PRIMARY KEY,
-    FP_START_DATE DATE,
-    FP_END_DATE DATE,
-    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
-    FPMS_STATUS INT NOT NULL REFERENCES FPM_STATUS(FPMS_ID),
-    FPM_METHOD INT NOT NULL REFERENCES FAMILY_PLANNING_METHOD(FPM_ID)
+                            FPMS_ID SERIAL PRIMARY KEY,
+                            FPMS_STATUS_NAME VARCHAR(100)
 );
 
 
@@ -260,6 +141,243 @@ CREATE TYPE business_status_enum AS ENUM(
     'SUSPENDED'
     );
 --
+
+-- Table: EMPLOYMENT_STATUS
+CREATE TABLE EMPLOYMENT_STATUS (
+                                   ES_ID SERIAL PRIMARY KEY,
+                                   ES_STATUS_NAME VARCHAR(100)
+);
+
+-- Table: TRANSACTION_TYPE
+CREATE TABLE TRANSACTION_TYPE (
+                                  TT_ID SERIAL PRIMARY KEY,
+                                  TT_TYPE_NAME VARCHAR(100) NOT NULL
+);
+
+CREATE TYPE transaction_status_enum AS ENUM(
+    'Pending',
+    'Approved',
+    'Rejected'
+    );
+
+
+CREATE TYPE action_type_enum AS ENUM (
+    'INSERT',
+    'UPDATE',
+    'DELETE',
+    'LOGIN',
+    'LOGOUT'
+    );
+
+
+-- Table: MEDICAL_HISTORY_TYPE
+CREATE TABLE MEDICAL_HISTORY_TYPE(
+                                     MHT_ID SERIAL PRIMARY KEY,
+                                     MHT_TYPE_NAME VARCHAR(100) NOT NULL
+);
+
+-- Table: PHILHEALTH_CATEGORY
+CREATE TABLE PHILHEALTH_CATEGORY (
+                                     PC_ID SERIAL PRIMARY KEY,
+                                     PC_CATEGORY_NAME VARCHAR(100) NOT NULL
+);
+
+-- Table: HISTORY_TYPE
+CREATE TABLE HISTORY_TYPE (
+                              HIST_ID SERIAL PRIMARY KEY,
+                              HIST_TYPE_NAME VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE COMPLAINANT(
+                            COMP_ID SERIAL PRIMARY KEY,
+                            COMP_FNAME VARCHAR(50) NOT NULL,
+                            COMP_LNAME VARCHAR(50) NOT NULL,
+                            COMP_MI CHAR(1)
+);
+
+
+-- TABLES WITH FOREIGN KEYS
+
+-- Table: BARANGAY_EMPLOYEE
+
+-- Table: SYSTEM_ACCOUNT
+CREATE TABLE SYSTEM_ACCOUNT (
+                                SYS_ID SERIAL PRIMARY KEY,
+                                SYS_USER_ID INT UNIQUE DEFAULT NEXTVAL('SYS_USER_ID_SEQ'),
+                                SYS_PIN VARCHAR(6) NOT NULL,
+                                SYS_ROLE_NAME role_type_enum NOT NULL,
+                                SYS_IS_ACTIVE BOOLEAN DEFAULT TRUE,
+                                SYS_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                BE_ID INT,
+                                CONSTRAINT FK_BE FOREIGN KEY (BE_ID) REFERENCES BARANGAY_EMPLOYEE(BE_ID) ON DELETE SET NULL,
+                                CONSTRAINT chk_role_type CHECK (
+                                    (SYS_ROLE_NAME = 'Super Admin' AND BE_ID IS NULL) OR
+                                    (SYS_ROLE_NAME = 'Staff' AND BE_ID IS NOT NULL) OR
+                                    (SYS_ROLE_NAME = 'Admin' AND BE_ID IS NOT NULL)
+                                    )
+);
+
+
+CREATE TABLE BARANGAY_EMPLOYEE (
+                                   BE_ID SERIAL PRIMARY KEY,
+                                   BE_POSITION VARCHAR(100) NOT NULL,
+                                   BE_START_DATE DATE NOT NULL,
+                                   BE_END_DATE DATE,
+                                   CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
+);
+
+-- Table: CITIZEN
+CREATE TABLE CITIZEN (
+                         CTZ_ID SERIAL PRIMARY KEY,
+                         CTZ_UUID INT UNIQUE DEFAULT NEXTVAL('SYS_CTZ_ID_SEQ'),
+                         CTZ_FIRST_NAME VARCHAR(100) NOT NULL,
+                         CTZ_MIDDLE_NAME VARCHAR(100),
+                         CTZ_LAST_NAME VARCHAR(100) NOT NULL,
+                         CTZ_SUFFIX VARCHAR(10),
+                         CTZ_DATE_OF_BIRTH DATE NOT NULL,
+                         CTZ_SEX CHAR(1) NOT NULL CHECK(
+                             CTZ_SEX IN ('M', 'F')
+                             ),
+                         CTZ_CIVIL_STATUS civil_status_type NOT NULL,
+                         CTZ_BLOOD_TYPE blood_type_enum,
+                         CTZ_IS_ALIVE BOOLEAN DEFAULT TRUE,
+                         CTZ_IS_REGISTERED_VOTER BOOLEAN DEFAULT FALSE,
+                         CTZ_IS_IP BOOLEAN DEFAULT FALSE,
+                         CTZ_PLACE_OF_BIRTH TEXT NOT NULL,
+                         CTZ_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
+                         SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID),
+                         EDU_ID INT REFERENCES EDUCATION_STATUS(EDU_ID),
+                         SOEC_ID INT NOT NULL REFERENCES SOCIO_ECONOMIC_STATUS(SOEC_ID),
+                         PHEA_ID INT REFERENCES PHILHEALTH(PHEA_ID),
+                         REL_ID INT REFERENCES RELIGION(REL_ID),
+                         ETH_ID INT REFERENCES ETHNICITY(ETH_ID),
+                         CLA_ID INT NOT NULL REFERENCES CLASSIFICATION(CLA_ID),
+                         RTH_ID INT NOT NULL REFERENCES RELATIONSHIP_TYPE(RTH_ID),
+                         HH_ID INT NOT NULL REFERENCES HOUSEHOLD_INFO(HH_ID),
+                         SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
+                         CONSTRAINT chk_ethnicity CHECK(
+                             (CTZ_IS_IP = TRUE AND ETH_ID IS NOT NULL) OR
+                             (CTZ_IS_IP = FALSE AND ETH_ID IS NULL)
+                             )
+);
+
+
+
+
+
+-- Table: SETTLEMENT_LOG
+CREATE TABLE SETTLEMENT_LOG(
+                               SETT_ID SERIAL PRIMARY KEY,
+                               SETT_COMPLAINT_DESCRIPTION TEXT NOT NULL,
+                               SETT_SETTLEMENT_DESCRIPTION TEXT NOT NULL,
+                               COMP_ID INT NOT NULL REFERENCES COMPLAINANT(COMP_ID),
+                               CIHI_ID INT NOT NULL REFERENCES CITIZEN_HISTORY(CIHI_ID)
+);
+
+
+-- Table: CLASSIFICATION (Age/Risk)
+CREATE TABLE CLASSIFICATION (
+                                CLA_ID SERIAL PRIMARY KEY,
+                                CLAG_ID INT REFERENCES CLASSIFICATION_AGE(CLAG_ID),
+                                CLAH_ID INT REFERENCES CLASSIFICATION_HEALTH_RISK(CLAH_ID)
+);
+
+-- Table: HOUSEHOLD_INFO
+CREATE TABLE HOUSEHOLD_INFO (
+                                HH_ID SERIAL PRIMARY KEY,
+                                HH_HOUSE_NUMBER VARCHAR(50) UNIQUE NOT NULL,
+                                HH_ADDRESS TEXT,
+                                HH_OWNERSHIP_STATUS VARCHAR(50),
+                                HH_HOME_IMAGE TEXT NOT NULL,
+                                HH_HOME_LINK TEXT NOT NULL,
+                                WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
+                                TOILET_TYPE INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
+                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
+                                CONSTRAINT chk_valid_home_link CHECK(
+                                    HH_HOME_LINK ~ 'https?://[^\s/$.?#].[^\s]*$]' AND
+                                    length(HH_HOME_LINK) <= 1024 AND
+                                    HH_HOME_LINK !~ '[<>''"\s]'
+                                    )
+);
+
+-- Table: EDUCATION_STATUS
+CREATE TABLE EDUCATION_STATUS (
+                                  EDU_ID SERIAL PRIMARY KEY,
+                                  EDU_IS_CURRENTLY_STUDENT BOOLEAN,
+                                  EDU_INSTITUTION_NAME VARCHAR(255),
+                                  EDAT_ID INT REFERENCES EDUCATIONAL_ATTAINMENT(EDAT_ID)
+);
+
+-- Table: CITIZEN_HISTORY
+CREATE TABLE CITIZEN_HISTORY (
+                                 CIHI_ID SERIAL PRIMARY KEY,
+                                 CIHI_DESCRIPTION VARCHAR(100) NOT NULL,
+                                 CIHI_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
+                                 HIST_ID INT NOT NULL REFERENCES HISTORY_TYPE(HIST_ID),
+                                 CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
+                                 SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
+);
+
+-- Table: PHILHEALTH
+CREATE TABLE PHILHEALTH (
+                            PHEA_ID SERIAL PRIMARY KEY,
+                            PHEA_ID_NUMBER VARCHAR(50) UNIQUE NOT NULL,
+                            PHEA_MEMBERSHIP_TYPE VARCHAR(50) CHECK(
+                                PHEA_MEMBERSHIP_TYPE IN (
+                                                         'Member',
+                                                         'Dependent'
+                                    )
+                                ),
+                            PC_ID INT NOT NULL REFERENCES PHILHEALTH_CATEGORY(PC_ID)
+);
+
+
+-- Table: CONTACT
+CREATE TABLE CONTACT (
+                         CON_ID SERIAL PRIMARY KEY,
+                         CON_PHONE VARCHAR(20) UNIQUE NOT NULL,
+                         CON_EMAIL VARCHAR(100) UNIQUE NOT NULL,
+                         CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
+);
+
+-- Table: INFRASTRUCTURE_OWNER
+CREATE TABLE INFRASTRUCTURE_OWNER (
+                                      INFO_ID SERIAL PRIMARY KEY,
+                                      INFO_LAST_NAME VARCHAR(100) NOT NULL,
+                                      INFO_FIRST_NAME VARCHAR(100) NOT NULL,
+                                      INFO_MI VARCHAR(100),
+                                      CTZ_ID INT REFERENCES CITIZEN(CTZ_ID)
+);
+
+
+-- Table: INFRASTRUCTURE
+CREATE TABLE INFRASTRUCTURE (
+                                INF_ID SERIAL PRIMARY KEY,
+                                INF_NAME VARCHAR(100) NOT NULL,
+                                INF_ACCESS_TYPE VARCHAR(10) NOT NULL CHECK ( INF_ACCESS_TYPE IN ('Public', 'Private')),
+                                INF_DESCRIPTION TEXT,
+                                INF_ADDRESS_DESCRIPTION TEXT,
+                                INF_DATE_REGISTERED DATE NOT NULL,
+                                INFT_ID INT NOT NULL REFERENCES INFRASTRUCTURE_TYPE(INFT_ID),
+                                INFO_ID INT REFERENCES INFRASTRUCTURE_OWNER(INFO_ID),
+                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
+                                CONSTRAINT chk_access_type CHECK (
+                                    (INF_ACCESS_TYPE = 'Private' AND INFO_ID IS NOT NULL) OR
+                                    (INF_ACCESS_TYPE = 'Public' AND INFO_ID IS NULL)
+                                    )
+);
+
+-- Table: FAMILY_PLANNING
+CREATE TABLE FAMILY_PLANNING (
+                                 FP_ID SERIAL PRIMARY KEY,
+                                 FP_START_DATE DATE,
+                                 FP_END_DATE DATE,
+                                 CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
+                                 FPMS_STATUS INT NOT NULL REFERENCES FPM_STATUS(FPMS_ID),
+                                 FPM_METHOD INT NOT NULL REFERENCES FAMILY_PLANNING_METHOD(FPM_ID)
+);
+
 -- Table: BUSINESS_INFO
 CREATE TABLE BUSINESS_INFO (
                                BS_ID SERIAL PRIMARY KEY,
@@ -279,54 +397,29 @@ CREATE TABLE BUSINESS_INFO (
                                    )
 );
 
--- Table: EMPLOYMENT_STATUS
-CREATE TABLE EMPLOYMENT_STATUS (
-    ES_ID SERIAL PRIMARY KEY,
-    ES_STATUS_NAME VARCHAR(100)
-);
-
 -- Table: EMPLOYMENT
 CREATE TABLE EMPLOYMENT (
-    EMP_ID SERIAL PRIMARY KEY,
-    EMP_OCCUPATION VARCHAR(100) NOT NULL,
-    EMP_IS_GOV_WORKER BOOLEAN DEFAULT FALSE,
-    ES_ID INT REFERENCES EMPLOYMENT_STATUS(ES_ID),
-    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
+                            EMP_ID SERIAL PRIMARY KEY,
+                            EMP_OCCUPATION VARCHAR(100) NOT NULL,
+                            EMP_IS_GOV_WORKER BOOLEAN DEFAULT FALSE,
+                            ES_ID INT REFERENCES EMPLOYMENT_STATUS(ES_ID),
+                            CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
 );
 
--- Table: TRANSACTION_TYPE
-CREATE TABLE TRANSACTION_TYPE (
-    TT_ID SERIAL PRIMARY KEY,
-    TT_TYPE_NAME VARCHAR(100) NOT NULL
-);
-
-CREATE TYPE transaction_status_enum AS ENUM(
-    'Pending',
-    'Approved',
-    'Rejected'
-);
 
 -- Table: TRANSACTION_LOG
 CREATE TABLE TRANSACTION_LOG (
-    TL_ID SERIAL PRIMARY KEY,
-    TL_DATE_REQUESTED DATE DEFAULT CURRENT_DATE,
-    TL_PURPOSE VARCHAR(150) NOT NULL,
-    TL_STATUS transaction_status_enum,
-    TL_FNAME VARCHAR(50) NOT NULL,
-    TL_LANME VARCHAR(50) NOT NULL,
-    TL_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
-    TT_ID INT NOT NULL REFERENCES TRANSACTION_TYPE(TT_ID),
-    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
+                                 TL_ID SERIAL PRIMARY KEY,
+                                 TL_DATE_REQUESTED DATE DEFAULT CURRENT_DATE,
+                                 TL_PURPOSE VARCHAR(150) NOT NULL,
+                                 TL_STATUS transaction_status_enum,
+                                 TL_FNAME VARCHAR(50) NOT NULL,
+                                 TL_LANME VARCHAR(50) NOT NULL,
+                                 TL_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
+                                 TT_ID INT NOT NULL REFERENCES TRANSACTION_TYPE(TT_ID),
+                                 SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
 );
 
--- Table: BARANGAY_EMPLOYEE
-CREATE TABLE BARANGAY_EMPLOYEE (
-                                   BE_ID SERIAL PRIMARY KEY,
-                                   BE_POSITION VARCHAR(100) NOT NULL,
-                                   BE_START_DATE DATE NOT NULL,
-                                   BE_END_DATE DATE,
-                                   CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
-);
 
 -- Table: CITIZEN_INTERVIEW
 CREATE TABLE CITIZEN_INTERVIEW (
@@ -338,99 +431,34 @@ CREATE TABLE CITIZEN_INTERVIEW (
                                    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
 );
 
-CREATE TYPE action_type_enum AS ENUM (
-    'INSERT',
-    'UPDATE',
-    'DELETE',
-    'LOGIN',
-    'LOGOUT'
-);
 
 -- Table: SYSTEM_ACTIVITY_LOG
 CREATE TABLE SYSTEM_ACTIVITY_LOG (
-    ACT_ID SERIAL PRIMARY KEY,
-    ACT_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ACT_ACTION_TYPE action_type_enum NOT NULL,
-    ACT_TABLE_NAME VARCHAR(50) NOT NULL,
-    ACT_ENTITY_ID INT NOT NULL,
-    ACT_DESCRIPTION TEXT,
-    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
+                                     ACT_ID SERIAL PRIMARY KEY,
+                                     ACT_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                     ACT_ACTION_TYPE action_type_enum NOT NULL,
+                                     ACT_TABLE_NAME VARCHAR(50) NOT NULL,
+                                     ACT_ENTITY_ID INT NOT NULL,
+                                     ACT_DESCRIPTION TEXT,
+                                     SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
 
-);
-
--- Table: MEDICAL_HISTORY_TYPE
-CREATE TABLE MEDICAL_HISTORY_TYPE(
-    MHT_ID SERIAL PRIMARY KEY,
-    MHT_TYPE_NAME VARCHAR(100) NOT NULL
 );
 
 -- Table: MEDICAL_HISTORY
 CREATE TABLE MEDICAL_HISTORY (
-    MH_ID SERIAL PRIMARY KEY,
-    MH_DATE_DIAGNOSED DATE,
-    MH_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
-    MHT_ID INT NOT NULL REFERENCES MEDICAL_HISTORY_TYPE(MHT_ID),
-    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
-    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
+                                 MH_ID SERIAL PRIMARY KEY,
+                                 MH_DATE_DIAGNOSED DATE,
+                                 MH_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
+                                 MHT_ID INT NOT NULL REFERENCES MEDICAL_HISTORY_TYPE(MHT_ID),
+                                 CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
+                                 SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
 );
-
--- Table: PHILHEALTH_CATEGORY
-CREATE TABLE PHILHEALTH_CATEGORY (
-    PC_ID SERIAL PRIMARY KEY,
-    PC_CATEGORY_NAME VARCHAR(100) NOT NULL
-);
-
--- Table: PHILHEALTH
-CREATE TABLE PHILHEALTH (
-    PHEA_ID SERIAL PRIMARY KEY,
-    PHEA_ID_NUMBER VARCHAR(50) UNIQUE NOT NULL,
-    PHEA_MEMBERSHIP_TYPE VARCHAR(50) CHECK(
-        PHEA_MEMBERSHIP_TYPE IN (
-            'Member',
-            'Dependent'
-            )
-        ),
-    PC_ID INT NOT NULL REFERENCES PHILHEALTH_CATEGORY(PC_ID)
-);
-
--- Table: HISTORY_TYPE
-CREATE TABLE HISTORY_TYPE (
-    HIST_ID SERIAL PRIMARY KEY,
-    HIST_TYPE_NAME VARCHAR(100) NOT NULL
-);
-
--- Table: CITIZEN_HISTORY
-CREATE TABLE CITIZEN_HISTORY (
-    CIHI_ID SERIAL PRIMARY KEY,
-    CIHI_DESCRIPTION VARCHAR(100) NOT NULL,
-    CIHI_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
-    HIST_ID INT NOT NULL REFERENCES HISTORY_TYPE(HIST_ID),
-    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
-    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
-);
-
-CREATE TABLE COMPLAINANT(
-    COMP_ID SERIAL PRIMARY KEY,
-    COMP_FNAME VARCHAR(50) NOT NULL,
-    COMP_LNAME VARCHAR(50) NOT NULL,
-    COMP_MI CHAR(1)
-);
-
--- Table: SETTLEMENT_LOG
-CREATE TABLE SETTLEMENT_LOG(
-    SETT_ID SERIAL PRIMARY KEY,
-    SETT_COMPLAINT_DESCRIPTION TEXT NOT NULL,
-    SETT_SETTLEMENT_DESCRIPTION TEXT NOT NULL,
-    COMP_ID INT NOT NULL REFERENCES COMPLAINANT(COMP_ID),
-    CIHI_ID INT NOT NULL REFERENCES CITIZEN_HISTORY(CIHI_ID)
-);
-
 
 
 -- TRIGGER FUNCTIONS
 
 CREATE OR REPLACE FUNCTION is_reproductive_age_female(dob DATE, sex CHAR(1))
-RETURNS BOOLEAN AS $$
+    RETURNS BOOLEAN AS $$
 BEGIN
     RETURN sex = 'F' AND
            EXTRACT(YEAR FROM AGE(dob)) BETWEEN 15 AND 49;
