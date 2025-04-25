@@ -635,7 +635,7 @@
    <widget class="QLabel" name="register_labelPurpose">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>380</x>
       <y>290</y>
       <width>71</width>
       <height>31</height>
@@ -851,9 +851,9 @@
    <widget class="QPlainTextEdit" name="register_Purpose">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>380</x>
       <y>320</y>
-      <width>721</width>
+      <width>361</width>
       <height>81</height>
      </rect>
     </property>
@@ -909,7 +909,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>20</day>
+      <day>19</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -956,8 +956,8 @@
    <widget class="QFrame" name="basePopUpBodyFrame_5">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>200</y>
+      <x>20</x>
+      <y>290</y>
       <width>341</width>
       <height>81</height>
      </rect>
@@ -1048,7 +1048,7 @@
      <rect>
       <x>20</x>
       <y>200</y>
-      <width>361</width>
+      <width>341</width>
       <height>81</height>
      </rect>
     </property>
@@ -1101,7 +1101,7 @@
       <rect>
        <x>20</x>
        <y>40</y>
-       <width>321</width>
+       <width>301</width>
        <height>31</height>
       </rect>
      </property>
@@ -1202,6 +1202,64 @@
       </property>
      </item>
     </widget>
+   </widget>
+   <widget class="QLabel" name="register_labelReason">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>180</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_labelReason{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>Reason:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="register_Reason">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>210</y>
+      <width>361</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_Reason{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>State the Reason if Declined.</string>
+    </property>
    </widget>
   </widget>
   <widget class="QFrame" name="basePopUpTitleFrame">

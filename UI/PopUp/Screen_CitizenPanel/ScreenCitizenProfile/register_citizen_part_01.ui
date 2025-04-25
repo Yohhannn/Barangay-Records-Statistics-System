@@ -1613,7 +1613,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>23</day>
+      <day>22</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1660,7 +1660,7 @@
    <widget class="QLabel" name="register_citizen_labelreligion">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>10</x>
       <y>300</y>
       <width>111</width>
       <height>31</height>
@@ -1688,9 +1688,9 @@
    <widget class="QComboBox" name="register_citizen_comboBox_Religion">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>140</x>
       <y>300</y>
-      <width>211</width>
+      <width>191</width>
       <height>31</height>
      </rect>
     </property>
@@ -1775,7 +1775,7 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>331</y>
+      <y>341</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -1863,7 +1863,7 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>330</y>
+      <y>340</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -2356,7 +2356,7 @@
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>330</y>
+      <y>340</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -2849,7 +2849,7 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>370</y>
+      <y>380</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -2945,7 +2945,7 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>370</y>
+      <y>380</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -3097,7 +3097,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>341</y>
+      <y>350</y>
       <width>21</width>
       <height>20</height>
      </rect>
@@ -3121,6 +3121,42 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_citizen_religion_others">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>300</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_religion_others{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>If 'Others' Please Specify</string>
     </property>
    </widget>
   </widget>
