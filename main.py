@@ -22,7 +22,6 @@ if __name__ == "__main__":
 
     sys.exit(app.exec())
 
-
 # class MainApplication(dashboard_func):
 #     def __init__(self, login_window, emp_first_name):
 #         super().__init__(login_window, emp_first_name)
