@@ -206,27 +206,53 @@ CREATE TABLE SYSTEM_ACCOUNT (
                                 SYS_ID SERIAL PRIMARY KEY,
                                 SYS_USER_ID INT UNIQUE DEFAULT NEXTVAL('SYS_USER_ID_SEQ'),
                                 SYS_PIN VARCHAR(6) NOT NULL,
-                                SYS_ROLE_NAME role_type_enum NOT NULL,
-                                SYS_IS_ACTIVE BOOLEAN DEFAULT TRUE,
-                                SYS_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                BE_ID INT,
-                                CONSTRAINT FK_BE FOREIGN KEY (BE_ID) REFERENCES BARANGAY_EMPLOYEE(BE_ID) ON DELETE SET NULL,
-                                CONSTRAINT chk_role_type CHECK (
-                                    (SYS_ROLE_NAME = 'Super Admin' AND BE_ID IS NULL) OR
-                                    (SYS_ROLE_NAME = 'Staff' AND BE_ID IS NOT NULL) OR
-                                    (SYS_ROLE_NAME = 'Admin' AND BE_ID IS NOT NULL)
+                                SYS_ROLE_NAME role_type_enum NOT NULL
+--                                 SYS_IS_ACTIVE BOOLEAN DEFAULT TRUE,
+--                                 SYS_DATE_CCREAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--                                 BE_ID INT,
+--                                 CONSTRAINT FK_BE FOREIGN KEY (BE_ID) REFERENCES BARANGAY_EMPLOYEE(BE_ID) ON DELETE SET NULL,
+--                                 CONSTRAINT chk_role_type CHECK (
+--                                     (SYS_ROLE_NAME = 'Super Admin' AND BE_ID IS NULL) OR
+--                                     (SYS_ROLE_NAME = 'Staff' AND BE_ID IS NOT NULL) OR
+--                                     (SYS_ROLE_NAME = 'Admin' AND BE_ID IS NOT NULL)
+--                                     )
+);
+
+
+-- CREATE TABLE BARANGAY_EMPLOYEE (
+--                                    BE_ID SERIAL PRIMARY KEY,
+--                                    BE_POSITION VARCHAR(100) NOT NULL,
+--                                    BE_START_DATE DATE NOT NULL,
+--                                    BE_END_DATE DATE,
+--                                    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
+-- );
+
+-- Table: EDUCATION_STATUS
+CREATE TABLE EDUCATION_STATUS (
+                                  EDU_ID SERIAL PRIMARY KEY,
+                                  EDU_IS_CURRENTLY_STUDENT BOOLEAN,
+                                  EDU_INSTITUTION_NAME VARCHAR(255),
+                                  EDAT_ID INT REFERENCES EDUCATIONAL_ATTAINMENT(EDAT_ID)
+);
+
+
+-- Table: HOUSEHOLD_INFO
+CREATE TABLE HOUSEHOLD_INFO (
+                                HH_ID SERIAL PRIMARY KEY,
+                                HH_HOUSE_NUMBER VARCHAR(50) UNIQUE NOT NULL,
+                                HH_ADDRESS TEXT,
+                                HH_OWNERSHIP_STATUS VARCHAR(50),
+                                HH_HOME_IMAGE TEXT NOT NULL,
+                                HH_HOME_LINK TEXT NOT NULL,
+                                WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
+                                TOILET_TYPE INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
+                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
+                                CONSTRAINT chk_valid_home_link CHECK(
+                                    HH_HOME_LINK ~ 'https?://[^\s/$.?#].[^\s]*$]' AND
+                                    length(HH_HOME_LINK) <= 1024 AND
+                                    HH_HOME_LINK !~ '[<>''"\s]'
                                     )
 );
-
-
-CREATE TABLE BARANGAY_EMPLOYEE (
-                                   BE_ID SERIAL PRIMARY KEY,
-                                   BE_POSITION VARCHAR(100) NOT NULL,
-                                   BE_START_DATE DATE NOT NULL,
-                                   BE_END_DATE DATE,
-                                   CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
-);
-
 -- Table: CITIZEN
 CREATE TABLE CITIZEN (
                          CTZ_ID SERIAL PRIMARY KEY,
@@ -263,6 +289,15 @@ CREATE TABLE CITIZEN (
 );
 
 
+-- Table: CITIZEN_HISTORY
+CREATE TABLE CITIZEN_HISTORY (
+                                 CIHI_ID SERIAL PRIMARY KEY,
+                                 CIHI_DESCRIPTION VARCHAR(100) NOT NULL,
+                                 CIHI_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
+                                 HIST_ID INT NOT NULL REFERENCES HISTORY_TYPE(HIST_ID),
+                                 CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
+                                 SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
+);
 
 
 
@@ -275,7 +310,6 @@ CREATE TABLE SETTLEMENT_LOG(
                                CIHI_ID INT NOT NULL REFERENCES CITIZEN_HISTORY(CIHI_ID)
 );
 
-
 -- Table: CLASSIFICATION (Age/Risk)
 CREATE TABLE CLASSIFICATION (
                                 CLA_ID SERIAL PRIMARY KEY,
@@ -283,41 +317,10 @@ CREATE TABLE CLASSIFICATION (
                                 CLAH_ID INT REFERENCES CLASSIFICATION_HEALTH_RISK(CLAH_ID)
 );
 
--- Table: HOUSEHOLD_INFO
-CREATE TABLE HOUSEHOLD_INFO (
-                                HH_ID SERIAL PRIMARY KEY,
-                                HH_HOUSE_NUMBER VARCHAR(50) UNIQUE NOT NULL,
-                                HH_ADDRESS TEXT,
-                                HH_OWNERSHIP_STATUS VARCHAR(50),
-                                HH_HOME_IMAGE TEXT NOT NULL,
-                                HH_HOME_LINK TEXT NOT NULL,
-                                WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
-                                TOILET_TYPE INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
-                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
-                                CONSTRAINT chk_valid_home_link CHECK(
-                                    HH_HOME_LINK ~ 'https?://[^\s/$.?#].[^\s]*$]' AND
-                                    length(HH_HOME_LINK) <= 1024 AND
-                                    HH_HOME_LINK !~ '[<>''"\s]'
-                                    )
-);
 
--- Table: EDUCATION_STATUS
-CREATE TABLE EDUCATION_STATUS (
-                                  EDU_ID SERIAL PRIMARY KEY,
-                                  EDU_IS_CURRENTLY_STUDENT BOOLEAN,
-                                  EDU_INSTITUTION_NAME VARCHAR(255),
-                                  EDAT_ID INT REFERENCES EDUCATIONAL_ATTAINMENT(EDAT_ID)
-);
 
--- Table: CITIZEN_HISTORY
-CREATE TABLE CITIZEN_HISTORY (
-                                 CIHI_ID SERIAL PRIMARY KEY,
-                                 CIHI_DESCRIPTION VARCHAR(100) NOT NULL,
-                                 CIHI_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
-                                 HIST_ID INT NOT NULL REFERENCES HISTORY_TYPE(HIST_ID),
-                                 CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID),
-                                 SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID)
-);
+
+
 
 -- Table: PHILHEALTH
 CREATE TABLE PHILHEALTH (
@@ -426,8 +429,6 @@ CREATE TABLE CITIZEN_INTERVIEW (
                                    CIN_ID SERIAL PRIMARY KEY,
                                    CIN_DATE_INTERVIEWED DATE,
                                    CIN_DATE_REVIEWED DATE,
-                                   BE_INTERVIEWER_ID INT NOT NULL REFERENCES BARANGAY_EMPLOYEE(BE_ID),
-                                   BE_REVIEWER_ID INT REFERENCES BARANGAY_EMPLOYEE(BE_ID),
                                    CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
 );
 
@@ -494,14 +495,21 @@ EXECUTE FUNCTION check_reproductive_age_trigger();
 -- SUPER ADMIN
 
 INSERT INTO SYSTEM_ACCOUNT(
-    SYS_USER_ID, SYS_PIN, SYS_ROLE_NAME, SYS_IS_ACTIVE, BE_ID
+    SYS_USER_ID, SYS_PIN, SYS_ROLE_NAME
 ) VALUES
-      (00001,'000000', 'Super Admin', TRUE,NULL),
-      (00002,'000000', 'Super Admin', TRUE,NULL),
-      (00003,'000000', 'Super Admin', TRUE,NULL);
+      (555555,'567892', 'Super Admin');
+
+SELECT * FROM SYSTEM_ACCOUNT;
+
+--       (00002,'000000', 'Super Admin', TRUE,NULL),
+--       (00003,'000000', 'Super Admin', TRUE,NULL);
 
 
-
+-- CREATE TABLE SYSTEM_ACCOUNT (
+--                                 SYS_ID SERIAL PRIMARY KEY,
+--                                 SYS_USER_ID INT UNIQUE DEFAULT NEXTVAL('SYS_USER_ID_SEQ'),
+--                                 SYS_PIN VARCHAR(6) NOT NULL,
+--                                 SYS_ROLE_NAME role_type_enum NOT NULL
 
 
 
