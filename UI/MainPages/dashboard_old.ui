@@ -1010,7 +1010,7 @@
      <rect>
       <x>20</x>
       <y>480</y>
-      <width>1031</width>
+      <width>701</width>
       <height>231</height>
      </rect>
     </property>
@@ -1029,10 +1029,10 @@
      <bool>true</bool>
     </property>
     <property name="rowCount">
-     <number>10</number>
+     <number>18</number>
     </property>
     <property name="columnCount">
-     <number>8</number>
+     <number>5</number>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -1044,7 +1044,7 @@
      <number>45</number>
     </attribute>
     <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>127</number>
+     <number>137</number>
     </attribute>
     <attribute name="verticalHeaderVisible">
      <bool>false</bool>
@@ -1055,6 +1055,14 @@
     <attribute name="verticalHeaderStretchLastSection">
      <bool>true</bool>
     </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
     <row/>
     <row/>
     <row/>
@@ -1135,57 +1143,6 @@
     </column>
     <column>
      <property name="text">
-      <string>Civil Status</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Sex</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>PWD</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>Time Stamp</string>
      </property>
      <property name="font">
@@ -1207,7 +1164,7 @@
      <rect>
       <x>20</x>
       <y>430</y>
-      <width>1031</width>
+      <width>701</width>
       <height>51</height>
      </rect>
     </property>
@@ -1254,10 +1211,10 @@
    <widget class="QFrame" name="frame_staffAccountInformationDashboard">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>240</y>
+      <x>740</x>
+      <y>479</y>
       <width>321</width>
-      <height>161</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1271,197 +1228,11 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_empIDAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>10</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_empIDAccInfo{
-	color: #000000;
-}</string>
-     </property>
-     <property name="text">
-      <string>ID:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_empNameAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>30</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_empNameAccInfo{
-	color: #000000;
-}</string>
-     </property>
-     <property name="text">
-      <string>NAME:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_empAccessAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>50</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_empAccessAccInfo{
-	color: #000000;
-}</string>
-     </property>
-     <property name="text">
-      <string>ROLE:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="data_empAccessAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>50</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#data_empAccessAccInfo{
-	color: #707078;
-}</string>
-     </property>
-     <property name="text">
-      <string>N/A</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="data_empNameAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>30</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#data_empNameAccInfo{
-	color: #707078;
-}</string>
-     </property>
-     <property name="text">
-      <string>N/A</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="data_empIDAccInfo">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>10</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>7</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#data_empIDAccInfo{
-	color: #707078;
-}</string>
-     </property>
-     <property name="text">
-      <string>N/A</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_info">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>130</y>
-       <width>321</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_info{
-	color: #969696;
-}</string>
-     </property>
-     <property name="text">
-      <string>Click to view more.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QPushButton" name="acc_buttonYourAccount">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>80</y>
+       <x>90</x>
+       <y>20</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -1494,7 +1265,7 @@
 </string>
      </property>
      <property name="text">
-      <string>   View Account</string>
+      <string> Your Account</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1510,12 +1281,198 @@
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="label_info">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>70</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_info{
+	color: #969696;
+}</string>
+     </property>
+     <property name="text">
+      <string>Click to view more.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_empIDAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_empIDAccInfo{
+	color: #000000;
+}</string>
+     </property>
+     <property name="text">
+      <string>ID:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_empNameAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_empNameAccInfo{
+	color: #000000;
+}</string>
+     </property>
+     <property name="text">
+      <string>NAME:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_empAccessAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_empAccessAccInfo{
+	color: #000000;
+}</string>
+     </property>
+     <property name="text">
+      <string>ACCESS:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="data_empAccessAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>190</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#data_empAccessAccInfo{
+	color: #707078;
+}</string>
+     </property>
+     <property name="text">
+      <string>N/A</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="data_empNameAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>160</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#data_empNameAccInfo{
+	color: #707078;
+}</string>
+     </property>
+     <property name="text">
+      <string>N/A</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="data_empIDAccInfo">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>130</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#data_empIDAccInfo{
+	color: #707078;
+}</string>
+     </property>
+     <property name="text">
+      <string>N/A</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_titleStaffAccountInfoDashboard">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>191</y>
+      <x>740</x>
+      <y>430</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -1556,7 +1513,7 @@
 </string>
      </property>
      <property name="text">
-      <string>Your Account</string>
+      <string>Staff Account Information</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1586,9 +1543,9 @@
     <widget class="QLabel" name="label_infoManual">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>130</y>
-       <width>331</width>
+       <x>100</x>
+       <y>120</y>
+       <width>131</width>
        <height>20</height>
       </rect>
      </property>
@@ -1614,7 +1571,7 @@
      <property name="geometry">
       <rect>
        <x>80</x>
-       <y>80</y>
+       <y>70</y>
        <width>171</width>
        <height>41</height>
       </rect>
@@ -1773,7 +1730,7 @@
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>80</y>
+       <y>70</y>
        <width>161</width>
        <height>41</height>
       </rect>
@@ -1825,9 +1782,9 @@
     <widget class="QLabel" name="label_infoBarangay">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>130</y>
-       <width>341</width>
+       <x>90</x>
+       <y>120</y>
+       <width>161</width>
        <height>20</height>
       </rect>
      </property>
@@ -1894,6 +1851,162 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#label_TotalNumberRegisteredCitizen{
+	color: #141c52;
+}</string>
+     </property>
+     <property name="text">
+      <string>[ 00 ]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="dashboard_frameViewListEmployees">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>240</y>
+      <width>331</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#dashboard_frameViewListEmployees{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="dashboard_buttonViewEmployees">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#dashboard_buttonViewEmployees {
+    background-color: #f2efff;
+    color: #141c52;
+	border: 2px solid #141c52; 
+	border-radius: 18px;
+	text-align: center;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#dashboard_buttonViewEmployees:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#dashboard_buttonViewEmployees:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>   View Employees</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_viewemplist.svg</normaloff>../../Assets/Icons/icon_viewemplist.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_infoListEmployee">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>120</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_infoListEmployee{
+	color: #969696;
+}</string>
+     </property>
+     <property name="text">
+      <string>Click to view list.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_infoTotalNumberEmployee">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>20</y>
+       <width>221</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_infoTotalNumberEmployee{
+	color: #969696;
+}</string>
+     </property>
+     <property name="text">
+      <string>TOTAL NUMBER OF EMPLOYEE</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_TotalNumberofEmployee">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>331</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_TotalNumberofEmployee{
 	color: #141c52;
 }</string>
      </property>
@@ -1979,6 +2092,59 @@
      </property>
     </widget>
    </widget>
+   <widget class="QFrame" name="table_FrameViewEmp">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>190</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#table_FrameViewEmp{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_frameTitleDashboard_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>331</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_frameTitleDashboard {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>View List of Employees</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <zorder>table_FrameViewEmp</zorder>
    <zorder>table_FrameAboutBarangay</zorder>
    <zorder>table_FrameAboutSoftware</zorder>
    <zorder>table_titleFrameDashboard</zorder>
@@ -1994,6 +2160,7 @@
    <zorder>dashboard_frameAboutSoftware</zorder>
    <zorder>label_frameTitleAboutSoftware</zorder>
    <zorder>dashboard_frameAboutBarangay</zorder>
+   <zorder>dashboard_frameViewListEmployees</zorder>
   </widget>
  </widget>
  <resources/>

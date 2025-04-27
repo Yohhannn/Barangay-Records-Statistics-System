@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="- Added dump directory&#10;- Re-organized query files&#10;- Created new and updated current query file [mnhs_barangay_new_query]">
+    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="[ Minor Fix Update V3.3.2 ]&#10;-- minor bug fix&#10;-JP">
+      <change afterPath="$PROJECT_DIR$/UI/MainPages/dashboard_old.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions/Main/Dashboard/dashboard_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Main/Dashboard/dashboard_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainPages/dashboard.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/PopUp/Screen_Dashboard/youraccount.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/PopUp/Screen_Dashboard/youraccount.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Yohhannn/Barangay-Records-Statistics-System.git&quot;,
-    &quot;accountId&quot;: &quot;b4d2e5cf-b977-4b5e-ac7e-69ed97193482&quot;
+    &quot;accountId&quot;: &quot;6a608f42-9ffe-4590-ac5e-66874d392c7c&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -47,33 +52,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.login_func.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/paul/PycharmProjects/Barangay-Records-Statistics-System/UI/PopUp/Screen_Dashboard&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.database.executor": "Run",
+    "Python.login_func.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/paul/PycharmProjects/Barangay-Records-Statistics-System/UI/MainPages",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\MainPages" />
       <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\PopUp\Screen_Dashboard" />
       <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\PopUp\Screen_CitizenPanel\ScreenCitizenProfile" />
       <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\PopUp\Screen_HistoryRecords" />
       <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\MainPages\HistoryRecordPages" />
-      <recent name="C:\Users\paul\PycharmProjects\Barangay-Records-Statistics-System\UI\PopUp\Screen_Transactions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\joeha\Downloads\SYSTEM\Barangay-Records-Statistics-System\Dump Files\Query Files" />
@@ -156,8 +161,6 @@
       <workItem from="1745299217909" duration="362000" />
       <workItem from="1745459985330" duration="604000" />
       <workItem from="1745575626206" duration="1309000" />
-      <workItem from="1745671388931" duration="3034000" />
-      <workItem from="1745760106543" duration="1193000" />
     </task>
     <task id="LOCAL-00001" summary="[ General Update V2.7.3 ]&#10;+ Citizen Profile Register Button&#10;+ Modified Filter Option UI&#10;+ Added Register Citizen Popup&#10;+ Functionality to Upload Photo or Capture from Device&#10;+ Statistics Page : Demographics &amp; Geographics Partially Done.&#10;&gt; More to Continue : Household, Socio-Eco, Voters, Health&#10;+ Added few Icons&#10;&gt; register_citizen_profile_2.ui is a draft copy for a different ui.&#10;+ Small Changes on Dashboard UI&#10;&#10;-JP">
       <option name="closed" value="true" />
@@ -367,13 +370,13 @@
       <option name="project" value="LOCAL" />
       <updated>1745088432626</updated>
     </task>
-    <task id="LOCAL-00027" summary="- Added dump directory&#10;- Re-organized query files&#10;- Created new and updated current query file [mnhs_barangay_new_query]">
+    <task id="LOCAL-00027" summary="[ Minor Fix Update V3.3.2 ]&#10;-- minor bug fix&#10;-JP">
       <option name="closed" value="true" />
-      <created>1745604185774</created>
+      <created>1745764718925</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1745604185774</updated>
+      <updated>1745764718925</updated>
     </task>
     <option name="localTasksCounter" value="28" />
     <servers />
@@ -393,7 +396,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[ Minor Update V2.7.4 ]&#10;~ Modified Dropdown to --&gt; Radio Button&#10;-JP" />
     <MESSAGE value="[ Major Update V2.7.5 ]&#10;+ Statistics UI Overhaul&#10;+ Household / Health / SocioEco / Voters&#10;+ Dashboard UI Small Change&#10;-JP" />
     <MESSAGE value="[ Minor Update V2.7.5 ]&#10;+ register_citizen_profile.ui changes&#10;-JP" />
     <MESSAGE value="[ Auth Update V2.7.5 ]&#10;+ login &amp; database minor change&#10;-JP" />
@@ -417,19 +419,20 @@
     <MESSAGE value="[ Major Update V3.3.0 ]&#10;+ Updated Multiple UI's&#10;+ Updated Citizen Profile Display&#10;+ Added Change PIN from Account&#10;&#10;~ To Follow Up : Filter Options&#10;-JP" />
     <MESSAGE value="[ Minor Fix Update V3.3.1 ]&#10;+ Fixed a Minor Misplaced Object&#10;&#10;~ To Follow Up : Filter Options&#10;-JP" />
     <MESSAGE value="[ Minor Fix Update V3.3.2 ]&#10;+ Fixed a Placeholder Mistake lol&#10;&#10;~ To Follow Up : Filter Options&#10;-JP" />
-    <MESSAGE value="- Added dump directory&#10;- Re-organized query files&#10;- Created new and updated current query file [mnhs_barangay_new_query]" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added dump directory&#10;- Re-organized query files&#10;- Created new and updated current query file [mnhs_barangay_new_query]" />
+    <MESSAGE value="[ Minor Changes Update V3.3.2 ]&#10;+ fixed minor bug&#10;-JP" />
+    <MESSAGE value="[ Minor Fix Update V3.3.2 ]&#10;-- minor bug fix&#10;-JP" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ Minor Fix Update V3.3.2 ]&#10;-- minor bug fix&#10;-JP" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1745594600476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
     <SUITE FILE_PATH="coverage/Profiling_System$utils_clock.coverage" NAME="utils_clock Coverage Results" MODIFIED="1740815852587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Utils" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$login_func.coverage" NAME="login_func Coverage Results" MODIFIED="1742465812981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Functions/login_functions" />
+    <SUITE FILE_PATH="coverage/MaPro_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744819125175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744478508212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1745768875969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$database.coverage" NAME="database Coverage Results" MODIFIED="1742465660967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Profiling_System$database.coverage" NAME="database Coverage Results" MODIFIED="1741781100040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744478508212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$login_func.coverage" NAME="login_func Coverage Results" MODIFIED="1742465812981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Functions/login_functions" />
-    <SUITE FILE_PATH="coverage/MaPro_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744819125175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

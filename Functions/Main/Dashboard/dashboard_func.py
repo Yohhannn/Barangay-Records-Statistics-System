@@ -13,7 +13,7 @@ class dashboard_func(base_file_func):
     def __init__(self, login_window, emp_first_name):
         super().__init__(login_window, emp_first_name)
         self.dashboard_screen = self.load_ui("UI/MainPages/dashboard.ui")
-        self.app_version = "V3.3.2 - Alpha"
+        self.app_version = "V3.3.3 - Alpha"
         self.stack.addWidget(self.dashboard_screen)
         self.setup_dashboard_ui()
         self.stack.setCurrentIndex(0)
@@ -42,7 +42,7 @@ class dashboard_func(base_file_func):
         # SET MAIN DASHBOARD SCREEN ASSETS
         self.dashboard_screen.dashboard_buttonAboutSoftware.setIcon(QIcon('Assets/Icons/icon_aboutsoftware.svg'))
         self.dashboard_screen.dashboard_buttonBarangayInfo.setIcon(QIcon('Assets/Icons/icon_brgyinfo.svg'))
-        self.dashboard_screen.dashboard_buttonViewEmployees.setIcon(QIcon('Assets/Icons/icon_viewemplist.svg'))
+        # self.dashboard_screen.dashboard_buttonViewEmployees.setIcon(QIcon('Assets/Icons/icon_viewemplist.svg'))
         self.dashboard_screen.acc_buttonYourAccount.setIcon(QIcon('Assets/Icons/icon_myprofile.svg'))
 
         # DASHBOARD SCREEN DISPLAY
@@ -59,7 +59,7 @@ class dashboard_func(base_file_func):
 
         # SCREEN BUTTONS --> POPUP
         self.dashboard_screen.acc_buttonYourAccount.clicked.connect(self.show_account_popup)
-        self.dashboard_screen.dashboard_buttonViewEmployees.clicked.connect(self.show_employee_popup)
+        # self.dashboard_screen.dashboard_buttonViewEmployees.clicked.connect(self.show_employee_popup)
         self.dashboard_screen.dashboard_buttonBarangayInfo.clicked.connect(self.show_barangayinfo_popup)
         self.dashboard_screen.dashboard_buttonAboutSoftware.clicked.connect(self.show_aboutsoftware_popup)
 
@@ -145,13 +145,13 @@ class dashboard_func(base_file_func):
             # self.close()
 
     # SCREEN POPUPS ================================
-    def show_employee_popup(self):
-        print("-- Navigating to Dashboard > List of Employees")
-        popup = load_popup("UI/PopUp/Screen_Dashboard/listofemployees.ui", self)
-        popup.setWindowTitle("List of Employees")
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.setFixedSize(popup.size())
-        popup.show()
+    # def show_employee_popup(self):
+    #     print("-- Navigating to Dashboard > List of Employees")
+    #     popup = load_popup("UI/PopUp/Screen_Dashboard/listofemployees.ui", self)
+    #     popup.setWindowTitle("List of Employees")
+    #     popup.setWindowModality(Qt.ApplicationModal)
+    #     popup.setFixedSize(popup.size())
+    #     popup.show()
 
     def show_barangayinfo_popup(self):
         print("-- Navigating to Dashboard > Barangay Info")
