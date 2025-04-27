@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>312</height>
+    <height>350</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,7 +30,7 @@
      <x>20</x>
      <y>50</y>
      <width>461</width>
-     <height>251</height>
+     <height>281</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -226,7 +226,7 @@
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="employeeacc_access">
+   <widget class="QLabel" name="employeeacc_role">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -243,14 +243,14 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#employeeacc_access {
+     <string notr="true">#employeeacc_role {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
     </property>
     <property name="text">
-     <string>Admin Access:</string>
+     <string>Account Role:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -316,7 +316,7 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="employeeacc_isadmin">
+   <widget class="QLabel" name="displayemployeeacc_role">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -333,7 +333,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#employeeacc_isadmin{
+     <string notr="true">#displayemployeeacc_role{
 		color: #141c52;
 }</string>
     </property>
@@ -438,7 +438,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>200</y>
+      <y>230</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -485,7 +485,7 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>200</y>
+      <y>230</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -526,6 +526,64 @@
       <width>20</width>
       <height>20</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="employeeacc_perm">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#employeeacc_perm {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Permissions:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="displayemployeeacc_perm">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>180</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#displayemployeeacc_perm{
+		color: #141c52;
+}</string>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
