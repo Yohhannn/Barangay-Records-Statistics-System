@@ -977,7 +977,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>22</day>
+      <day>21</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1521,7 +1521,7 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QComboBox" name="register_citizen_comboBox_CivilStatus">
+   <widget class="QComboBox" name="register_household_comboBox_Sitio">
     <property name="geometry">
      <rect>
       <x>160</x>

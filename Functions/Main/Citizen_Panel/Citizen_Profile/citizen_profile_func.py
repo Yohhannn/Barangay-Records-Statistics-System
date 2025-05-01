@@ -17,7 +17,7 @@ class citizen_profile_func(base_file_func):
         self.citizen_data = {}
         self.part1_popup = None
         self.part2_popup = None
-        self.popup3 = None
+        self.part3_popup = None
 
     def setup_profile_ui(self):
         self.setFixedSize(1350, 850)
@@ -32,6 +32,16 @@ class citizen_profile_func(base_file_func):
         self.cp_profile_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
         self.cp_profile_screen.cp_citizen_button_register.clicked.connect(self.show_register_citizen_part_01_popup)
 
+
+
+
+    #
+    #
+    # CITIZEN CREATE PART 1
+    #
+    #
+
+
     def show_register_citizen_part_01_popup(self):
         self.part1_popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_01.ui", self)
         self.part1_popup.setWindowTitle("Register New Citizen")
@@ -45,6 +55,9 @@ class citizen_profile_func(base_file_func):
         if hasattr(self, 'citizen_data'):
             self.restore_part1_data()
         self.part1_popup.exec_()
+
+
+        # DATA INTERACTION PART 1
 
     def restore_part1_data(self):
         if 'first_name' in self.citizen_data:
@@ -96,10 +109,22 @@ class citizen_profile_func(base_file_func):
             'image': self.part1_popup.imageLabel.pixmap()
         })
 
+        # GENERAL FUNCTION PART 1
+
+
     def setup_radio_button_groups_01(self, popup):
-        self.sex_group = QButtonGroup(popup)
-        self.sex_group.addButton(popup.radioButton_male)
-        self.sex_group.addButton(popup.radioButton_female)
+        # self.sex_group = QButtonGroup(popup)
+        # self.sex_group.addButton(popup.radioButton_male) OLLD DO NNOT TOUCH!
+        # self.sex_group.addButton(popup.radioButton_female)
+
+        sex_group = QButtonGroup(self.part1_popup)
+
+        male_yes = self.part1_popup.findChild(QRadioButton, "radioButton_IsMale_Yes")
+        male_no = self.part1_popup.findChild(QRadioButton, "radioButton_IsMale_No")
+
+        if male_yes and male_no:
+            sex_group.addButton(male_yes)
+            sex_group.addButton(male_no)
 
     def highlight_missing_fields01(self, errors):
         if "First name is required" in errors:
@@ -141,6 +166,16 @@ class citizen_profile_func(base_file_func):
             pixmap = QPixmap.fromImage(q_image)
             image_label.setPixmap(pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio))
 
+
+
+    #
+    #
+    # CITIZEN CREATE PART 2
+    #
+    #
+
+
+
     def show_register_citizen_part_02_popup(self, part_one_popup):
         part_one_popup.close()
         self.part2_popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_02.ui", self)
@@ -153,7 +188,17 @@ class citizen_profile_func(base_file_func):
         self.part2_popup.register_buttonReturnToPart1_FromPart2.clicked.connect(self.return_to_part1_from_part2)
         if hasattr(self, 'citizen_data'):
             self.restore_part2_data()
+        self.setup_radio_button_groups_02()
         self.part2_popup.exec_()
+
+
+
+
+
+
+    # DATA INTERACTION PART 2
+
+
 
     def restore_part2_data(self):
         if 'household_id' in self.citizen_data:
@@ -189,89 +234,149 @@ class citizen_profile_func(base_file_func):
             self.show_register_citizen_part_03_popup(self.part2_popup)
 
 
+
+
+
+    # GENERAL FUCNTION PART 2
+
+
     def highlight_missing_fields02(self, errors2):
         if "HouseHold ID is required" in errors2:
             self.part2_popup.register_citizen_HouseholdID.setStyleSheet("border: 1px solid red;")
         if "Relationship is required" in errors2:
             self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet("border: 1px solid red;")
 
+    def setup_radio_button_groups_02(self):
+        gov_worker = QButtonGroup(self.part2_popup)
+        gov_worker_yes = self.part2_popup.findChild(QRadioButton, "radioButton_IsGov_Yes")
+        gov_worker_no = self.part2_popup.findChild(QRadioButton, "radioButton_IsGov_No")
+        if gov_worker_yes and gov_worker_no:
+            gov_worker.addButton(gov_worker_yes)
+            gov_worker.addButton(gov_worker_no)
+
+        phil_member = QButtonGroup(self.part2_popup)
+        phil_member_yes = self.part2_popup.findChild(QRadioButton, "radioButton_IsPhilMem_Yes")
+        phil_member_no = self.part2_popup.findChild(QRadioButton, "radioButton_IsPhilMem_No")
+        if phil_member_yes and phil_member_no:
+            phil_member.addButton(phil_member_yes)
+            phil_member.addButton(phil_member_no)
+
+
+
+    def highlight_missing_fields01(self, errors):
+        if "First name is required" in errors:
+            self.part1_popup.register_citizen_firstname.setStyleSheet("border: 1px solid red;")
+        if "Last name is required" in errors:
+            self.part1_popup.register_citizen_lastname.setStyleSheet("border: 1px solid red;")
+        if "Civil status is required" in errors:
+            self.part1_popup.register_citizen_comboBox_CivilStatus.setStyleSheet("border: 1px solid red;")
+        if "Valid date of birth is required" in errors:
+            self.part1_popup.register_citizen_date_dob.setStyleSheet("border: 1px solid red;")
+        if "Gender selection is required" in errors:
+            self.part1_popup.radioButton_male.setStyleSheet("color: red;")
+            self.part1_popup.radioButton_female.setStyleSheet("color: red;")
+
+
+    #
+    #
+    # CITIZEN CREATE PART 3
+    #
+    #
+
+
+
+
 
     def show_register_citizen_part_03_popup(self, part_two_popup):
         part_two_popup.close()
-        self.popup3 = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_03.ui", self)
-        self.popup3.setWindowTitle("Register New Citizen - Part 3")
-        self.popup3.setWindowModality(Qt.ApplicationModal)
-        self.popup3.setFixedSize(self.popup3.size())
-        self.popup3.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
-        self.popup3.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm'))
+        self.part3_popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_03.ui", self)
+        self.part3_popup.setWindowTitle("Register New Citizen - Part 3")
+        self.part3_popup.setWindowModality(Qt.ApplicationModal)
+        self.part3_popup.setFixedSize(self.part3_popup.size())
+        self.part3_popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Assets/FuncIcons/icon_arrow_prev'))
+        self.part3_popup.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm'))
         if hasattr(self, 'citizen_data'):
             self.restore_part3_data()
         self.setup_radio_button_groups_03()
-        save_btn = self.popup3.findChild(QPushButton, "register_buttonConfirmPart3_SaveForm")
+        save_btn = self.part3_popup.findChild(QPushButton, "register_buttonConfirmPart3_SaveForm")
         if save_btn:
             save_btn.clicked.connect(self.confirm_and_save)
-        back_btn = self.popup3.findChild(QPushButton, "register_buttonReturnToPart2_FromPart3")
+        back_btn = self.part3_popup.findChild(QPushButton, "register_buttonReturnToPart2_FromPart3")
         if back_btn:
             back_btn.clicked.connect(self.return_to_part2_from_part3)
-        self.popup3.exec_()
+        self.part3_popup.exec_()
+
+
+
+
+    # DATA INTERACTION PART 3
+
+
+
 
     def restore_part3_data(self):
         pass
 
+
+
+    # GENERAL FUNCTION PART 3
+
+
+
     def setup_radio_button_groups_03(self):
-        radio_student = QButtonGroup(self.popup3)
-        student_yes = self.popup3.findChild(QRadioButton, "radioButton_IsStudent_Yes")
-        student_no = self.popup3.findChild(QRadioButton, "radioButton_IsStudent_No")
+        radio_student = QButtonGroup(self.part3_popup)
+        student_yes = self.part3_popup.findChild(QRadioButton, "radioButton_IsStudent_Yes")
+        student_no = self.part3_popup.findChild(QRadioButton, "radioButton_IsStudent_No")
         if student_yes and student_no:
             radio_student.addButton(student_yes)
             radio_student.addButton(student_no)
 
-        radio_famplan = QButtonGroup(self.popup3)
-        famplan_yes = self.popup3.findChild(QRadioButton, "radioButton_IsFamPlan_Yes")
-        famplan_no = self.popup3.findChild(QRadioButton, "radioButton_IsFamPlan_No")
+        radio_famplan = QButtonGroup(self.part3_popup)
+        famplan_yes = self.part3_popup.findChild(QRadioButton, "radioButton_IsFamPlan_Yes")
+        famplan_no = self.part3_popup.findChild(QRadioButton, "radioButton_IsFamPlan_No")
         if famplan_yes and famplan_no:
             radio_famplan.addButton(famplan_yes)
             radio_famplan.addButton(famplan_no)
 
-        radio_pwd = QButtonGroup(self.popup3)
-        pwd_yes = self.popup3.findChild(QRadioButton, "register_citizen_IsPWD_Yes")
-        pwd_no = self.popup3.findChild(QRadioButton, "register_citizen_IsPWD_No")
+        radio_pwd = QButtonGroup(self.part3_popup)
+        pwd_yes = self.part3_popup.findChild(QRadioButton, "register_citizen_IsPWD_Yes")
+        pwd_no = self.part3_popup.findChild(QRadioButton, "register_citizen_IsPWD_No")
         if pwd_yes and pwd_no:
             radio_pwd.addButton(pwd_yes)
             radio_pwd.addButton(pwd_no)
 
-        radio_voter = QButtonGroup(self.popup3)
-        vote_yes = self.popup3.findChild(QRadioButton, "register_citizen_RegVote_Yes")
-        vote_no = self.popup3.findChild(QRadioButton, "register_citizen_RegVote_No")
+        radio_voter = QButtonGroup(self.part3_popup)
+        vote_yes = self.part3_popup.findChild(QRadioButton, "register_citizen_RegVote_Yes")
+        vote_no = self.part3_popup.findChild(QRadioButton, "register_citizen_RegVote_No")
         if vote_yes and vote_no:
             radio_voter.addButton(vote_yes)
             radio_voter.addButton(vote_no)
 
-        radio_deceased = QButtonGroup(self.popup3)
-        deceased_yes = self.popup3.findChild(QRadioButton, "register_citizen_Deceased_Yes")
-        deceased_no = self.popup3.findChild(QRadioButton, "register_citizen_Deceased_No")
+        radio_deceased = QButtonGroup(self.part3_popup)
+        deceased_yes = self.part3_popup.findChild(QRadioButton, "register_citizen_Deceased_Yes")
+        deceased_no = self.part3_popup.findChild(QRadioButton, "register_citizen_Deceased_No")
         if deceased_yes and deceased_no:
             radio_deceased.addButton(deceased_yes)
             radio_deceased.addButton(deceased_no)
 
-        radio_indigenous = QButtonGroup(self.popup3)
-        ind_yes = self.popup3.findChild(QRadioButton, "register_citizen_IndGroup_Yes")
-        ind_no = self.popup3.findChild(QRadioButton, "register_citizen_IndGroup_No")
+        radio_indigenous = QButtonGroup(self.part3_popup)
+        ind_yes = self.part3_popup.findChild(QRadioButton, "register_citizen_IndGroup_Yes")
+        ind_no = self.part3_popup.findChild(QRadioButton, "register_citizen_IndGroup_No")
         if ind_yes and ind_no:
             radio_indigenous.addButton(ind_yes)
             radio_indigenous.addButton(ind_no)
 
     def confirm_and_save(self):
-        reply = QMessageBox.question(self.popup3, "Confirm Registration", "Are you sure you want to register this citizen?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        reply = QMessageBox.question(self.part3_popup, "Confirm Registration", "Are you sure you want to register this citizen?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             print("-- Form Submitted")
-            QMessageBox.information(self.popup3, "Success", "Citizen successfully registered!")
+            QMessageBox.information(self.part3_popup, "Success", "Citizen successfully registered!")
             self.citizen_data = {}
-            self.popup3.close()
+            self.part3_popup.close()
 
     def return_to_part2_from_part3(self):
-        self.popup3.close()
-        self.show_register_citizen_part_02_popup(self.popup3)
+        self.part3_popup.close()
+        self.show_register_citizen_part_02_popup(self.part3_popup)
 
     def goto_citizen_panel(self):
         if not hasattr(self, 'citizen_panel'):
