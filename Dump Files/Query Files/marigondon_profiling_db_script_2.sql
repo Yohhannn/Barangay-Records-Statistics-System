@@ -54,8 +54,8 @@ CREATE TYPE civil_status_type AS ENUM(
 CREATE SEQUENCE SYS_USER_ID_SEQ START 1001;
 CREATE TYPE role_type_enum AS ENUM(
     'Staff',
-    'Admin',
-    'Super Admin'
+    'AdminController',
+    'Super AdminController'
     );
 
 
@@ -212,9 +212,9 @@ CREATE TABLE SYSTEM_ACCOUNT (
 --                                 BE_ID INT,
 --                                 CONSTRAINT FK_BE FOREIGN KEY (BE_ID) REFERENCES BARANGAY_EMPLOYEE(BE_ID) ON DELETE SET NULL,
 --                                 CONSTRAINT chk_role_type CHECK (
---                                     (SYS_ROLE_NAME = 'Super Admin' AND BE_ID IS NULL) OR
+--                                     (SYS_ROLE_NAME = 'Super AdminController' AND BE_ID IS NULL) OR
 --                                     (SYS_ROLE_NAME = 'Staff' AND BE_ID IS NOT NULL) OR
---                                     (SYS_ROLE_NAME = 'Admin' AND BE_ID IS NOT NULL)
+--                                     (SYS_ROLE_NAME = 'AdminController' AND BE_ID IS NOT NULL)
 --                                     )
 );
 
@@ -497,12 +497,12 @@ EXECUTE FUNCTION check_reproductive_age_trigger();
 INSERT INTO SYSTEM_ACCOUNT(
     SYS_USER_ID, SYS_PIN, SYS_ROLE_NAME
 ) VALUES
-      (555555,'567892', 'Super Admin');
+      (555555,'567892', 'Super AdminController');
 
 SELECT * FROM SYSTEM_ACCOUNT;
 
---       (00002,'000000', 'Super Admin', TRUE,NULL),
---       (00003,'000000', 'Super Admin', TRUE,NULL);
+--       (00002,'000000', 'Super AdminController', TRUE,NULL),
+--       (00003,'000000', 'Super AdminController', TRUE,NULL);
 
 
 -- CREATE TABLE SYSTEM_ACCOUNT (

@@ -5,8 +5,8 @@ CREATE DATABASE marigondon_profiling_db;
 CREATE SEQUENCE SYS_USER_ID_SEQ START 1001;
 CREATE TYPE role_type_enum AS ENUM(
     'Staff',
-    'Admin',
-    'Super Admin'
+    'AdminController',
+    'Super AdminController'
     );
 
 CREATE TABLE SYSTEM_ACCOUNT (
