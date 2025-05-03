@@ -14,9 +14,9 @@ class household_func(base_file_func):
         self.cp_household_screen = self.load_ui("UI/MainPages/CitizenPanelPages/cp_household.ui")
         self.setup_household_ui()
         self.center_on_screen()
+        self.popup = None
 
     def setup_household_ui(self):
-        """Setup the Household UI layout."""
         self.setFixedSize(1350, 850)
         self.setWindowTitle("MaPro: Household")
         self.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
@@ -29,63 +29,105 @@ class household_func(base_file_func):
         self.cp_household_screen.cp_household_button_remove.setIcon(QIcon('Assets/FuncIcons/icon_del.svg'))
         self.cp_household_screen.householdList_buttonFilter.setIcon(QIcon('Assets/FuncIcons/icon_filter.svg'))
 
-        # Return Button
+        # BUTTONS REGISTRATIOPN
         self.cp_household_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
-
-        # REGISTER BUTTON
         self.cp_household_screen.cp_household_button_register.clicked.connect(self.show_register_household_popup)
+
+
 
     def show_register_household_popup(self):
         print("-- Register New Household Popup")
-        popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", self)
-        popup.setWindowTitle("Mapro: Register New Household")
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("UI/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", self)
+        self.popup.setWindowTitle("Mapro: Register New Household")
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
 
-        upload_button = popup.findChild(QPushButton, "cp_HomeImageuploadButton")
-        image_label = popup.findChild(QLabel, "imageLabel")
 
-        if image_label:
-            image_label.setAlignment(Qt.AlignCenter)  # Center the image inside the label
+        # BUTTON REGISTRATION
+        self.popup.register_buttonConfirmHousehold_SaveForm.clicked.connect(self.validate_part_fields)
+        self.popup.cp_HomeImageuploadButton.clicked.connect(self.upload_function)
 
-        if upload_button:
-            upload_button.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
+        # ICON LOAD
 
-            def upload_image():
-                file_path, _ = QFileDialog.getOpenFileName(popup, "Select an Image", "",
-                                                           "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
-                if file_path:
-                    pixmap = QPixmap(file_path)
-                    image_label.setPixmap(
-                        pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio,
-                                      Qt.SmoothTransformation)
-                    )
+        self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
+        self.popup.imageLabel.setAlignment(Qt.AlignCenter)
 
-            upload_button.clicked.connect(upload_image)
 
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "register_buttonConfirmHousehold_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Registration",
-                    "Are you sure you want to register this household?",
-                    QMessageBox.Yes | QMessageBox.No,
-                    QMessageBox.No
-                )
+        self.popup.exec_()
 
-                if reply == QMessageBox.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Citizen successfully registered!")
-                    popup.close()
 
-            save_btn.clicked.connect(confirm_and_save)
+        # DO NOT REMOVE FOR FUTURE FIX
+        #
+        # upload_button = self.popup.findChild(QPushButton, "cp_HomeImageuploadButton")
+        # image_label = self.popup.findChild(QLabel, "imageLabel")
+        #
+        # if image_label:
+        #     image_label.setAlignment(Qt.AlignCenter)  # Center the image inside the label
+        #
+        # if upload_button:
+        #     upload_button.setIcon(QIcon("Assets/Icons/icon_upload_image.svg"))
+        #
+        #     def upload_image():
+        #         file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "",
+        #                                                    "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+        #         if file_path:
+        #             pixmap = QPixmap(file_path)
+        #             image_label.setPixmap(
+        #                 pixmap.scaled(image_label.width(), image_label.height(), Qt.KeepAspectRatio,
+        #                               Qt.SmoothTransformation)
+        #             )
+        #
+        #     upload_button.clicked.connect(upload_image)
 
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+
+
+    def validate_part_fields(self):
+        errors_household = []
+        if not self.popup.register_household_homeAddress.text().strip():
+            errors_household.append("Home address is required")
+        if self.popup.register_household_comboBox_Sitio.currentIndex() == -1:
+            errors_household.append("Sitio is required")
+        if self.popup.register_household_comboBox_OwnershipStatus.currentIndex() == -1:
+            errors_household.append("Ownership Status is required")
+        if errors_household:
+            QMessageBox.warning(self.popup, "Incomplete Form", "Please complete all required fields:\n\n• " + "\n• ".join(errors_household))
+            self.highlight_missing_fields(errors_household)
+        else:
+            self.confirm_and_save()
+            # self.save_data()
+            # self.show_register_citizen_part_02_popup(self.popup)
+
+    def highlight_missing_fields(self, errors_household):
+        if "Home address is required" in errors_household:
+            self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid red;")
+        if "Sitio is required" in errors_household:
+            self.popup.register_household_comboBox_Sitio.setStyleSheet("border: 1px solid red;")
+        if "Ownership Status is required" in errors_household:
+            self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet("border: 1px solid red;")
+
+    def upload_function(self):
+
+        file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "","Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+        if file_path:
+            pixmap = QPixmap(file_path)
+            self.popup.imageLabel.setPixmap(pixmap.scaled(self.popup.imageLabel.width(),
+            self.popup.imageLabel.height(),
+            Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            )
+
+
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(self.popup, "Confirm Registration", "Are you sure you want to register this household?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Household successfully registered!")
+            # self.citizen_data = {}
+            self.popup.close()
+
+
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
