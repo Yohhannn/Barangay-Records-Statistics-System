@@ -1,7 +1,7 @@
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QMessageBox, QPushButton, QLabel, QFileDialog, QButtonGroup, QRadioButton
-from django.core.validators import validate_email
+#from django.core.validators import validate_email
 
 from Controllers.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
@@ -55,20 +55,38 @@ class business_func(base_file_func):
         print("test")
         if not self.popup.register_BusinessName.text().strip():
             errors.append("Business name is required")
-            self.popup.register_BusinessName.setStyleSheet("border: 1px solid red")
-        elif self.popup.register_BusinessName.text().strip():
-            self.popup.register_BusinessName.setStyleSheet("border: 1px solid gray")
-        print("remove border")
+            self.popup.register_BusinessName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        else:
+            self.popup.register_BusinessName.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
         if self.popup.register_comboBox_BusinessStatus.currentIndex() == -1:
             errors.append("Business status is required")
+            self.popup.register_comboBox_BusinessStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
         if not self.popup.register_BusinessAddress.text().strip():
             errors.append("Business address is required")
+            self.popup.register_BusinessAddress.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+
         if self.popup.register_comboBox_BusinessAddress_Sitio.currentIndex() == -1:
             errors.append("Business sitio is required")
+            self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
         if not self.popup.register_BusinessOwnerFirstName.text().strip():
             errors.append("Business owner firstname is required")
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+
         if not self.popup.register_BusinessOwnerLastName.text().strip():
             errors.append("Business owner lastname is required")
+            self.popup.register_BusinessOwnerLastName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+
         if errors:
             QMessageBox.warning(self.popup, "Incomplete Form", "Please complete all required fields:\n\n• " + "\n• ".join(errors))
             # self.highlight_missing_fields(errors)

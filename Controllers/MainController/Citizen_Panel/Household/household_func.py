@@ -87,25 +87,33 @@ class household_func(base_file_func):
         errors_household = []
         if not self.popup.register_household_homeAddress.text().strip():
             errors_household.append("Home address is required")
+            self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+
         if self.popup.register_household_comboBox_Sitio.currentIndex() == -1:
             errors_household.append("Sitio is required")
+            self.popup.register_household_comboBox_Sitio.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+        else:
+            self.popup.register_household_comboBox_Sitio.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
         if self.popup.register_household_comboBox_OwnershipStatus.currentIndex() == -1:
             errors_household.append("Ownership Status is required")
+            self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+        else:
+            self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
         if errors_household:
             QMessageBox.warning(self.popup, "Incomplete Form", "Please complete all required fields:\n\n• " + "\n• ".join(errors_household))
-            self.highlight_missing_fields(errors_household)
         else:
             self.confirm_and_save()
-            # self.save_data()
-            # self.show_register_citizen_part_02_popup(self.popup)
 
-    def highlight_missing_fields(self, errors_household):
-        if "Home address is required" in errors_household:
-            self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid red;")
-        if "Sitio is required" in errors_household:
-            self.popup.register_household_comboBox_Sitio.setStyleSheet("border: 1px solid red;")
-        if "Ownership Status is required" in errors_household:
-            self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet("border: 1px solid red;")
+
 
     def upload_function(self):
 

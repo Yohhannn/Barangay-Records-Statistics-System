@@ -252,7 +252,8 @@ class citizen_profile_func(base_file_func):
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
-            self.part2_popup.register_citizen_HouseholdID.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            self.part2_popup.register_citizen_HouseholdID.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
         if self.part2_popup.register_citizen_comboBox_Relationship.currentIndex() == -1:
