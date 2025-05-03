@@ -128,7 +128,21 @@ class citizen_profile_func(base_file_func):
 
     def highlight_missing_fields01(self, errors):
         if "First name is required" in errors:
-            self.part1_popup.register_citizen_firstname.setStyleSheet("border: 1px solid red;")
+            self.part1_popup.register_citizen_firstname.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+            #     # register_citizen_firstname{
+            #     border: 1
+            #     px
+            #     solid  # b3b3b3;  /* Black border */
+            #     border - radius: 5
+            #     px; / *Rounded
+            #     corners * /
+            #     padding: 5
+            #     px; / *Inner
+            #     spacing * /
+            #     background - color:  # f2efff;  /* Gray background */
+            #     color:  # 000000;
+            # }
         if "Last name is required" in errors:
             self.part1_popup.register_citizen_lastname.setStyleSheet("border: 1px solid red;")
         if "Civil status is required" in errors:

@@ -16,11 +16,10 @@ CREATE TABLE SYSTEM_ACCOUNT (
                                 SYS_FIRSTNAME VARCHAR(50) NOT NULL,
                                 SYS_MIDDLENAME VARCHAR(50),
                                 SYS_LASTNAME VARCHAR(50) NOT NULL,
-                                SYS_ROLE role_type_enum NOT NULL,
-                                SYS_IS_ACTIVE BOOLEAN DEFAULT TRUE,
-                                SYS_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
+                                SYS_ROLE role_type_enum NOT NULL
 );
+
+
 
 -- Table: SITIO
 CREATE TABLE SITIO (
@@ -520,36 +519,6 @@ CREATE TRIGGER set_last_updated
 
 --INSERTS
 
--- SUPER ADMIN
-
--- INSERT INTO SYSTEM_ACCOUNT(
---     SYS_USER_ID, SYS_PIN, SYS_ROLE, SYS_IS_ACTIVE
--- ) VALUES
---       (00001,'000000', 'Super Admin', TRUE),
---       (00002,'000000', 'Super Admin', TRUE),
---       (00003,'000000', 'Super Admin', TRUE);
-
-
-
-
---
---
--- INSERT INTO CITIZEN (
---     CTZ_ID, CTZ_FIRST_NAME, CTZ_LAST_NAME, CTZ_DATE_OF_BIRTH, CTZ_SEX, CTZ_IS_ALIVE, CTZ_IS_REGISTERED_VOTER
--- ) VALUES
---       (1,'John', 'Cena', '2000-08-21', 'Male', TRUE, TRUE),
---       (2,'Ryan', 'Bang', '1999-08-21', 'Male', TRUE, TRUE);
---
--- INSERT INTO BARANGAY_EMPLOYEE (
---     BE_ID, BE_POSITION, BE_START_DATE, CTZ_ID
--- ) VALUES
---       (1,'Data Encoder', '2024-02-15', 1),
---       (2,'Data Encoder', '2024-02-15', 2);
---
--- INSERT INTO SYSTEM_ACCOUNT (
---     SYS_PIN, SYS_IS_ADMIN, SYS_IS_ACTIVE, BE_ID
--- ) VALUES
---       ('000002', TRUE, TRUE, 1),
---       ('000003', TRUE, TRUE, 2);
---
-
+-- INSERT SYSTEM_ACCOUNT
+INSERT INTO SYSTEM_ACCOUNT (SYS_USER_ID, SYS_PIN, SYS_FIRSTNAME, SYS_MIDDLENAME, SYS_LASTNAME, SYS_ROLE)
+VALUES (2,123,Joehanes,)
