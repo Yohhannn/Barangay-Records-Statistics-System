@@ -52,7 +52,6 @@ class business_func(base_file_func):
 
     def validate_business_fields(self):
         errors = []
-        print("test")
         if not self.popup.register_BusinessName.text().strip():
             errors.append("Business name is required")
             self.popup.register_BusinessName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
@@ -65,10 +64,16 @@ class business_func(base_file_func):
             self.popup.register_comboBox_BusinessStatus.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+        else:
+            self.popup.register_comboBox_BusinessStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
 
         if not self.popup.register_BusinessAddress.text().strip():
             errors.append("Business address is required")
             self.popup.register_BusinessAddress.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.popup.register_BusinessAddress.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
 
 
         if self.popup.register_comboBox_BusinessAddress_Sitio.currentIndex() == -1:
@@ -76,31 +81,54 @@ class business_func(base_file_func):
             self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+        else:
+            self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
 
         if not self.popup.register_BusinessOwnerFirstName.text().strip():
             errors.append("Business owner firstname is required")
             self.popup.register_BusinessOwnerFirstName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
 
 
         if not self.popup.register_BusinessOwnerLastName.text().strip():
             errors.append("Business owner lastname is required")
             self.popup.register_BusinessOwnerLastName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.popup.register_BusinessOwnerLastName.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
 
 
         if errors:
             QMessageBox.warning(self.popup, "Incomplete Form", "Please complete all required fields:\n\n• " + "\n• ".join(errors))
             # self.highlight_missing_fields(errors)
         else:
-            pass
+            self.confirm_and_save()
 
 
-    # def highlight_missing_fields(self, errors):
-    #     if "Business name is required" in errors:
-    #         self.popup.register_BusinessName.setStyleSheet("border: 1px solid red")
-    #     if "Business status is required" in errors:
-    #         self.popup.register_comboBox_BusinessStatus.setStyleSheet("border: 1px solid red")
-    #     # if
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Registration",
+            "Are you sure you want to register this business?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
 
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Citizen successfully registered!")
+            self.popup.close()
+
+    def setup_radio_button_groups_business(self):
+        # Is DTI Registered?
+        radio_DTI = QButtonGroup(self.popup)
+        DTI_yes = self.popup.findChild(QRadioButton, "radioButton_DTI_Yes")
+        DTI_no = self.popup.findChild(QRadioButton, "radioButton_DTI_No")
+        if DTI_yes and DTI_no:
+            radio_DTI.addButton(DTI_yes)
+            radio_DTI.addButton(DTI_no)
 
 
         # upload_button = self.popup.findChild(QPushButton, "inst_DTIuploadButton")
