@@ -1,4 +1,4 @@
-CREATE DATABASE barangay_marigondon_overhaul_data;
+CREATE DATABASE barangay_marigondon_db;
 
 CREATE TABLE DEPARTMENT(
     DEP_ID SERIAL PRIMARY KEY,
