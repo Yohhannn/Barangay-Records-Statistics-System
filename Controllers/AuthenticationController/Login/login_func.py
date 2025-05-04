@@ -103,9 +103,9 @@ class LoginWindow(QMainWindow):
             cursor = connection.cursor
 
             query = """
-            SELECT SYS_USER_FIRSTNAME 
+            SELECT SYS_FNAME 
             FROM SYSTEM_ACCOUNT 
-            WHERE SYS_USER_ID = %s AND SYS_USER_PIN = %s
+            WHERE SYS_USER_ID = %s AND SYS_PASSWORD = %s
             """
             cursor.execute(query, (user_id, user_pin))
             result = cursor.fetchone()
