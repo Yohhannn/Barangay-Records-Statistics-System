@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="- Rnamed main database">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -449,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746382789773</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="- Rnamed main database">
+      <option name="closed" value="true" />
+      <created>1746382903257</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1746382903257</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
