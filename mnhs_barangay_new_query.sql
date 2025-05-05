@@ -139,22 +139,11 @@ CREATE TABLE HOUSEHOLD_INFO (
                                 WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
                                 TOILET_ID INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
                                 SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
-                                CONSTRAINT chk_valid_home_link CHECK(
-                                    HH_HOME_GOOGLE_LINK ~ 'https?://[^\s/$.?#].[^\s]*$]' AND
-                                    length(HH_HOME_GOOGLE_LINK) <= 1024
-),
     CONSTRAINT chk_pending_delete CHECK (
         (HH_IS_PENDING_DELETE = TRUE AND HH_DELETE_REQ_REASON IS NOT NULL) OR
         (HH_IS_PENDING_DELETE = FALSE AND HH_DELETE_REQ_REASON IS NULL)
         )
 );
-
-ALTER TABLE HOUSEHOLD_INFO
-ADD CONSTRAINT chk_valid_home_link CHECK (
-    HH_HOME_GOOGLE_LINK ~ '^https?://[^\s<>"'']+$' AND
-    length(HH_HOME_GOOGLE_LINK) <= 1024
-);
-
 
 
 -- Table: EDUCATIONAL_ATTAINMENT
