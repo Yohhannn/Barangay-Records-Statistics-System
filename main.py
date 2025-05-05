@@ -3,7 +3,7 @@ import tkinter as tk
 import ctypes
 from PySide6.QtWidgets import QApplication
 
-from Functions.Auth.Login.login_func import LoginWindow
+from Controllers.AuthenticationController.Login.login_func import LoginWindow
 
 # Initialize Tkinter (if you need it)
 root = tk.Tk()
@@ -12,7 +12,7 @@ root = tk.Tk()
 myappid = "mycompany.myproduct.subproduct.version"  # Arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
-# Hide Tkinter window (since you're using PySide6 for UI)
+# Hide Tkinter window (since you're using PySide6 for Views)
 root.withdraw()
 
 if __name__ == "__main__":
