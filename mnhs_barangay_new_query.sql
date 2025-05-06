@@ -1,3 +1,4 @@
+
 -- CREATE DATABASE marigondon_profiling_db;
 
 CREATE TABLE DEPARTMENT(
@@ -478,7 +479,6 @@ CREATE TABLE SETTLEMENT_LOG(
 --TRIGGER FUNCTIONS
 
 --AUTO UPDATE LAST UPDATED
-
 CREATE OR REPLACE FUNCTION update_last_updated_citizen()
     RETURNS TRIGGER AS $$
 BEGIN
@@ -606,8 +606,6 @@ EXECUTE FUNCTION update_last_updated_settlement();
 INSERT INTO SYSTEM_ACCOUNT(SYS_PASSWORD, SYS_FNAME, SYS_MNAME, SYS_LNAME, SYS_ROLE)
 VALUES
     (000001, 'Ian','Neko', 'Majica','Super Admin');
-    --add urs here
-
 
 INSERT INTO WATER_SOURCE(WATER_SOURCE_NAME)
 VALUES
@@ -632,7 +630,7 @@ VALUES
         ('Sitio Dos'),
         ('Sitio Tres');
 
--- Insert departments first (required for non-superadmin accounts)
+
 INSERT INTO DEPARTMENT (DEP_DEPARTMENT_NAME)
 VALUES
     ('Barangay Administration'),
@@ -641,7 +639,6 @@ VALUES
     ('Public Safety'),
     ('Engineering');
 
--- Insert a regular admin account
 INSERT INTO SYSTEM_ACCOUNT (
     SYS_PASSWORD,
     SYS_FNAME,
@@ -663,7 +660,6 @@ VALUES
         ('Adult (20-59)'),
         ('Senior Citizen (60+)');
 
-
 INSERT INTO CLASSIFICATION_HEALTH_RISK (CLAH_CLASSIFICATION_NAME)
 VALUES
         ('None'),
@@ -674,14 +670,12 @@ VALUES
         ('Under 5 Years Old'),
         ('Person With Disability');
 
-
 INSERT INTO CLASSIFICATION (CLAG_ID, CLAH_ID)
 VALUES
         (1, 1),
         (2, 6),
         (2, 2),
         (3, 1);
-
 
 INSERT INTO RELATIONSHIP_TYPE (RTH_RELATIONSHIP_NAME)
 VALUES
@@ -703,8 +697,7 @@ VALUES
         ('NHTS 4Ps', '123456'),
         ('NHTS Non-4Ps', '654321'),
         ('Non-NHTS', NULL);
-
--- Sample household
+        
 INSERT INTO HOUSEHOLD_INFO (
     HH_HOUSE_NUMBER,
     HH_ADDRESS,
@@ -732,7 +725,6 @@ INSERT INTO HOUSEHOLD_INFO (
          );
 
 
--- Sample citizen (household head)
 INSERT INTO CITIZEN (
     CTZ_FIRST_NAME,
     CTZ_MIDDLE_NAME,
@@ -1004,4 +996,3 @@ INSERT INTO FAMILY_PLANNING (
      (SELECT CTZ_ID FROM CITIZEN WHERE CTZ_LAST_NAME = 'Gonzales'),
      (SELECT FPMS_ID FROM FPM_STATUS WHERE FPMS_STATUS_NAME = 'Current User'),
      (SELECT FPM_ID FROM FAMILY_PLANNING_METHOD WHERE FPM_METHOD = 'Condom'));
-

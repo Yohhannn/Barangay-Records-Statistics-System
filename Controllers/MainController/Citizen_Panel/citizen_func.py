@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QLabel, QBu
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtCore import QTimer
 
+from Controllers.MainController.Citizen_Panel.Household.household_controller import HouseholdController
 from Controllers.base_file_func import base_file_func
 from Utils.utils_datetime import update_date_label
 from Utils.util_popup import load_popup
@@ -112,8 +113,8 @@ class citizen_func(base_file_func):
         """Handle navigation to Household Panel screen."""
         print("-- Navigating to Household")
         if not hasattr(self, 'household'):
-            from Controllers.MainController.Citizen_Panel.Household.household_func import household_func
-            self.household_panel = household_func(self.login_window, self.emp_first_name, self.stack)
+            from Controllers.MainController.Citizen_Panel.Household.household_controller import HouseholdController
+            self.household_panel = HouseholdController(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.household_panel.cp_household_screen)
 
         self.stack.setCurrentWidget(self.household_panel.cp_household_screen)
