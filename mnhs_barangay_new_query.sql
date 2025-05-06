@@ -1,4 +1,5 @@
-CREATE DATABASE marigondon_profiling_db;
+
+-- CREATE DATABASE marigondon_profiling_db;
 
 CREATE TABLE DEPARTMENT(
     DEP_ID SERIAL PRIMARY KEY,
@@ -144,14 +145,6 @@ CREATE TABLE HOUSEHOLD_INFO (
         (HH_IS_PENDING_DELETE = FALSE AND HH_DELETE_REQ_REASON IS NULL)
         )
 );
-
-
--- ALTER TABLE HOUSEHOLD_INFO
--- ADD CONSTRAINT chk_valid_home_link CHECK (
---     HH_HOME_GOOGLE_LINK ~ '^https?://[^\s<>"'']+$' AND
---     length(HH_HOME_GOOGLE_LINK) <= 1024
--- );
-
 
 
 -- Table: EDUCATIONAL_ATTAINMENT
@@ -486,7 +479,6 @@ CREATE TABLE SETTLEMENT_LOG(
 --TRIGGER FUNCTIONS
 
 --AUTO UPDATE LAST UPDATED
-
 CREATE OR REPLACE FUNCTION update_last_updated_citizen()
     RETURNS TRIGGER AS $$
 BEGIN
@@ -638,6 +630,7 @@ VALUES
         ('Sitio Dos'),
         ('Sitio Tres');
 
+
 INSERT INTO DEPARTMENT (DEP_DEPARTMENT_NAME)
 VALUES
     ('Barangay Administration'),
@@ -655,14 +648,11 @@ INSERT INTO SYSTEM_ACCOUNT (
     SYS_PERMISSION_TYPE,
     DEP_ID
 ) VALUES
-      -- Sample super Admin (no department/permissions needed)
-      ('000001', 'Juan', 'Dela', 'Cruz', 'Super Admin', NULL, NULL),
+        ('000001', 'Juan', 'Dela', 'Cruz', 'Super Admin', NULL, NULL),
+        ('000002', 'Maria', 'Santos', 'Reyes', 'Admin', 'Create',
+        (SELECT DEP_ID FROM DEPARTMENT WHERE DEP_DEPARTMENT_NAME = 'Barangay Administration'));
 
-      -- Regular Admin (requires department and permissions)
-      ('000002', 'Maria', 'Santos', 'Reyes', 'Admin', 'Create',
-       (SELECT DEP_ID FROM DEPARTMENT WHERE DEP_DEPARTMENT_NAME = 'Barangay Administration'));
 
--- First insert all reference tables needed for a household and citizen
 INSERT INTO CLASSIFICATION_AGE (CLAG_CLASSIFICATION_NAME)
 VALUES
         ('Child (0-12)'),
@@ -682,7 +672,7 @@ VALUES
 
 INSERT INTO CLASSIFICATION (CLAG_ID, CLAH_ID)
 VALUES
-        (1, Null ),
+        (1, 1),
         (2, 6),
         (2, 2),
         (3, 1);
@@ -707,8 +697,7 @@ VALUES
         ('NHTS 4Ps', '123456'),
         ('NHTS Non-4Ps', '654321'),
         ('Non-NHTS', NULL);
-
--- Now create a sample household
+        
 INSERT INTO HOUSEHOLD_INFO (
     HH_HOUSE_NUMBER,
     HH_ADDRESS,
@@ -736,7 +725,6 @@ INSERT INTO HOUSEHOLD_INFO (
          );
 
 
--- Finally create a sample citizen (household head)
 INSERT INTO CITIZEN (
     CTZ_FIRST_NAME,
     CTZ_MIDDLE_NAME,

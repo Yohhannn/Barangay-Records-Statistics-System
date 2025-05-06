@@ -435,31 +435,47 @@
       <option name="project" value="LOCAL" />
       <updated>1746264196662</updated>
     </task>
-    <task id="LOCAL-00032" summary="Updated login func following our database">
+    <task id="LOCAL-00032" summary="- Added data validation for business creation & Updated login func following our database">
       <option name="closed" value="true" />
-      <created>1746336513497</created>
+      <created>1746273279255</created>
       <option name="number" value="00032" />
       <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1746336513497</updated>
+      <updated>1746273279255</updated>
     </task>
-    <task id="LOCAL-00033" summary="Added commit() function in the database">
+    <task id="LOCAL-00033" summary="- Forgot to add this ^">
       <option name="closed" value="true" />
-      <created>1746336636345</created>
+      <created>1746285154390</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1746336636345</updated>
+      <updated>1746285154390</updated>
     </task>
-    <task id="LOCAL-00034" summary="finalize database with sample inserts &#10;PS dont delete any">
+    <task id="LOCAL-00034" summary="- Forgot to add this ^">
       <option name="closed" value="true" />
-      <created>1746362784566</created>
+      <created>1746285167791</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1746362784566</updated>
+      <updated>1746285167791</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="- Rnamed main database">
+      <option name="closed" value="true" />
+      <created>1746382789773</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1746382789773</updated>
+    </task>
+    <task id="LOCAL-00036" summary="- Rnamed main database">
+      <option name="closed" value="true" />
+      <created>1746382903257</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1746382903257</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,15 +515,15 @@
     <MESSAGE value="Improved several codes&#10;Added data validation for household create&#10;Optimized house hold create declaration and calling of function" />
     <MESSAGE value="- Added &quot;others&quot; section for business type" />
     <MESSAGE value="- Reworked codes" />
-    <MESSAGE value="Updated login func following our database" />
-    <MESSAGE value="Added commit() function in the database" />
-    <MESSAGE value="finalize database with sample inserts &#10;PS dont delete any" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalize database with sample inserts &#10;PS dont delete any" />
+    <MESSAGE value="- Added data validation for business creation" />
+    <MESSAGE value="- Forgot to add this ^" />
+    <MESSAGE value="- Rnamed main database" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Rnamed main database" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Profiling_System$database.coverage" NAME="database Coverage Results" MODIFIED="1741781100040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1746425661460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1746321909612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
     <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$login_func.coverage" NAME="login_func Coverage Results" MODIFIED="1742465812981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Functions/login_functions" />
