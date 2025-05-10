@@ -22,6 +22,214 @@
     <height>850</height>
    </size>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Dark">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Mid">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Shadow">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Dark">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Mid">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Shadow">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Dark">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Mid">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>242</red>
+        <green>239</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Shadow">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -187,7 +395,7 @@
 </string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;STATISTICS: &lt;span style=&quot; color:#3600a1;&quot;&gt;GEOGRAPHICS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;STATISTICS: &lt;span style=&quot; color:#3600a1;&quot;&gt;NEIGHBORHOOD&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -215,8 +423,8 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>681</width>
-       <height>101</height>
+       <width>1251</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -236,7 +444,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>681</width>
+        <width>1251</width>
         <height>51</height>
        </rect>
       </property>
@@ -255,106 +463,10 @@
 </string>
       </property>
       <property name="text">
-       <string>POPULATION PER STREET</string>
+       <string>POPULATION &amp; DATAS PER STREET / SITIO</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="register_citizen_comboBox_Sitio">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>221</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#register_citizen_comboBox_Sitio{
-	background-color: rgb(239, 239, 239); /* Correct property name */
-    color: #242424; /* Set text color to black for better contrast */
-    border: 1px solid #ccc; /* Optional: Add a light border */
-    padding: 5px; /* Optional: Add some padding */
-    border-radius: 4px; /* Optional: Rounded corners */
-}</string>
-      </property>
-      <property name="placeholderText">
-       <string>Select Street</string>
-      </property>
-      <property name="duplicatesEnabled">
-       <bool>false</bool>
-      </property>
-      <item>
-       <property name="text">
-        <string>None</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="statistics_labelNote_4">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>60</y>
-        <width>171</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#statistics_labelNote_4 {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Selected Street:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="statistics_labelNote_5">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>60</y>
-        <width>241</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#statistics_labelNote_4 {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -362,9 +474,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>110</y>
-       <width>681</width>
-       <height>531</height>
+       <y>60</y>
+       <width>1251</width>
+       <height>371</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -373,11 +485,11 @@
 }</string>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>169</number>
+      <number>179</number>
      </attribute>
      <column>
       <property name="text">
-       <string>No of Household</string>
+       <string>Sitio Name</string>
       </property>
       <property name="font">
        <font>
@@ -428,6 +540,58 @@
      </column>
      <column>
       <property name="text">
+       <string>No. of Seniors</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No. of PWD</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No. of Voters</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Total Population</string>
       </property>
       <property name="font">
@@ -444,149 +608,11 @@
       </property>
      </column>
     </widget>
-    <widget class="QTableWidget" name="geographics_tableDataPerStreet">
-     <property name="geometry">
-      <rect>
-       <x>750</x>
-       <y>110</y>
-       <width>511</width>
-       <height>281</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#geographics_tableDataPerStreet{
-	background-color: #fcfcfc;
-}</string>
-     </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>127</number>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Sitio Name</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>No of Seniors</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>No of PWD</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>No of Land Owners</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-    </widget>
-    <widget class="QFrame" name="table_titleFrameStatistics_2">
-     <property name="geometry">
-      <rect>
-       <x>750</x>
-       <y>60</y>
-       <width>511</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#table_titleFrameStatistics_2{
-	background-color: rgba(20, 28, 82, 128)
-}
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="statistics_labelNote_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>501</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#statistics_labelNote {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>DATA PER STREET</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-    </widget>
     <widget class="QFrame" name="table_titleFrameStatistics_3">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>400</y>
+       <x>10</x>
+       <y>440</y>
        <width>511</width>
        <height>51</height>
       </rect>
@@ -637,10 +663,10 @@
     <widget class="QFrame" name="frame2">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>450</y>
+       <x>10</x>
+       <y>490</y>
        <width>511</width>
-       <height>191</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -657,10 +683,10 @@
      <widget class="QLabel" name="geo_totalstreets">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>20</y>
-        <width>161</width>
-        <height>41</height>
+        <x>0</x>
+        <y>0</y>
+        <width>511</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
@@ -687,8 +713,8 @@
      <widget class="QLabel" name="geo_labelhighestpopu">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>120</y>
+        <x>50</x>
+        <y>80</y>
         <width>201</width>
         <height>21</height>
        </rect>
@@ -711,14 +737,14 @@
        <string>Street with the Highest Population:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_labeltotalstreets">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>80</y>
+        <y>50</y>
         <width>511</width>
         <height>21</height>
        </rect>
@@ -738,7 +764,7 @@
 </string>
       </property>
       <property name="text">
-       <string>TOTAL OF STREETS IN MARIGONDON</string>
+       <string>TOTAL OF STREETS / SITIO IN MARIGONDON</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -747,8 +773,8 @@
      <widget class="QLabel" name="geo_sitioname_highest">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>120</y>
+        <x>260</x>
+        <y>80</y>
         <width>121</width>
         <height>21</height>
        </rect>
@@ -771,15 +797,15 @@
        <string>#############</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_sitioname_highest_number">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>120</y>
-        <width>131</width>
+        <x>390</x>
+        <y>80</y>
+        <width>71</width>
         <height>21</height>
        </rect>
       </property>
@@ -801,14 +827,14 @@
        <string>##,###</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_labellowestpopu">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>150</y>
+        <x>50</x>
+        <y>100</y>
         <width>201</width>
         <height>21</height>
        </rect>
@@ -831,14 +857,14 @@
        <string>Street with the Lowest Population:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_sitioname_lowest">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>150</y>
+        <x>260</x>
+        <y>100</y>
         <width>121</width>
         <height>21</height>
        </rect>
@@ -861,15 +887,15 @@
        <string>#############</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_sitioname_lowest_number">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>150</y>
-        <width>131</width>
+        <x>390</x>
+        <y>100</y>
+        <width>71</width>
         <height>21</height>
        </rect>
       </property>
@@ -891,7 +917,7 @@
        <string>##,###</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="geo_sitioname_lowest_2">
@@ -955,6 +981,10 @@
       </property>
      </widget>
     </widget>
+    <zorder>geographics_tablePopulationPerStreet</zorder>
+    <zorder>table_titleFrameStatistics_3</zorder>
+    <zorder>frame2</zorder>
+    <zorder>table_titleFrameStatistics</zorder>
    </widget>
    <widget class="QToolButton" name="btn_returnToStatisticsPage">
     <property name="geometry">
@@ -996,6 +1026,55 @@
       <height>25</height>
      </size>
     </property>
+   </widget>
+   <widget class="QComboBox" name="filter_by_year">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>20</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filter_by_year {
+  background-color: #f8f9fa; /* Very light grey background */
+  color: #495057; /* Medium grey text for readability */
+  border: 1px solid #ced4da; /* Light grey border */
+  padding: 10px 15px; /* Comfortable padding */
+  border-radius: 6px; /* Slightly rounded corners - a modern touch */
+  font-size: 0.9rem; /* Slightly smaller, modern font size */
+  line-height: 1.5; /* Improved line height for better text spacing */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>PROFILING YEAR</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>2025</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2024</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>All Year</string>
+     </property>
+    </item>
    </widget>
   </widget>
  </widget>

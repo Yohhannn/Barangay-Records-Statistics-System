@@ -187,7 +187,7 @@
 </string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;STATISTICS: &lt;span style=&quot; color:#3600a1;&quot;&gt;HOUSEHOLD&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;STATISTICS: &lt;span style=&quot; color:#3600a1;&quot;&gt;EDUCATION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -210,120 +210,17 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QTableWidget" name="household_tablePopulationPerStreet">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>681</width>
-       <height>581</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#household_tablePopulationPerStreet{
-	background-color: #fcfcfc;
-}</string>
-     </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>135</number>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Sitio Name</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Total Households</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Total Male</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Total Female</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Average Members</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-    </widget>
-    <widget class="QFrame" name="table_titleFrameStatistics">
+    <widget class="QFrame" name="table_titleFrameStatistics_3">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>681</width>
+       <width>461</width>
        <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#table_titleFrameStatistics{
+      <string notr="true">#table_titleFrameStatistics_3{
 	background-color: rgba(20, 28, 82, 128)
 }
 </string>
@@ -334,12 +231,12 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="statistics_labelNote">
+     <widget class="QLabel" name="statistics_labelNote_3">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>681</width>
+        <width>461</width>
         <height>51</height>
        </rect>
       </property>
@@ -358,24 +255,24 @@
 </string>
       </property>
       <property name="text">
-       <string>HOUSEHOLD PER STREET</string>
+       <string>EDUCATIONAL STATUS</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="demo_frameOthers">
+    <widget class="QFrame" name="stat_frame_beneficiaries">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>10</x>
        <y>60</y>
-       <width>561</width>
-       <height>141</height>
+       <width>461</width>
+       <height>121</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#demo_frameOthers{
+      <string notr="true">#stat_frame_beneficiaries{
 	background-color: #fcfcfc;
 }</string>
      </property>
@@ -385,10 +282,10 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="value_highest_total_household">
+     <widget class="QLabel" name="bene_4Ps">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>360</x>
         <y>60</y>
         <width>81</width>
         <height>21</height>
@@ -402,181 +299,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#value_highest_total_household {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_top_household_total">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>301</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_top_household_total {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Sitio with Highest Total Household:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_ave_household_size">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>80</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_ave_household_size {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_desc_edlev_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>561</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_desc_edlev_2{
-	color: #969696;
-}</string>
-      </property>
-      <property name="text">
-       <string>TOTAL NUMBER OF THE FOLLOWING:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_desc_edlev_3">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>40</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_desc_edlev_3{
-	color: #969696;
-}</string>
-      </property>
-      <property name="text">
-       <string>Value</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sitio_highest_total">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>60</y>
-        <width>121</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#sitio_highest_total {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_deceased_2">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>110</y>
-        <width>121</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_deceased {
+       <string notr="true">#bene_4Ps {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -586,42 +309,15 @@
        <string>###,###</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_desc_edlev_4">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>40</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_desc_edlev_4{
-	color: #969696;
-}</string>
-      </property>
-      <property name="text">
-       <string>Sitio</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_household_ave_size">
+     <widget class="QLabel" name="bene_label_Non4Ps">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>80</y>
-        <width>251</width>
+        <width>331</width>
         <height>21</height>
        </rect>
       </property>
@@ -633,25 +329,25 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_household_ave_size {
+       <string notr="true">#bene_label_Non4Ps {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>Sitio with Lowest Total Household:</string>
+       <string>Total Citizens who are not Currently Studying:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="sitio_lowest_total">
+     <widget class="QLabel" name="bene_Non4Ps">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>360</x>
         <y>80</y>
-        <width>121</width>
+        <width>81</width>
         <height>21</height>
        </rect>
       </property>
@@ -663,135 +359,88 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#sitio_lowest_total {
+       <string notr="true">#bene_Non4Ps {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>N/A</string>
+       <string>###,###</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-    </widget>
-    <widget class="QFrame" name="table_titleFrameStatistics3_2">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>10</y>
-       <width>561</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#table_titleFrameStatistics3_2{
-	background-color: rgba(20, 28, 82, 128)
-}
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="statistics_labelNote_7">
+     <widget class="QLabel" name="bene_label_4Ps">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>561</width>
-        <height>51</height>
+        <x>20</x>
+        <y>60</y>
+        <width>311</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial</family>
-        <pointsize>12</pointsize>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#statistics_labelNote_7 {
+       <string notr="true">#bene_label_4Ps {
 	background-color: transparent;
-	color: #FFFFFF;
+	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>HOUSEHOLD OVERVIEW</string>
+       <string>Total Citizens who are Currently Studying:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-    </widget>
-    <widget class="QFrame" name="table_titleFrameStatistics3_3">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>210</y>
-       <width>561</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#table_titleFrameStatistics3_3{
-	background-color: rgba(20, 28, 82, 128)
-}
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="statistics_labelNote_8">
+     <widget class="QLabel" name="label_desc2_4">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>561</width>
-        <height>51</height>
+        <y>10</y>
+        <width>461</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
+        <pointsize>10</pointsize>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#statistics_labelNote_8 {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
+       <string notr="true">#label_desc2_4{
+	color: #969696;
+}</string>
       </property>
       <property name="text">
-       <string>HOUSEHOLD OWNERSHIP STATUS DATA</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TOTAL NUMBER OF PEOPLE WHO ENROLLED IN &lt;br/&gt;GOVERNMENT PROGRAMS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="demo_frame_ownership">
+    <widget class="QFrame" name="demo_frameEducationLevels">
      <property name="geometry">
       <rect>
-       <x>700</x>
-       <y>260</y>
-       <width>561</width>
-       <height>151</height>
+       <x>10</x>
+       <y>240</y>
+       <width>461</width>
+       <height>181</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#demo_frame_ownership{
+      <string notr="true">#demo_frameEducationLevels{
 	background-color: #fcfcfc;
 }</string>
      </property>
@@ -801,12 +450,12 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="total_rented">
+     <widget class="QLabel" name="demo_TotalNFE">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>70</y>
-        <width>81</width>
+        <x>280</x>
+        <y>140</y>
+        <width>161</width>
         <height>21</height>
        </rect>
       </property>
@@ -818,7 +467,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#total_rented {
+       <string notr="true">#demo_TotalNFE {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -828,15 +477,45 @@
        <string>###,###</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_rented">
+     <widget class="QLabel" name="demo_JHS">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>70</y>
+        <x>280</x>
+        <y>60</y>
         <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_JHS {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelCollege">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>231</width>
         <height>21</height>
        </rect>
       </property>
@@ -848,58 +527,25 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_rented {
+       <string notr="true">#demo_labelCollege {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>Rented:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_owned">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>50</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_owned {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
+       <string>College</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_owned">
+     <widget class="QLabel" name="demo_labelSHS">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>50</y>
-        <width>161</width>
+        <x>20</x>
+        <y>80</y>
+        <width>231</width>
         <height>21</height>
        </rect>
       </property>
@@ -911,25 +557,25 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_owned {
+       <string notr="true">#demo_labelSHS {
 	background-color: transparent;
 	color: #4f4f4f;
 }
 </string>
       </property>
       <property name="text">
-       <string>Owned:</string>
+       <string>Senior High School</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="total_leased">
+     <widget class="QLabel" name="demo_Elementary">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>90</y>
-        <width>81</width>
+        <x>280</x>
+        <y>40</y>
+        <width>161</width>
         <height>21</height>
        </rect>
       </property>
@@ -941,7 +587,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#total_leased {
+       <string notr="true">#demo_Elementary {
 	background-color: transparent;
 	color: #4f4f4f;
 }
@@ -951,15 +597,225 @@
        <string>###,###</string>
       </property>
       <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelTotalNFE">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_labelTotalNFE {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>No Formal Education</string>
+      </property>
+      <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_desc_edlev_5">
+     <widget class="QLabel" name="demo_TotalVocational">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>120</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_TotalVocational {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelTotalVocational">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_labelTotalVocational {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Vocational</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelElementary">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_labelElementary {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Elementary:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelJHS">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_labelJHS {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Junior High School</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_SHS">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>80</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_SHS {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_College">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>100</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_College {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_desc_edlev">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>561</width>
+        <width>431</width>
         <height>20</height>
        </rect>
       </property>
@@ -970,410 +826,29 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#label_desc_edlev_5{
+       <string notr="true">#label_desc_edlev{
 	color: #969696;
 }</string>
       </property>
       <property name="text">
-       <string>TOTAL NUMBER OF HOUSEHOLDS THAT BELONGS TO THE FOLLOWING:</string>
+       <string>TOTAL NUMBER OF CITIZENS WHO ATTAINED:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_leased">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>90</y>
-        <width>161</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_leased {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Leased:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_informal_settlers">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>110</y>
-        <width>161</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_informal_settlers {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Informal Settlers:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_informal_settlers">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>110</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_informal_settlers {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
     </widget>
-    <widget class="QFrame" name="demo_frame_ownership_2">
+    <widget class="QFrame" name="table_titleFrameStatistics3">
      <property name="geometry">
       <rect>
-       <x>700</x>
-       <y>470</y>
-       <width>561</width>
-       <height>151</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#demo_frame_ownership_2{
-	background-color: #fcfcfc;
-}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="total_lvl2">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>70</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_lvl2 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_communalfaucet">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>70</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_communalfaucet {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Communal Faucet - Level 2:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_lvl1">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>50</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_lvl1 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_pointsource">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>50</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_pointsource {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Point Source - Level 1:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_lvl3">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>90</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_lvl3 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_desc_edlev_6">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>561</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_desc_edlev_6{
-	color: #969696;
-}</string>
-      </property>
-      <property name="text">
-       <string>TOTAL NUMBER OF HOUSEHOLDS THAT BELONGS TO THE FOLLOWING:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_individualconnection">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>90</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_individualconnection {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Individual Connection - Level 3:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_others">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>110</y>
-        <width>161</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_others {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Others:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="total_others">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>110</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#total_others {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="table_titleFrameStatistics3_4">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>420</y>
-       <width>561</width>
+       <x>10</x>
+       <y>190</y>
+       <width>461</width>
        <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#table_titleFrameStatistics3_4{
+      <string notr="true">#table_titleFrameStatistics3{
 	background-color: rgba(20, 28, 82, 128)
 }
 </string>
@@ -1384,12 +859,12 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="statistics_labelNote_9">
+     <widget class="QLabel" name="statistics_labelNote_4">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>561</width>
+        <width>451</width>
         <height>51</height>
        </rect>
       </property>
@@ -1401,14 +876,14 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#statistics_labelNote_9 {
+       <string notr="true">#statistics_labelNote {
 	background-color: transparent;
 	color: #FFFFFF;
 }
 </string>
       </property>
       <property name="text">
-       <string>OTHER HOUSEHOLD DATA</string>
+       <string>EDUCATIONAL ATTAINMENT</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>

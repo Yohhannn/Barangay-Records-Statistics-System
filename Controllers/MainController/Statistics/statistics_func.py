@@ -33,23 +33,33 @@ class statistics_func(base_file_func):
 
         # SET MAIN STATISTICS SCREEN ASSETS
         self.statistics_screen.statistics_ButtonDemographic.setIcon(QIcon('Resources/Images/img_demographic.png'))
-        self.statistics_screen.statistics_ButtonGeographic.setIcon(QIcon('Resources/Images/img_geographic.png'))
+        self.statistics_screen.statistics_ButtonNeighborhood.setIcon(QIcon('Resources/Images/img_neighborhood.png'))
+        # self.statistics_screen.statistics_ButtonGeographic.setIcon(QIcon('Resources/Images/img_geographic.png'))        -- Renamed Geographic into Neighborhood
         self.statistics_screen.statistics_ButtonHousehold.setIcon(QIcon('Resources/Images/img_household.png'))
-        self.statistics_screen.statistics_ButtonSocioEconomic.setIcon(QIcon('Resources/Images/img_socioeconomic.png'))
-        self.statistics_screen.statistics_ButtonVoters.setIcon(QIcon('Resources/Images/img_voters.png'))
+        self.statistics_screen.statistics_ButtonEducation.setIcon(QIcon('Resources/Images/img_education.png'))
+        self.statistics_screen.statistics_ButtonEmployment.setIcon(QIcon('Resources/Images/img_employment.png'))
+        # self.statistics_screen.statistics_ButtonSocioEconomic.setIcon(QIcon('Resources/Images/img_socioeconomic.png'))  -- Removed SocioEconomic Replaced into Education
+        # self.statistics_screen.statistics_ButtonVoters.setIcon(QIcon('Resources/Images/img_voters.png'))                -- Removed Voters Replaced into Employment
         self.statistics_screen.statistics_ButtonHealth.setIcon(QIcon('Resources/Images/img_health.png'))
-        self.statistics_screen.statistics_ButtonJobs.setIcon(QIcon('Resources/Images/img_jobs.png'))
-        self.statistics_screen.statistics_ButtonGroups.setIcon(QIcon('Resources/Images/img_groups.png'))
+        self.statistics_screen.statistics_ButtonBusiness.setIcon(QIcon('Resources/Images/img_business.png'))
+        # self.statistics_screen.statistics_ButtonJobs.setIcon(QIcon('Resources/Images/img_jobs.png'))                    -- Removed Jobs Replaced into Business
+        self.statistics_screen.statistics_ButtonInfrastructures.setIcon(QIcon('Resources/Images/img_infrastructure.png'))
+        # self.statistics_screen.statistics_ButtonGroups.setIcon(QIcon('Resources/Images/img_groups.png'))                -- Removed Groups Replaced into Infrastructure
 
         # SUBPAGES: NAVIGATIONAL BUTTONS --> GOTO
         self.statistics_screen.statistics_ButtonDemographic.clicked.connect(self.goto_demographics_panel)
-        self.statistics_screen.statistics_ButtonGeographic.clicked.connect(self.goto_geographics_panel)
+        self.statistics_screen.statistics_ButtonNeighborhood.clicked.connect(self.goto_neighborhood_panel)
+        # self.statistics_screen.statistics_ButtonGeographic.clicked.connect(self.goto_geographics_panel)
         self.statistics_screen.statistics_ButtonHousehold.clicked.connect(self.goto_household_panel)
-        self.statistics_screen.statistics_ButtonSocioEconomic.clicked.connect(self.goto_socioeconomic_panel)
-        self.statistics_screen.statistics_ButtonVoters.clicked.connect(self.goto_voters_panel)
+        self.statistics_screen.statistics_ButtonEducation.clicked.connect(self.goto_education_panel)
+        self.statistics_screen.statistics_ButtonEmployment.clicked.connect(self.goto_employment_panel)
+        # self.statistics_screen.statistics_ButtonSocioEconomic.clicked.connect(self.goto_socioeconomic_panel)
+        # self.statistics_screen.statistics_ButtonVoters.clicked.connect(self.goto_voters_panel)
         self.statistics_screen.statistics_ButtonHealth.clicked.connect(self.goto_health_panel)
-        self.statistics_screen.statistics_ButtonJobs.clicked.connect(self.goto_jobs_panel)
-        self.statistics_screen.statistics_ButtonGroups.clicked.connect(self.goto_groups_panel)
+        self.statistics_screen.statistics_ButtonBusiness.clicked.connect(self.goto_business_panel)
+        # self.statistics_screen.statistics_ButtonJobs.clicked.connect(self.goto_jobs_panel)
+        self.statistics_screen.statistics_ButtonInfrastructures.clicked.connect(self.goto_infrastructures_panel)
+        # self.statistics_screen.statistics_ButtonGroups.clicked.connect(self.goto_groups_panel)
 
         # NAVIGATIONAL BUTTONS --> GOTO
         self.statistics_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard_panel)
@@ -135,16 +145,27 @@ class statistics_func(base_file_func):
         self.stack.setCurrentWidget(self.demo_panel.stat_demo_screen)
         self.setWindowTitle("MaPro: Demographics")
 
-    def goto_geographics_panel(self):
-        """Handle navigation to Geographics Panel screen."""
-        print("-- Navigating to Statistics > Geographics")
-        if not hasattr(self, 'geographic'):
-            from Controllers.MainController.Statistics.Geographics.geographics_func import geographics_func
-            self.geo_panel = geographics_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.geo_panel.stat_geo_screen)
+    def goto_neighborhood_panel(self):
+        """Handle navigation to Neighborhood Panel screen."""
+        print("-- Navigating to Statistics > Neighborhood")
+        if not hasattr(self, 'neighborhood'):
+            from Controllers.MainController.Statistics.Neighborhood.neighborhood_func import neighborhood_func
+            self.neighborhood_panel = neighborhood_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.neighborhood_panel.stat_neighborhood_screen)
 
-        self.stack.setCurrentWidget(self.geo_panel.stat_geo_screen)
-        self.setWindowTitle("MaPro: Geographics")
+        self.stack.setCurrentWidget(self.neighborhood_panel.stat_neighborhood_screen)
+        self.setWindowTitle("MaPro: Neighborhood")
+
+    # def goto_geographics_panel(self):
+    #     """Handle navigation to Geographics Panel screen."""
+    #     print("-- Navigating to Statistics > Geographics")
+    #     if not hasattr(self, 'geographic'):
+    #         from Controllers.MainController.Statistics.Geographics.geographics_func import geographics_func
+    #         self.geo_panel = geographics_func(self.login_window, self.emp_first_name, self.stack)
+    #         self.stack.addWidget(self.geo_panel.stat_geo_screen)
+    #
+    #     self.stack.setCurrentWidget(self.geo_panel.stat_geo_screen)
+    #     self.setWindowTitle("MaPro: Geographics")
 
     def goto_household_panel(self):
         """Handle navigation to Household Panel screen."""
@@ -157,27 +178,49 @@ class statistics_func(base_file_func):
         self.stack.setCurrentWidget(self.household_panel.stat_household_screen)
         self.setWindowTitle("MaPro: Household")
 
-    def goto_socioeconomic_panel(self):
-        """Handle navigation to SocioEconomic Panel screen."""
-        print("-- Navigating to Statistics > SocioEconomic")
-        if not hasattr(self, 'socioeconomic'):
-            from Controllers.MainController.Statistics.SocioEconomic.socioeconomic_func import socioeconomic_func
-            self.socioeconomic_panel = socioeconomic_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
+    # def goto_socioeconomic_panel(self):
+    #     """Handle navigation to SocioEconomic Panel screen."""
+    #     print("-- Navigating to Statistics > SocioEconomic")
+    #     if not hasattr(self, 'socioeconomic'):
+    #         from Controllers.MainController.Statistics.SocioEconomic.socioeconomic_func import socioeconomic_func
+    #         self.socioeconomic_panel = socioeconomic_func(self.login_window, self.emp_first_name, self.stack)
+    #         self.stack.addWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
+    #
+    #     self.stack.setCurrentWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
+    #     self.setWindowTitle("MaPro: SocioEconomic")
 
-        self.stack.setCurrentWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
-        self.setWindowTitle("MaPro: SocioEconomic")
+    def goto_education_panel(self):
+        """Handle navigation to Education Panel screen."""
+        print("-- Navigating to Statistics > Education")
+        if not hasattr(self, 'education'):
+            from Controllers.MainController.Statistics.Education.education_func import education_func
+            self.education_panel = education_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.education_panel.stat_edu_screen)
 
-    def goto_voters_panel(self):
-        """Handle navigation to Voters Panel screen."""
-        print("-- Navigating to Statistics > Voters")
-        if not hasattr(self, 'voters'):
-            from Controllers.MainController.Statistics.Voters.voters_func import voters_func
-            self.voters_panel = voters_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.voters_panel.stat_voters_screen)
+        self.stack.setCurrentWidget(self.education_panel.stat_edu_screen)
+        self.setWindowTitle("MaPro: Education")
 
-        self.stack.setCurrentWidget(self.voters_panel.stat_voters_screen)
-        self.setWindowTitle("MaPro: Voters")
+    def goto_employment_panel(self):
+        """Handle navigation to Employment Panel screen."""
+        print("-- Navigating to Statistics > Employment")
+        if not hasattr(self, 'employment'):
+            from Controllers.MainController.Statistics.Employment.employment_func import employment_func
+            self.employment_panel = employment_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.employment_panel.stat_emp_screen)
+
+        self.stack.setCurrentWidget(self.employment_panel.stat_emp_screen)
+        self.setWindowTitle("MaPro: Employment")
+
+    # def goto_voters_panel(self):
+    #     """Handle navigation to Voters Panel screen."""
+    #     print("-- Navigating to Statistics > Voters")
+    #     if not hasattr(self, 'voters'):
+    #         from Controllers.MainController.Statistics.Voters.voters_func import voters_func
+    #         self.voters_panel = voters_func(self.login_window, self.emp_first_name, self.stack)
+    #         self.stack.addWidget(self.voters_panel.stat_voters_screen)
+    #
+    #     self.stack.setCurrentWidget(self.voters_panel.stat_voters_screen)
+    #     self.setWindowTitle("MaPro: Voters")
 
     def goto_health_panel(self):
         """Handle navigation to Health Panel screen."""
@@ -190,27 +233,49 @@ class statistics_func(base_file_func):
         self.stack.setCurrentWidget(self.health_panel.stat_health_screen)
         self.setWindowTitle("MaPro: Health")
 
-    def goto_jobs_panel(self):
-        """Handle navigation to Jobs Panel screen."""
-        print("-- Navigating to Statistics > Jobs")
-        if not hasattr(self, 'jobs'):
-            from Controllers.MainController.Statistics.Jobs.jobs_func import jobs_func
-            self.jobs_panel = jobs_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.jobs_panel.stat_jobs_screen)
+    def goto_business_panel(self):
+        """Handle navigation to Business Panel screen."""
+        print("-- Navigating to Statistics > Business")
+        if not hasattr(self, 'business_stat'):
+            from Controllers.MainController.Statistics.Business.business_func import business_func
+            self.business_panel = business_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.business_panel.stat_business_screen)
 
-        self.stack.setCurrentWidget(self.jobs_panel.stat_jobs_screen)
-        self.setWindowTitle("MaPro: Jobs")
+        self.stack.setCurrentWidget(self.business_panel.stat_business_screen)
+        self.setWindowTitle("MaPro: Business")
 
-    def goto_groups_panel(self):
-        """Handle navigation to Groups Panel screen."""
-        print("-- Navigating to Statistics > Groups")
-        if not hasattr(self, 'groups'):
-            from Controllers.MainController.Statistics.Groups.groups_func import groups_func
-            self.groups_panel = groups_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.groups_panel.stat_groups_screen)
+    # def goto_jobs_panel(self):
+    #     """Handle navigation to Jobs Panel screen."""
+    #     print("-- Navigating to Statistics > Jobs")
+    #     if not hasattr(self, 'jobs'):
+    #         from Controllers.MainController.Statistics.Jobs.jobs_func import jobs_func
+    #         self.jobs_panel = jobs_func(self.login_window, self.emp_first_name, self.stack)
+    #         self.stack.addWidget(self.jobs_panel.stat_jobs_screen)
+    #
+    #     self.stack.setCurrentWidget(self.jobs_panel.stat_jobs_screen)
+    #     self.setWindowTitle("MaPro: Jobs")
 
-        self.stack.setCurrentWidget(self.groups_panel.stat_groups_screen)
-        self.setWindowTitle("MaPro: Groups")
+    def goto_infrastructures_panel(self):
+        """Handle navigation to Infrastructure Panel screen."""
+        print("-- Navigating to Statistics > Infrastructure")
+        if not hasattr(self, 'infra'):
+            from Controllers.MainController.Statistics.Infrastructure.infrastructure_func import infrastructure_func
+            self.infra_panel = infrastructure_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.infra_panel.stat_infra_screen)
+
+        self.stack.setCurrentWidget(self.infra_panel.stat_infra_screen)
+        self.setWindowTitle("MaPro: Infrastructure")
+
+    # def goto_groups_panel(self):
+    #     """Handle navigation to Groups Panel screen."""
+    #     print("-- Navigating to Statistics > Groups")
+    #     if not hasattr(self, 'groups'):
+    #         from Controllers.MainController.Statistics.Groups.groups_func import groups_func
+    #         self.groups_panel = groups_func(self.login_window, self.emp_first_name, self.stack)
+    #         self.stack.addWidget(self.groups_panel.stat_groups_screen)
+    #
+    #     self.stack.setCurrentWidget(self.groups_panel.stat_groups_screen)
+    #     self.setWindowTitle("MaPro: Groups")
 
     def logout(self):
         confirmation = QMessageBox.question(
