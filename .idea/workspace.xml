@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="[ Minor Fix Update V3.3.6 ]&#10;+ Ian Request&#10;-JP">
+    <list default="true" id="0ab285c0-d557-4283-9811-4442b35d21b8" name="Changes" comment="finalize database with sample inserts &#10;PS dont delete any">
+      <change afterPath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/Citizen_Profile/citizen_profile_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/Household/household_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/citizen_profile_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/household_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/citizen_profile_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/household_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Barangay-Records-Statistics-System.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AuthenticationController/Login/login_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AuthenticationController/Login/login_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/Household/household_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/Household/household_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/citizen_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MainController/Citizen_Panel/citizen_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mnhs_barangay_new_query.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +33,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-krux-2" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -32,8 +48,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Yohhannn/Barangay-Records-Statistics-System.git&quot;,
-    &quot;accountId&quot;: &quot;6a608f42-9ffe-4590-ac5e-66874d392c7c&quot;
+    &quot;url&quot;: &quot;https://github.com/Yohhannn/Barangay_Records_Statistics_System.git&quot;,
+    &quot;accountId&quot;: &quot;522068c3-3a08-4e18-918f-c98185310b8c&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -53,12 +69,13 @@
     &quot;Python.database.executor&quot;: &quot;Run&quot;,
     &quot;Python.login_func.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDatabaseViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/paul/PycharmProjects/Barangay-Records-Statistics-System/UI/MainPages&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projects/BSIT II-B/Information Management/mnhs_barangay_new_query.sql&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -127,8 +144,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PY-243.24978.54" />
-        <option value="bundled-python-sdk-91e3b7efe1d4-466328ff949b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.24978.54" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.25659.43" />
+        <option value="bundled-python-sdk-181015f7ab06-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -162,9 +179,13 @@
       <workItem from="1745299217909" duration="362000" />
       <workItem from="1745459985330" duration="604000" />
       <workItem from="1745575626206" duration="1309000" />
-      <workItem from="1746037223337" duration="36723000" />
-      <workItem from="1746681473235" duration="1324000" />
-      <workItem from="1746852776766" duration="1907000" />
+      <workItem from="1746037223337" duration="39275000" />
+      <workItem from="1746264394257" duration="402000" />
+      <workItem from="1746264805121" duration="5043000" />
+      <workItem from="1746288016988" duration="38000" />
+      <workItem from="1746335955584" duration="3018000" />
+      <workItem from="1746362472232" duration="517000" />
+      <workItem from="1746425508439" duration="1466000" />
     </task>
     <task id="LOCAL-00001" summary="[ General Update V2.7.3 ]&#10;+ Citizen Profile Register Button&#10;+ Modified Filter Option UI&#10;+ Added Register Citizen Popup&#10;+ Functionality to Upload Photo or Capture from Device&#10;+ Statistics Page : Demographics &amp; Geographics Partially Done.&#10;&gt; More to Continue : Household, Socio-Eco, Voters, Health&#10;+ Added few Icons&#10;&gt; register_citizen_profile_2.ui is a draft copy for a different ui.&#10;+ Small Changes on Dashboard UI&#10;&#10;-JP">
       <option name="closed" value="true" />
@@ -398,15 +419,63 @@
       <option name="project" value="LOCAL" />
       <updated>1746122080348</updated>
     </task>
-    <task id="LOCAL-00030" summary="[ Minor Fix Update V3.3.6 ]&#10;+ Ian Request&#10;-JP">
+    <task id="LOCAL-00030" summary="- Added &quot;others&quot; section for business type">
       <option name="closed" value="true" />
-      <created>1746259277200</created>
+      <created>1746242975135</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1746259277200</updated>
+      <updated>1746242975135</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="- Reworked codes">
+      <option name="closed" value="true" />
+      <created>1746264196662</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1746264196662</updated>
+    </task>
+    <task id="LOCAL-00032" summary="- Added data validation for business creation & Updated login func following our database">
+      <option name="closed" value="true" />
+      <created>1746273279255</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1746273279255</updated>
+    </task>
+    <task id="LOCAL-00033" summary="- Forgot to add this ^">
+      <option name="closed" value="true" />
+      <created>1746285154390</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1746285154390</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- Forgot to add this ^">
+      <option name="closed" value="true" />
+      <created>1746285167791</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1746285167791</updated>
+    </task>
+    <task id="LOCAL-00035" summary="- Rnamed main database">
+      <option name="closed" value="true" />
+      <created>1746382789773</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1746382789773</updated>
+    </task>
+    <task id="LOCAL-00036" summary="- Rnamed main database">
+      <option name="closed" value="true" />
+      <created>1746382903257</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1746382903257</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,10 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[ Major Update V2.7.6 ]&#10;+ Renamed Business -&gt; &quot;Institutions&quot;&#10;+ Renamed Schedules -&gt; &quot;Transactions&quot;&#10;+ Added 2 New Tabs For Statistics&#10;--- Jobs : Statistical Analysis for Jobs&#10;--- Groups : Statistical Analysis for Groups&#10;&#10;+ Added Few Images&#10;+ Renamed Multiple Code but the inner was not fully changed but the outside does.&#10;-JP" />
-    <MESSAGE value="[ Major Update V2.7.7 ]&#10;+ Updated Stat UI&#10;-- Health&#10;-- Jobs&#10;-- Voters&#10;-- Groups&#10;&#10;-JP" />
-    <MESSAGE value="[ General Update V2.8.0 ]&#10;+ Added 3 Pages Form for Citizen Register&#10;+ New Changes to the UI&#10;+ Fully Changed Business to Institutions&#10;+ Fully Changed Schedule to Transactions&#10;+ Modified Statistics Sub Pages&#10;+ Added Radio Button Groups &#10;+ Admin Override From PIN to Button&#10;+ Added a few Icons&#10;&#10;NOTE: Ang mo himo sa backend kamo lang butang validation/required og more if logic.&#10;&#10;-JP" />
-    <MESSAGE value="[ Major Update V2.8.1 ]&#10;~ Citizen Profile --&gt; &quot;Citizen Panel&quot;&#10;+ History Records Page &#10;+ Updated Institutions Page&#10;+ Updated Navigation Bars&#10;+ Few Added Images &amp; Icons&#10;+ Register Citizen &quot;Next&quot; as Arrows&#10;&#10;- Tiwas buntag lol&#10;-JP" />
     <MESSAGE value="- Re-organized files.&#10;- Added full code for sql" />
     <MESSAGE value="- Fixed SQL" />
     <MESSAGE value="- Separated function files&#10;- Optimized and cleaned some uncessary use of Libraries" />
@@ -448,19 +513,23 @@
     <MESSAGE value="[ Minor Fix Update V3.3.2 ]&#10;-- minor bug fix&#10;-JP" />
     <MESSAGE value="- Create CitizenUI Data Validation Setup" />
     <MESSAGE value="Improved several codes&#10;Added data validation for household create&#10;Optimized house hold create declaration and calling of function" />
-    <MESSAGE value="[ Minor Fix Update V3.3.6 ]&#10;+ Ian Request&#10;-JP" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ Minor Fix Update V3.3.6 ]&#10;+ Ian Request&#10;-JP" />
+    <MESSAGE value="- Added &quot;others&quot; section for business type" />
+    <MESSAGE value="- Reworked codes" />
+    <MESSAGE value="- Added data validation for business creation" />
+    <MESSAGE value="- Forgot to add this ^" />
+    <MESSAGE value="- Rnamed main database" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Rnamed main database" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1746198782413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
-    <SUITE FILE_PATH="coverage/Profiling_System$utils_clock.coverage" NAME="utils_clock Coverage Results" MODIFIED="1740815852587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Utils" />
-    <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$database.coverage" NAME="database Coverage Results" MODIFIED="1742465660967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Profiling_System$database.coverage" NAME="database Coverage Results" MODIFIED="1741781100040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744478508212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System___Copy$main.coverage" NAME="main Coverage Results" MODIFIED="1744790758490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$main.coverage" NAME="main Coverage Results" MODIFIED="1746321909612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Profiling_System$popup_account_info.coverage" NAME="popup_account_info Coverage Results" MODIFIED="1741191528549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PopUps" />
+    <SUITE FILE_PATH="coverage/Profiling_System$navbar.coverage" NAME="navbar Coverage Results" MODIFIED="1740809248860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$login_func.coverage" NAME="login_func Coverage Results" MODIFIED="1742465812981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Functions/login_functions" />
+    <SUITE FILE_PATH="coverage/Profiling_System$utils_clock.coverage" NAME="utils_clock Coverage Results" MODIFIED="1740815852587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Utils" />
+    <SUITE FILE_PATH="coverage/Barangay_Records_Statistics_System$database.coverage" NAME="database Coverage Results" MODIFIED="1742465660967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Profiling_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744478508212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/MaPro_System$main.coverage" NAME="main Coverage Results" MODIFIED="1744819125175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
