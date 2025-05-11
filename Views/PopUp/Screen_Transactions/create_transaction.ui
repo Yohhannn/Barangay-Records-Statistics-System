@@ -543,7 +543,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>741</width>
+       <width>761</width>
        <height>31</height>
       </rect>
      </property>
@@ -555,7 +555,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_3{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>
@@ -823,7 +823,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>741</width>
+       <width>761</width>
        <height>31</height>
       </rect>
      </property>
@@ -835,7 +835,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_4{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>
@@ -909,7 +909,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>19</day>
+      <day>18</day>
      </datetime>
     </property>
     <property name="displayFormat">

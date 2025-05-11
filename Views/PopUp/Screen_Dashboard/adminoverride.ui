@@ -161,7 +161,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_tableTitleDashboard {
+     <string notr="true">#label_titleAdminOverride {
 	background-color: transparent;
 	color: #FFFFFF;
 }

@@ -100,12 +100,17 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonDashboard {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
-	text-align: left;
-	padding: 10px;
+	text-align: left;;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonDashboard:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonDashboard:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
 }</string>
      </property>
      <property name="text">
@@ -410,18 +415,13 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonAdminPanel {
-    background-color: #f2efff;
-    color: #969696;
-    border-radius: 5px;
-	text-align: left;
-    padding: 10px; /* Optional: Adjusts spacing inside the button */
-}
-/*#nav_buttonAdminOverview:hover {
     background-color: #fdfdff;
-}
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+    color: #141c52;
+    border-radius: 5px;
+	border: 2px solid #141c52; 
+	text-align: left;
+	padding: 10px;
+}</string>
      </property>
      <property name="text">
       <string>  ADMIN PANEL</string>
@@ -491,17 +491,17 @@
      <property name="styleSheet">
       <string notr="true">#nav_buttonActivityLogs {
     background-color: #f2efff;
-    color: #969696;
+    color: #141c52;
     border-radius: 5px;
-	text-align: left;
+	text-align: left;;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
+#nav_buttonActivityLogs:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+#nav_buttonActivityLogs:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  ACTIVITY LOGS</string>
@@ -753,7 +753,7 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="app_title">
+   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -770,7 +770,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#app_title {
+     <string notr="true">#title_bodyDashboardSystemTitle {
 	background-color: transparent;
 	color: #white;
 }
@@ -889,120 +889,7 @@
 </string>
     </property>
     <property name="text">
-     <string>DASHBOARD</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_timeDashboard">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>10</y>
-      <width>441</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>36</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LayoutDirection::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_timeDashboard {
-    color: #141c52;
-}</string>
-    </property>
-    <property name="text">
-     <string>XX:XX:XX XX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_dateDashboard">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>70</y>
-      <width>501</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>20</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_dateDashboard{
-	color: #141c52;
-}</string>
-    </property>
-    <property name="text">
-     <string>MMM DD, YYYY - XXX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="title_welcomeDashboard">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>211</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>28</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#title_welcomeDashboard {
-	background-color: transparent;
-	color: #141c52;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>WELCOME,</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="title_employeeFirstNameDashboard">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>60</y>
-      <width>491</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>28</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#title_employeeFirstNameDashboard {
-	background-color: transparent;
-	color: #484d7d;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>N/A</string>
+     <string>ADMIN PANEL</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="table_recentlyAddedCitizensDashboard">
@@ -1984,10 +1871,6 @@
    <zorder>table_titleFrameDashboard</zorder>
    <zorder>logout_buttonLogout_3</zorder>
    <zorder>title_bodyDashboard</zorder>
-   <zorder>label_timeDashboard</zorder>
-   <zorder>label_dateDashboard</zorder>
-   <zorder>title_welcomeDashboard</zorder>
-   <zorder>title_employeeFirstNameDashboard</zorder>
    <zorder>table_recentlyAddedCitizensDashboard</zorder>
    <zorder>frame_titleStaffAccountInfoDashboard</zorder>
    <zorder>frame_staffAccountInformationDashboard</zorder>

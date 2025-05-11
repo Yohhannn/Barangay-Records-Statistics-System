@@ -603,7 +603,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>20</day>
+      <day>19</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -2271,7 +2271,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_3{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>

@@ -61,7 +61,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_tableTitleDashboard {
+     <string notr="true">#label_titleAdminOverride {
 	background-color: transparent;
 	color: #FFFFFF;
 }
@@ -350,7 +350,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_4{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>

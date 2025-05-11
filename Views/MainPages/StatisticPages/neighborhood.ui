@@ -259,7 +259,7 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+   <widget class="QLabel" name="app_title">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -276,7 +276,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyDashboardSystemTitle {
+     <string notr="true">#app_title {
 	background-color: transparent;
 	color: #white;
 }
@@ -634,7 +634,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>501</width>
+        <width>511</width>
         <height>51</height>
        </rect>
       </property>
@@ -646,7 +646,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#statistics_labelNote {
+       <string notr="true">#statistics_labelNote_3 {
 	background-color: transparent;
 	color: #FFFFFF;
 }
