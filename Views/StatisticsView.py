@@ -20,7 +20,6 @@ class StatisticsView:
 
         # SET NAVIGATION MAIN ASSETS
         ui_screen.nav_imageLogo.setPixmap(QPixmap("Resources/Images/General_Images/logo_brgyClear.png"))
-
         ui_screen.nav_buttonDashboard.setIcon(QIcon('Resources/Icons/General_Icons/icon_dashboard.svg'))
         ui_screen.nav_buttonCitizenPanel.setIcon(QIcon('Resources/Icons/General_Icons/icon_citizenpanel.svg'))
         ui_screen.nav_buttonStatistics.setIcon(QIcon('Resources/Icons/General_Icons/icon_statistics.svg'))
@@ -35,28 +34,33 @@ class StatisticsView:
 
         # SET MAIN STATISTICS SCREEN ASSETS
         ui_screen.statistics_ButtonDemographic.setIcon(QIcon('Resources/Images/General_Images/img_demographic.png'))
-        ui_screen.statistics_ButtonGeographic.setIcon(QIcon('Resources/Images/General_Images/img_geographic.png'))
+        ui_screen.statistics_ButtonNeighborhood.setIcon(QIcon('Resources/Images/General_Images/img_neighborhood.png'))
+        # self.statistics_screen.statistics_ButtonGeographic.setIcon(QIcon('Resources/Images/img_geographic.png'))        -- Renamed Geographic into Neighborhood
         ui_screen.statistics_ButtonHousehold.setIcon(QIcon('Resources/Images/General_Images/img_household.png'))
-        ui_screen.statistics_ButtonSocioEconomic.setIcon(QIcon('Resources/Images/General_Images/img_socioeconomic.png'))
-        ui_screen.statistics_ButtonVoters.setIcon(QIcon('Resources/Images/General_Images/img_voters.png'))
+        ui_screen.statistics_ButtonEducation.setIcon(QIcon('Resources/Images/General_Images/img_education.png'))
+        ui_screen.statistics_ButtonEmployment.setIcon(QIcon('Resources/Images/General_Images/img_employment.png'))
+        # self.statistics_screen.statistics_ButtonSocioEconomic.setIcon(QIcon('Resources/Images/img_socioeconomic.png'))  -- Removed SocioEconomic Replaced into Education
+        # self.statistics_screen.statistics_ButtonVoters.setIcon(QIcon('Resources/Images/img_voters.png'))                -- Removed Voters Replaced into Employment
         ui_screen.statistics_ButtonHealth.setIcon(QIcon('Resources/Images/General_Images/img_health.png'))
-        ui_screen.statistics_ButtonJobs.setIcon(QIcon('Resources/Images/General_Images/img_jobs.png'))
-        ui_screen.statistics_ButtonGroups.setIcon(QIcon('Resources/Images/General_Images/img_groups.png'))
+        ui_screen.statistics_ButtonBusiness.setIcon(QIcon('Resources/Images/General_Images/img_business.png'))
+        # self.statistics_screen.statistics_ButtonJobs.setIcon(QIcon('Resources/Images/img_jobs.png'))                    -- Removed Jobs Replaced into Business
+        ui_screen.statistics_ButtonInfrastructures.setIcon(
+            QIcon('Resources/Images/General_Images/img_infrastructure.png'))
+        # self.statistics_screen.statistics_ButtonGroups.setIcon(QIcon('Resources/Images/img_groups.png'))                -- Removed Groups Replaced into Infrastructure
 
         # SUBPAGES: NAVIGATIONAL BUTTONS --> GOTO
         ui_screen.statistics_ButtonDemographic.clicked.connect(self.controller.goto_demographics_panel)
-        ui_screen.statistics_ButtonGeographic.clicked.connect(self.controller.goto_geographics_panel)
+        ui_screen.statistics_ButtonNeighborhood.clicked.connect(self.controller.goto_neighborhood_panel)
         ui_screen.statistics_ButtonHousehold.clicked.connect(self.controller.goto_household_panel)
-        ui_screen.statistics_ButtonSocioEconomic.clicked.connect(self.controller.goto_socioeconomic_panel)
-        ui_screen.statistics_ButtonVoters.clicked.connect(self.controller.goto_voters_panel)
+        ui_screen.statistics_ButtonEducation.clicked.connect(self.controller.goto_education_panel)
+        ui_screen.statistics_ButtonEmployment.clicked.connect(self.controller.goto_employment_panel)
         ui_screen.statistics_ButtonHealth.clicked.connect(self.controller.goto_health_panel)
-        ui_screen.statistics_ButtonJobs.clicked.connect(self.controller.goto_jobs_panel)
-        ui_screen.statistics_ButtonGroups.clicked.connect(self.controller.goto_groups_panel)
+        ui_screen.statistics_ButtonBusiness.clicked.connect(self.controller.goto_business_panel)
+        ui_screen.statistics_ButtonInfrastructures.clicked.connect(self.controller.goto_infrastructures_panel)
 
         # NAVIGATIONAL BUTTONS --> GOTO
         ui_screen.nav_buttonDashboard.clicked.connect(self.controller.goto_dashboard_panel)
         ui_screen.nav_buttonCitizenPanel.clicked.connect(self.controller.goto_citizen_panel)
-        # ui_screen.nav_buttonStatistics.clicked.connect(self.controller.goto_statistics_panel)
         ui_screen.nav_buttonInstitutions.clicked.connect(self.controller.goto_institutions_panel)
         ui_screen.nav_buttonTransactions.clicked.connect(self.controller.goto_transactions_panel)
         ui_screen.nav_buttonHistoryRecords.clicked.connect(self.controller.goto_history_panel)

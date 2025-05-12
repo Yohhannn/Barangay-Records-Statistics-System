@@ -2,26 +2,25 @@ from PySide6.QtGui import QIcon
 
 from Controllers.BaseFileController import BaseFileController
 
-
-class jobs_func(BaseFileController):
+class business_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.stat_jobs_screen = self.load_ui("Resources/UIs/MainPages/StatisticPages/jobs.ui")
-        self.setup_jobs_ui()
+        self.stat_business_screen = self.load_ui("Resources/UIs/MainPages/StatisticPages/business.ui")
+        self.setup_business_ui()
         self.center_on_screen()
 
-    def setup_jobs_ui(self):
-        """Setup the Jobs Views layout."""
+    def setup_business_ui(self):
+        """Setup the Employment Views layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Jobs")
-        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
+        self.setWindowTitle("MaPro: Employment")
+        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
 
     # Set images and icons
-        self.stat_jobs_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.stat_business_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
 
         # Return Button
-        self.stat_jobs_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
+        self.stat_business_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""

@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>User_dashboardWidget</class>
+ <widget class="QWidget" name="User_dashboardWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1350</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1350</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#User_dashboardWidget{
+	background-color: #f2efff;
+}</string>
+  </property>
+  <widget class="QFrame" name="border_blueLines1">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>-1</y>
+     <width>1371</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines1{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>1301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyDashboardSystemTitle {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>MaPro: Marigondon Records and Statistics System</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="border_blueLines2">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>820</y>
+     <width>1381</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines2{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="baseBodyFrame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>1311</width>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#baseBodyFrame {
+	background-color: #e7e2ff;
+	border: none;
+	border-radius: 10px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="logout_buttonLogout_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#logout_buttonLogout {
+    background-color: #bc1c1c;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#logout_buttonLogout:hover {
+    background-color: #d82020; /* Slightly lighter blue when hovered */
+}
+#logout_buttonLogout:pressed {
+    background-color: #8c1515; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>LOGOUT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title_bodyStatistics">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>471</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyStatistics {
+	background-color: transparent;
+	color: #141c52;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;STATISTICS: &lt;span style=&quot; color:#3600a1;&quot;&gt;GEOGRAPHICS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>1271</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QFrame" name="table_titleFrameStatistics">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>511</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#table_titleFrameStatistics{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="statistics_labelNote">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>501</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>POPULATION PER STREET</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QTableWidget" name="geographics_tablePopulationPerStreet">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>511</width>
+       <height>581</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#geographics_tablePopulationPerStreet{
+	background-color: #fcfcfc;
+}</string>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>127</number>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Sitio Name</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Total Male</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Total Female</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Total Population</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+    </widget>
+    <widget class="QTableWidget" name="geographics_tableDataPerStreet">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>60</y>
+       <width>511</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#geographics_tableDataPerStreet{
+	background-color: #fcfcfc;
+}</string>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>127</number>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Sitio Name</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No of Seniors</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No of PWD</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No of Land Owners</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>59</red>
+        <green>57</green>
+        <blue>100</blue>
+       </color>
+      </property>
+     </column>
+    </widget>
+    <widget class="QFrame" name="table_titleFrameStatistics_2">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>10</y>
+       <width>511</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#table_titleFrameStatistics_2{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="statistics_labelNote_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>501</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>DATA PER STREET</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="table_titleFrameStatistics_3">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>350</y>
+       <width>511</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#table_titleFrameStatistics_3{
+	background-color: rgba(20, 28, 82, 128)
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="statistics_labelNote_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>511</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>OVERVIEW</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame2">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>400</y>
+       <width>511</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#frame2{
+	background-color: #fcfcfc;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="geo_totalstreets">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>20</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>18</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_totalstreets {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>[ 00 ]</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_labelhighestpopu">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>201</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_labelhighestpopu {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Street with the Highest Population:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_labeltotalstreets">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>511</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_labeltotalstreets {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>TOTAL OF STREETS IN MARIGONDON</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_highest">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>120</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_highest {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>#############</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_highest_number">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>120</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_highest_number {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>##,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_labellowestpopu">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>150</y>
+        <width>201</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_labellowestpopu {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Street with the Lowest Population:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_lowest">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>150</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_lowest {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>#############</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_lowest_number">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>150</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_lowest_number {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>##,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_lowest_2">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>170</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_lowest {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>#############</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="geo_sitioname_lowest_number_2">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>170</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#geo_sitioname_lowest_number {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>##,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QToolButton" name="btn_returnToStatisticsPage">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#btn_returnToStatisticsPage {
+    background-color: #f2efff;
+    color: #141c52;
+	border: 2px solid #141c52; 
+	border-radius: 18px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#btn_returnToStatisticsPage:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#btn_returnToStatisticsPage:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/img_return.png</normaloff>../../../Assets/FuncIcons/img_return.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

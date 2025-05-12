@@ -754,7 +754,7 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+   <widget class="QLabel" name="app_title">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -771,7 +771,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyDashboardSystemTitle {
+     <string notr="true">#app_title {
 	background-color: transparent;
 	color: #white;
 }
@@ -972,7 +972,7 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonGeographic">
+    <widget class="QToolButton" name="statistics_ButtonNeighborhood">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -992,7 +992,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonGeographic {
+      <string notr="true">#statistics_ButtonNeighborhood {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1003,19 +1003,19 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#statistics_ButtonGeographic:hover {
+#statistics_ButtonNeighborhood:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonGeographic:pressed {
+#statistics_ButtonNeighborhood:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonGeographic::icon {
+#statistics_ButtonNeighborhood::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>GEOGRAPHIC</string>
+      <string>NEIGHBORHOOD</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1090,7 +1090,7 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonSocioEconomic">
+    <widget class="QToolButton" name="statistics_ButtonEducation">
      <property name="geometry">
       <rect>
        <x>750</x>
@@ -1110,7 +1110,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonSocioEconomic {
+      <string notr="true">#statistics_ButtonEducation {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1121,19 +1121,19 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#statistics_ButtonSocioEconomic:hover {
+#statistics_ButtonEducation:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonSocioEconomic:pressed {
+#statistics_ButtonEducation:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonSocioEconomic::icon {
+#statistics_ButtonEducation::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>SOCIO-ECONOMIC</string>
+      <string>EDUCATION</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1149,7 +1149,7 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonVoters">
+    <widget class="QToolButton" name="statistics_ButtonEmployment">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1169,7 +1169,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonVoters {
+      <string notr="true">#statistics_ButtonEmployment {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1180,19 +1180,19 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#statistics_ButtonVoters:hover {
+#statistics_ButtonEmployment:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonVoters:pressed {
+#statistics_ButtonEmployment:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonVoters::icon {
+#statistics_ButtonEmployment::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>VOTERS</string>
+      <string>EMPLOYMENT</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1297,7 +1297,7 @@
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonJobs">
+    <widget class="QToolButton" name="statistics_ButtonBusiness">
      <property name="geometry">
       <rect>
        <x>510</x>
@@ -1317,7 +1317,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonJobs {
+      <string notr="true">#statistics_ButtonBusiness {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1328,19 +1328,19 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#statistics_ButtonJobs:hover {
+#statistics_ButtonBusiness:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonJobs:pressed {
+#statistics_ButtonBusiness:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonJobs::icon {
+#statistics_ButtonBusiness::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>JOBS</string>
+      <string>BUSINESS</string>
      </property>
      <property name="icon">
       <iconset>
@@ -1356,10 +1356,10 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="statistics_ButtonGroups">
+    <widget class="QToolButton" name="statistics_ButtonInfrastructures">
      <property name="geometry">
       <rect>
-       <x>740</x>
+       <x>750</x>
        <y>330</y>
        <width>220</width>
        <height>220</height>
@@ -1376,7 +1376,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#statistics_ButtonGroups {
+      <string notr="true">#statistics_ButtonInfrastructures {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1387,19 +1387,19 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#statistics_ButtonGroups:hover {
+#statistics_ButtonInfrastructures:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#statistics_ButtonGroups:pressed {
+#statistics_ButtonInfrastructures:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#statistics_ButtonGroups::icon {
+#statistics_ButtonInfrastructures::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>GROUPS</string>
+      <string>INFRASTRUCTURES</string>
      </property>
      <property name="icon">
       <iconset>
