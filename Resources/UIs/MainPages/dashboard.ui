@@ -1014,10 +1014,25 @@
       <height>231</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">#table_recentlyAddedCitizensDashboard{
 	background-color: #f2efff;
 }</string>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+    </property>
+    <property name="tabKeyNavigation">
+     <bool>false</bool>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>false</bool>
     </property>
     <property name="showGrid">
      <bool>true</bool>
