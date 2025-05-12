@@ -1,17 +1,16 @@
-from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
-from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QMessageBox, QPushButton, QLabel, QFileDialog, QButtonGroup, QRadioButton
+from PySide6.QtGui import QIcon, Qt
+from PySide6.QtWidgets import QMessageBox, QButtonGroup, QRadioButton
 #from django.core.validators import validate_email
 
-from Controllers.base_file_func import base_file_func
-from Utils.utils_datetime import update_date_label
+from Controllers.BaseFileController import BaseFileController
+from Controllers.UserController.InstitutionController import InstitutionsController
 from Utils.util_popup import load_popup
 
-class business_func(base_file_func):
+class BusinessController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.inst_business_screen = self.load_ui("Views/MainPages/InstitutionPages/business.ui")
+        self.inst_business_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/business.ui")
         self.setup_business_ui()
         self.center_on_screen()
 
@@ -19,15 +18,15 @@ class business_func(base_file_func):
         """Setup the Business Views layout."""
         self.setFixedSize(1350, 850)
         self.setWindowTitle("MaPro: Business")
-        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
+        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 
     # Set images and icons
-        self.inst_business_screen.btn_returnToInstitutionPage.setIcon(QIcon('Resources/FuncIcons/img_return.png'))
-        self.inst_business_screen.inst_BusinessName_buttonSearch.setIcon(QIcon('Resources/FuncIcons/icon_search_w.svg'))
-        self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Resources/FuncIcons/icon_add.svg'))
-        self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Resources/FuncIcons/icon_edit.svg'))
-        self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Resources/FuncIcons/icon_del.svg'))
-        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/FuncIcons/icon_filter.svg'))
+        self.inst_business_screen.btn_returnToInstitutionPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.inst_business_screen.inst_BusinessName_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
+        self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+        self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+        self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Return Button
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
@@ -37,12 +36,12 @@ class business_func(base_file_func):
 
     def show_register_business_popup(self):
         print("-- Register Business Popup")
-        self.popup = load_popup("Views/PopUp/Screen_Institutions/register_business.ui", self)
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/register_business.ui", self)
         self.popup.setWindowTitle("Mapro: Register New Business")
         self.popup.setFixedSize(self.popup.size())
 
-        self.popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Resources/FuncIcons/icon_confirm.svg'))
-        self.popup.inst_DTIuploadButton.setIcon(QIcon('Resources/Icons/icon_upload_image.png'))
+        self.popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.inst_DTIuploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.png'))
         self.popup.register_buttonConfirmBusiness_SaveForm.clicked.connect(self.validate_business_fields)
 
         self.popup.setWindowModality(Qt.ApplicationModal)
@@ -151,11 +150,11 @@ class business_func(base_file_func):
         #     image_label.setAlignment(Qt.AlignCenter)  # Center the image inside the label
         #
         # if upload_button:
-        #     upload_button.setIcon(QIcon("Resources/Icons/icon_upload_image.svg"))
+        #     upload_button.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
         #
         #     def upload_image():
         #         file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "",
-        #                                                    "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+        #                                                    "General_Images (*.png *.jpg *.jpeg *.bmp *.gif)")
         #         if file_path:
         #             pixmap = QPixmap(file_path)
         #             image_label.setPixmap(
@@ -191,8 +190,8 @@ class business_func(base_file_func):
         """Handle navigation to Institutions Panel screen."""
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions'):
-            from Controllers.MainController.Institutions.institution_func import institutions_func
-            self.institutions_panel = institutions_func(self.login_window, self.emp_first_name, self.stack)
+            from Controllers.UserController.InstitutionController import InstitutionsController
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)

@@ -1,57 +1,17 @@
-from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
-from PySide6.QtCore import QTimer
+from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtWidgets import QMessageBox, QApplication
 
-from Controllers.base_file_func import base_file_func
-from Utils.utils_datetime import update_date_label
-from Utils.util_popup import load_popup
+from Controllers.BaseFileController import BaseFileController
 
-class history_func(base_file_func):
+
+class history_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.history_screen = self.load_ui("Views/MainPages/historyrecords.ui")
+        self.history_screen = self.load_ui("Resources/UIs/MainPages/historyrecords.ui")
         self.setup_history_ui()
         self.center_on_screen()
 
-    def setup_history_ui(self):
-        """Setup the History Records Views layout."""
-        self.setFixedSize(1350, 850)  # Set size for business screen
-        self.setWindowTitle("MaPro: History Records")
-        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
-
-        # SET NAVIGATION MAIN ASSETS
-        self.history_screen.nav_imageLogo.setPixmap(QPixmap("Resources/Images/logo_brgyClear.png"))
-        self.history_screen.nav_buttonDashboard.setIcon(QIcon('Resources/Icons/icon_dashboard.svg'))
-        self.history_screen.nav_buttonCitizenPanel.setIcon(QIcon('Resources/Icons/icon_citizenpanel.svg'))
-        self.history_screen.nav_buttonStatistics.setIcon(QIcon('Resources/Icons/icon_statistics.svg'))
-        self.history_screen.nav_buttonInstitutions.setIcon(QIcon('Resources/Icons/icon_institutions.svg'))
-        self.history_screen.nav_buttonTransactions.setIcon(QIcon('Resources/Icons/icon_transaction.svg'))
-        self.history_screen.nav_buttonHistoryRecords.setIcon(QIcon('Resources/Icons/icon_historyrecord.svg'))
-
-        # SET NAVIGATION ADMIN ASSETS
-        self.history_screen.nav_buttonAdminPanel.setIcon(QIcon('Resources/Icons/icon_adminoverview_off.svg'))
-        self.history_screen.nav_buttonActivityLogs.setIcon(QIcon('Resources/Icons/icon_activitylogs_off.svg'))
-        self.history_screen.nav_isLocked.setIcon(QIcon('Resources/Icons/icon_isLocked.svg'))
-
-        # SET MAIN HISTORY RECORDS SCREEN ASSETS
-        self.history_screen.hisrec_Button_CitizenHistory.setIcon(QIcon('Resources/Images/img_history_citizen.png'))
-        self.history_screen.hisrec_Button_MedicalHistory.setIcon(QIcon('Resources/Images/img_history_medical.png'))
-        self.history_screen.hisrec_Button_SettlementHistory.setIcon(QIcon('Resources/Images/img_history_settlement.png'))
-
-        # SUBPAGES : NAVIGATIONAL BUTTONS --> GOTO
-        self.history_screen.hisrec_Button_CitizenHistory.clicked.connect(self.goto_citizen_history_panel)
-        self.history_screen.hisrec_Button_MedicalHistory.clicked.connect(self.goto_medical_history_panel)
-        self.history_screen.hisrec_Button_SettlementHistory.clicked.connect(self.goto_settlement_history_panel)
-
-        # NAVIGATIONAL BUTTONS --> GOTO
-        self.history_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard_panel)
-        self.history_screen.nav_buttonCitizenPanel.clicked.connect(self.goto_citizen_panel)
-        self.history_screen.nav_buttonStatistics.clicked.connect(self.goto_statistics_panel)
-        self.history_screen.nav_buttonInstitutions.clicked.connect(self.goto_institutions_panel)
-        self.history_screen.nav_buttonTransactions.clicked.connect(self.goto_transactions_panel)
-        # self.history_screen.nav_buttonHistoryRecords.clicked.connect(self.goto_history_panel)
-        self.history_screen.logout_buttonLogout.clicked.connect(self.logout)
 
     # GOTO NAVIGATIONS ================================
     def goto_dashboard_panel(self):
@@ -64,7 +24,7 @@ class history_func(base_file_func):
         """Handle navigation to Citizen Panel screen."""
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
-            from Controllers.MainController.Citizen_Panel.citizen_func import citizen_func
+            from Controllers.Categories.citizen_func import citizen_func
             self.citizen_panel = citizen_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
@@ -75,7 +35,7 @@ class history_func(base_file_func):
         """Handle navigation to Statistics Panel screen."""
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
-            from Controllers.MainController.Statistics.statistics_func import statistics_func
+            from Controllers.Categories.statistics_func import statistics_func
             self.statistics_panel = statistics_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
@@ -86,7 +46,7 @@ class history_func(base_file_func):
         """Handle navigation to Institutions Panel screen."""
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions'):
-            from Controllers.MainController.Institutions.institution_func import institutions_func
+            from Controllers.Categories.institution_func import institutions_func
             self.institutions_panel = institutions_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
@@ -97,7 +57,7 @@ class history_func(base_file_func):
         """Handle navigation to Transactions Panel screen."""
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions'):
-            from Controllers.MainController.Transactions.transaction_func import transaction_func
+            from Controllers.Categories.transaction_func import transaction_func
             self.transactions_panel = transaction_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
@@ -110,7 +70,7 @@ class history_func(base_file_func):
         """Handle navigation to Citizen History Panel screen."""
         print("-- Navigating to Citizen History")
         if not hasattr(self, 'citizen_history'):
-            from Controllers.MainController.History_Records.Citizen_History.citizen_history_func import citizen_history_func
+            from Controllers.Categories.Citizen_History.CitizenHistoryController import citizen_history_func
             self.citizen_history_panel = citizen_history_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.citizen_history_panel.hist_citizen_history_screen)
 
@@ -120,7 +80,7 @@ class history_func(base_file_func):
         """Handle navigation to Medical History Panel screen."""
         print("-- Navigating to Medical History")
         if not hasattr(self, 'medical_history'):
-            from Controllers.MainController.History_Records.Medical_History.medical_history_func import medical_history_func
+            from Controllers.Categories.Medical_History.medical_history_func import medical_history_func
             self.medical_history_panel = medical_history_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.medical_history_panel.hist_medical_history_screen)
 
@@ -130,7 +90,7 @@ class history_func(base_file_func):
         """Handle navigation to Settlement History Panel screen."""
         print("-- Navigating to Settlement History")
         if not hasattr(self, 'settlement_history'):
-            from Controllers.MainController.History_Records.Settlement_History.settlement_history_func import settlement_history_func
+            from Controllers.Categories.Settlement_History.settlement_history_func import settlement_history_func
             self.settlement_history_panel = settlement_history_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.settlement_history_panel.hist_settlement_history_screen)
 

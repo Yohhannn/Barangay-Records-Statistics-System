@@ -1,16 +1,13 @@
-from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
-from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtGui import QIcon
 
-from Controllers.base_file_func import base_file_func
-from Utils.utils_datetime import update_date_label
-from Utils.util_popup import load_popup
+from Controllers.BaseFileController import BaseFileController
 
-class health_func(base_file_func):
+
+class health_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.stat_health_screen = self.load_ui("Views/MainPages/StatisticPages/health.ui")
+        self.stat_health_screen = self.load_ui("Resources/UIs/MainPages/StatisticPages/health.ui")
         self.setup_health_ui()
         self.center_on_screen()
 
@@ -18,10 +15,10 @@ class health_func(base_file_func):
         """Setup the Health Views layout."""
         self.setFixedSize(1350, 850)
         self.setWindowTitle("MaPro: Health")
-        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
+        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 
     # Set images and icons
-        self.stat_health_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/FuncIcons/img_return.png'))
+        self.stat_health_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
 
         # Return Button
         self.stat_health_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
@@ -30,8 +27,8 @@ class health_func(base_file_func):
         """Handle navigation to Statistics Panel screen."""
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
-            from Controllers.MainController.Statistics.statistics_func import statistics_func
-            self.statistics_panel = statistics_func(self.login_window, self.emp_first_name, self.stack)
+            from Controllers.UserController.StatisticsController import StatisticsController
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)

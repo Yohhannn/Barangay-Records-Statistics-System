@@ -2,7 +2,7 @@ import os
 import shutil
 from database import Database
 
-class CitizenProfile:
+class CitizenModel:
     def __init__(self):
         self.image_path = None
 
