@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
-from Controllers.MainController.Dashboard.dashboard_func import dashboard_func
+from Controllers.UserController.DashboardController import DashboardController
 from database import Database
 from Utils.utils_corner import applyRoundedCorners
 
@@ -11,7 +11,7 @@ class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.loader = QUiLoader()
-        self.login_screen = self.load_ui("Views/AuthPages/login.ui")
+        self.login_screen = self.load_ui("Resources/UIs/AuthPages/login.ui")
         self.setCentralWidget(self.login_screen)
 
         self.SUPER_ADMIN_ID = 1
@@ -19,7 +19,7 @@ class LoginWindow(QMainWindow):
 
         self.setFixedSize(1080, 720)
         self.setWindowTitle("MaPro - Marigondon Records & Statistics System")
-        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_auth.ico"))
+        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_auth.ico"))
 
         self.setup_images()
         self.setup_rounded_corners()
@@ -39,9 +39,9 @@ class LoginWindow(QMainWindow):
         return ui
 
     def setup_images(self):
-        self.login_screen.login_imageLogo.setPixmap(QPixmap("Resources/Images/logo_brgyClear.png"))
-        self.login_screen.login_imagePattern.setPixmap(QPixmap("Resources/Images/img_banner_mapro.png"))
-        self.login_screen.login_imageAppIcon.setPixmap(QPixmap("Resources/Images/img_mainappicon.png"))
+        self.login_screen.login_imageLogo.setPixmap(QPixmap("Resources/Images/General_Images/logo_brgyClear.png"))
+        self.login_screen.login_imagePattern.setPixmap(QPixmap("Resources/Images/General_Images/img_banner_mapro.png"))
+        self.login_screen.login_imageAppIcon.setPixmap(QPixmap("Resources/Images/General_Images/img_mainappicon.png"))
 
     def setup_rounded_corners(self):
         applyRoundedCorners(
@@ -123,9 +123,9 @@ class LoginWindow(QMainWindow):
                 connection.close()
 
     def grant_access(self, first_name):
-        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
-        QMessageBox.information(self, "Success", "Login successful!")
-        dashboard_func(self, first_name).show()
+        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
+        # QMessageBox.information(self, "Success", "Login successful!")
+        DashboardController(self, first_name).show()
         self.close()
 
     def clear_fields(self):

@@ -3,7 +3,7 @@ import tkinter as tk
 import ctypes
 from PySide6.QtWidgets import QApplication
 
-from Controllers.AuthenticationController.Login.login_func import LoginWindow
+from Controllers.LoginController import LoginWindow
 
 # Initialize Tkinter (if you need it)
 root = tk.Tk()
