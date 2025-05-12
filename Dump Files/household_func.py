@@ -19,15 +19,15 @@
 #     def setup_household_ui(self):
 #         self.setFixedSize(1350, 850)
 #         self.setWindowTitle("MaPro: Household")
-#         self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
+#         self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 #
 #     # Set images and icons
-#         self.cp_household_screen.btn_returnToCitizenPanelPage.setIcon(QIcon('Resources/FuncIcons/img_return.png'))
-#         self.cp_household_screen.cp_HouseholdName_buttonSearch.setIcon(QIcon('Resources/FuncIcons/icon_search_w.svg'))
-#         self.cp_household_screen.cp_household_button_register.setIcon(QIcon('Resources/FuncIcons/icon_add.svg'))
-#         self.cp_household_screen.cp_household_button_update.setIcon(QIcon('Resources/FuncIcons/icon_edit.svg'))
-#         self.cp_household_screen.cp_household_button_remove.setIcon(QIcon('Resources/FuncIcons/icon_del.svg'))
-#         self.cp_household_screen.householdList_buttonFilter.setIcon(QIcon('Resources/FuncIcons/icon_filter.svg'))
+#         self.cp_household_screen.btn_returnToCitizenPanelPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+#         self.cp_household_screen.cp_HouseholdName_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
+#         self.cp_household_screen.cp_household_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+#         self.cp_household_screen.cp_household_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+#         self.cp_household_screen.cp_household_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+#         self.cp_household_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 #
 #         # BUTTONS REGISTRATIOPN
 #         self.cp_household_screen.btn_returnToCitizenPanelPage.clicked.connect(self.goto_citizen_panel)
@@ -42,7 +42,7 @@
 #         self.popup.setWindowModality(Qt.ApplicationModal)
 #         self.popup.setFixedSize(self.popup.size())
 #
-#         self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Resources/FuncIcons/icon_confirm.svg'))
+#         self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
 #
 #
 #         # BUTTON REGISTRATION
@@ -51,7 +51,7 @@
 #
 #         # ICON LOAD
 #
-#         self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/icon_upload_image.svg"))
+#         self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
 #         self.popup.imageLabel.setAlignment(Qt.AlignCenter)
 #
 #
@@ -67,11 +67,11 @@
 #         #     image_label.setAlignment(Qt.AlignCenter)  # Center the image inside the label
 #         #
 #         # if upload_button:
-#         #     upload_button.setIcon(QIcon("Resources/Icons/icon_upload_image.svg"))
+#         #     upload_button.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
 #         #
 #         #     def upload_image():
 #         #         file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "",
-#         #                                                    "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+#         #                                                    "General_Images (*.png *.jpg *.jpeg *.bmp *.gif)")
 #         #         if file_path:
 #         #             pixmap = QPixmap(file_path)
 #         #             image_label.setPixmap(
@@ -117,7 +117,7 @@
 #
 #     def upload_function(self):
 #
-#         file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "","Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+#         file_path, _ = QFileDialog.getOpenFileName(self.popup, "Select an Image", "","General_Images (*.png *.jpg *.jpeg *.bmp *.gif)")
 #         if file_path:
 #             pixmap = QPixmap(file_path)
 #             self.popup.imageLabel.setPixmap(pixmap.scaled(self.popup.imageLabel.width(),
@@ -141,7 +141,7 @@
 #         """Handle navigation to Citizen Panel screen."""
 #         print("-- Navigating to Citizen Panel")
 #         if not hasattr(self, 'citizen_panel'):
-#             from Controllers.MainController.Citizen_Panel.citizen_func import citizen_func
+#             from Controllers.Categories.citizen_func import citizen_func
 #             self.citizen_panel = citizen_func(self.login_window, self.emp_first_name, self.stack)
 #             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 #

@@ -1,11 +1,11 @@
 from PySide6.QtCore import QDate
 
-from Controllers.base_file_func import base_file_func
-from Models.household_model import HouseholdModel
-from Views.household_view import HouseholdView
+from Controllers.BaseFileController import BaseFileController
+from Models.HouseholdModel import HouseholdModel
+from Views.CitizenPanel.HouseholdView import HouseholdView
 
 
-class HouseholdController(base_file_func):
+class HouseholdController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
@@ -13,14 +13,13 @@ class HouseholdController(base_file_func):
         self.view = HouseholdView(self)
 
         # Load UI
-        self.cp_household_screen = self.load_ui("Views/MainPages/CitizenPanelPages/cp_household.ui")
+        self.cp_household_screen = self.load_ui("Resources/Uis/MainPages/CitizenPanelPages/cp_household.ui")
         self.view.setup_household_ui(self.cp_household_screen)
         self.center_on_screen()
 
         # Store references needed for navigation
         self.login_window = login_window
         self.emp_first_name = emp_first_name
-        self.stack = stack
 
     def show_register_household_popup(self):
         print("-- Register New Household Popup")
@@ -85,9 +84,11 @@ class HouseholdController(base_file_func):
         """Handle navigation to Citizen Panel screen."""
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
-            from Controllers.MainController.Citizen_Panel.citizen_func import citizen_func
-            self.citizen_panel = citizen_func(self.login_window, self.emp_first_name, self.stack)
+            from Controllers.UserController.CitizenPanelController import CitizenPanelController
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
+
+        # self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
         self.setWindowTitle("MaPro: Citizen Panel")

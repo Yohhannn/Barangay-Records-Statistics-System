@@ -13,29 +13,29 @@ class HouseholdView:
     def setup_household_ui(self, ui_screen):
         self.cp_household_screen = ui_screen
         ui_screen.setWindowTitle("MaPro: Household")
-        ui_screen.setWindowIcon(QIcon("Assets/AppIcons/appicon_active_u.ico"))
+        ui_screen.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 
         # Set icons
-        ui_screen.btn_returnToCitizenPanelPage.setIcon(QIcon('Resources/FuncIcons/img_return.png'))
-        ui_screen.cp_HouseholdName_buttonSearch.setIcon(QIcon('Resources/FuncIcons/icon_search_w.svg'))
-        ui_screen.cp_household_button_register.setIcon(QIcon('Resources/FuncIcons/icon_add.svg'))
-        ui_screen.cp_household_button_update.setIcon(QIcon('Resources/FuncIcons/icon_edit.svg'))
-        ui_screen.cp_household_button_remove.setIcon(QIcon('Resources/FuncIcons/icon_del.svg'))
-        ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/FuncIcons/icon_filter.svg'))
+        ui_screen.btn_returnToCitizenPanelPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        ui_screen.cp_HouseholdName_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
+        ui_screen.cp_household_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+        ui_screen.cp_household_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+        ui_screen.cp_household_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+        ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect buttons
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
         ui_screen.cp_household_button_register.clicked.connect(self.controller.show_register_household_popup)
 
     def show_register_household_popup(self, parent):
-        self.popup = load_popup("Views/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", parent)
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", parent)
         self.popup.setWindowTitle("Mapro: Register New Household")
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.setFixedSize(self.popup.size())
 
         # Setup popup UI
-        self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Assets/FuncIcons/icon_confirm.svg'))
-        self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/icon_upload_image.svg"))
+        self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Resources/Icons//FuncIcons/icon_confirm.svg'))
+        self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
         self.popup.imageLabel.setAlignment(Qt.AlignCenter)
 
         date_edit = self.popup.register_household_date_DOV
@@ -94,13 +94,13 @@ class HouseholdView:
         QMessageBox.warning(self.popup, "Incomplete Form",
                             "Please complete all required fields:\n\n• " + "\n• ".join(errors))
 
-    def highlight_missing_fields(self, errors):
-        if "Home address is required" in errors:
-            self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid red;")
-        if "Sitio is required" in errors:
-            self.popup.register_household_comboBox_Sitio.setStyleSheet("border: 1px solid red;")
-        if "Ownership Status is required" in errors:
-            self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet("border: 1px solid red;")
+    # def highlight_missing_fields(self, errors):
+    #     if "Home address is required" in errors:
+    #         self.popup.register_household_homeAddress.setStyleSheet("border: 1px solid red;")
+    #     if "Sitio is required" in errors:
+    #         self.popup.register_household_comboBox_Sitio.setStyleSheet("border: 1px solid red;")
+    #     if "Ownership Status is required" in errors:
+    #         self.popup.register_household_comboBox_OwnershipStatus.setStyleSheet("border: 1px solid red;")
 
     def show_success_message(self):
         QMessageBox.information(self.popup, "Success", "Household successfully registered!")
@@ -111,7 +111,7 @@ class HouseholdView:
     def get_file_path(self):
         return QFileDialog.getOpenFileName(
             self.popup, "Select an Image", "",
-            "Images (*.png *.jpg *.jpeg *.bmp *.gif)"
+            "General_Images (*.png *.jpg *.jpeg *.bmp *.gif)"
         )[0]
 
     def confirm_registration(self):
