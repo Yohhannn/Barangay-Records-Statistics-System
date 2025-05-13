@@ -3674,154 +3674,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="demo_frameOthers_3">
-     <property name="geometry">
-      <rect>
-       <x>890</x>
-       <y>610</y>
-       <width>371</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#demo_frameOthers_3 {
-  background-color: #fcfcfc;
-  border-radius: 8px; /* Adjust the pixel value to control the roundness */
-}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_total_indppl_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>100</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#label_total_indppl {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QDateEdit" name="filter_date_min_2">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>10</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>8</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#filter_date_min {
-    background-color: rgb(239, 239, 239);
-    color: #242424;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 0.8em; /* Example: 80% of the parent's font size */
-}</string>
-      </property>
-      <property name="dateTime">
-       <datetime>
-        <hour>0</hour>
-        <minute>0</minute>
-        <second>0</second>
-        <year>1999</year>
-        <month>12</month>
-        <day>13</day>
-       </datetime>
-      </property>
-      <property name="displayFormat">
-       <string>MM/dd/yyyy</string>
-      </property>
-      <property name="calendarPopup">
-       <bool>true</bool>
-      </property>
-      <property name="currentSectionIndex">
-       <number>0</number>
-      </property>
-      <property name="timeSpec">
-       <enum>Qt::TimeSpec::UTC</enum>
-      </property>
-     </widget>
-     <widget class="QDateEdit" name="filter_date_min">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>8</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#filter_date_min {
-    background-color: rgb(239, 239, 239);
-    color: #242424;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 0.8em; /* Example: 80% of the parent's font size */
-}</string>
-      </property>
-      <property name="dateTime">
-       <datetime>
-        <hour>0</hour>
-        <minute>0</minute>
-        <second>0</second>
-        <year>1999</year>
-        <month>12</month>
-        <day>14</day>
-       </datetime>
-      </property>
-      <property name="displayFormat">
-       <string>MM/dd/yyyy</string>
-      </property>
-      <property name="calendarPopup">
-       <bool>true</bool>
-      </property>
-      <property name="currentSectionIndex">
-       <number>0</number>
-      </property>
-      <property name="timeSpec">
-       <enum>Qt::TimeSpec::UTC</enum>
-      </property>
-     </widget>
-    </widget>
    </widget>
    <widget class="QToolButton" name="btn_returnToStatisticsPage">
     <property name="geometry">
@@ -3863,6 +3715,278 @@
       <height>25</height>
      </size>
     </property>
+   </widget>
+   <widget class="QFrame" name="demo_frameOthers_3">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>10</y>
+      <width>301</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#demo_frameOthers_3 {
+  background-color: #fcfcfc;
+  border-radius: 8px; /* Adjust the pixel value to control the roundness */
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_total_indppl_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_total_indppl {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="filter_stat_date_button">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>10</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>7</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#filter_stat_date_button {
+
+background-color: #474747;
+
+color: white;
+
+border: 1px solid #b5b5b5;
+
+border-radius: 10px;
+
+padding: 10px;
+
+}
+
+
+
+#filter_stat_date_button:hover {
+
+background-color: #636363;
+
+color: white;
+
+}
+
+
+
+#filter_stat_date_button:pressed {
+
+background-color: #bfbfbf;
+
+color: white;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>FILTER</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>18</width>
+       <height>18</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="filter_date_min">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#filter_date_min {
+    background-color: rgb(239, 239, 239);
+    color: #242424;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 0.8em; /* Example: 80% of the parent's font size */
+}</string>
+     </property>
+     <property name="dateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2023</year>
+       <month>12</month>
+       <day>31</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>MM/dd/yyyy</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+     <property name="currentSectionIndex">
+      <number>0</number>
+     </property>
+     <property name="timeSpec">
+      <enum>Qt::TimeSpec::UTC</enum>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="filter_date_max">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#filter_date_max {
+    background-color: rgb(239, 239, 239);
+    color: #242424;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 0.8em; /* Example: 80% of the parent's font size */
+}</string>
+     </property>
+     <property name="dateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2025</year>
+       <month>5</month>
+       <day>12</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>MM/dd/yyyy</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+     <property name="currentSectionIndex">
+      <number>0</number>
+     </property>
+     <property name="timeSpec">
+      <enum>Qt::TimeSpec::UTC</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_from">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>1</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_from{
+	color: #969696;
+}</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FROM&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_to">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>1</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_to{
+	color: #969696;
+}</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
