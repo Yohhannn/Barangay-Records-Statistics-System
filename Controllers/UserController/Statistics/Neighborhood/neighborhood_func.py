@@ -2,26 +2,25 @@ from PySide6.QtGui import QIcon
 
 from Controllers.BaseFileController import BaseFileController
 
-
-class groups_func(BaseFileController):
+class neighborhood_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.stat_groups_screen = self.load_ui("Resources/UIs/MainPages/StatisticPages/groups.ui")
-        self.setup_groups_ui()
+        self.stat_neighborhood_screen = self.load_ui("Resources/UIs/MainPages/StatisticPages/neighborhood.ui")
+        self.setup_neighborhood_ui()
         self.center_on_screen()
 
-    def setup_groups_ui(self):
-        """Setup the Groups Views layout."""
+    def setup_neighborhood_ui(self):
+        """Setup the Neighborhood Views layout."""
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Groups")
-        self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
+        self.setWindowTitle("MaPro: Neighborhood")
+        self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
 
     # Set images and icons
-        self.stat_groups_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.stat_neighborhood_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
 
         # Return Button
-        self.stat_groups_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
+        self.stat_neighborhood_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""

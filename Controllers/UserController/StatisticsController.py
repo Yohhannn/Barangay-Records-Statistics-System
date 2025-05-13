@@ -140,89 +140,89 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Demographics Panel screen."""
         print("-- Navigating to Statistics > Demographics")
         if not hasattr(self, 'demographic'):
-            from Controllers.UserController.Statistics.demographics_func import demographics_func
+            from Controllers.UserController.Statistics.Demographics.demographics_func import demographics_func
             self.demo_panel = demographics_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.demo_panel.stat_demo_screen)
 
         self.stack.setCurrentWidget(self.demo_panel.stat_demo_screen)
         self.setWindowTitle("MaPro: Demographics")
 
-    def goto_geographics_panel(self):
-        """Handle navigation to Geographics Panel screen."""
-        print("-- Navigating to Statistics > Geographics")
-        if not hasattr(self, 'geographic'):
-            from Controllers.UserController.Statistics.geographics_func import geographics_func
-            self.geo_panel = geographics_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.geo_panel.stat_geo_screen)
+    def goto_neighborhood_panel(self):
+        """Handle navigation to Neighborhood Panel screen."""
+        print("-- Navigating to Statistics > Neighborhood")
+        if not hasattr(self, 'neighborhood'):
+            from Controllers.UserController.Statistics.Neighborhood.neighborhood_func import neighborhood_func
+            self.neighborhood_panel = neighborhood_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.neighborhood_panel.stat_neighborhood_screen)
 
-        self.stack.setCurrentWidget(self.geo_panel.stat_geo_screen)
-        self.setWindowTitle("MaPro: Geographics")
+        self.stack.setCurrentWidget(self.neighborhood_panel.stat_neighborhood_screen)
+        self.setWindowTitle("MaPro: Neighborhood")
 
     def goto_household_panel(self):
         """Handle navigation to Household Panel screen."""
         print("-- Navigating to Statistics > Household")
         if not hasattr(self, 'household'):
-            from Controllers.UserController.Statistics.household_func import household_func
+            from Controllers.UserController.Statistics.Household.household_func import household_func
             self.household_panel = household_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.household_panel.stat_household_screen)
 
         self.stack.setCurrentWidget(self.household_panel.stat_household_screen)
         self.setWindowTitle("MaPro: Household")
 
-    def goto_socioeconomic_panel(self):
-        """Handle navigation to SocioEconomic Panel screen."""
-        print("-- Navigating to Statistics > SocioEconomic")
-        if not hasattr(self, 'socioeconomic'):
-            from Controllers.UserController.Statistics.socioeconomic_func import socioeconomic_func
-            self.socioeconomic_panel = socioeconomic_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
+    def goto_education_panel(self):
+        """Handle navigation to Education Panel screen."""
+        print("-- Navigating to Statistics > Education")
+        if not hasattr(self, 'education'):
+            from Controllers.UserController.Statistics.Education.education_func import education_func
+            self.education_panel = education_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.education_panel.stat_edu_screen)
 
-        self.stack.setCurrentWidget(self.socioeconomic_panel.stat_socioeconomic_screen)
-        self.setWindowTitle("MaPro: SocioEconomic")
+        self.stack.setCurrentWidget(self.education_panel.stat_edu_screen)
+        self.setWindowTitle("MaPro: Education")
 
-    def goto_voters_panel(self):
-        """Handle navigation to Voters Panel screen."""
-        print("-- Navigating to Statistics > Voters")
-        if not hasattr(self, 'voters'):
-            from Controllers.UserController.Statistics.voters_func import voters_func
-            self.voters_panel = voters_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.voters_panel.stat_voters_screen)
+    def goto_employment_panel(self):
+        """Handle navigation to Employment Panel screen."""
+        print("-- Navigating to Statistics > Employment")
+        if not hasattr(self, 'employment'):
+            from Controllers.UserController.Statistics.Employment.employment_func import employment_func
+            self.employment_panel = employment_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.employment_panel.stat_emp_screen)
 
-        self.stack.setCurrentWidget(self.voters_panel.stat_voters_screen)
-        self.setWindowTitle("MaPro: Voters")
+        self.stack.setCurrentWidget(self.employment_panel.stat_emp_screen)
+        self.setWindowTitle("MaPro: Employment")
 
     def goto_health_panel(self):
         """Handle navigation to Health Panel screen."""
         print("-- Navigating to Statistics > Health")
         if not hasattr(self, 'health'):
-            from Controllers.UserController.Statistics.health_func import health_func
+            from Controllers.UserController.Statistics.Health.health_func import health_func
             self.health_panel = health_func(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.health_panel.stat_health_screen)
 
         self.stack.setCurrentWidget(self.health_panel.stat_health_screen)
         self.setWindowTitle("MaPro: Health")
 
-    def goto_jobs_panel(self):
-        """Handle navigation to Jobs Panel screen."""
-        print("-- Navigating to Statistics > Jobs")
-        if not hasattr(self, 'jobs'):
-            from Controllers.UserController.Statistics.jobs_func import jobs_func
-            self.jobs_panel = jobs_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.jobs_panel.stat_jobs_screen)
+    def goto_business_panel(self):
+        """Handle navigation to Business Panel screen."""
+        print("-- Navigating to Statistics > Business")
+        if not hasattr(self, 'business_stat'):
+            from Controllers.UserController.Statistics.Business.business_func import business_func
+            self.business_panel = business_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.business_panel.stat_business_screen)
 
-        self.stack.setCurrentWidget(self.jobs_panel.stat_jobs_screen)
-        self.setWindowTitle("MaPro: Jobs")
+        self.stack.setCurrentWidget(self.business_panel.stat_business_screen)
+        self.setWindowTitle("MaPro: Business")
 
-    def goto_groups_panel(self):
-        """Handle navigation to Groups Panel screen."""
-        print("-- Navigating to Statistics > Groups")
-        if not hasattr(self, 'groups'):
-            from Controllers.UserController.Statistics.groups_func import groups_func
-            self.groups_panel = groups_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.groups_panel.stat_groups_screen)
+    def goto_infrastructures_panel(self):
+        """Handle navigation to Infrastructure Panel screen."""
+        print("-- Navigating to Statistics > Infrastructure")
+        if not hasattr(self, 'infra'):
+            from Controllers.UserController.Statistics.Infrastructure.infrastructure_func import infrastructure_func
+            self.infra_panel = infrastructure_func(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.infra_panel.stat_infra_screen)
 
-        self.stack.setCurrentWidget(self.groups_panel.stat_groups_screen)
-        self.setWindowTitle("MaPro: Groups")
+        self.stack.setCurrentWidget(self.infra_panel.stat_infra_screen)
+        self.setWindowTitle("MaPro: Infrastructure")
 
     def logout(self):
         confirmation = QMessageBox.question(
