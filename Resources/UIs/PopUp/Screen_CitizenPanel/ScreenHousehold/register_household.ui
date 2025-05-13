@@ -555,7 +555,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_3{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>
@@ -785,7 +785,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_4{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>
@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>19</day>
+      <day>18</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1537,7 +1537,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_citizen_comboBox_CivilStatus{
+     <string notr="true">#register_household_comboBox_Sitio{
 	background-color: rgb(239, 239, 239); /* Correct property name */
     color: #242424; /* Set text color to black for better contrast */
     border: 1px solid #ccc; /* Optional: Add a light border */

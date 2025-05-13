@@ -753,7 +753,7 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
+   <widget class="QLabel" name="app_title">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -770,7 +770,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodyDashboardSystemTitle {
+     <string notr="true">#app_title {
 	background-color: transparent;
 	color: #white;
 }
@@ -1298,7 +1298,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1323,7 +1323,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1348,7 +1348,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1373,7 +1373,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1401,7 +1401,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1429,7 +1429,7 @@
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>7</pointsize>
+       <pointsize>9</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -1980,7 +1980,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_frameTitleDashboard {
+      <string notr="true">#label_frameTitleDashboard_3 {
 	background-color: transparent;
 	color: #FFFFFF;
 }

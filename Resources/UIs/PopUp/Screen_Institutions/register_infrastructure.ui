@@ -555,7 +555,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_3{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>
@@ -861,7 +861,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_4{
 	background-color:transparent;
 	color: rgb(255, 255, 255);
 }</string>

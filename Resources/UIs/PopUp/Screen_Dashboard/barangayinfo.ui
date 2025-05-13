@@ -61,7 +61,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_tableTitleDashboard {
+     <string notr="true">#label_titleEmployeeAccount {
 	background-color: transparent;
 	color: #FFFFFF;
 }
