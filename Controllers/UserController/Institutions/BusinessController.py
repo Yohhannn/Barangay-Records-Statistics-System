@@ -1,5 +1,3 @@
-
-from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
 from Controllers.BaseFileController import BaseFileController
 from PySide6.QtGui import QIcon, Qt, QImage, QBrush
 from PySide6.QtWidgets import QMessageBox, QPushButton, QLabel, QFileDialog, QButtonGroup, QRadioButton, \
@@ -40,6 +38,8 @@ class BusinessController(BaseFileController):
 
         # REGISTER BUTTON
         self.inst_business_screen.inst_business_button_register.clicked.connect(self.show_register_business_popup)
+        # Connect signal
+        self.inst_business_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_business)
 
 
     def load_business_data(self):
