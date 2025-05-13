@@ -1,18 +1,25 @@
-from PySide6.QtGui import QIcon, Qt
-from PySide6.QtWidgets import QMessageBox, QButtonGroup, QRadioButton
-#from django.core.validators import validate_email
 
+from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
 from Controllers.BaseFileController import BaseFileController
-from Controllers.UserController.InstitutionController import InstitutionsController
+from PySide6.QtGui import QIcon, Qt, QImage, QBrush
+from PySide6.QtWidgets import QMessageBox, QPushButton, QLabel, QFileDialog, QButtonGroup, QRadioButton, \
+    QTableWidgetItem
 from Utils.util_popup import load_popup
+from database import Database
+
+
+
 
 class BusinessController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+        super().__init__(login_window,   emp_first_name)
         self.stack = stack
         self.inst_business_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/business.ui")
         self.setup_business_ui()
         self.center_on_screen()
+        self.load_business_data()
+
+
 
     def setup_business_ui(self):
         """Setup the Business Views layout."""
@@ -33,6 +40,128 @@ class BusinessController(BaseFileController):
 
         # REGISTER BUTTON
         self.inst_business_screen.inst_business_button_register.clicked.connect(self.show_register_business_popup)
+
+
+    def load_business_data(self):
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            cursor.execute(""" 
+                SELECT 
+                    BI.BS_ID,
+                    BI.BS_NAME,
+                    CONCAT(BO.BSO_FNAME, ' ', BO.BSO_LNAME) AS BUSINESS_OWNER,
+                    BI.BS_DATE_ENCODED,
+                    BT.BST_TYPE_NAME,
+                    BI.BS_STATUS,
+                    BI.BS_ADDRESS,
+                    BI.BS_IS_DTI,
+                    S.SITIO_NAME,
+                    BI.BS_DESCRIPTION
+                FROM BUSINESS_INFO BI
+                JOIN BUSINESS_OWNER BO ON BI.BSO_ID = BO.BSO_ID
+                JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
+                JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID;
+           """)
+            rows = cursor.fetchall()
+            self.rows = rows
+
+            # Set the row and column count for the QTableWidget
+            self.inst_business_screen.inst_tableView_List_RegBusiness.setRowCount(len(rows))
+            self.inst_business_screen.inst_tableView_List_RegBusiness.setColumnCount(4)
+            self.inst_business_screen.inst_tableView_List_RegBusiness.setHorizontalHeaderLabels(
+                ["ID", "Business Name", "Owner", "Date Registered"])
+
+            # Populate the QTableWidget with data
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
+                    item = QTableWidgetItem(str(value))
+                    self.inst_business_screen.inst_tableView_List_RegBusiness.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.inst_business_screen, "Database Error", str(e))
+
+
+    def handle_row_click_business(self, row, column):
+        selected_id = self.inst_business_screen.inst_tableView_List_RegBusiness.item(row, 0).text()
+
+        for record in self.rows:
+            if str(record[0]) == selected_id:
+                # Set full data to QLabel widgets
+                self.inst_business_screen.inst_displayBusinessID.setText(str(record[0]))
+                self.inst_business_screen.inst_displayBusinessName.setText(record[1])
+                self.inst_business_screen.inst_displayBusinessOwnerName.setText(record[2])
+                self.inst_business_screen.inst_displayBusinessDateRegistered.setText(str(record[3]))
+                self.inst_business_screen.inst_displayBusinessType.setText(record[4])
+                self.inst_business_screen.inst_displayBusinessStatus.setText(record[5])
+                self.inst_business_screen.inst_displayBusinessAddress.setText(record[6])
+                self.inst_business_screen.inst_displayBusinessDTIRegistered.setText("Yes" if record[7] else "No")
+                self.inst_business_screen.inst_displayBusinessAddress_Sitio.setText(record[8])
+                self.inst_business_screen.inst_BusinessDescription.setText(record[9])
+                break
+    #
+    # def load_business_data(self):
+    #     try:
+    #         connection = Database()
+    #         cursor = connection.cursor  # Fixed: added parentheses
+    #
+    #         cursor.execute("""
+    #             SELECT
+    #                 BI.BS_ID,
+    #                 BI.BS_NAME,
+    #                 CONCAT(BO.BSO_FNAME, ' ', BO.BSO_LNAME) AS BUSINESS_OWNER,
+    #                 BI.BS_DATE_ENCODED,
+    #                 BT.BST_TYPE_NAME,
+    #                 BI.BS_STATUS,
+    #                 BI.BS_ADDRESS,
+    #                 BI.BS_IS_DTI,
+    #                 S.SITIO_NAME,
+    #                 BI.BS_DESCRIPTION
+    #             FROM BUSINESS_INFO BI
+    #             JOIN BUSINESS_OWNER BO ON BI.BSO_ID = BO.BSO_ID
+    #             JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
+    #             JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID;
+    #         """)
+    #         rows = cursor.fetchall()
+    #         self.rows = rows  # Store for later access
+    #
+    #         table = self.inst_business_screen.inst_tableView_List_RegBusiness
+    #         table.setRowCount(len(rows))
+    #         table.setColumnCount(4)
+    #         table.setHorizontalHeaderLabels(
+    #             ["ID", "Business Name", "Owner", "Date Registered"]
+    #         )
+    #
+    #         for row_idx, row_data in enumerate(rows):
+    #             for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
+    #                 item = QTableWidgetItem(str(value))
+    #                 table.setItem(row_idx, col_idx, item)
+    #
+    #     except Exception as e:
+    #         QMessageBox.critical(self.inst_business_screen, "Database Error", str(e))
+    #
+    # def handle_row_click_business(self, row, column):
+    #     table = self.inst_business_screen.inst_tableView_List_RegBusiness
+    #     selected_item = table.item(row, 0)
+    #
+    #     if selected_item is None:
+    #         return
+    #
+    #     selected_id = selected_item.text()
+    #
+    #     for record in self.rows:
+    #         if str(record[0]) == selected_id:
+    #             self.inst_business_screen.inst_displayBusinessID.setText(str(record[0]))
+    #             self.inst_business_screen.inst_displayBusinessName.setText(record[1])
+    #             self.inst_business_screen.inst_displayBusinessOwnerName.setText(record[2])
+    #             self.inst_business_screen.inst_displayBusinessDateRegistered.setText(str(record[3]))
+    #             self.inst_business_screen.inst_displayBusinessType.setText(record[4])
+    #             self.inst_business_screen.inst_displayBusinessStatus.setText(record[5])
+    #             self.inst_business_screen.inst_displayBusinessAddress.setText(record[6])
+    #             self.inst_business_screen.inst_displayBusinessDTIRegistered.setText("Yes" if record[7] else "No")
+    #             self.inst_business_screen.inst_displayBusinessAddress_Sitio.setText(record[8])
+    #             self.inst_business_screen.inst_BusinessDescription.setText(record[9])
+    #             break
 
     def show_register_business_popup(self):
         print("-- Register Business Popup")
