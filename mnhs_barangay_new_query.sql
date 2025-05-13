@@ -337,6 +337,7 @@ CREATE TABLE BUSINESS_INFO (
                                BS_IS_DELETED BOOLEAN DEFAULT FALSE,
                                BS_IS_PENDING_DELETE BOOLEAN DEFAULT FALSE,
                                BS_DELETE_REQ_REASON TEXT,
+                               SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
                                BST_ID INT NOT NULL REFERENCES BUSINESS_TYPE(BST_ID),
                                BSO_ID INT NOT NULL REFERENCES BUSINESS_OWNER(BSO_ID),
                                SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID),
