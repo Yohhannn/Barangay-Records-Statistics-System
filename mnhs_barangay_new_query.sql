@@ -698,7 +698,7 @@ VALUES
         ('NHTS 4Ps', '123456'),
         ('NHTS Non-4Ps', '654321'),
         ('Non-NHTS', NULL);
-        
+
 INSERT INTO HOUSEHOLD_INFO (
     HH_HOUSE_NUMBER,
     HH_ADDRESS,
@@ -810,16 +810,19 @@ INSERT INTO BUSINESS_INFO (
     BS_IS_DTI,
     BS_DTI_IMAGE,
     BS_ADDRESS,
+    SITIO_ID,
     BST_ID,
     BSO_ID,
     SYS_ID
 ) VALUES
       ('Aling Nena''s Sari-sari', 'General merchandise store', 'ACTIVE', FALSE, NULL, '123 Purok Santan',
+       (SELECT SITIO_ID FROM SITIO WHERE SITIO.SITIO_ID = '1'),
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sari-sari Store'),
        (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Garcia'),
        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan')),
 
       ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'ACTIVE', TRUE, '/dti/repair123.jpg', '456 Purok Rosas',
+       (SELECT SITIO_ID FROM SITIO WHERE SITIO.SITIO_ID = '2'),
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Repair Shop'),
        (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Ramos'),
        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Maria'));
