@@ -386,7 +386,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>145</number>
+       <number>148</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -433,11 +433,12 @@
       </column>
       <column>
        <property name="text">
-        <string>No. of Members</string>
+        <string>Sitio</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="background">
@@ -450,12 +451,11 @@
       </column>
       <column>
        <property name="text">
-        <string>Sitio</string>
+        <string>Date Updated</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="background">

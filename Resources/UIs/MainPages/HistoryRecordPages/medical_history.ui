@@ -399,28 +399,12 @@
       </attribute>
       <column>
        <property name="text">
-        <string>Citizen ID</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-        </font>
-       </property>
-       <property name="background">
-        <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
-        </color>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>Medical ID</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -433,11 +417,30 @@
       </column>
       <column>
        <property name="text">
-        <string>History Type</string>
+        <string>Citizen Name</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Medical Type</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -455,7 +458,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>10</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
