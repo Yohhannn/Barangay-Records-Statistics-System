@@ -28,6 +28,8 @@ class DashboardView:
 
     def _setup_window_properties(self):
         self.dashboard_screen.setFixedSize(1350, 850)
+        self.controller.setFixedSize(1350, 850)  # <- Prevent resizing the actual window
+
         self.controller.setWindowTitle(f"{self.app_name} {self.app_version}")
         self.controller.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
         print("test")
