@@ -1,7 +1,5 @@
 from PySide6.QtGui import QIcon
-
 from Controllers.BaseFileController import BaseFileController
-
 
 class demographics_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
@@ -19,8 +17,8 @@ class demographics_func(BaseFileController):
 
     # Set images and icons
         self.stat_demo_screen.btn_returnToStatisticsPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
-        self.stat_demo_screen.icon_male.setIcon(QIcon('Resources/Icons/Icons/General_Icons/icon_male.png'))
-        self.stat_demo_screen.icon_female.setIcon(QIcon('Resources/Icons/Icons/General_Icons/icon_female.png'))
+        self.stat_demo_screen.icon_male.setIcon(QIcon('Resources/Icons/General_Icons/icon_male.png'))
+        self.stat_demo_screen.icon_female.setIcon(QIcon('Resources/Icons/General_Icons/icon_female.png'))
 
         # Return Button
         self.stat_demo_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
