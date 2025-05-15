@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1350</width>
+    <width>1260</width>
     <height>850</height>
    </rect>
   </property>
@@ -1260,7 +1260,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateUpdated">
+     <widget class="QLabel" name="inst_display_DateUpdated">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1288,7 +1288,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_UpdatedBy">
+     <widget class="QLabel" name="inst_display_UpdatedBy">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1395,7 +1395,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateEncoded">
+     <widget class="QLabel" name="inst_display_DateEncoded">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1423,7 +1423,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_EncodedBy">
+     <widget class="QLabel" name="inst_display_EncodedBy">
       <property name="geometry">
        <rect>
         <x>130</x>
