@@ -401,7 +401,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>145</number>
+       <number>116</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -419,6 +419,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -436,6 +437,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -453,6 +455,25 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -470,7 +491,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>10</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">

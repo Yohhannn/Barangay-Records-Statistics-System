@@ -140,8 +140,8 @@ class InstitutionsController(BaseFileController):
         """Handle navigation to Infrastructure Panel screen."""
         print("-- Navigating to Infrastructure Panel")
         if not hasattr(self, 'infrastructure'):
-            from Controllers.UserController.Institutions.InfrastructureController import InfastructureController
-            self.infra_panel = InfastructureController(self.login_window, self.emp_first_name, self.stack)
+            from Controllers.UserController.Institutions.InfrastructureController import InfrastructureController
+            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.stack)
             self.stack.addWidget(self.infra_panel.inst_infrastructure_screen)
 
         self.stack.setCurrentWidget(self.infra_panel.inst_infrastructure_screen)

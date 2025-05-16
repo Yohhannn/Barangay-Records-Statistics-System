@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1350</width>
+    <width>1260</width>
     <height>850</height>
    </rect>
   </property>
@@ -386,7 +386,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>145</number>
+       <number>122</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -404,6 +404,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -421,6 +422,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -433,11 +435,12 @@
       </column>
       <column>
        <property name="text">
-        <string>Public / Private</string>
+        <string>Infra Owner</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -450,12 +453,30 @@
       </column>
       <column>
        <property name="text">
-        <string>Date Registered</string>
+        <string>Infra Type</string>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>10</pointsize>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date Encoded</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -1239,7 +1260,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateUpdated">
+     <widget class="QLabel" name="inst_display_DateUpdated">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1267,7 +1288,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_UpdatedBy">
+     <widget class="QLabel" name="inst_display_UpdatedBy">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1374,7 +1395,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateEncoded">
+     <widget class="QLabel" name="inst_display_DateEncoded">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -1402,7 +1423,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_EncodedBy">
+     <widget class="QLabel" name="inst_display_EncodedBy">
       <property name="geometry">
        <rect>
         <x>130</x>

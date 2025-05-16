@@ -372,6 +372,12 @@
         <height>521</height>
        </rect>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true">#histrec_tableView_List_RecordSettlementHistory {
 	background-color: white;
@@ -386,7 +392,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>145</number>
+       <number>205</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -399,7 +405,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>History ID</string>
+        <string>Settlement ID</string>
        </property>
        <property name="font">
         <font>
@@ -416,24 +422,7 @@
       </column>
       <column>
        <property name="text">
-        <string>History Type</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-        </font>
-       </property>
-       <property name="background">
-        <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
-        </color>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Description</string>
+        <string>Complainee Name</string>
        </property>
        <property name="font">
         <font>
