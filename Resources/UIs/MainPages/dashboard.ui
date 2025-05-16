@@ -1099,6 +1099,23 @@
     </column>
     <column>
      <property name="text">
+      <string>Household ID</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>59</red>
+       <green>57</green>
+       <blue>100</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Family Name</string>
      </property>
      <property name="font">
@@ -1133,24 +1150,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Sitio</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Civil Status</string>
+      <string>Age</string>
      </property>
      <property name="font">
       <font>
@@ -1184,7 +1184,7 @@
     </column>
     <column>
      <property name="text">
-      <string>PWD</string>
+      <string>Sitio</string>
      </property>
      <property name="font">
       <font>
@@ -1201,7 +1201,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Time Stamp</string>
+      <string>Date Updated</string>
      </property>
      <property name="font">
       <font>

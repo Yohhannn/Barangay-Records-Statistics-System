@@ -1,3 +1,4 @@
+from PyQt6.QtCore import QDateTime
 from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from PySide6.QtCore import QTimer
@@ -13,11 +14,12 @@ class DashboardView:
         self.dashboard_screen = None
 
         self.app_name = "MaPro"
-        self.app_version = "4.2.2 - Pre Alpha"
+        self.app_version = "4.2.9 - Pre Alpha"
 
     def setup_dashboard_ui(self, ui_screen):
         self.dashboard_screen = ui_screen
-        self._setup_timers()
+        self._setup_date()
+        self._setup_time()
         self._setup_window_properties()
         self._setup_navigation_assets()
         self._setup_dashboard_assets()
@@ -34,10 +36,36 @@ class DashboardView:
         self.controller.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
         print("test")
 
-    def _setup_timers(self):
+
+    def _setup_time(self):
         self.timer = QTimer(self.dashboard_screen)
-        self.timer.timeout.connect(lambda: update_time_label(self.dashboard_screen.label_timeDashboard))
+
+        # Initialize with current date/time
+        self._setup_date()
+
+        # Connect timer to update function
+        self.timer.timeout.connect(self._setup_date)
         self.timer.start(1000)  # Update every second
+
+    def _setup_date(self):
+        """Update both date and time labels"""
+        current_datetime = QDateTime.currentDateTime()
+
+        # Update date label
+        formatted_date = current_datetime.toString("MMMM d, yyyy")
+        day_of_week = current_datetime.toString("dddd")
+        self.dashboard_screen.label_dateDashboard.setText(f"{formatted_date} - {day_of_week}")
+
+        # Update time label
+        formatted_time = current_datetime.toString("h:mm:ss AP")
+        self.dashboard_screen.label_timeDashboard.setText(formatted_time)
+    #
+    # def _setup_date_timers(self):
+    #     self.timer = QTimer(self.dashboard_screen)
+    #     self.timer.timeout.connect(lambda: update_time_label(self.dashboard_screen.label_timeDashboard))
+    #     self.timer.start(1000)
+    #     update_date_label(self.dashboard_screen.label_dateDashboard)
+
 
     def _setup_navigation_assets(self):
 
@@ -76,7 +104,6 @@ class DashboardView:
                 widget.setIcon(QIcon(icon_path))
 
         # Display current date and employee name
-        update_date_label(self.dashboard_screen.label_dateDashboard)
         self.dashboard_screen.title_employeeFirstNameDashboard.setText(self.controller.emp_first_name)
         self.dashboard_screen.label_UpdateVersion.setText(" " + self.app_version)
 
