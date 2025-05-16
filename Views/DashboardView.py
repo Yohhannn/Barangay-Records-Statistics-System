@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QDateTime
+from PySide6.QtCore import QDateTime
 from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from PySide6.QtCore import QTimer
@@ -23,8 +23,6 @@ class DashboardView:
         self._setup_window_properties()
         self._setup_navigation_assets()
         self._setup_dashboard_assets()
-
-
 
         self._connect_buttons()
 
