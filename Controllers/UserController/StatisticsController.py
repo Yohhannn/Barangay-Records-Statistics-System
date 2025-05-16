@@ -141,10 +141,10 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Demographics")
         if not hasattr(self, 'demographic'):
             from Controllers.UserController.Statistics.Demographics.DemographicsController import DemographicsController
-            self.demo_panel = DemographicsController(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.demo_panel.view)
+            self.view = DemographicsController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.view.view)
 
-        self.stack.setCurrentWidget(self.demo_panel.view)
+        self.stack.setCurrentWidget(self.view.view)
         self.setWindowTitle("MaPro: Demographics")
 
     def goto_neighborhood_panel(self):

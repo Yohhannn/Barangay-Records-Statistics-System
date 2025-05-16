@@ -40,7 +40,7 @@ class InfrastructureController(BaseFileController):
             connection = Database()
             cursor = connection.cursor
 
-            # Updated query with INF_LAST_UPDATED
+            # Updated query with INF_LAST_UPDATED and UPDATED_BY information
             cursor.execute(""" 
                 SELECT 
                     INF.INF_ID,
@@ -74,7 +74,8 @@ class InfrastructureController(BaseFileController):
                         )
                     END AS ENCODED_BY,
                     TO_CHAR(INF.INF_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED,
-                    TO_CHAR(INF.INF_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED
+                    TO_CHAR(INF.INF_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
+                    INF.SYS_ID  
                 FROM INFRASTRUCTURE INF
                 LEFT JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
                 LEFT JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID = IT.INFT_ID
@@ -129,6 +130,38 @@ class InfrastructureController(BaseFileController):
             if 'connection' in locals():
                 connection.close()
 
+    #Get the name of the person who last updated the record
+    def get_updater_name(self, sys_id):
+        if not sys_id:
+            return "System"
+
+        try:
+            connection = Database()
+            cursor = connection.cursor
+
+            cursor.execute("""
+                SELECT 
+                    SYS_FNAME, 
+                    SYS_MNAME, 
+                    SYS_LNAME 
+                FROM SYSTEM_ACCOUNT
+                WHERE SYS_ID = %s
+            """, (sys_id,))
+
+            user_data = cursor.fetchone()
+            if user_data:
+                fname, mname, lname = user_data
+                # Format the name with middle initial if available
+                middle_initial = f" {mname[0]}." if mname else ""
+                return f"{fname}{middle_initial} {lname}"
+            return "System"
+        except Exception as e:
+            print(f"Error fetching updater name: {e}")
+            return "System"
+        finally:
+            if 'connection' in locals():
+                connection.close()
+
     def handle_row_click_infrastructure(self, row):
         selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
 
@@ -151,6 +184,10 @@ class InfrastructureController(BaseFileController):
                 # Set last updated information
                 self.inst_infrastructure_screen.inst_display_DateUpdated.setText(
                     record[11] if record[11] else "Not updated")
+
+                # Get and display who updated the record
+                updated_by_name = self.get_updater_name(record[12])
+                self.inst_infrastructure_screen.inst_display_UpdatedBy.setText(updated_by_name)
 
     def show_register_infrastructure_popup(self):
         print("-- Register Infrastructure Popup")
