@@ -403,9 +403,6 @@
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>122</number>
       </attribute>
-      <attribute name="horizontalHeaderHighlightSections">
-       <bool>true</bool>
-      </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
       </attribute>
@@ -418,6 +415,24 @@
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
+      <column>
+       <property name="text">
+        <string>Inf ID.</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
+        </color>
+       </property>
+      </column>
       <column>
        <property name="text">
         <string>Infrastructure Name</string>
