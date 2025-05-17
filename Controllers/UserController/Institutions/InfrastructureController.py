@@ -8,6 +8,7 @@ from database import Database
 class InfrastructureController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
+        self.selected_id = None
         self.stack = stack
         self.inst_infrastructure_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/infrastructure.ui")
         self.setup_infrastructure_ui()
@@ -40,7 +41,7 @@ class InfrastructureController(BaseFileController):
             connection = Database()
             cursor = connection.cursor
 
-            # Updated query with INF_LAST_UPDATED and UPDATED_BY information
+            # Updated query with LIMIT 20 and ordering by last updated then by date encoded
             cursor.execute(""" 
                 SELECT 
                     INF.INF_ID,
@@ -81,7 +82,8 @@ class InfrastructureController(BaseFileController):
                 LEFT JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID = IT.INFT_ID
                 LEFT JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON INF.SYS_ID = SA.SYS_ID
-                ORDER BY INF.INF_ID
+                ORDER BY COALESCE(INF.INF_LAST_UPDATED, INF.INF_DATE_ENCODED) DESC
+                LIMIT 20
             """)
 
             rows = cursor.fetchall()
@@ -163,10 +165,10 @@ class InfrastructureController(BaseFileController):
                 connection.close()
 
     def handle_row_click_infrastructure(self, row):
-        selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
+        self.selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
 
         for record in self.rows:
-            if str(record[0]) == selected_id:
+            if str(record[0]) == self.selected_id:
                 # Set basic information
                 self.inst_infrastructure_screen.inst_displayInfraID.setText(str(record[0]))
                 self.inst_infrastructure_screen.inst_displayInfraName.setText(record[1])
@@ -188,6 +190,8 @@ class InfrastructureController(BaseFileController):
                 # Get and display who updated the record
                 updated_by_name = self.get_updater_name(record[12])
                 self.inst_infrastructure_screen.inst_display_UpdatedBy.setText(updated_by_name)
+
+        print(self.selected_id)
 
     def show_register_infrastructure_popup(self):
         print("-- Register Infrastructure Popup")
