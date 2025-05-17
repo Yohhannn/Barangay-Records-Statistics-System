@@ -1,13 +1,6 @@
 from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication
 from PySide6.QtGui import QPixmap, QIcon, Qt
-from PySide6.QtCore import QTimer
-
 from Controllers.BaseFileController import BaseFileController
-from Controllers.UserController.InstitutionController import InstitutionsController
-from Controllers.UserController.TransactionController import TransactionController
-
-from Utils.utils_datetime import update_date_label
-from Utils.utils_realtime import update_time_label
 from Utils.util_popup import load_popup  # Make sure this import exists
 from Views.DashboardView import DashboardView
 

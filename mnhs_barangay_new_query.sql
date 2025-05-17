@@ -137,6 +137,7 @@ CREATE TABLE HOUSEHOLD_INFO (
                                 HH_IS_DELETED BOOLEAN DEFAULT FALSE,
                                 HH_IS_PENDING_DELETE BOOLEAN DEFAULT FALSE,
                                 HH_DELETE_REQ_REASON TEXT,
+                                SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID),
                                 WATER_ID INT NOT NULL REFERENCES  WATER_SOURCE(WATER_ID),
                                 TOILET_ID INT NOT NULL REFERENCES TOILET_TYPE(TOIL_ID),
                                 SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
@@ -267,12 +268,13 @@ CREATE TABLE INFRASTRUCTURE (
                                 INF_IS_DELETED BOOLEAN DEFAULT FALSE,
                                 INF_IS_PENDING_DELETE BOOLEAN DEFAULT FALSE,
                                 INF_DELETE_REQ_REASON TEXT,
+                                SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID),
                                 INFT_ID INT NOT NULL REFERENCES INFRASTRUCTURE_TYPE(INFT_ID),
                                 INFO_ID INT REFERENCES INFRASTRUCTURE_OWNER(INFO_ID),
                                 SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID),
                                 CONSTRAINT chk_access_type CHECK (
                                     (INF_ACCESS_TYPE = 'Private' AND INFO_ID IS NOT NULL) OR
-                                    (INF_ACCESS_TYPE = 'Public' AND INFO_ID IS NULL)
+                                    (INF_ACCESS_TYPE = 'Public' AND INFO_ID IS NOT NULL)
                                     ),
                                 CONSTRAINT chk_pending_delete CHECK (
                                     (INF_IS_PENDING_DELETE = FALSE) OR
@@ -708,6 +710,7 @@ INSERT INTO HOUSEHOLD_INFO (
     HH_INTERVIEWER_NAME,
     HH_REVIEWER_NAME,
     HH_DATE_VISIT,
+    SYS_ID,
     WATER_ID,
     TOILET_ID,
     SITIO_ID
@@ -720,6 +723,7 @@ INSERT INTO HOUSEHOLD_INFO (
              'Juan Dela Cruz',
              'Maria Reyes',
              CURRENT_DATE,
+             (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_ID = 1),
              (SELECT WATER_ID FROM WATER_SOURCE WHERE WATER_SOURCE_NAME = 'Level 3 - Individual Connection'),
              (SELECT TOIL_ID FROM TOILET_TYPE WHERE TOIL_TYPE_NAME = 'A - Pour/flush type connected to septic tank'),
              (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Uno')
@@ -771,7 +775,9 @@ VALUES
 INSERT INTO INFRASTRUCTURE_OWNER (INFO_LNAME, INFO_FNAME, INFO_MNAME)
 VALUES
         ('Tan', 'Michael', 'C'),
-        ('Lim', 'Angela', 'B');
+        ('Lim', 'Angela', 'B'),
+        ('', 'Government', '');
+
 
 INSERT INTO INFRASTRUCTURE (
     INF_NAME,
@@ -779,15 +785,22 @@ INSERT INTO INFRASTRUCTURE (
     INF_DESCRIPTION,
     INF_ADDRESS_DESCRIPTION,
     INFO_ID,
+    SYS_ID,
     INFT_ID,
     SITIO_ID
 ) VALUES
-      ('Marigondon Barangay Hall', 'Public', 'Main government building', 'Near the highway', Null,
+      ('Marigondon Barangay Hall',
+       'Public',
+       'Main government building',
+       'Near the highway',
+       (SELECT INFO_ID FROM INFRASTRUCTURE_OWNER WHERE INFO_FNAME = 'Government'),
+       (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_ID = '1' ),
        (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
        (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Uno')),
 
       ('Tan Residence', 'Private', 'Private property', 'Behind the elementary school',
        (SELECT INFO_ID FROM INFRASTRUCTURE_OWNER WHERE INFO_LNAME = 'Tan' AND INFO_FNAME = 'Michael'),
+       (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_ID = '1' ),
        (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
        (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Dos'));
 

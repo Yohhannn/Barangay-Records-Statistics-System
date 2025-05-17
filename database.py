@@ -22,5 +22,18 @@ class Database:
             self.conn.close()
             print("Database Connection Closed Successfully!")
 
+    def commit(self):
+        try:
+            self.conn.commit()
+            print("Transaction committed successfully!")
+            return True
+        except Exception as e:
+            print(f"Commit failed: {e}")
+            self.conn.rollback()  # Rollback in case of error
+            return False
+
+    def get_cursor(self):
+        return self.cursor
+
 if __name__ == "__main__":
     db = Database()

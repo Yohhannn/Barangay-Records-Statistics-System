@@ -1,16 +1,16 @@
-from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QMessageBox
+from PyQt6.QtCore import QDateTime
 
-from Controllers.base_file_func import base_file_func
-from Utils.utils_datetime import update_date_label
-from Utils.util_popup import load_popup
+from Controllers.BaseFileController import BaseFileController
 
-class geographics_func(base_file_func):
+class geographics_func(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
         self.stat_geo_screen = self.load_ui("Views/MainPages/StatisticPages/geographic.ui")
+        self._setup_date()
+        self._setup_time()
         self.setup_geo_ui()
         self.center_on_screen()
 
@@ -25,6 +25,29 @@ class geographics_func(base_file_func):
 
         # Return Button
         self.stat_geo_screen.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
+
+    def _setup_time(self):
+        self.timer = QTimer(self.stat_geo_screen)
+
+        # Initialize with current date/time
+        self._setup_date()
+
+        # Connect timer to update function
+        self.timer.timeout.connect(self._setup_date)
+        self.timer.start(1000)  # Update every second
+
+    def _setup_date(self):
+        """Update both date and time labels"""
+        current_datetime = QDateTime.currentDateTime()
+
+        # Update date label
+        formatted_date = current_datetime.toString("MMMM d, yyyy")
+        day_of_week = current_datetime.toString("dddd")
+        self.stat_geo_screen.text_date.setText(f"{formatted_date} - {day_of_week}")
+
+        # Update time label
+        formatted_time = current_datetime.toString("h:mm:ss AP")
+        self.stat_geo_screen.text_time.setText(formatted_time)
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""

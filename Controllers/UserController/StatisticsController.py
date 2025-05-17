@@ -140,22 +140,22 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Demographics Panel screen."""
         print("-- Navigating to Statistics > Demographics")
         if not hasattr(self, 'demographic'):
-            from Controllers.UserController.Statistics.Demographics.demographics_func import demographics_func
-            self.demo_panel = demographics_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.demo_panel.stat_demo_screen)
+            from Controllers.UserController.Statistics.Demographics.DemographicsController import DemographicsController
+            self.view = DemographicsController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.view.view)
 
-        self.stack.setCurrentWidget(self.demo_panel.stat_demo_screen)
+        self.stack.setCurrentWidget(self.view.view)
         self.setWindowTitle("MaPro: Demographics")
 
     def goto_neighborhood_panel(self):
         """Handle navigation to Neighborhood Panel screen."""
         print("-- Navigating to Statistics > Neighborhood")
         if not hasattr(self, 'neighborhood'):
-            from Controllers.UserController.Statistics.Neighborhood.neighborhood_func import neighborhood_func
-            self.neighborhood_panel = neighborhood_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.neighborhood_panel.stat_neighborhood_screen)
+            from Controllers.UserController.Statistics.Neighborhood.NeighborhoodController import NeighborhoodController
+            self.neighborhood_panel = NeighborhoodController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.neighborhood_panel.view)
 
-        self.stack.setCurrentWidget(self.neighborhood_panel.stat_neighborhood_screen)
+        self.stack.setCurrentWidget(self.neighborhood_panel.view)
         self.setWindowTitle("MaPro: Neighborhood")
 
     def goto_household_panel(self):
