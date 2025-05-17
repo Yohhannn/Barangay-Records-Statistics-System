@@ -731,13 +731,22 @@
        <height>581</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">#household_tablePopulationPerStreet{
 	background-color: #fcfcfc;
 }</string>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+     </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>135</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
      </attribute>
      <column>
       <property name="text">
@@ -1020,7 +1029,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>29</day>
+       <day>28</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1068,7 +1077,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>10</day>
+       <day>9</day>
       </datetime>
      </property>
      <property name="displayFormat">

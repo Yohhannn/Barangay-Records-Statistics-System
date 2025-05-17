@@ -367,13 +367,22 @@
        <height>531</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">#geographics_tablePopulationPerStreet{
 	background-color: #fcfcfc;
 }</string>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+     </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>169</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
      </attribute>
      <column>
       <property name="text">
@@ -453,13 +462,22 @@
        <height>271</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">#geographics_tableDataPerStreet{
 	background-color: #fcfcfc;
 }</string>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::EditKeyPressed</set>
+     </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>127</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
      </attribute>
      <column>
       <property name="text">
@@ -1150,7 +1168,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>30</day>
+       <day>29</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1198,7 +1216,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>11</day>
+       <day>10</day>
       </datetime>
      </property>
      <property name="displayFormat">
