@@ -378,6 +378,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">#inst_tableView_List_RegBusiness {
 	background-color: white;
@@ -408,6 +411,9 @@
       </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
