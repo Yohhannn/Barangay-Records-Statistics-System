@@ -1,6 +1,6 @@
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import QTimer
-from PyQt6.QtCore import QDateTime
+from PySide6.QtCore import QDateTime
 
 from Controllers.BaseFileController import BaseFileController
 
