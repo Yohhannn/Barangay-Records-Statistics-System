@@ -378,6 +378,11 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
       <property name="focusPolicy">
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
