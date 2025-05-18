@@ -41,7 +41,7 @@ class InfrastructureController(BaseFileController):
             connection = Database()
             cursor = connection.cursor
 
-            # Updated query with LIMIT 20 and ordering by last updated then by date encoded
+            # Keep the original query to fetch all data (needed for row click handling)
             cursor.execute(""" 
                 SELECT 
                     INF.INF_ID,
@@ -91,38 +91,30 @@ class InfrastructureController(BaseFileController):
 
             self.rows = rows
 
-            # Update table view with columns (keeping original 9 columns)
+            # Update table view with only the 4 specified columns (now showing Owner instead of Access)
             self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setRowCount(len(rows))
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnCount(9)
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnCount(4)
             self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setHorizontalHeaderLabels(
-                ["ID", "Name", "Access", "Date Registered", "Owner", "Type", "Sitio", "Description", "Encoded By"]
+                ["ID", "Name", "Owner", "Date Registered"]
             )
 
             # Set column widths
             self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(0, 50)  # ID
             self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(1, 150)  # Name
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(2, 80)  # Access
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(3, 150)  # Date
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(4, 150)  # Owner
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(5, 120)  # Type
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(6, 100)  # Sitio
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(7, 200)  # Description
-            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(8, 150)  # Encoded By
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(2,
+                                                                                        150)  # Owner (wider for names)
+            self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setColumnWidth(3, 100)  # Date
 
             for row_idx, row_data in enumerate(rows):
-                display_data = [
+                # Display columns in this order: ID, Name, Owner, Date Registered
+                display_columns = [
                     row_data[0],  # INF_ID
                     row_data[1],  # INF_NAME
-                    row_data[2],  # INF_ACCESS_TYPE
-                    row_data[3],  # INF_DATE_ENCODED
-                    row_data[4],  # INFRASTRUCTURE_OWNER
-                    row_data[5],  # INFT_TYPE_NAME
-                    row_data[7],  # SITIO_NAME
-                    row_data[8],  # INF_DESCRIPTION
-                    row_data[9],  # ENCODED_BY
+                    row_data[4],  # INFRASTRUCTURE_OWNER (was previously Access Type)
+                    row_data[3]  # INF_DATE_ENCODED
                 ]
 
-                for col_idx, value in enumerate(display_data):
+                for col_idx, value in enumerate(display_columns):
                     item = QTableWidgetItem(str(value))
                     self.inst_infrastructure_screen.inst_tableView_List_RegInfra.setItem(row_idx, col_idx, item)
 
@@ -132,37 +124,6 @@ class InfrastructureController(BaseFileController):
             if 'connection' in locals():
                 connection.close()
 
-    #Get the name of the person who last updated the record
-    def get_updater_name(self, sys_id):
-        if not sys_id:
-            return "System"
-
-        try:
-            connection = Database()
-            cursor = connection.cursor
-
-            cursor.execute("""
-                SELECT 
-                    SYS_FNAME, 
-                    SYS_MNAME, 
-                    SYS_LNAME 
-                FROM SYSTEM_ACCOUNT
-                WHERE SYS_ID = %s
-            """, (sys_id,))
-
-            user_data = cursor.fetchone()
-            if user_data:
-                fname, mname, lname = user_data
-                # Format the name with middle initial if available
-                middle_initial = f" {mname[0]}." if mname else ""
-                return f"{fname}{middle_initial} {lname}"
-            return "System"
-        except Exception as e:
-            print(f"Error fetching updater name: {e}")
-            return "System"
-        finally:
-            if 'connection' in locals():
-                connection.close()
 
     def handle_row_click_infrastructure(self, row):
         self.selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
@@ -187,9 +148,9 @@ class InfrastructureController(BaseFileController):
                 self.inst_infrastructure_screen.inst_display_DateUpdated.setText(
                     record[11] if record[11] else "Not updated")
 
-                # Get and display who updated the record
-                updated_by_name = self.get_updater_name(record[12])
-                self.inst_infrastructure_screen.inst_display_UpdatedBy.setText(updated_by_name)
+                # # Get and display who updated the record
+                # updated_by_name = self.get_updater_name(record[12])
+                # self.inst_infrastructure_screen.inst_display_UpdatedBy.setText(updated_by_name)
 
         print(self.selected_id)
 

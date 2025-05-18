@@ -124,8 +124,8 @@ class LoginWindow(QMainWindow):
 
     def grant_access(self, first_name):
         self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
-        # QMessageBox.information(self, "Success", "Login successful!")
-        DashboardController(self, first_name).show()
+        self.dashboard = DashboardController(self, first_name)
+        self.dashboard.show()
         self.close()
 
     def clear_fields(self):
