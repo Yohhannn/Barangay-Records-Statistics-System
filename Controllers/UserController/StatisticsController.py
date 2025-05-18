@@ -162,22 +162,22 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Household Panel screen."""
         print("-- Navigating to Statistics > Household")
         if not hasattr(self, 'household'):
-            from Controllers.UserController.Statistics.Household.household_func import household_func
-            self.household_panel = household_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.household_panel.stat_household_screen)
+            from Controllers.UserController.Statistics.Household.HouseholdController import HouseholdController
+            self.household_panel = HouseholdController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.household_panel.view)
 
-        self.stack.setCurrentWidget(self.household_panel.stat_household_screen)
+        self.stack.setCurrentWidget(self.household_panel.view)
         self.setWindowTitle("MaPro: Household")
 
     def goto_education_panel(self):
         """Handle navigation to Education Panel screen."""
         print("-- Navigating to Statistics > Education")
         if not hasattr(self, 'education'):
-            from Controllers.UserController.Statistics.Education.education_func import education_func
-            self.education_panel = education_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.education_panel.stat_edu_screen)
+            from Controllers.UserController.Statistics.Education.EducationController import EducationController
+            self.education_panel = EducationController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.education_panel.view)
 
-        self.stack.setCurrentWidget(self.education_panel.stat_edu_screen)
+        self.stack.setCurrentWidget(self.education_panel.view)
         self.setWindowTitle("MaPro: Education")
 
     def goto_employment_panel(self):

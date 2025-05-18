@@ -43,8 +43,8 @@ class NeighborhoodController(BaseFileController):
         self.view.filter_date_min.setDisplayFormat("yyyy-MM-dd")
         self.view.filter_date_max.setDisplayFormat("yyyy-MM-dd")
 
-        self.view.geographics_tablePopulationPerStreet.setAlternatingRowColors(True)
-        self.view.geographics_tablePopulationPerStreet.setSortingEnabled(True)
+        # self.view.geographics_tablePopulationPerStreet.setAlternatingRowColors(True)
+        # self.view.geographics_tablePopulationPerStreet.setSortingEnabled(True)
 
     #Populate the population per sitio table
     def populate_sitio_statistics(self):
@@ -71,6 +71,7 @@ class NeighborhoodController(BaseFileController):
             print(f"Error loading sitio data: {e}")
 
     def _populate_table(self, table, headers, data):
+
         table.setRowCount(len(data))
         table.setColumnCount(len(headers))
         table.setHorizontalHeaderLabels(headers)
@@ -78,8 +79,8 @@ class NeighborhoodController(BaseFileController):
         for row_idx, row_data in enumerate(data):
             for col_idx, cell_data in enumerate(row_data):
                 item = QTableWidgetItem(str(cell_data))
+                item.setForeground(Qt.black)
 
-                # Center-align numeric columns (all except first)
                 if col_idx > 0:
                     item.setTextAlignment(Qt.AlignCenter)
 
@@ -90,6 +91,12 @@ class NeighborhoodController(BaseFileController):
         header = table.horizontalHeader()
         header.setStretchLastSection(False)
         header.setSectionResizeMode(QHeaderView.Stretch)
+
+    def populate_sitio_count(self):
+        sitio_count = self.model.get_sitio_count()
+
+        self.view.geo_totalstreets.setText(str(sitio_count))
+        print(f"Total Sitios: {sitio_count}")
 
     def populate_highest_and_lowest_sitios(self):
         from_date, to_date = self.get_date_range()
@@ -127,6 +134,7 @@ class NeighborhoodController(BaseFileController):
         try:
             self.populate_sitio_statistics()
             self.populate_highest_and_lowest_sitios()
+            self.populate_sitio_count()
 
         except Exception as e:
             self.show_error_message(
@@ -142,9 +150,10 @@ class NeighborhoodController(BaseFileController):
 
         # Validate date range
         if from_date > to_date:
-            from_date, to_date = to_date, from_date
-            self.view.filter_date_min.setDate(to_date)
-            self.view.filter_date_max.setDate(from_date)
+            self.show_error_message(
+                "Invalid Date Range",
+                "The 'From' date must be earlier than or equal to the 'To' date."
+            )
 
         return from_date, to_date
 
