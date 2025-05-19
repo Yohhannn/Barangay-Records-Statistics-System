@@ -262,7 +262,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QTableWidget" name="household_tablePopulationPerStreet">
+    <widget class="QTableWidget" name="employment_tablePerStreet">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -275,15 +275,18 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#household_tablePopulationPerStreet{
+      <string notr="true">
 	background-color: #fcfcfc;
-}</string>
+</string>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>134</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
@@ -358,24 +361,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Retired</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
-      <property name="background">
-       <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
-       </color>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Total Citizens</string>
+       <string>Not in Labor Force</string>
       </property>
       <property name="font">
        <font>
@@ -737,7 +723,7 @@
 </string>
       </property>
       <property name="text">
-       <string>Retired:</string>
+       <string>Not in Labor Force:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -923,7 +909,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_Retired">
+     <widget class="QLabel" name="demo_nilf">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -940,10 +926,9 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_Retired {
+       <string notr="true">
 	background-color: transparent;
 	color: #4f4f4f;
-}
 </string>
       </property>
       <property name="text">
@@ -1176,7 +1161,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>28</day>
+       <day>27</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1224,7 +1209,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>9</day>
+       <day>8</day>
       </datetime>
      </property>
      <property name="displayFormat">
