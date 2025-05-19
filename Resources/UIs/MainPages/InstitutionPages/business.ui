@@ -1341,12 +1341,12 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateUpdated">
+     <widget class="QLabel" name="inst_display_DateUpdated">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>30</x>
         <y>0</y>
-        <width>111</width>
+        <width>211</width>
         <height>31</height>
        </rect>
       </property>
@@ -1476,12 +1476,12 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_DateEncoded">
+     <widget class="QLabel" name="inst_display_DateEncoded">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>30</x>
         <y>0</y>
-        <width>111</width>
+        <width>211</width>
         <height>31</height>
        </rect>
       </property>
@@ -1504,12 +1504,12 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="display_EncodedBy">
+     <widget class="QLabel" name="inst_display_EncodedBy">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>30</x>
         <y>20</y>
-        <width>111</width>
+        <width>211</width>
         <height>31</height>
        </rect>
       </property>
