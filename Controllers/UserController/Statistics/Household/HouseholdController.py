@@ -3,15 +3,15 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMessageBox, QTableWidgetItem, QHeaderView
 
 from Controllers.BaseFileController import BaseFileController
-from Models.Statistics.NeighborhoodModel import NeighborhoodModel
+from Models.Statistics.HouseholdModel import HouseholdModel
 
 
-class NeighborhoodController(BaseFileController):
+class HouseholdController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/neighborhood.ui")
-        self.model = NeighborhoodModel()
+        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/household.ui")
+        self.model = HouseholdModel()
 
         # Initialize UI and data
         self.setup_view()
@@ -43,35 +43,31 @@ class NeighborhoodController(BaseFileController):
         self.view.filter_date_min.setDisplayFormat("yyyy-MM-dd")
         self.view.filter_date_max.setDisplayFormat("yyyy-MM-dd")
 
-        # self.view.geographics_tablePopulationPerStreet.setAlternatingRowColors(True)
-        # self.view.geographics_tablePopulationPerStreet.setSortingEnabled(True)
-
     #Populate the population per sitio table
-    def populate_sitio_statistics(self):
+    def populate_household_statistics(self):
         from_date, to_date = self.get_date_range()
 
         try:
-            result = self.model.get_data_per_sitio(from_date, to_date)
+            result = self.model.get_household_stat_per_sitio(from_date, to_date)
 
             if not result or not result['data']:
-                self.view.geographics_tablePopulationPerStreet.setRowCount(0)
+                self.view.household_tablePopulationPerStreet.setRowCount(0)
                 return
 
             self._populate_table(
-                self.view.geographics_tablePopulationPerStreet,
+                self.view.household_tablePopulationPerStreet,
                 result['columns'],
                 result['data']
             )
 
         except Exception as e:
             self.show_error_message(
-                "Sitio Data Error",
-                "Could not load sitio statistics."
+                "Household Data Error",
+                "Could not load household statistics."
             )
-            print(f"Error loading sitio data: {e}")
+            print(f"Error loading household data: {e}")
 
     def _populate_table(self, table, headers, data):
-
         table.setRowCount(len(data))
         table.setColumnCount(len(headers))
         table.setHorizontalHeaderLabels(headers)
@@ -92,22 +88,16 @@ class NeighborhoodController(BaseFileController):
         header.setStretchLastSection(False)
         header.setSectionResizeMode(QHeaderView.Stretch)
 
-    def populate_sitio_count(self):
-        sitio_count = self.model.get_sitio_count()
-
-        self.view.geo_totalstreets.setText(str(sitio_count))
-        print(f"Total Sitios: {sitio_count}")
-
-    def populate_highest_and_lowest_sitios(self):
+    def populate_highest_lowest_total_household(self):
         from_date, to_date = self.get_date_range()
         try:
-            result = self.model.get_highest_and_lowest_population_sitios(from_date, to_date)
+            result = self.model.get_highest_lowest_total_households(from_date, to_date)
 
-            if not result or not result['data']:
-                self.view.geo_sitioname_highest.setText("No data")
-                self.view.geo_sitioname_lowest.setText("No data")
-                self.view.geo_sitioname_highest_number.setText("No data")
-                self.view.geo_sitioname_lowest_number.setText("No data")
+            if not result or not result['data'] or all(row[1] == 0 for row in result['data']):
+                self.view.sitio_highest_total.setText("No Data")
+                self.view.value_highest_total_household.setText("0")
+                self.view.sitio_lowest_total.setText("No Data")
+                self.view.total_ave_household_size.setText("0")
                 return
 
             highest = result['data'][0]
@@ -118,23 +108,89 @@ class NeighborhoodController(BaseFileController):
             lowest_name, lowest_count = lowest
 
             # Displaying data
-            self.view.geo_sitioname_highest.setText(highest_name)
-            self.view.geo_sitioname_highest_number.setText(str(highest_count))
-            self.view.geo_sitioname_lowest.setText(lowest_name)
-            self.view.geo_sitioname_lowest_number.setText(str(lowest_count))
+            self.view.sitio_highest_total.setText(highest_name)
+            self.view.value_highest_total_household.setText(str(highest_count))
+            self.view.sitio_lowest_total.setText(lowest_name)
+            self.view.total_ave_household_size.setText(str(lowest_count))
 
         except Exception as e:
             print(f"[ERROR] Failed to display highest/lowest sitio data: {e}")
-            self.view.geo_sitioname_highest.setText("Error")
-            self.view.geo_sitioname_highest_number.setText("Error")
-            self.view.geo_sitioname_lowest.setText("Error")
-            self.view.geo_sitioname_lowest_number.setText("Error")
+            self.show_error_message(
+                "Household Data Error",
+                "Could not load highest and lowest sitio household population statistics."
+            )
+            self.view.sitio_highest_total.setText("0")
+            self.view.value_highest_total_household.setText("0")
+            self.view.sitio_lowest_total.setText("0")
+            self.view.total_ave_household_size.setText("0")
+
+    def populate_water_source(self):
+        from_date, to_date = self.get_date_range()
+
+        try:
+            result = self.model.get_household_water_source(from_date, to_date)
+            if not result:
+                self.view.total_lvl1.setText("0")
+                self.view.total_lvl2.setText("0")
+                self.view.total_lvl3.setText("0")
+                self.view.total_others.setText("0")
+                return
+
+            water_source_mapping = {
+                'Level 1 - Point Source': self.view.total_lvl1,
+                'Level 2 - Communal Faucet': self.view.total_lvl2,
+                'Level 3 - Individual Connection': self.view.total_lvl3,
+                'Others':self.view.total_others
+            }
+
+            for source, count in result:
+                if source in water_source_mapping:
+                    water_source_mapping[source].setText(f"{count:,}")
+
+        except Exception as e:
+            print(f"[ERROR] Failed to load water source: {e}")
+            self.show_error_message(
+                "Household Data Error",
+                "Could not load water source statistics."
+            )
+
+    def populate_household_ownership(self):
+        from_date, to_date = self.get_date_range()
+
+        try:
+            result = self.model.get_household_ownership_status(from_date, to_date)
+
+            if not result:
+                self.view.total_owned.setText("0")
+                self.view.total_rented.setText("0")
+                self.view.total_leased.setText("0")
+                self.view.total_informal_settlers.setText("0")
+                return
+
+            ownership_status_mapping = {
+                'Owned': self.view.total_owned,
+                'Rented': self.view.total_rented,
+                'Leased': self.view.total_leased,
+                'Informal Settler': self.view.total_informal_settlers
+            }
+
+            for status, count in result:
+                if status in ownership_status_mapping:
+                    ownership_status_mapping[status].setText(f"{count:,}")
+
+        except Exception as e:
+            print(f"[ERROR] Failed to load household ownership: {e}")
+            self.show_error_message(
+                "Household Data Error",
+                "Could not load household ownership statistics."
+            )
 
     def refresh_statistics(self):
         try:
-            self.populate_sitio_statistics()
-            self.populate_highest_and_lowest_sitios()
-            self.populate_sitio_count()
+            self.populate_household_statistics()
+            self.populate_highest_lowest_total_household()
+            self.populate_water_source()
+            self.populate_household_ownership()
 
         except Exception as e:
             self.show_error_message(

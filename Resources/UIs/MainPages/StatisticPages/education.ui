@@ -282,7 +282,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="bene_4Ps">
+     <widget class="QLabel" name="total_students">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -342,7 +342,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="bene_Non4Ps">
+     <widget class="QLabel" name="total_non_students">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -436,7 +436,7 @@
        <x>10</x>
        <y>240</y>
        <width>461</width>
-       <height>181</height>
+       <height>311</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -450,11 +450,11 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="demo_TotalNFE">
+     <widget class="QLabel" name="educ_attainment_nfe">
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>140</y>
+        <y>40</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -480,41 +480,11 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_JHS">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>60</y>
-        <width>161</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>11</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#demo_JHS {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>###,###</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="demo_labelCollege">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>180</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -534,7 +504,7 @@
 </string>
       </property>
       <property name="text">
-       <string>College</string>
+       <string>Senior High School Graduate:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -544,8 +514,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>80</y>
-        <width>231</width>
+        <y>160</y>
+        <width>261</width>
         <height>21</height>
        </rect>
       </property>
@@ -564,17 +534,17 @@
 </string>
       </property>
       <property name="text">
-       <string>Senior High School</string>
+       <string>Senior High School Undergraduate:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_Elementary">
+     <widget class="QLabel" name="educ_attainment_jhsu">
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>40</y>
+        <y>120</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -587,10 +557,10 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_Elementary {
+       <string notr="true">
 	background-color: transparent;
 	color: #4f4f4f;
-}
+
 </string>
       </property>
       <property name="text">
@@ -604,7 +574,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>140</y>
+        <y>40</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -630,11 +600,11 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_TotalVocational">
+     <widget class="QLabel" name="educ_attainment_shsg">
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>120</y>
+        <y>180</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -647,10 +617,10 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_TotalVocational {
+       <string notr="true">
 	background-color: transparent;
 	color: #4f4f4f;
-}
+
 </string>
       </property>
       <property name="text">
@@ -664,7 +634,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>120</y>
+        <y>220</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -684,7 +654,7 @@
 </string>
       </property>
       <property name="text">
-       <string>Vocational</string>
+       <string>College Undergraduate:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -694,8 +664,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
-        <width>231</width>
+        <y>120</y>
+        <width>251</width>
         <height>21</height>
        </rect>
       </property>
@@ -714,7 +684,7 @@
 </string>
       </property>
       <property name="text">
-       <string>Elementary:</string>
+       <string>Junior High School Undegraduate:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -724,7 +694,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>60</y>
+        <y>140</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -744,17 +714,17 @@
 </string>
       </property>
       <property name="text">
-       <string>Junior High School</string>
+       <string>Junior High School Graduate:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_SHS">
+     <widget class="QLabel" name="educ_attainment_jhsg">
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>80</y>
+        <y>140</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -767,10 +737,10 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_SHS {
+       <string notr="true">
 	background-color: transparent;
 	color: #4f4f4f;
-}
+
 </string>
       </property>
       <property name="text">
@@ -780,11 +750,11 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="demo_College">
+     <widget class="QLabel" name="educ_attainment_shsu">
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>100</y>
+        <y>160</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -797,10 +767,10 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#demo_College {
+       <string notr="true">
 	background-color: transparent;
 	color: #4f4f4f;
-}
+
 </string>
       </property>
       <property name="text">
@@ -835,6 +805,453 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_Elementary_2">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>110</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_Elementary {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_Elementary_3">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>110</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#demo_Elementary {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_kinder">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>60</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelElementary_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>Kindergarten:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_eu">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>80</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelElementary_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>Elementary Undergaduate:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_eg">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>100</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelElementary_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>Elementary Graduate:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelTotalVocational_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>College Graduate:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelTotalVocational_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>Postgraduate:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="demo_labelTotalVocational_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>Vocational / Technical Graduate:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_vocational">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>200</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_cu">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>220</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_cg">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>240</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="educ_attainment_postgraduate">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>260</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: transparent;
+	color: #4f4f4f;
+
+</string>
+      </property>
+      <property name="text">
+       <string>###,###</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -1085,7 +1502,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>29</day>
+       <day>27</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1133,7 +1550,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>10</day>
+       <day>8</day>
       </datetime>
      </property>
      <property name="displayFormat">
