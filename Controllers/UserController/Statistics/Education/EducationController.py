@@ -26,7 +26,7 @@ class EducationController(BaseFileController):
 
     def setup_view(self):
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Neighborhood")
+        self.setWindowTitle("MaPro: Education")
         self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
 
         # Set images and icons
