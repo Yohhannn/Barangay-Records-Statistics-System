@@ -184,11 +184,11 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Employment Panel screen."""
         print("-- Navigating to Statistics > Employment")
         if not hasattr(self, 'employment'):
-            from Controllers.UserController.Statistics.Employment.employment_func import employment_func
-            self.employment_panel = employment_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.employment_panel.stat_emp_screen)
+            from Controllers.UserController.Statistics.Employment.EmploymentController import EmploymentController
+            self.employment_panel = EmploymentController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.employment_panel.view)
 
-        self.stack.setCurrentWidget(self.employment_panel.stat_emp_screen)
+        self.stack.setCurrentWidget(self.employment_panel.view)
         self.setWindowTitle("MaPro: Employment")
 
     def goto_health_panel(self):

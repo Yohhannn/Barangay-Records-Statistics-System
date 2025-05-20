@@ -3,15 +3,15 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMessageBox, QTableWidgetItem, QHeaderView
 
 from Controllers.BaseFileController import BaseFileController
-from Models.Statistics.EducationModel import EducationModel
+from Models.Statistics.EmploymentModel import EmploymentModel
 
 
-class EducationController(BaseFileController):
+class EmploymentController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/education.ui")
-        self.model = EducationModel()
+        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/employment.ui")
+        self.model = EmploymentModel()
 
         # Initialize UI and data
         self.setup_view()
@@ -26,7 +26,7 @@ class EducationController(BaseFileController):
 
     def setup_view(self):
         self.setFixedSize(1350, 850)
-        self.setWindowTitle("MaPro: Education")
+        self.setWindowTitle("MaPro: Employment")
         self.setWindowIcon(QIcon("Resources/AppIcons/appicon_active_u.ico"))
 
         # Set images and icons
@@ -43,75 +43,97 @@ class EducationController(BaseFileController):
         self.view.filter_date_min.setDisplayFormat("yyyy-MM-dd")
         self.view.filter_date_max.setDisplayFormat("yyyy-MM-dd")
 
-    #Populate the population per sitio table
-    def populate_students_and_not_overview(self):
+    def populate_employment_stat(self):
         from_date, to_date = self.get_date_range()
-        self.view.total_students.setStyleSheet("color: black;")
-        self.view.total_non_students.setStyleSheet("color: black;")
 
         try:
-            result = self.model.get_total_students_and_not(from_date, to_date)
+            result = self.model.get_employment_data_per_sitio(from_date, to_date)
+
+            if not result or not result['data']:
+                return
+
+            self._populate_table(
+                self.view.employment_tablePerStreet,
+                result['columns'],
+                result['data']
+            )
+
+        except Exception as e:
+            self.show_error_message(
+                "Employment Data Error",
+                "Could not load employment status per sitio statistics."
+            )
+            print(f"Error loading employment status data: {e}")
+
+    #Populate the population per sitio table
+    def populate_gov_nongov_overview(self):
+        from_date, to_date = self.get_date_range()
+        try:
+            result = self.model.get_total_gov_nongov_worker(from_date, to_date)
 
             if not result:
-                self.view.total_students.setText("No Data")
-                self.view.total_non_students.setText("No Data")
+                self.view.total_gov_worker.setText("No Data")
+                self.view.total_nongov_worker.setText("No Data")
                 return
-            self.view.total_students.setStyleSheet("color: black;")  # or any visible color
-            self.view.total_non_students.setStyleSheet("color: black;")
 
-            total_currently_studying, total_not_currently_studying = result
+            total_gov_workers, total_non_gov_workers = result
 
-            self.view.total_students.setText(
-                f"{total_currently_studying:,}" if total_currently_studying is not None else "0")
-            self.view.total_non_students.setText(
-                f"{total_not_currently_studying:,}" if total_not_currently_studying is not None else "0")
+            self.view.total_gov_worker.setText(str(total_gov_workers))
+            self.view.total_nongov_worker.setText(str(total_non_gov_workers))
 
         except Exception as e:
-            print(f"[ERROR] Failed to display total students or not students data: {e}")
+            print(f"[ERROR] Failed to display total government and non government workers data: {e}")
             self.show_error_message(
-                "Education Data Error",
-                "Could not load total students and not students statistics."
+                "Employment Data Error",
+                "Could not load total government and non government workers statistics."
             )
 
-    def populate_educational_attainment_stats(self):
+    def populate_overall_employment_distribution(self):
+        from_date, to_date = self.get_date_range()
         try:
-            result = self.model.get_all_educational_attainment_stats()
+            result = self.model.get_overall_employment_stats(from_date, to_date)
 
-            attainment_mapping = {
-                'No Formal Education': self.view.educ_attainment_nfe,
-                'Kindergarten': self.view.educ_attainment_kinder,
-                'Elementary Undergraduate': self.view.educ_attainment_eu,
-                'Elementary Graduate': self.view.educ_attainment_eg,
-                'Junior High School Undergraduate': self.view.educ_attainment_jhsu,
-                'Junior High School Graduate': self.view.educ_attainment_jhsg,
-                'Senior High School Undergraduate': self.view.educ_attainment_shsu,
-                'Senior High School Graduate': self.view.educ_attainment_shsg,
-                'Vocational / Technical Graduate': self.view.educ_attainment_vocational,
-                'College Undergraduate': self.view.educ_attainment_cu,
-                'College Graduate': self.view.educ_attainment_cg,
-                'Postgraduate': self.view.educ_attainment_postgraduate
-            }
+            if result:
+                employed, unemployed, self_employed, not_in_labor_force = result
 
-            # Set all labels to 0 first
-            for label in attainment_mapping.values():
-                label.setText("0")
-
-            # Update labels with actual data
-            for attainment, count in result:
-                if attainment in attainment_mapping:
-                    attainment_mapping[attainment].setText(str(count))
+                self.view.demo_Employed.setText(str(employed))
+                self.view.demo_Unemployed.setText(str(unemployed))
+                self.view.demo_SelfEmployed.setText(str(self_employed))
+                self.view.demo_nilf.setText(str(not_in_labor_force))
 
         except Exception as e:
-            print(f"[ERROR] Failed to display educational attainment stats: {e}")
+            print(f"[ERROR] Failed to display overall employment stats: {e}")
             self.show_error_message(
-                "Education Stats Error",
-                "Could not load educational attainment statistics."
+                "Employment Stats Error",
+                "Could not load overall employment statistics."
             )
+
+    def _populate_table(self, table, headers, data):
+        table.setRowCount(len(data))
+        table.setColumnCount(len(headers))
+        table.setHorizontalHeaderLabels(headers)
+
+        for row_idx, row_data in enumerate(data):
+            for col_idx, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                item.setForeground(Qt.black)
+
+                if col_idx > 0:
+                    item.setTextAlignment(Qt.AlignCenter)
+
+                table.setItem(row_idx, col_idx, item)
+
+        table.resizeColumnsToContents()
+
+        header = table.horizontalHeader()
+        header.setStretchLastSection(False)
+        header.setSectionResizeMode(QHeaderView.Stretch)
 
     def refresh_statistics(self):
         try:
-            self.populate_students_and_not_overview()
-            self.populate_educational_attainment_stats()
+            self.populate_employment_stat()
+            self.populate_overall_employment_distribution()
+            self.populate_gov_nongov_overview()
 
         except Exception as e:
             self.show_error_message(
