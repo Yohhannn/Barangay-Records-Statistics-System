@@ -9,34 +9,36 @@ class NeighborhoodModel:
     def get_data_per_sitio(self, from_date, to_date):
         try:
             self.cursor.execute("""
-                SELECT 
+                SELECT
                     s.SITIO_NAME AS "Sitio Name",
-
-                    -- Using FILTER for cleaner conditional aggregations
-                    COUNT(*) FILTER (WHERE c.CTZ_SEX = 'M') AS "No. of Male",
-                    COUNT(*) FILTER (WHERE c.CTZ_SEX = 'F') AS "No. of Female",
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(c.CTZ_DATE_OF_BIRTH)) >= 60) AS "No. of Seniors",
-                    COUNT(*) FILTER (WHERE ch.CLAH_CLASSIFICATION_NAME = 'Person With Disability') AS "No. of PWD",
-                    COUNT(*) FILTER (WHERE c.CTZ_IS_REGISTERED_VOTER = TRUE) AS "No. of Voters",
-
-                    -- Total population
-                    COUNT(*) AS "Total Population"
-
-                FROM 
-                    CITIZEN c
-                JOIN 
-                    SITIO s ON c.SITIO_ID = s.SITIO_ID
-                LEFT JOIN 
-                    CLASSIFICATION cl ON c.CLA_ID = cl.CLA_ID
-                LEFT JOIN 
-                    CLASSIFICATION_HEALTH_RISK ch ON cl.CLAH_ID = ch.CLAH_ID
-                WHERE 
-                    c.CTZ_LAST_UPDATED BETWEEN %s AND %s 
-                    AND c.CTZ_IS_DELETED = FALSE
-                    AND c.CTZ_IS_ALIVE = TRUE
-                GROUP BY 
+                
+                    -- Conditional counts with FILTER
+                    COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_SEX = 'M') AS "No. of Male",
+                    COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_SEX = 'F') AS "No. of Female",
+                    COUNT(c.CTZ_ID) FILTER (
+                        WHERE EXTRACT(YEAR FROM AGE(c.CTZ_DATE_OF_BIRTH)) >= 60
+                        ) AS "No. of Seniors",
+                    COUNT(c.CTZ_ID) FILTER (
+                        WHERE ch.CLAH_CLASSIFICATION_NAME = 'Person With Disability'
+                        ) AS "No. of PWD",
+                    COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_IS_REGISTERED_VOTER = TRUE) AS "No. of Voters",
+                
+                    -- Total citizens (not total rows)
+                    COUNT(c.CTZ_ID) AS "Total Population"
+                
+                FROM
+                    SITIO s
+                        LEFT JOIN CITIZEN c
+                                  ON c.SITIO_ID = s.SITIO_ID
+                                      AND c.CTZ_IS_DELETED = FALSE
+                                      AND c.CTZ_IS_ALIVE = TRUE
+                                      AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s
+                        LEFT JOIN CLASSIFICATION cl ON c.CLA_ID = cl.CLA_ID
+                        LEFT JOIN CLASSIFICATION_HEALTH_RISK ch ON cl.CLAH_ID = ch.CLAH_ID
+                
+                GROUP BY
                     s.SITIO_NAME
-                ORDER BY 
+                ORDER BY
                     s.SITIO_NAME;
             """, (from_date, to_date))
 
@@ -46,6 +48,15 @@ class NeighborhoodModel:
         except Exception as e:
             print(f"[ERROR] Failed to fetch population counts: {e}")
             return []
+
+    def get_sitio_count(self):
+        try:
+            self.cursor.execute("SELECT COUNT(*) FROM SITIO;")
+            result = self.cursor.fetchone()
+            return result[0] if result else 0
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch sitio count: {e}")
+            return 0
 
     def get_highest_and_lowest_population_sitios(self, from_date, to_date):
         try:
