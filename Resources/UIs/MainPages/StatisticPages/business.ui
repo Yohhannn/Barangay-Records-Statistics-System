@@ -663,7 +663,7 @@
 </string>
       </property>
       <property name="text">
-       <string>BUSINESS TYPE COUNT</string>
+       <string>ACTIVE BUSINESS TYPE COUNT</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -722,7 +722,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QTableWidget" name="household_tablePopulationPerStreet">
+    <widget class="QTableWidget" name="business_table_stat_per_street">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -735,9 +735,9 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#household_tablePopulationPerStreet{
+      <string notr="true">
 	background-color: #fcfcfc;
-}</string>
+color: 4f4f4f</string>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
@@ -1029,7 +1029,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>28</day>
+       <day>27</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1077,7 +1077,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>9</day>
+       <day>8</day>
       </datetime>
      </property>
      <property name="displayFormat">
