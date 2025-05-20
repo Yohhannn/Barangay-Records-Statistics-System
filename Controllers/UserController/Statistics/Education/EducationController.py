@@ -3,15 +3,15 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMessageBox, QTableWidgetItem, QHeaderView
 
 from Controllers.BaseFileController import BaseFileController
-from Models.Statistics.NeighborhoodModel import NeighborhoodModel
+from Models.Statistics.EducationModel import EducationModel
 
 
-class NeighborhoodController(BaseFileController):
+class EducationController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
         super().__init__(login_window, emp_first_name)
         self.stack = stack
-        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/neighborhood.ui")
-        self.model = NeighborhoodModel()
+        self.view = self.load_ui("Resources/UIs/MainPages/StatisticPages/education.ui")
+        self.model = EducationModel()
 
         # Initialize UI and data
         self.setup_view()
@@ -43,98 +43,75 @@ class NeighborhoodController(BaseFileController):
         self.view.filter_date_min.setDisplayFormat("yyyy-MM-dd")
         self.view.filter_date_max.setDisplayFormat("yyyy-MM-dd")
 
-        # self.view.geographics_tablePopulationPerStreet.setAlternatingRowColors(True)
-        # self.view.geographics_tablePopulationPerStreet.setSortingEnabled(True)
-
     #Populate the population per sitio table
-    def populate_sitio_statistics(self):
+    def populate_students_and_not_overview(self):
         from_date, to_date = self.get_date_range()
+        self.view.total_students.setStyleSheet("color: black;")
+        self.view.total_non_students.setStyleSheet("color: black;")
 
         try:
-            result = self.model.get_data_per_sitio(from_date, to_date)
+            result = self.model.get_total_students_and_not(from_date, to_date)
 
-            if not result or not result['data']:
-                self.view.geographics_tablePopulationPerStreet.setRowCount(0)
+            if not result:
+                self.view.total_students.setText("No Data")
+                self.view.total_non_students.setText("No Data")
                 return
+            self.view.total_students.setStyleSheet("color: black;")  # or any visible color
+            self.view.total_non_students.setStyleSheet("color: black;")
 
-            self._populate_table(
-                self.view.geographics_tablePopulationPerStreet,
-                result['columns'],
-                result['data']
-            )
+            total_currently_studying, total_not_currently_studying = result
+
+            self.view.total_students.setText(
+                f"{total_currently_studying:,}" if total_currently_studying is not None else "0")
+            self.view.total_non_students.setText(
+                f"{total_not_currently_studying:,}" if total_not_currently_studying is not None else "0")
 
         except Exception as e:
+            print(f"[ERROR] Failed to display total students or not students data: {e}")
             self.show_error_message(
-                "Sitio Data Error",
-                "Could not load sitio statistics."
+                "Education Data Error",
+                "Could not load total students and not students statistics."
             )
-            print(f"Error loading sitio data: {e}")
 
-    def _populate_table(self, table, headers, data):
-
-        table.setRowCount(len(data))
-        table.setColumnCount(len(headers))
-        table.setHorizontalHeaderLabels(headers)
-
-        for row_idx, row_data in enumerate(data):
-            for col_idx, cell_data in enumerate(row_data):
-                item = QTableWidgetItem(str(cell_data))
-                item.setForeground(Qt.black)
-
-                if col_idx > 0:
-                    item.setTextAlignment(Qt.AlignCenter)
-
-                table.setItem(row_idx, col_idx, item)
-
-        table.resizeColumnsToContents()
-
-        header = table.horizontalHeader()
-        header.setStretchLastSection(False)
-        header.setSectionResizeMode(QHeaderView.Stretch)
-
-    def populate_sitio_count(self):
-        sitio_count = self.model.get_sitio_count()
-
-        self.view.geo_totalstreets.setText(str(sitio_count))
-        print(f"Total Sitios: {sitio_count}")
-
-    def populate_highest_and_lowest_sitios(self):
-        from_date, to_date = self.get_date_range()
+    def populate_educational_attainment_stats(self):
         try:
-            result = self.model.get_highest_and_lowest_population_sitios(from_date, to_date)
+            result = self.model.get_all_educational_attainment_stats()
 
-            if not result or not result['data']:
-                self.view.geo_sitioname_highest.setText("No data")
-                self.view.geo_sitioname_lowest.setText("No data")
-                self.view.geo_sitioname_highest_number.setText("No data")
-                self.view.geo_sitioname_lowest_number.setText("No data")
-                return
+            attainment_mapping = {
+                'No Formal Education': self.view.educ_attainment_nfe,
+                'Kindergarten': self.view.educ_attainment_kinder,
+                'Elementary Undergraduate': self.view.educ_attainment_eu,
+                'Elementary Graduate': self.view.educ_attainment_eg,
+                'Junior High School Undergraduate': self.view.educ_attainment_jhsu,
+                'Junior High School Graduate': self.view.educ_attainment_jhsg,
+                'Senior High School Undergraduate': self.view.educ_attainment_shsu,
+                'Senior High School Graduate': self.view.educ_attainment_shsg,
+                'Vocational / Technical Graduate': self.view.educ_attainment_vocational,
+                'College Undergraduate': self.view.educ_attainment_cu,
+                'College Graduate': self.view.educ_attainment_cg,
+                'Postgraduate': self.view.educ_attainment_postgraduate
+            }
 
-            highest = result['data'][0]
-            lowest = result['data'][1]
+            # Set all labels to 0 first
+            for label in attainment_mapping.values():
+                label.setText("0")
 
-            # Extracting data
-            highest_name, highest_count = highest
-            lowest_name, lowest_count = lowest
-
-            # Displaying data
-            self.view.geo_sitioname_highest.setText(highest_name)
-            self.view.geo_sitioname_highest_number.setText(str(highest_count))
-            self.view.geo_sitioname_lowest.setText(lowest_name)
-            self.view.geo_sitioname_lowest_number.setText(str(lowest_count))
+            # Update labels with actual data
+            for attainment, count in result:
+                if attainment in attainment_mapping:
+                    attainment_mapping[attainment].setText(str(count))
 
         except Exception as e:
-            print(f"[ERROR] Failed to display highest/lowest sitio data: {e}")
-            self.view.geo_sitioname_highest.setText("Error")
-            self.view.geo_sitioname_highest_number.setText("Error")
-            self.view.geo_sitioname_lowest.setText("Error")
-            self.view.geo_sitioname_lowest_number.setText("Error")
+            print(f"[ERROR] Failed to display educational attainment stats: {e}")
+            self.show_error_message(
+                "Education Stats Error",
+                "Could not load educational attainment statistics."
+            )
 
     def refresh_statistics(self):
         try:
-            self.populate_sitio_statistics()
-            self.populate_highest_and_lowest_sitios()
-            self.populate_sitio_count()
+            self.populate_students_and_not_overview()
+            self.populate_educational_attainment_stats()
 
         except Exception as e:
             self.show_error_message(
