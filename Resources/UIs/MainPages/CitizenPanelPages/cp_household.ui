@@ -372,6 +372,11 @@
         <height>521</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
       <property name="focusPolicy">
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>

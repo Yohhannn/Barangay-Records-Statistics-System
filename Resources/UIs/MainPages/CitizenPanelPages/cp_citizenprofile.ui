@@ -372,6 +372,18 @@
         <height>521</height>
        </rect>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>611</width>
+        <height>521</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
       <property name="focusPolicy">
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
@@ -392,7 +404,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>145</number>
+       <number>116</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -410,9 +422,13 @@
        <property name="text">
         <string>Citizen ID</string>
        </property>
+       <property name="toolTip">
+        <string comment="100"/>
+       </property>
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -430,6 +446,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -447,6 +464,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">
@@ -464,7 +482,25 @@
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>10</pointsize>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date Updated</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="background">

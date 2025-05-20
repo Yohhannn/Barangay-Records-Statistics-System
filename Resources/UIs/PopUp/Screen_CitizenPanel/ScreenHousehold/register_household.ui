@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>18</day>
+      <day>17</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -901,23 +901,23 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="register_household_InterviewedBy">
+   <widget class="QLineEdit" name="register_household_InterviewedBy_fname">
     <property name="geometry">
      <rect>
       <x>140</x>
       <y>290</y>
-      <width>221</width>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>12</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_household_InterviewedBy{
+     <string notr="true">#register_household_InterviewedBy_fname{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -934,43 +934,7 @@
      <number>35</number>
     </property>
     <property name="placeholderText">
-     <string>Input Citizen Name</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="register_household_ReviewedBy">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>330</y>
-      <width>221</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_household_ReviewedBy{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>35</number>
-    </property>
-    <property name="placeholderText">
-     <string>Input Citizen Name</string>
+     <string>First Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="register_household_labelReviewedBy">
@@ -1027,62 +991,6 @@
     </property>
     <property name="text">
      <string>the date the interview took place</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="register_household_displayInterviewedBy">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>290</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_household_displayInterviewedBy{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>N/A</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="register_household_displayReviewedBy">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>330</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_household_displayReviewedBy{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1238,6 +1146,186 @@
       <string>Other Toilet Types</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLineEdit" name="register_household_InterviewedBy_mname">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>290</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_InterviewedBy_mname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>Middle Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_household_InterviewedBy_lname">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>290</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_InterviewedBy_lname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>Last Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_household_ReviewedBy_mname">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>330</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_ReviewedBy_mname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>Middle Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_household_ReviewedBy_fname">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>330</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_ReviewedBy_fname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>First Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_household_ReviewedBy_lname">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>330</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_ReviewedBy_lname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>Last Name</string>
+    </property>
    </widget>
   </widget>
   <widget class="QFrame" name="basePopUpTitleFrame">
