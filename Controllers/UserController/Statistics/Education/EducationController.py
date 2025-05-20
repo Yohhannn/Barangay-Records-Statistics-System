@@ -74,8 +74,9 @@ class EducationController(BaseFileController):
             )
 
     def populate_educational_attainment_stats(self):
+        from_date, to_date = self.get_date_range()
         try:
-            result = self.model.get_all_educational_attainment_stats()
+            result = self.model.get_all_educational_attainment_stats(to_date)
 
             attainment_mapping = {
                 'No Formal Education': self.view.educ_attainment_nfe,
