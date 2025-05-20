@@ -195,22 +195,22 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Health Panel screen."""
         print("-- Navigating to Statistics > Health")
         if not hasattr(self, 'health'):
-            from Controllers.UserController.Statistics.Health.health_func import health_func
-            self.health_panel = health_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.health_panel.stat_health_screen)
+            from Controllers.UserController.Statistics.Health.HealthController import HealthController
+            self.health_panel = HealthController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.health_panel.view)
 
-        self.stack.setCurrentWidget(self.health_panel.stat_health_screen)
+        self.stack.setCurrentWidget(self.health_panel.view)
         self.setWindowTitle("MaPro: Health")
 
     def goto_business_panel(self):
         """Handle navigation to Business Panel screen."""
         print("-- Navigating to Statistics > Business")
         if not hasattr(self, 'business_stat'):
-            from Controllers.UserController.Statistics.Business.business_func import business_func
-            self.business_panel = business_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.business_panel.stat_business_screen)
+            from Controllers.UserController.Statistics.Business.BusinessController import BusinessController
+            self.business_panel = BusinessController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.business_panel.view)
 
-        self.stack.setCurrentWidget(self.business_panel.stat_business_screen)
+        self.stack.setCurrentWidget(self.business_panel.view)
         self.setWindowTitle("MaPro: Business")
 
     def goto_infrastructures_panel(self):
