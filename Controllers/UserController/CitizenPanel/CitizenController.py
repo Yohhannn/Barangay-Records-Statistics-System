@@ -151,7 +151,7 @@ class CitizenController(BaseFileController):
             connection = Database()
             cursor = connection.cursor
             cursor.execute("""
-    SELECT
+    SELECT DISTINCT ON (C.CTZ_ID)
         C.CTZ_ID, --0
         C.CTZ_LAST_NAME,
         C.CTZ_FIRST_NAME,
@@ -171,29 +171,30 @@ class CitizenController(BaseFileController):
         ES.ES_STATUS_NAME AS EMPLOYMENT_STATUS,
         EMP.EMP_OCCUPATION AS OCCUPATION,
         EMP.EMP_IS_GOV_WORKER,
-        HH.HH_HOUSE_NUMBER,
+        HH.HH_ID, -- 19
         RT.RTH_RELATIONSHIP_NAME AS RELATIONSHIP_NAME,
         PHC.PC_CATEGORY_NAME AS PHILHEALTH_CATEGORY_NAME,
         PH.PHEA_MEMBERSHIP_TYPE, -- 22
         R.REL_NAME AS RELIGION,
         C.CTZ_BLOOD_TYPE,
         EDU.EDU_IS_CURRENTLY_STUDENT AS IS_STUDENT,
-        EDU.EDU_INSTITUTION_NAME AS SCHOOL_NAME,
+        EDU.EDU_INSTITUTION_NAME AS SCHOOL_NAME, -- 26
         EDAT.EDAT_LEVEL AS EDUCATIONAL_ATTAINMENT, -- 27
-        CHR.CLAH_CLASSIFICATION_NAME AS CLASSIFICATION_HEALTH_RISK_NAME,
-        C.CTZ_IS_REGISTERED_VOTER,
-        NOT C.CTZ_IS_ALIVE AS IS_DECEASED,
+        CHR.CLAH_CLASSIFICATION_NAME AS CLASSIFICATION_HEALTH_RISK_NAME, -- 28
+        C.CTZ_IS_REGISTERED_VOTER, -- 29
+        NOT C.CTZ_IS_ALIVE AS IS_DECEASED, -- 30
         C.CTZ_IS_IP,
-        TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED,
+        PH.PHEA_ID_NUMBER,
+        TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED, -- 33
         CASE 
             WHEN SA.SYS_FNAME IS NULL THEN 'System'
             ELSE SA.SYS_FNAME || ' ' ||
                  COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') ||
                  SA.SYS_LNAME
-        END AS ENCODED_BY,
-        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED -- 32
+        END AS ENCODED_BY, -- 34
+        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED -- 35
     FROM CITIZEN C
-    LEFT JOIN CONTACT CON ON C.CTZ_ID = CON.CTZ_ID
+    LEFT JOIN CONTACT CON ON C.CON_ID = CON.CON_ID
     LEFT JOIN EMPLOYMENT EMP ON C.CTZ_ID = EMP.CTZ_ID
     LEFT JOIN EMPLOYMENT_STATUS ES ON EMP.ES_ID = ES.ES_ID
     JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
@@ -208,7 +209,8 @@ class CitizenController(BaseFileController):
     LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLA_ID = CHR.CLAH_ID
     LEFT JOIN SYSTEM_ACCOUNT SA ON C.SYS_ID = SA.SYS_ID
     WHERE C.CTZ_IS_DELETED = FALSE
-    ORDER BY COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+    ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+
     LIMIT 20;
             """)
             rows = cursor.fetchall()
@@ -270,34 +272,35 @@ class CitizenController(BaseFileController):
 
                 # self.cp_profile_screen.cp_displaySex.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
                 self.cp_profile_screen.cp_displayCivilStatus.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
-                self.cp_profile_screen.cp_displayEmail.setText(record[10])
-                self.cp_profile_screen.cp_displayContactNum.setText(record[11])
+                self.cp_profile_screen.cp_displayEmail.setText(record[10] or "N/A")
+                self.cp_profile_screen.cp_displayContactNum.setText(record[11] or "N/A")
                 self.cp_profile_screen.cp_displayPlaceOfBirth.setText(record[12] or "N/A")
                 self.cp_profile_screen.cp_displayFullAddress.setText(record[13] or "N/A")
                 self.cp_profile_screen.cp_displaySocioEcoStatus.setText(record[14] or "N/A")
                 self.cp_profile_screen.cp_displayNHTSNum.setText(record[15] or "N/A")
                 self.cp_profile_screen.cp_displayEmploymentStatus.setText(record[16] or "N/A")
                 self.cp_profile_screen.cp_displayOccupation.setText(record[17] or "N/A")
-                self.cp_profile_screen.cp_displayGovWorker.setText("Yes" if record[18] else "No")
+                self.cp_profile_screen.cp_displayGovWorker.setText("Yes" if record[18] == True else "No")
                 self.cp_profile_screen.cp_displayHouseholdID.setText(str(record[19]) if record[19] else "")
                 self.cp_profile_screen.cp_displayRelationship.setText(record[20] or "N/A")
                 self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "N/A")
-                self.cp_profile_screen.cp_displayPhilID.setText(record[33] or "N/A")
+                self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "N/A")
                 self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "N/A")
+                self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
                 self.cp_profile_screen.cp_displayReligion.setText(record[23] or "N/A")
-                blood_type = record[25]
-                self.cp_profile_screen.cp_displayBloodType.setText(
-                    str(blood_type) if isinstance(blood_type, str) else "")
-                self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[26] else "No")
+                self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "N/A")
+                self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
                 self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "N/A")
                 self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "N/A")
-                self.cp_profile_screen.cp_displayPWD.setText(record[29] or "N/A")
-                self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[30] else "No")
-                self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[31] else "No")
-                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[32] else "No")
+                self.cp_profile_screen.cp_displayPWD.setText("No | None" if record[28] == "None" else "Yes" + " | " + record[28]  )
+                self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[29] == True else "No")
+                self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[30] == True else "No")
+                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
                 self.cp_profile_screen.display_DateEncoded.setText(record[33] or "N/A")
                 self.cp_profile_screen.display_EncodedBy.setText(record[34] or "N/A")
-                self.cp_profile_screen.display_DateUpdated.setText(record[34] or "N/A")
+                self.cp_profile_screen.display_DateUpdated.setText(record[35] or "N/A")
+                print(record[31])
+                print(record[34])
                 break
 
     #
