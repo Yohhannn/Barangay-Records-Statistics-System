@@ -755,7 +755,7 @@ INSERT INTO CITIZEN (
              'Married',
              'O+',
              'Cebu City',
-             (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+             (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_ID = '1' ),
              (SELECT SOEC_ID FROM SOCIO_ECONOMIC_STATUS WHERE SOEC_STATUS = 'NHTS 4Ps'),
              (SELECT REL_ID FROM RELIGION WHERE REL_NAME = 'Roman Catholic'),
              (SELECT CLA_ID FROM CLASSIFICATION WHERE CLAG_ID = 3 AND CLAH_ID = 1),
