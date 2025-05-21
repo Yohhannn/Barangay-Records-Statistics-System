@@ -71,67 +71,6 @@ class StatisticsController(BaseFileController):
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
-    # def goto_dashboard_panel(self):
-    #     """Return to dashboard screen"""
-    #     print("-- Navigating to Dashboard")
-    #     self.stack.setCurrentIndex(0)
-    #
-    # def goto_citizen_panel(self):
-    #     """Handle navigation to Citizen Panel screen."""
-    #     print("-- Navigating to Citizen Panel")
-    #     if not hasattr(self, 'citizen_panel'):
-    #         from Controllers.UserController.CitizenPanelController import CitizenPanelController
-    #         self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
-    #
-    #     self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
-    #
-    #
-    # def goto_statistics_panel(self):
-    #     """Handle navigation to Statistics Panel screen."""
-    #     print("-- Navigating to Statistics")
-    #     if not hasattr(self, 'statistics_panel'):
-    #         from Controllers.Categories.statistics_func import statistics_func
-    #         self.statistics_panel = statistics_func(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.statistics_panel.statistics_screen)
-    #
-    #     self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
-    #
-    # def goto_institutions_panel(self):
-    #     """Handle navigation to Institutions Panel screen."""
-    #     print("-- Navigating to Institutions")
-    #     if not hasattr(self, 'institutions'):
-    #         from Controllers.Categories.institution_func import institutions_func
-    #         self.institutions_panel = institutions_func(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.institutions_panel.institutions_screen)
-    #
-    #     self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
-    #
-    # def goto_transactions_panel(self):
-    #     """Handle navigation to Transactions Panel screen."""
-    #     print("-- Navigating to Transactions")
-    #     if not hasattr(self, 'transactions'):
-    #         from Controllers.Categories.transaction_func import transaction_func
-    #         self.transactions_panel = transaction_func(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.transactions_panel.transactions_screen)
-    #
-    #     self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
-    #
-    # def goto_history_panel(self):
-    #     """Handle navigation to History Records Panel screen."""
-    #     print("-- Navigating to History Records")
-    #     if not hasattr(self, 'history'):
-    #         from Controllers.Categories.history_func import history_func
-    #         self.history_panel = history_func(self.login_window, self.emp_first_name, self.stack)
-    #         self.stack.addWidget(self.history_panel.history_screen)
-    #
-    #     self.stack.setCurrentWidget(self.history_panel.history_screen)
-
-
-
-
-
-
 
 
     # SUBPAGES : GOTO NAVIGATIONS ================================
@@ -217,11 +156,11 @@ class StatisticsController(BaseFileController):
         """Handle navigation to Infrastructure Panel screen."""
         print("-- Navigating to Statistics > Infrastructure")
         if not hasattr(self, 'infra'):
-            from Controllers.UserController.Statistics.Infrastructure.infrastructure_func import infrastructure_func
-            self.infra_panel = infrastructure_func(self.login_window, self.emp_first_name, self.stack)
-            self.stack.addWidget(self.infra_panel.stat_infra_screen)
+            from Controllers.UserController.Statistics.Infrastructure.InfrastructureController import InfrastructureController
+            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.stack)
+            self.stack.addWidget(self.infra_panel.view)
 
-        self.stack.setCurrentWidget(self.infra_panel.stat_infra_screen)
+        self.stack.setCurrentWidget(self.infra_panel.view)
         self.setWindowTitle("MaPro: Infrastructure")
 
     def logout(self):

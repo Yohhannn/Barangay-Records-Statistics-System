@@ -214,7 +214,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>310</y>
+       <y>520</y>
        <width>461</width>
        <height>121</height>
       </rect>
@@ -442,7 +442,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>260</y>
+       <y>470</y>
        <width>461</width>
        <height>51</height>
       </rect>
@@ -1133,7 +1133,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>290</y>
+       <y>300</y>
        <width>431</width>
        <height>201</height>
       </rect>
@@ -1601,7 +1601,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>240</y>
+       <y>250</y>
        <width>431</width>
        <height>51</height>
       </rect>
@@ -1655,7 +1655,7 @@
        <x>10</x>
        <y>60</y>
        <width>461</width>
-       <height>191</height>
+       <height>171</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2113,7 +2113,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>440</y>
+       <y>250</y>
        <width>461</width>
        <height>51</height>
       </rect>
@@ -2135,9 +2135,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>490</y>
+       <y>300</y>
        <width>461</width>
-       <height>161</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2185,9 +2185,9 @@ color: #4f4f4f
      <widget class="QLabel" name="common_med_case_1st">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>140</x>
         <y>40</y>
-        <width>161</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -2245,9 +2245,9 @@ color: #4f4f4f
      <widget class="QLabel" name="common_med_case_2nd">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>140</x>
         <y>60</y>
-        <width>171</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -2275,9 +2275,9 @@ color: #4f4f4f
      <widget class="QLabel" name="common_med_case_3rd">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>80</y>
-        <width>201</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -2365,9 +2365,9 @@ color: #4f4f4f
      <widget class="QLabel" name="common_med_case_4th">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>140</x>
         <y>100</y>
-        <width>171</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -2395,9 +2395,9 @@ color: #4f4f4f
      <widget class="QLabel" name="common_med_case_5th">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>140</x>
         <y>120</y>
-        <width>171</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -2484,7 +2484,7 @@ color: #4f4f4f
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>440</y>
+       <y>250</y>
        <width>461</width>
        <height>51</height>
       </rect>
@@ -2716,7 +2716,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>26</day>
+       <day>25</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -2764,7 +2764,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>7</day>
+       <day>6</day>
       </datetime>
      </property>
      <property name="displayFormat">
