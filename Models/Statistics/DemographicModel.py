@@ -28,12 +28,13 @@ class DemographicModel:
         try:
             self.cursor.execute("""
                 SELECT 
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 0 AND 13),
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 14 AND 17),
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 18 AND 25),
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 26 AND 35),
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 36 AND 59),
-                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) >= 60)
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 0 AND 2) as "Infant",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 3 AND 12) as "Child",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 13 AND 17) as "Teen",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 18 AND 24) as "Young Adult",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 25 AND 39) as "Adult",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) BETWEEN 40 AND 59) as "Middle Aged",
+                    COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) >= 60) as "Senior"
                 FROM CITIZEN
                 WHERE CTZ_IS_ALIVE = TRUE 
                 AND CTZ_LAST_UPDATED BETWEEN %s AND %s 

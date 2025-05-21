@@ -49,14 +49,6 @@ class DemographicsController(BaseFileController):
         self.view.btn_returnToStatisticsPage.clicked.connect(self.goto_statistics_panel)
         self.view.filter_stat_date_button.clicked.connect(self.refresh_statistics)
 
-    def show_error_message(self, title, message):
-        QMessageBox.critical(
-            self,
-            title,
-            message,
-            QMessageBox.Ok
-        )
-
     def refresh_statistics(self):
         try:
             self.populate_population_overview()
@@ -71,19 +63,6 @@ class DemographicsController(BaseFileController):
                 "Failed to refresh statistics. Please try again later."
             )
             print(f"Error refreshing statistics: {e}")
-
-    #Get and validate the selected date range
-    def get_date_range(self):
-        from_date = self.view.filter_date_min.date().toPython()
-        to_date = self.view.filter_date_max.date().toPython()
-
-        # Validate date range
-        if from_date > to_date:
-            from_date, to_date = to_date, from_date
-            self.view.filter_date_min.setDate(to_date)
-            self.view.filter_date_max.setDate(from_date)
-
-        return from_date, to_date
 
     #Update population overview statistics
     def populate_population_overview(self):
@@ -104,32 +83,26 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading population data: {e}")
 
-    #Reset population overview to default/empty values
-    def reset_population_overview(self):
-        self.view.demo_TotalMale.setText("0")
-        self.view.demo_TotalFemale.setText("0")
-        self.view.demo_TotalPopulation.setText("0")
-        self.view.total_indppl.setText("0")
-        self.view.total_deceased.setText("0")
 
     #Update age group statistics
     def populate_age_group(self):
         from_date, to_date = self.get_date_range()
         try:
             age_counts = self.model.get_age_group_counts(from_date, to_date)
-            if len(age_counts) != 6:
-                raise ValueError("Unexpected number of age groups returned")
+            if not age_counts or len(age_counts) != 7:
+                raise ValueError("Unexpected result structure for age group counts.")
 
-            labels = [
-                self.view.demo_TotalChild,
-                self.view.demo_TotalMinors,
-                self.view.demo_TotalYoungAdults,
-                self.view.demo_TotalAdults,
-                self.view.demo_TotalMiddleAges,
-                self.view.demo_TotalSeniors
-            ]
+            label_map = {
+                self.view.demo_TotalInfant: "Infant",
+                self.view.demo_TotalChild: "Child",
+                self.view.demo_TotalMinors: "Teen",
+                self.view.demo_TotalYoungAdults: "Young Adult",
+                self.view.demo_TotalAdults: "Adult",
+                self.view.demo_TotalMiddleAges: "Middle Aged",
+                self.view.demo_TotalSeniors: "Senior"
+            }
 
-            for label, count in zip(labels, age_counts):
+            for (label, name), count in zip(label_map.items(), age_counts):
                 label.setText(f"{count:,}")
         except Exception as e:
             self.reset_age_groups()
@@ -139,17 +112,6 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading age group data: {e}")
 
-    def reset_age_groups(self):
-        age_labels = [
-            self.view.demo_TotalChild,
-            self.view.demo_TotalMinors,
-            self.view.demo_TotalYoungAdults,
-            self.view.demo_TotalAdults,
-            self.view.demo_TotalMiddleAges,
-            self.view.demo_TotalSeniors
-        ]
-        for label in age_labels:
-            label.setText("0")
 
     #Update civil status distribution statistics
     def populate_civil_status_distribution(self):
@@ -198,28 +160,13 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading civil status data: {e}")
 
-    def reset_civil_status_distribution(self):
-        status_widgets = [
-            ('Single', self.view.demo_TotalSingle_male, self.view.demo_TotalSingle_female, self.view.demo_TotalSingle),
-            ('Married', self.view.demo_TotalMarried_male, self.view.demo_TotalMarried_female,
-             self.view.demo_TotalMarried),
-            ('Widowed', self.view.demo_TotalWidowed_male, self.view.demo_TotalWidowed_female,
-             self.view.demo_TotalWidowed),
-            ('Divorced', self.view.demo_TotalDivorced_male, self.view.demo_TotalDivorced_female,
-             self.view.demo_TotalDivorced)
-        ]
-
-        for status, male_widget, female_widget, total_widget in status_widgets:
-            male_widget.setText("0")
-            female_widget.setText("0")
-            total_widget.setText("0")
 
     #Update voter statistics
     def populate_voter_statistics(self):
         from_date, to_date = self.get_date_range()
         try:
             stats = self.model.get_voter_statistics(from_date, to_date)
-            if len(stats) != 9:  # Verify we got all expected values
+            if len(stats) != 9:
                 raise ValueError("Unexpected number of voter statistics returned")
 
             (
@@ -248,21 +195,7 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading voter statistics: {e}")
 
-    def reset_voter_statistics(self):
-        voter_widgets = [
-            self.view.voter_15_17,
-            self.view.voter_18_25,
-            self.view.voter_26_35,
-            self.view.voter_36_59,
-            self.view.voter_60P,
-            self.view.voter_registered,
-            self.view.voter_unregistered,
-            self.view.voter_totalmale,
-            self.view.voter_totalfemale
-        ]
 
-        for widget in voter_widgets:
-            widget.setText("0")
 
     #Update socio-economic distribution statistics
     def populate_socio_economic_distribution(self):
@@ -291,10 +224,6 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading socio-economic data: {e}")
 
-    def reset_socio_economic_distribution(self):
-        self.view.display_NHTS4Ps.setText("0")
-        self.view.display_NHTSNon4Ps.setText("0")
-        self.view.display_NonNHTS.setText("0")
 
     #Update religion distribution statistics
     def populate_religion_distribution(self):
@@ -331,6 +260,62 @@ class DemographicsController(BaseFileController):
             )
             print(f"Error loading religion data: {e}")
 
+    #Reset population overview to default/empty values
+    def reset_population_overview(self):
+        self.view.demo_TotalMale.setText("0")
+        self.view.demo_TotalFemale.setText("0")
+        self.view.demo_TotalPopulation.setText("0")
+        self.view.total_indppl.setText("0")
+        self.view.total_deceased.setText("0")
+
+    def reset_voter_statistics(self):
+        voter_widgets = [
+            self.view.voter_15_17,
+            self.view.voter_18_25,
+            self.view.voter_26_35,
+            self.view.voter_36_59,
+            self.view.voter_60P,
+            self.view.voter_registered,
+            self.view.voter_unregistered,
+            self.view.voter_totalmale,
+            self.view.voter_totalfemale
+        ]
+
+        for widget in voter_widgets:
+            widget.setText("0")
+
+    def reset_civil_status_distribution(self):
+        status_widgets = [
+            ('Single', self.view.demo_TotalSingle_male, self.view.demo_TotalSingle_female, self.view.demo_TotalSingle),
+            ('Married', self.view.demo_TotalMarried_male, self.view.demo_TotalMarried_female,
+             self.view.demo_TotalMarried),
+            ('Widowed', self.view.demo_TotalWidowed_male, self.view.demo_TotalWidowed_female,
+             self.view.demo_TotalWidowed),
+            ('Divorced', self.view.demo_TotalDivorced_male, self.view.demo_TotalDivorced_female,
+             self.view.demo_TotalDivorced)
+        ]
+
+        for status, male_widget, female_widget, total_widget in status_widgets:
+            male_widget.setText("0")
+            female_widget.setText("0")
+            total_widget.setText("0")
+
+    def reset_socio_economic_distribution(self):
+        self.view.display_NHTS4Ps.setText("0")
+        self.view.display_NHTSNon4Ps.setText("0")
+        self.view.display_NonNHTS.setText("0")
+
+    def reset_age_groups(self):
+        age_labels = [
+            self.view.demo_TotalChild,
+            self.view.demo_TotalMinors,
+            self.view.demo_TotalYoungAdults,
+            self.view.demo_TotalAdults,
+            self.view.demo_TotalMiddleAges,
+            self.view.demo_TotalSeniors
+        ]
+        for label in age_labels:
+            label.setText("0")
 
     def reset_religion_distribution(self):
         religion_widgets = [
@@ -349,6 +334,27 @@ class DemographicsController(BaseFileController):
 
         for widget in religion_widgets:
             widget.setText("0")
+
+    def show_error_message(self, title, message):
+        QMessageBox.critical(
+            self,
+            title,
+            message,
+            QMessageBox.Ok
+        )
+
+    # Get and validate the selected date range
+    def get_date_range(self):
+        from_date = self.view.filter_date_min.date().toPython()
+        to_date = self.view.filter_date_max.date().toPython()
+
+        # Validate date range
+        if from_date > to_date:
+            from_date, to_date = to_date, from_date
+            self.view.filter_date_min.setDate(to_date)
+            self.view.filter_date_max.setDate(from_date)
+
+        return from_date, to_date
 
     def _setup_time(self):
         self.timer = QTimer(self.view)

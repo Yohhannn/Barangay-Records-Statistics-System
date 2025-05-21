@@ -11,8 +11,6 @@ class NeighborhoodModel:
             self.cursor.execute("""
                 SELECT
                     s.SITIO_NAME AS "Sitio Name",
-                
-                    -- Conditional counts with FILTER
                     COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_SEX = 'M') AS "No. of Male",
                     COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_SEX = 'F') AS "No. of Female",
                     COUNT(c.CTZ_ID) FILTER (
@@ -22,8 +20,6 @@ class NeighborhoodModel:
                         WHERE ch.CLAH_CLASSIFICATION_NAME = 'Person With Disability'
                         ) AS "No. of PWD",
                     COUNT(c.CTZ_ID) FILTER (WHERE c.CTZ_IS_REGISTERED_VOTER = TRUE) AS "No. of Voters",
-                
-                    -- Total citizens (not total rows)
                     COUNT(c.CTZ_ID) AS "Total Population"
                 
                 FROM
@@ -33,15 +29,12 @@ class NeighborhoodModel:
                                       AND c.CTZ_IS_DELETED = FALSE
                                       AND c.CTZ_IS_ALIVE = TRUE
                                       AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s
-                        LEFT JOIN CLASSIFICATION cl ON c.CLA_ID = cl.CLA_ID
-                        LEFT JOIN CLASSIFICATION_HEALTH_RISK ch ON cl.CLAH_ID = ch.CLAH_ID
-                
+                        LEFT JOIN CLASSIFICATION_HEALTH_RISK ch ON c.CLAH_ID = ch.CLAH_ID
                 GROUP BY
                     s.SITIO_NAME
                 ORDER BY
                     s.SITIO_NAME;
             """, (from_date, to_date))
-
             results = self.cursor.fetchall()
             columns = [desc[0] for desc in self.cursor.description]
             return {"columns": columns, "data": results}
@@ -62,27 +55,26 @@ class NeighborhoodModel:
         try:
             self.cursor.execute("""
                 WITH sitio_population AS (
-                    SELECT 
+                    SELECT
                         s.SITIO_NAME,
-                        COUNT(*) AS total_population
-                    FROM 
-                        CITIZEN c
-                    JOIN 
-                        SITIO s ON c.SITIO_ID = s.SITIO_ID
-                    WHERE 
-                        c.CTZ_LAST_UPDATED BETWEEN %s AND %s 
-                        AND c.CTZ_IS_DELETED = FALSE
-                        AND c.CTZ_IS_ALIVE = TRUE
-                    GROUP BY 
+                        COUNT(c.CTZ_ID) AS total_population
+                    FROM
+                        SITIO s
+                            LEFT JOIN
+                        CITIZEN c ON s.SITIO_ID = c.SITIO_ID
+                            AND c.CTZ_LAST_UPDATED::date BETWEEN %s AND %s
+                            AND c.CTZ_IS_DELETED = FALSE
+                            AND c.CTZ_IS_ALIVE = TRUE
+                    GROUP BY
                         s.SITIO_NAME
                 )
                 SELECT * FROM (
-                    SELECT * FROM sitio_population ORDER BY total_population DESC LIMIT 1
-                ) AS highest
+                                  SELECT * FROM sitio_population ORDER BY total_population DESC LIMIT 1
+                              ) AS highest
                 UNION ALL
                 SELECT * FROM (
-                    SELECT * FROM sitio_population ORDER BY total_population ASC LIMIT 1
-                ) AS lowest;
+                                  SELECT * FROM sitio_population ORDER BY total_population ASC LIMIT 1
+                              ) AS lowest;
             """, (from_date, to_date))
 
             results = self.cursor.fetchall()

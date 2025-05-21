@@ -24,7 +24,7 @@ class EducationModel:
             print(f"ERROR: Failed to fetch students and not data: {e}")
             return []
 
-    def get_all_educational_attainment_stats(self):
+    def get_all_educational_attainment_stats(self, to_date):
         try:
             self.cursor.execute("""
                 SELECT 
@@ -36,8 +36,9 @@ class EducationModel:
                     EDUCATION_STATUS es ON ea.EDAT_ID = es.EDAT_ID
                 LEFT JOIN 
                     CITIZEN c ON es.EDU_ID = c.EDU_ID
-                    AND c.CTZ_IS_DELETED = FALSE
-                    AND c.CTZ_IS_ALIVE = TRUE
+                        AND c.CTZ_IS_DELETED = FALSE
+                        AND c.CTZ_IS_ALIVE = TRUE
+                        AND c.CTZ_DATE_OF_BIRTH::date <= %s
                 GROUP BY 
                     ea.EDAT_ID, ea.EDAT_LEVEL
                 ORDER BY
@@ -55,7 +56,7 @@ class EducationModel:
                         WHEN 'Postgraduate' THEN 11
                         ELSE 12
                     END;
-            """)
+            """, (to_date,))
 
             return self.cursor.fetchall()
 
