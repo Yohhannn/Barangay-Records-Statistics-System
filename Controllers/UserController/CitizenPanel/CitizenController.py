@@ -1,10 +1,16 @@
+from datetime import date
+
 import cv2
+from PySide6.QtWidgets import (QMessageBox, QPushButton, QLabel, QFileDialog,
+                               QButtonGroup, QRadioButton, QTableWidgetItem)
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QButtonGroup, QRadioButton, QStackedWidget
 from Controllers.BaseFileController import BaseFileController
 from Models.CitizenModel import CitizenModel
 from Views.CitizenPanel.CitizenView import CitizenView
 from Utils.util_popup import load_popup
+from database import Database
+
 
 class CitizenController(BaseFileController):
     def __init__(self, login_window, emp_first_name, stack):
@@ -18,6 +24,7 @@ class CitizenController(BaseFileController):
 
         self.cp_profile_screen = self.load_ui("Resources/UIs/MainPages/CitizenPanelPages/cp_citizenprofile.ui")
         self.view.setup_profile_ui(self.cp_profile_screen)
+        self.load_citizen_data()
 
 
         # self.part1_popup = load_popup("Resources/UIs/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/register_citizen_part_01.ui")
@@ -82,6 +89,7 @@ class CitizenController(BaseFileController):
 
         # DATA INTERACTION PART 1
 
+
     def get_form_data_part_1(self):
         return{
         #PART 1
@@ -131,6 +139,166 @@ class CitizenController(BaseFileController):
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip()
         }
 
+    from datetime import date
+    from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
+
+    from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
+    from datetime import date
+
+    def load_citizen_data(self):
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            cursor.execute("""
+    SELECT
+        C.CTZ_ID, --0
+        C.CTZ_LAST_NAME,
+        C.CTZ_FIRST_NAME,
+        C.CTZ_MIDDLE_NAME,
+        C.CTZ_SUFFIX,
+        S.SITIO_NAME, -- 5
+        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
+        C.CTZ_DATE_OF_BIRTH,
+        C.CTZ_SEX,
+        C.CTZ_CIVIL_STATUS,
+        COALESCE(CON.CON_EMAIL, '') AS EMAIL,  --10
+        COALESCE(CON.CON_PHONE, '') AS CONTACT_NUM,
+        C.CTZ_PLACE_OF_BIRTH,
+        HH.HH_ADDRESS,
+        SES.SOEC_STATUS,
+        SES.SOEC_NUMBER, -- 15
+        ES.ES_STATUS_NAME AS EMPLOYMENT_STATUS,
+        EMP.EMP_OCCUPATION AS OCCUPATION,
+        EMP.EMP_IS_GOV_WORKER,
+        HH.HH_HOUSE_NUMBER,
+        RT.RTH_RELATIONSHIP_NAME AS RELATIONSHIP_NAME,
+        PHC.PC_CATEGORY_NAME AS PHILHEALTH_CATEGORY_NAME,
+        PH.PHEA_MEMBERSHIP_TYPE, -- 22
+        R.REL_NAME AS RELIGION,
+        C.CTZ_BLOOD_TYPE,
+        EDU.EDU_IS_CURRENTLY_STUDENT AS IS_STUDENT,
+        EDU.EDU_INSTITUTION_NAME AS SCHOOL_NAME,
+        EDAT.EDAT_LEVEL AS EDUCATIONAL_ATTAINMENT, -- 27
+        CHR.CLAH_CLASSIFICATION_NAME AS CLASSIFICATION_HEALTH_RISK_NAME,
+        C.CTZ_IS_REGISTERED_VOTER,
+        NOT C.CTZ_IS_ALIVE AS IS_DECEASED,
+        C.CTZ_IS_IP,
+        TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED,
+        CASE 
+            WHEN SA.SYS_FNAME IS NULL THEN 'System'
+            ELSE SA.SYS_FNAME || ' ' ||
+                 COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') ||
+                 SA.SYS_LNAME
+        END AS ENCODED_BY,
+        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED -- 32
+    FROM CITIZEN C
+    LEFT JOIN CONTACT CON ON C.CTZ_ID = CON.CTZ_ID
+    LEFT JOIN EMPLOYMENT EMP ON C.CTZ_ID = EMP.CTZ_ID
+    LEFT JOIN EMPLOYMENT_STATUS ES ON EMP.ES_ID = ES.ES_ID
+    JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
+    JOIN HOUSEHOLD_INFO HH ON C.HH_ID = HH.HH_ID
+    LEFT JOIN SOCIO_ECONOMIC_STATUS SES ON C.SOEC_ID = SES.SOEC_ID
+    LEFT JOIN RELATIONSHIP_TYPE RT ON C.RTH_ID = RT.RTH_ID
+    LEFT JOIN PHILHEALTH PH ON C.PHEA_ID = PH.PHEA_ID
+    LEFT JOIN PHILHEALTH_CATEGORY PHC ON PH.PC_ID = PHC.PC_ID
+    LEFT JOIN RELIGION R ON C.REL_ID = R.REL_ID
+    LEFT JOIN EDUCATION_STATUS EDU ON C.EDU_ID = EDU.EDU_ID
+    LEFT JOIN EDUCATIONAL_ATTAINMENT EDAT ON EDU.EDAT_ID = EDAT.EDAT_ID
+    LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLA_ID = CHR.CLAH_ID
+    LEFT JOIN SYSTEM_ACCOUNT SA ON C.SYS_ID = SA.SYS_ID
+    WHERE C.CTZ_IS_DELETED = FALSE
+    ORDER BY COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+    LIMIT 20;
+            """)
+            rows = cursor.fetchall()
+            self.rows = rows
+
+            table = self.cp_profile_screen.cp_tableView_List_RegCitizens
+            table.setRowCount(len(rows))
+            table.setColumnCount(5)
+            table.setHorizontalHeaderLabels(["ID", "Family Name", "First Name", "Sitio", "Last Updated"])
+
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 150)
+            table.setColumnWidth(2, 150)
+            table.setColumnWidth(3, 150)
+            table.setColumnWidth(4, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[5], row_data[6]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.cp_profile_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
+    def handle_row_click_citizen(self, row, column):
+        table = self.cp_profile_screen.cp_tableView_List_RegCitizens
+        selected_item = table.item(row, 0)
+        if not selected_item:
+            return
+
+        selected_id = selected_item.text()
+
+        for record in self.rows:
+            if str(record[0]) == selected_id:
+                self.cp_profile_screen.cp_displayCItizenID.setText(str(record[0]))
+                self.cp_profile_screen.cp_displayLastName.setText(record[1])
+                self.cp_profile_screen.cp_displayFirstName.setText(record[2])
+                self.cp_profile_screen.cp_displayMiddleName.setText(record[3] or "N/A")
+                self.cp_profile_screen.cp_displaySuffix.setText(record[4] or "N/A")
+                self.cp_profile_screen.cp_displaySitio.setText(record[5])
+                self.cp_profile_screen.display_DateUpdated.setText(record[6])
+
+                dob = record[7]
+                if dob:
+                    try:
+                        # self.cp_profile_screen.cp_displayDOB.setText(dob.strftime('%B %d, %Y'))
+                        today = date.today()
+                        age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+                        self.cp_profile_screen.cp_displayAge.setText(dob.strftime('%B %d, %Y | ') + str(age) + " years old")
+                    except Exception:
+                        # self.cp_profile_screen.cp_displayDOB.setText(str(dob))
+                        self.cp_profile_screen.cp_displayAge.setText("")
+                else:
+                    # self.cp_profile_screen.cp_displayDOB.setText("")
+                    self.cp_profile_screen.cp_displayAge.setText("")
+
+                # self.cp_profile_screen.cp_displaySex.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
+                self.cp_profile_screen.cp_displayCivilStatus.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
+                self.cp_profile_screen.cp_displayEmail.setText(record[10])
+                self.cp_profile_screen.cp_displayContactNum.setText(record[11])
+                self.cp_profile_screen.cp_displayPlaceOfBirth.setText(record[12] or "N/A")
+                self.cp_profile_screen.cp_displayFullAddress.setText(record[13] or "N/A")
+                self.cp_profile_screen.cp_displaySocioEcoStatus.setText(record[14] or "N/A")
+                self.cp_profile_screen.cp_displayNHTSNum.setText(record[15] or "N/A")
+                self.cp_profile_screen.cp_displayEmploymentStatus.setText(record[16] or "N/A")
+                self.cp_profile_screen.cp_displayOccupation.setText(record[17] or "N/A")
+                self.cp_profile_screen.cp_displayGovWorker.setText("Yes" if record[18] else "No")
+                self.cp_profile_screen.cp_displayHouseholdID.setText(str(record[19]) if record[19] else "")
+                self.cp_profile_screen.cp_displayRelationship.setText(record[20] or "N/A")
+                self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "N/A")
+                self.cp_profile_screen.cp_displayPhilID.setText(record[33] or "N/A")
+                self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "N/A")
+                self.cp_profile_screen.cp_displayReligion.setText(record[23] or "N/A")
+                blood_type = record[25]
+                self.cp_profile_screen.cp_displayBloodType.setText(
+                    str(blood_type) if isinstance(blood_type, str) else "")
+                self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[26] else "No")
+                self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "N/A")
+                self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "N/A")
+                self.cp_profile_screen.cp_displayPWD.setText(record[29] or "N/A")
+                self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[30] else "No")
+                self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[31] else "No")
+                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[32] else "No")
+                self.cp_profile_screen.display_DateEncoded.setText(record[33] or "N/A")
+                self.cp_profile_screen.display_EncodedBy.setText(record[34] or "N/A")
+                self.cp_profile_screen.display_DateUpdated.setText(record[34] or "N/A")
+                break
 
     #
     # BUTTON FUNCTIONS
