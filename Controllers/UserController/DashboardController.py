@@ -189,7 +189,10 @@ class DashboardController(BaseFileController):
                     print("-- Form Submitted")
                     QMessageBox.information(changepin_popup, "Success", "PIN Successfully Changed!")
                     changepin_popup.close()
-
+                    QApplication.closeAllWindows()
+                    self.login_window.show()
+                    self.login_window.clear_fields()
+                    
             save_btn.clicked.connect(confirm_and_save)
 
         return_button = changepin_popup.findChild(QPushButton, "btn_return_to_youraccount")

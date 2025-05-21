@@ -22,12 +22,24 @@ class HouseholdModel:
                     HH_INTERVIEWER_NAME,
                     HH_REVIEWER_NAME,
                     HH_DATE_VISIT,
+                    SYS_ID,
                     WATER_ID,
                     TOILET_ID,
                     SITIO_ID)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
-
+            # HH_HOUSE_NUMBER,
+            # HH_ADDRESS,
+            # HH_OWNERSHIP_STATUS,
+            # HH_HOME_IMAGE_PATH,
+            # HH_HOME_GOOGLE_LINK,
+            # HH_INTERVIEWER_NAME,
+            # HH_REVIEWER_NAME,
+            # HH_DATE_VISIT,
+            # SYS_ID,
+            # WATER_ID,
+            # TOILET_ID,
+            # SITIO_ID
             cursor.execute(query, (
                 household_data['house_number'],
                 household_data['home_address'],
