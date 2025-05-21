@@ -609,7 +609,7 @@
      <rect>
       <x>390</x>
       <y>140</y>
-      <width>71</width>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
@@ -909,7 +909,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>18</day>
+      <day>17</day>
      </datetime>
     </property>
     <property name="displayFormat">
