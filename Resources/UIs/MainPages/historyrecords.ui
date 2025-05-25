@@ -971,10 +971,10 @@
     <widget class="QToolButton" name="hisrec_Button_CitizenHistory">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>301</width>
-       <height>301</height>
+       <x>30</x>
+       <y>150</y>
+       <width>291</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -993,10 +993,10 @@
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
-    padding: 45px; /* Adds space inside the button */
+    padding: 25px; /* Adds space inside the button */
     font-size: 14px; /* Text size */
     text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 130px 130px; /* Adjust icon size */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
 #hisrec_Button_CitizenHistory:hover {
@@ -1019,8 +1019,8 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>130</width>
-       <height>130</height>
+       <width>120</width>
+       <height>120</height>
       </size>
      </property>
      <property name="toolButtonStyle">
@@ -1031,9 +1031,9 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>110</y>
+       <y>150</y>
        <width>311</width>
-       <height>301</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -1052,10 +1052,10 @@
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
-    padding: 45px; /* Adds space inside the button */
+    padding: 25px; /* Adds space inside the button */
     font-size: 14px; /* Text size */
     text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 130px 130px; /* Adjust icon size */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
 #hisrec_Button_MedicalHistory:hover {
@@ -1078,8 +1078,8 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>130</width>
-       <height>130</height>
+       <width>120</width>
+       <height>120</height>
       </size>
      </property>
      <property name="toolButtonStyle">
@@ -1120,9 +1120,9 @@
      <property name="geometry">
       <rect>
        <x>670</x>
-       <y>110</y>
-       <width>311</width>
-       <height>301</height>
+       <y>150</y>
+       <width>301</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -1141,10 +1141,10 @@
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
-    padding: 45px; /* Adds space inside the button */
+    padding: 25px; /* Adds space inside the button */
     font-size: 14px; /* Text size */
     text-align: center; /* Ensures text is centered */
-	qproperty-iconSize: 130px 130px; /* Adjust icon size */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
 #hisrec_Button_SettlementHistory:hover {
@@ -1167,8 +1167,8 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>130</width>
-       <height>130</height>
+       <width>120</width>
+       <height>120</height>
       </size>
      </property>
      <property name="toolButtonStyle">

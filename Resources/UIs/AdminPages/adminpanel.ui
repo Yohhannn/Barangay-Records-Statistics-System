@@ -293,12 +293,17 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonInstitutions {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonInstitutions:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonInstitutions:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
 }
 </string>
      </property>
@@ -621,22 +626,18 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonAdminPanel {
-    background-color: #f2efff;
-    color: #969696;
+    background-color: #fdfdff;
+    color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
-}
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+</string>
      </property>
      <property name="text">
       <string>  ADMIN PANEL</string>
@@ -667,11 +668,11 @@
 	border-radius: 20px;
 	border: 2px solid #d3d2e2;
 	opacity: 0.1;
-	color: #c01111;
+	color: #165416;
 }</string>
      </property>
      <property name="text">
-      <string>  Requires Admin Access</string>
+      <string>  Admin Access Open</string>
      </property>
      <property name="icon">
       <iconset>
@@ -701,22 +702,22 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonActivityLogs {
     background-color: #f2efff;
-    color: #969696;
+    color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
+#nav_buttonActivityLogs:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+#nav_buttonActivityLogs:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  ACTIVITY LOGS</string>
@@ -891,7 +892,7 @@
 </string>
     </property>
     <property name="text">
-     <string>INSTITUTIONS</string>
+     <string>ADMIN PANEL</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -957,11 +958,11 @@
 }</string>
      </property>
      <property name="text">
-      <string>BUSINESSES</string>
+      <string>MANAGE ACCOUNTS</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_category_business.png</normaloff>../../Assets/Images/img_category_business.png</iconset>
+       <normaloff>../../Images/General_Images/img_manageaccount.png</normaloff>../../Images/General_Images/img_manageaccount.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -990,11 +991,11 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
+      <cursorShape>ForbiddenCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#inst_ButtonCategory_Infrastructure {
-    background-color: #f8f8f8;
+    background-color: #e5e5e5;
     color: #141c52;
     border-radius: 5px;
     border: 2px solid #ccc;
@@ -1004,23 +1005,16 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#inst_ButtonCategory_Infrastructure:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#inst_ButtonCategory_Infrastructure:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
 #inst_ButtonCategory_Infrastructure::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>INFRASTRUCTURES</string>
+      <string>[ COMING SOON ]</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_category_infrastructure.png</normaloff>../../Assets/Images/img_category_infrastructure.png</iconset>
+       <normaloff>../../Images/General_Images/img_empty.png</normaloff>../../Images/General_Images/img_empty.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1086,7 +1080,7 @@
 </string>
      </property>
      <property name="text">
-      <string>TOTAL OF REGISTERED BUSINESSES: </string>
+      <string>TOTAL STAFF ACCOUNTS: </string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1176,7 +1170,7 @@
 </string>
      </property>
      <property name="text">
-      <string>TOTAL OF REGISTERED INFRASTRUCTURE: </string>
+      <string>N/A</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1236,7 +1230,7 @@
 </string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [ Register / View / Update / Remove ]  Infrastructure (Public / Private)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* To be updated.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1288,7 +1282,7 @@
 </string>
      </property>
      <property name="text">
-      <string>OVERVIEW OF INSTITUTIONAL CATEGORIES</string>
+      <string>ADMIN CONTROLS</string>
      </property>
     </widget>
    </widget>
