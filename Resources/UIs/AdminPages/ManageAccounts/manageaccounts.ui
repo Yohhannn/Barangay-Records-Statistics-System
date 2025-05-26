@@ -419,7 +419,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>Emp ID</string>
+        <string>User ID</string>
        </property>
        <property name="font">
         <font>
@@ -437,7 +437,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Account Name</string>
+        <string>Name</string>
        </property>
        <property name="font">
         <font>
@@ -455,7 +455,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Password</string>
+        <string>Role</string>
        </property>
        <property name="font">
         <font>
@@ -732,7 +732,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="histrec_labelCitizenID">
+     <widget class="QLabel" name="ap_label_user_fname">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -749,19 +749,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_labelCitizenID{
+       <string notr="true">#ap_label_user_fname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Citizen ID:</string>
+       <string>First Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenID">
+     <widget class="QLabel" name="ap_display_user_fname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -777,7 +777,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenID{
+       <string notr="true">#ap_display_user_fname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -789,36 +789,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_labelHistoryDescription">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>180</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_labelHistoryDescription{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Description:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="histrec_labelHistoryType">
+     <widget class="QLabel" name="ap_label_user_role">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -835,19 +806,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_labelHistoryType{
+       <string notr="true">#ap_label_user_role{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>History Type:</string>
+       <string>Role:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayHistoryType">
+     <widget class="QLabel" name="ap_display_user_role">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -863,7 +834,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayHistoryType{
+       <string notr="true">#ap_display_user_role{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -875,61 +846,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_Desc">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>210</y>
-        <width>501</width>
-        <height>181</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_Desc {
-	background-color: rgb(248, 248, 248);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <widget class="QLabel" name="histrec_displayHistoryDescription">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>461</width>
-         <height>141</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#histrec_displayHistoryDescription{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="histrec_labelHistoryID">
+     <widget class="QLabel" name="ap_label_user_id">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -946,19 +863,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_labelHistoryID{
+       <string notr="true">#ap_label_user_id{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>History ID:</string>
+       <string>User ID:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayHistoryID">
+     <widget class="QLabel" name="ap_display_user_id">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -974,7 +891,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayHistoryID{
+       <string notr="true">#ap_display_user_id{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -986,7 +903,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_labelCitizenHistFirstName">
+     <widget class="QLabel" name="ap_label_user_mname">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -1003,19 +920,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_labelCitizenHistFirstName{
+       <string notr="true">#ap_label_user_mname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Citizen First Name:</string>
+       <string>Middle Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenHistFirstName">
+     <widget class="QLabel" name="ap_display_user_mname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -1031,7 +948,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenHistFirstName{
+       <string notr="true">#ap_display_user_mname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -1043,7 +960,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_labelCitizenHistLastName">
+     <widget class="QLabel" name="ap_label_user_lname">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -1060,19 +977,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_labelCitizenHistLastName{
+       <string notr="true">#ap_label_user_lname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Citizen Last Name:</string>
+       <string>Last Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenHistLastName">
+     <widget class="QLabel" name="ap_display_user_lname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -1088,7 +1005,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenHistLastName{
+       <string notr="true">#ap_display_user_lname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
