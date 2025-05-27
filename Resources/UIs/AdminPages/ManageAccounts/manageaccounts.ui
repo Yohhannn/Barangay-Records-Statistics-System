@@ -316,7 +316,7 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Citizen Name or ID</string>
+       <string>Search Employee ID</string>
       </property>
      </widget>
      <widget class="QPushButton" name="buttonSearch">
