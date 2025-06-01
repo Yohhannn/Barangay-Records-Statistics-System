@@ -1177,9 +1177,9 @@
      <widget class="QFrame" name="basePopUpBodyFrame_6">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>330</x>
         <y>140</y>
-        <width>281</width>
+        <width>211</width>
         <height>91</height>
        </rect>
       </property>
@@ -1199,9 +1199,9 @@
       <widget class="QLabel" name="cp_displayHomeLink">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>40</y>
-         <width>271</width>
+         <width>191</width>
          <height>31</height>
         </rect>
        </property>
@@ -1227,9 +1227,9 @@
       <widget class="QLabel" name="cp_labelHomeLink">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>10</y>
-         <width>231</width>
+         <width>191</width>
          <height>21</height>
         </rect>
        </property>
@@ -1259,7 +1259,7 @@
        <rect>
         <x>20</x>
         <y>140</y>
-        <width>231</width>
+        <width>301</width>
         <height>91</height>
        </rect>
       </property>
@@ -1281,7 +1281,7 @@
         <rect>
          <x>110</x>
          <y>50</y>
-         <width>101</width>
+         <width>181</width>
          <height>31</height>
         </rect>
        </property>
@@ -1338,7 +1338,7 @@
         <rect>
          <x>20</x>
          <y>10</y>
-         <width>191</width>
+         <width>261</width>
          <height>16</height>
         </rect>
        </property>
@@ -1365,9 +1365,9 @@
       <widget class="QLabel" name="cp_displayWaterSource">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>30</y>
-         <width>181</width>
+         <width>281</width>
          <height>21</height>
         </rect>
        </property>
