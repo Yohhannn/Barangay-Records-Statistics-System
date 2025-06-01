@@ -783,9 +783,9 @@
       <widget class="QLabel" name="cp_displayHouseholdID">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>100</x>
          <y>10</y>
-         <width>81</width>
+         <width>111</width>
          <height>31</height>
         </rect>
        </property>
@@ -811,9 +811,9 @@
       <widget class="QLabel" name="cp_displayHouseholdNum">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>120</x>
          <y>30</y>
-         <width>81</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -897,9 +897,9 @@
       <widget class="QLabel" name="cp_displayOwnershipStatus">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>120</x>
          <y>70</y>
-         <width>81</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -925,9 +925,9 @@
       <widget class="QLabel" name="cp_displaySitio">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>60</x>
          <y>50</y>
-         <width>81</width>
+         <width>151</width>
          <height>31</height>
         </rect>
        </property>
@@ -1361,9 +1361,9 @@
       <widget class="QLabel" name="cp_DisplayToiletType">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>90</x>
          <y>50</y>
-         <width>101</width>
+         <width>121</width>
          <height>31</height>
         </rect>
        </property>
@@ -1613,9 +1613,9 @@
      <widget class="QLabel" name="display_DateEncoded">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>80</x>
         <y>0</y>
-        <width>111</width>
+        <width>161</width>
         <height>31</height>
        </rect>
       </property>
@@ -1641,9 +1641,9 @@
      <widget class="QLabel" name="display_EncodedBy">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>90</x>
         <y>20</y>
-        <width>111</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
@@ -1748,9 +1748,9 @@
      <widget class="QLabel" name="display_DateUpdated">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>100</x>
         <y>0</y>
-        <width>111</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -1776,9 +1776,9 @@
      <widget class="QLabel" name="display_UpdatedBy">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>90</x>
         <y>20</y>
-        <width>111</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
