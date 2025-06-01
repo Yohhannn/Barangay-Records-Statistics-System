@@ -783,9 +783,9 @@
       <widget class="QLabel" name="cp_displayHouseholdID">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>130</x>
          <y>10</y>
-         <width>111</width>
+         <width>81</width>
          <height>31</height>
         </rect>
        </property>
@@ -811,9 +811,9 @@
       <widget class="QLabel" name="cp_displayHouseholdNum">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>130</x>
          <y>30</y>
-         <width>91</width>
+         <width>81</width>
          <height>31</height>
         </rect>
        </property>
@@ -897,9 +897,9 @@
       <widget class="QLabel" name="cp_displayOwnershipStatus">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>130</x>
          <y>70</y>
-         <width>91</width>
+         <width>81</width>
          <height>31</height>
         </rect>
        </property>
@@ -925,9 +925,9 @@
       <widget class="QLabel" name="cp_displaySitio">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>130</x>
          <y>50</y>
-         <width>151</width>
+         <width>81</width>
          <height>31</height>
         </rect>
        </property>
@@ -1335,34 +1335,6 @@
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelHomeImage_2">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>80</y>
-         <width>141</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelHomeImage{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#bababa;&quot;&gt;TO BE UPDATED.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
      </widget>
      <widget class="QFrame" name="basePopUpBodyFrame_8">
       <property name="geometry">
@@ -1389,9 +1361,9 @@
       <widget class="QLabel" name="cp_DisplayToiletType">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>110</x>
          <y>50</y>
-         <width>121</width>
+         <width>101</width>
          <height>31</height>
         </rect>
        </property>
@@ -1641,9 +1613,9 @@
      <widget class="QLabel" name="display_DateEncoded">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>130</x>
         <y>0</y>
-        <width>161</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1669,9 +1641,9 @@
      <widget class="QLabel" name="display_EncodedBy">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>130</x>
         <y>20</y>
-        <width>151</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1776,9 +1748,9 @@
      <widget class="QLabel" name="display_DateUpdated">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>130</x>
         <y>0</y>
-        <width>141</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1804,9 +1776,9 @@
      <widget class="QLabel" name="display_UpdatedBy">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>130</x>
         <y>20</y>
-        <width>151</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
