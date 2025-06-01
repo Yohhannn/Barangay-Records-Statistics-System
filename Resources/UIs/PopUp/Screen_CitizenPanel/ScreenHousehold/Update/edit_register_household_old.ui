@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>13</day>
+      <day>16</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -899,42 +899,6 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="register_household_InterviewedBy_fname">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>290</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_household_InterviewedBy_fname{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>35</number>
-    </property>
-    <property name="placeholderText">
-     <string>First Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="register_household_labelReviewedBy">
@@ -1183,11 +1147,11 @@
      <string>Middle Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="register_household_InterviewedBy_lname">
+   <widget class="QLineEdit" name="register_household_ReviewedBy_fname">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>290</y>
+      <x>140</x>
+      <y>330</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1199,7 +1163,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_household_InterviewedBy_lname{
+     <string notr="true">#register_household_ReviewedBy_fname{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -1216,7 +1180,7 @@
      <number>35</number>
     </property>
     <property name="placeholderText">
-     <string>Last Name</string>
+     <string>First Name</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="register_household_ReviewedBy_mname">
@@ -1255,11 +1219,11 @@
      <string>Middle Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="register_household_ReviewedBy_fname">
+   <widget class="QLineEdit" name="register_household_InterviewedBy_fname">
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>330</y>
+      <y>290</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1271,7 +1235,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_household_ReviewedBy_fname{
+     <string notr="true">#register_household_InterviewedBy_fname{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -1308,6 +1272,42 @@
     </property>
     <property name="styleSheet">
      <string notr="true">#register_household_ReviewedBy_lname{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
+    </property>
+    <property name="placeholderText">
+     <string>Last Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="register_household_InterviewedBy_lname">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>290</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_household_InterviewedBy_lname{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -1402,46 +1402,16 @@
 </string>
     </property>
     <property name="text">
-     <string>UPDATING A CURRENT HOUSEHOLD</string>
+     <string>NOW UPDATING A HOUSEHOLD</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_what_ID">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>10</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_what_ID {
-	background-color: transparent;
-	color: #white;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>HOUSEHOLD ID : </string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="display_what_ID">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>300</x>
       <y>10</y>
       <width>181</width>
       <height>41</height>
@@ -1468,6 +1438,36 @@
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label_what_ID">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_what_ID {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>HOUSEHOLD ID : </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="basePopUpBodyFrame_2">
    <property name="geometry">
@@ -1475,7 +1475,7 @@
      <x>20</x>
      <y>60</y>
      <width>591</width>
-     <height>361</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1817,13 +1817,114 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QFrame" name="basePopUpBodyFrame_Desc">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>220</y>
+      <width>251</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#basePopUpBodyFrame_Desc {
+	background-color: rgb(248, 248, 248);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="imageLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>231</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#imageLabel {
+	background-color: rgb(230, 230, 230);
+	color: #rgb(49, 49, 49);
+	border: 1px solid rgb(0, 0, 0);
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_HomeImageuploadButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>6</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_HomeImageuploadButton {
+    background-color: #141c52;
+    color: white;
+    border-radius: 10px;
+    padding: 5px; /* Optional: Adjusts spacing inside the button */
+}
+#cp_HomeImageuploadButton:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#cp_HomeImageuploadButton:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>   UPLOAD HOME IMAGE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/Icons/icon_upload_image.svg</normaloff>../../../Assets/Icons/icon_upload_image.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>13</width>
+       <height>13</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
    <widget class="QLabel" name="register_labelHomeLink">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>70</x>
       <y>220</y>
       <width>161</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -1849,9 +1950,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>250</y>
-      <width>531</width>
-      <height>91</height>
+      <y>240</y>
+      <width>261</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="font">
@@ -1910,7 +2011,7 @@
 }</string>
    </property>
    <property name="text">
-    <string>   CONFIRM AND SAVE</string>
+    <string>   UPDATE AND SAVE</string>
    </property>
    <property name="icon">
     <iconset>
@@ -1979,7 +2080,7 @@
 </string>
    </property>
    <property name="text">
-    <string>Click to Save</string>
+    <string>Click to Update</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
