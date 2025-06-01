@@ -388,7 +388,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_tableView_List_RegCitizens {
+       <string notr="true">#cp_tableView_List_RegCitizens {
 	background-color: white;
 	color: #black;
 }
