@@ -418,7 +418,7 @@ CREATE TABLE TRANSACTION_LOG (
                                  TL_PURPOSE VARCHAR(150) NOT NULL,
                                  TL_STATUS transaction_status_enum,
                                  TL_FNAME VARCHAR(50) NOT NULL,
-                                 TL_LANME VARCHAR(50) NOT NULL,
+                                 TL_LNAME VARCHAR(50) NOT NULL,
                                  TL_DATE_ENCODED DATE DEFAULT CURRENT_DATE,
                                  TL_LAST_UPDATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                  TL_IS_DELETED BOOLEAN DEFAULT FALSE,
@@ -971,7 +971,7 @@ INSERT INTO TRANSACTION_LOG (
     TL_PURPOSE,
     TL_STATUS,
     TL_FNAME,
-    TL_LANME,
+    TL_LNAME,
     TT_ID,
     SYS_ID
 ) VALUES
