@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>15</day>
+      <day>17</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1415,7 +1415,7 @@
      <x>20</x>
      <y>60</y>
      <width>591</width>
-     <height>361</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1757,13 +1757,114 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QFrame" name="basePopUpBodyFrame_Desc">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>220</y>
+      <width>251</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#basePopUpBodyFrame_Desc {
+	background-color: rgb(248, 248, 248);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="imageLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>231</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#imageLabel {
+	background-color: rgb(230, 230, 230);
+	color: #rgb(49, 49, 49);
+	border: 1px solid rgb(0, 0, 0);
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_HomeImageuploadButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>6</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_HomeImageuploadButton {
+    background-color: #141c52;
+    color: white;
+    border-radius: 10px;
+    padding: 5px; /* Optional: Adjusts spacing inside the button */
+}
+#cp_HomeImageuploadButton:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#cp_HomeImageuploadButton:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>   UPLOAD HOME IMAGE</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/Icons/icon_upload_image.svg</normaloff>../../../Assets/Icons/icon_upload_image.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>13</width>
+       <height>13</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
    <widget class="QLabel" name="register_labelHomeLink">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>70</x>
       <y>220</y>
       <width>161</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -1789,9 +1890,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>250</y>
-      <width>531</width>
-      <height>91</height>
+      <y>240</y>
+      <width>261</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="font">
