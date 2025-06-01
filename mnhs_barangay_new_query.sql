@@ -160,6 +160,7 @@ CREATE TABLE HOUSEHOLD_INFO (
                                 HH_REVIEWER_NAME VARCHAR(100) NOT NULL,
                                 HH_DATE_VISIT DATE NOT NULL,
                                 HH_LAST_UPDATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                HH_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                 HH_IS_DELETED BOOLEAN DEFAULT FALSE,
                                 HH_IS_PENDING_DELETE BOOLEAN DEFAULT FALSE,
                                 HH_DELETE_REQ_REASON TEXT,
