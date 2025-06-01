@@ -436,7 +436,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Household No.</string>
+        <string>Household No. Members</string>
        </property>
        <property name="font">
         <font>
