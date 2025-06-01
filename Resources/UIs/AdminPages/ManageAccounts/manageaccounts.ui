@@ -168,7 +168,7 @@
      <rect>
       <x>120</x>
       <y>20</y>
-      <width>471</width>
+      <width>641</width>
       <height>31</height>
      </rect>
     </property>
@@ -187,7 +187,7 @@
 </string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;INSTITUTION: &lt;span style=&quot; color:#3600a1;&quot;&gt;BUSINESSES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ADMIN PANEL: &lt;span style=&quot; color:#3600a1;&quot;&gt;MANAGE ACCOUNTS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -198,6 +198,11 @@
       <width>1271</width>
       <height>661</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#statistics_frameBody{
@@ -275,14 +280,14 @@
 }</string>
        </property>
        <property name="text">
-        <string>LIST OF REGISTERED BUSINESSES</string>
+        <string>LIST OF STAFF ACCOUNTS</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </widget>
-     <widget class="QLineEdit" name="inst_BusinessName_fieldSearch">
+     <widget class="QLineEdit" name="adminpanel_empID_fieldSearch">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -298,7 +303,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_BusinessName_fieldSearch{
+       <string notr="true">#adminpanel_empID_fieldSearch{
     border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -311,10 +316,10 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Business Name or ID</string>
+       <string>Search Employee ID</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="inst_BusinessName_buttonSearch">
+     <widget class="QPushButton" name="buttonSearch">
       <property name="geometry">
        <rect>
         <x>420</x>
@@ -336,16 +341,16 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_BusinessName_buttonSearch {
+       <string notr="true">#buttonSearch {
     background-color:  #141c52;
     color: white;
     border-radius: 5px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#inst_BusinessName_buttonSearch:hover {
+#buttonSearch:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-#inst_BusinessName_buttonSearch:pressed {
+#buttonSearch:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
       </property>
@@ -363,7 +368,7 @@
        </size>
       </property>
      </widget>
-     <widget class="QTableWidget" name="inst_tableView_List_RegBusiness">
+     <widget class="QTableWidget" name="adminpanel_tableView_List_StaffAccounts">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -371,12 +376,6 @@
         <width>611</width>
         <height>521</height>
        </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
       </property>
       <property name="font">
        <font>
@@ -388,7 +387,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_tableView_List_RegBusiness {
+       <string notr="true">#adminpanel_tableView_List_StaffAccounts {
 	background-color: white;
 	color: #black;
 }
@@ -397,12 +396,6 @@
       <property name="editTriggers">
        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
       </property>
-      <property name="tabKeyNavigation">
-       <bool>false</bool>
-      </property>
-      <property name="dragDropOverwriteMode">
-       <bool>false</bool>
-      </property>
       <attribute name="horizontalHeaderVisible">
        <bool>true</bool>
       </attribute>
@@ -410,7 +403,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>116</number>
+       <number>148</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -426,7 +419,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>Business ID</string>
+        <string>User ID</string>
        </property>
        <property name="font">
         <font>
@@ -444,7 +437,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Business Name</string>
+        <string>Name</string>
        </property>
        <property name="font">
         <font>
@@ -462,7 +455,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Business Owner</string>
+        <string>Role</string>
        </property>
        <property name="font">
         <font>
@@ -480,25 +473,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Status</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="background">
-        <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
-        </color>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Date Registered</string>
+        <string>Date Recorded</string>
        </property>
        <property name="font">
         <font>
@@ -515,7 +490,7 @@
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="businessList_buttonFilter">
+     <widget class="QPushButton" name="manag_account_buttonFilter">
       <property name="geometry">
        <rect>
         <x>470</x>
@@ -537,7 +512,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#businessList_buttonFilter {
+       <string notr="true">#manag_account_buttonFilter {
     background-color:  #474747;
     color: white;
     border: 1px solid #b5b5b5;
@@ -545,12 +520,12 @@
     padding: 10px; 
 }
 
-#businessList_buttonFilter:hover {
+#manag_account_buttonFilter:hover {
     background-color: #636363;
     color: white; 
 }
 
-#businessList_buttonFilter:pressed {
+#manag_account_buttonFilter:pressed {
     background-color: #bfbfbf;
     color: white; 
 }
@@ -571,7 +546,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="inst_business_button_remove">
+    <widget class="QPushButton" name="histrec_citizenhistory_button_remove">
      <property name="geometry">
       <rect>
        <x>1070</x>
@@ -593,7 +568,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#inst_business_button_remove {
+      <string notr="true">#histrec_citizenhistory_button_remove {
     background-color: #c9302c; /* Default red */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -601,18 +576,18 @@
     padding: 10px; 
 }
 
-#inst_business_button_remove:hover {
+#histrec_citizenhistory_button_remove:hover {
     background-color: #d9534f; /* Brighter red when hovered */
     color: white; 
 }
 
-#inst_business_button_remove:pressed {
+#histrec_citizenhistory_button_remove:pressed {
     background-color: #a52a2a; /* Darker red when pressed */
     color: white; 
 }</string>
      </property>
      <property name="text">
-      <string>   REMOVE BUSINESS</string>
+      <string>   REMOVE CIT HIST.</string>
      </property>
      <property name="icon">
       <iconset>
@@ -625,7 +600,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="inst_business_button_register">
+    <widget class="QPushButton" name="histrec_citizenhistory_button_record">
      <property name="geometry">
       <rect>
        <x>690</x>
@@ -647,7 +622,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#inst_business_button_register {
+      <string notr="true">#histrec_citizenhistory_button_record {
     background-color:  #1e7e34; /* Default green */
     color: white;
     border: 1px solid #b5b5b5;
@@ -655,19 +630,19 @@
     padding: 10px; 
 }
 
-#inst_business_button_register:hover {
+#histrec_citizenhistory_button_record:hover {
     background-color: #28a745; /* Brighter green when hovered */
     color: white; 
 }
 
-#inst_business_button_register:pressed {
+#histrec_citizenhistory_button_record:pressed {
     background-color:  #34c759; /* Darker green when pressed */
     color: white; 
 }
 </string>
      </property>
      <property name="text">
-      <string>   REGISTER BUSINESS</string>
+      <string>   RECORD CIT HIST.</string>
      </property>
      <property name="icon">
       <iconset>
@@ -680,7 +655,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="inst_business_button_update">
+    <widget class="QPushButton" name="histrec_citizenhistory_button_update">
      <property name="geometry">
       <rect>
        <x>890</x>
@@ -702,7 +677,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#inst_business_button_update {
+      <string notr="true">#histrec_citizenhistory_button_update {
     background-color: #6c757d; /* Default gray */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -710,19 +685,19 @@
     padding: 10px; 
 }
 
-#inst_business_button_update:hover {
+#histrec_citizenhistory_button_update:hover {
     background-color: #838b94; /* Brighter gray when hovered */
     color: white; 
 }
 
-#inst_business_button_update:pressed {
+#histrec_citizenhistory_button_update:pressed {
     background-color: #5a6268; /* Darker gray when pressed */
     color: white; 
 }
 </string>
      </property>
      <property name="text">
-      <string>  UPDATE BUSINESS</string>
+      <string>  UPDATE CIT HIST.</string>
      </property>
      <property name="icon">
       <iconset>
@@ -741,7 +716,7 @@
        <x>690</x>
        <y>70</y>
        <width>561</width>
-       <height>491</height>
+       <height>411</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -757,7 +732,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="inst_labelBusinessName">
+     <widget class="QLabel" name="ap_label_user_fname">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -774,48 +749,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessName{
+       <string notr="true">#ap_label_user_fname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Business Name:</string>
+       <string>First Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_labelBusinessOwnerName">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessOwnerName{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Owner Name:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_displayBusinessName">
+     <widget class="QLabel" name="ap_display_user_fname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -831,7 +777,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessName{
+       <string notr="true">#ap_display_user_fname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -843,7 +789,150 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_displayBusinessOwnerName">
+     <widget class="QLabel" name="ap_label_user_role">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_label_user_role{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Role:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_role">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>140</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_display_user_role{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_label_user_id">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_label_user_id{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>User ID:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_id">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_display_user_id{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_label_user_mname">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_label_user_mname{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Middle Name:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_mname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -859,7 +948,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessOwnerName{
+       <string notr="true">#ap_display_user_mname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -871,261 +960,7 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_labelBusinessDescription">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>240</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessDescription{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Description:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_Desc">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>270</y>
-        <width>501</width>
-        <height>201</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_Desc {
-	background-color: rgb(248, 248, 248);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <widget class="QLabel" name="inst_BusinessDescription">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>461</width>
-         <height>171</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#inst_BusinessDescription{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="inst_displayBusinessStatus">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>140</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessStatus{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_labelBusinessStatus">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>140</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessStatus{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Status:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_displayBusinessID">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>20</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessID{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_labelBusinessID">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessID{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Business ID:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_labelBusinessAddress">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>170</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessAddress{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Address:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_displayBusinessAddress">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>170</y>
-        <width>411</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessAddress{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_labelBusinessType">
+     <widget class="QLabel" name="ap_label_user_lname">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -1142,19 +977,19 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessType{
+       <string notr="true">#ap_label_user_lname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Business Type:</string>
+       <string>Last Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_displayBusinessType">
+     <widget class="QLabel" name="ap_display_user_lname">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -1170,7 +1005,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessType{
+       <string notr="true">#ap_display_user_lname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -1180,63 +1015,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_displayBusinessAddress_Sitio">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>200</y>
-        <width>411</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_displayBusinessAddress_Sitio{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="inst_labelBusinessAddress_Sitio">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>200</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#inst_labelBusinessAddress_Sitio{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Sitio:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -1244,7 +1022,7 @@
      <property name="geometry">
       <rect>
        <x>980</x>
-       <y>570</y>
+       <y>490</y>
        <width>271</width>
        <height>51</height>
       </rect>
@@ -1290,12 +1068,12 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_display_DateUpdated">
+     <widget class="QLabel" name="display_DateUpdated">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>130</x>
         <y>0</y>
-        <width>211</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1379,7 +1157,7 @@
      <property name="geometry">
       <rect>
        <x>690</x>
-       <y>570</y>
+       <y>490</y>
        <width>271</width>
        <height>51</height>
       </rect>
@@ -1425,12 +1203,12 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_display_DateEncoded">
+     <widget class="QLabel" name="display_DateEncoded">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>130</x>
         <y>0</y>
-        <width>211</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1453,12 +1231,12 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="inst_display_EncodedBy">
+     <widget class="QLabel" name="display_EncodedBy">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>130</x>
         <y>20</y>
-        <width>211</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -1511,7 +1289,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QToolButton" name="btn_returnToInstitutionPage">
+   <widget class="QToolButton" name="btn_returnToHistoryRecordPage">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -1521,7 +1299,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#btn_returnToInstitutionPage {
+     <string notr="true">#btn_returnToHistoryRecordPage {
     background-color: #f2efff;
     color: #141c52;
 	border: 2px solid #141c52; 
@@ -1529,10 +1307,10 @@
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#btn_returnToInstitutionPage:hover {
+#btn_returnToHistoryRecordPage:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#btn_returnToInstitutionPage:pressed {
+#btn_returnToHistoryRecordPage:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }
 

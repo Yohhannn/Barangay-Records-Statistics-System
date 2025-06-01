@@ -119,7 +119,7 @@ class BusinessController(BaseFileController):
                 self.inst_business_screen.inst_displayBusinessType.setText(record[4])
                 self.inst_business_screen.inst_displayBusinessStatus.setText(record[5])
                 self.inst_business_screen.inst_displayBusinessAddress.setText(record[6])
-                self.inst_business_screen.inst_displayBusinessDTIRegistered.setText("Yes" if record[7] else "No")
+                # self.inst_business_screen.inst_displayBusinessDTIRegistered.setText("Yes" if record[7] else "No")
                 self.inst_business_screen.inst_displayBusinessAddress_Sitio.setText(record[8])
                 self.inst_business_screen.inst_BusinessDescription.setText(record[9])
 
@@ -136,11 +136,11 @@ class BusinessController(BaseFileController):
         self.popup.setFixedSize(self.popup.size())
 
         self.popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
-        self.popup.inst_DTIuploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.png'))
+        # self.popup.inst_DTIuploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.png'))
 
         # Connect signals
         self.popup.register_buttonConfirmBusiness_SaveForm.clicked.connect(self.validate_business_fields)
-        self.popup.inst_DTIuploadButton.clicked.connect(self.upload_business_image)
+        # self.popup.inst_DTIuploadButton.clicked.connect(self.upload_business_image)
 
         # Setup radio button groups
         self.setup_radio_button_groups_business()

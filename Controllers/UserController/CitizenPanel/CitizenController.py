@@ -90,7 +90,7 @@ class CitizenController(BaseFileController):
         # DATA INTERACTION PART 1
 
 
-    def get_form_data_part_1(self):
+    def get_form_data(self):
         return{
         #PART 1
             'first_name': self.part1_popup.register_citizen_firstname.text().strip(), # REQUIRED
@@ -112,11 +112,9 @@ class CitizenController(BaseFileController):
 
             'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
             'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip(),
-            'full_address': self.part1_popup.register_citizen_FullAddress.toPlainText()
-        }
+            'full_address': self.part1_popup.register_citizen_FullAddress.toPlainText(),
 
-    def get_form_data_part_2(self):
-        return{
+            # APRT 2
             # PART 2
 
             # socio info
@@ -138,6 +136,31 @@ class CitizenController(BaseFileController):
             'phil_id': self.part2_popup.register_citizen_PhilID.text().strip(),
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip()
         }
+
+
+    # def get_form_data_part_2(self):
+    #     return{
+    #         # PART 2
+    #
+    #         # socio info
+    #         'socio_eco_status': self.part2_popup.register_citizen_comboBox_SocEcoStat.currentText().strip(),
+    #         'nhts_number': self.part2_popup.register_citizen_NHTSNum.text().strip(),
+    #
+    #         # house hold info
+    #         'household_id': self.part2_popup.register_citizen_HouseholdID.text().strip(),
+    #         'relationship': self.part2_popup.register_citizen_comboBox_Relationship.currentText().strip(),
+    #         'other_relationship': self.part2_popup.register_citizen_HouseholdRelationshipOther.text().strip(),
+    #
+    #         # work information
+    #
+    #         'employment_status': self.part2_popup.register_citizen_comboBox_EmploymentStatus.currentText().strip(),
+    #         'occupation': self.part2_popup.register_citizen_Occupation.text().strip(),
+    #         'gov_worker': self.radio_button_gov_worker_result(),
+    #         'phil_member': self.radio_button_phil_member_result(),
+    #         'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
+    #         'phil_id': self.part2_popup.register_citizen_PhilID.text().strip(),
+    #         'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip()
+    #     }
 
     from datetime import date
     from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
@@ -339,7 +362,7 @@ class CitizenController(BaseFileController):
 
 
     def validate_part1_fields(self, popup):
-        form_data_part_1 = self.get_form_data_part_1()
+        form_data_part_1 = self.get_form_data()
         errors_part_1 = []
         print(form_data_part_1)
 
@@ -428,7 +451,7 @@ class CitizenController(BaseFileController):
             # self.show_register_citizen_part_02_initialize()
 
     def validate_part2_fields(self):
-        form_data_part_2 = self.get_form_data_part_2()
+        form_data_part_2 = self.get_form_data()
         errors_part_2 = []
         print(form_data_part_2)
 
@@ -669,7 +692,7 @@ class CitizenController(BaseFileController):
 
     def restore_part2_data(self):
         if 'household_id' in self.citizen_data:
-            self.part2_popup.register_citizen_HouseholdID.setText(self.get_form_data_part_2()['household_id'])
+            self.part2_popup.register_citizen_HouseholdID.setText(self.get_form_data()['household_id'])
         if 'relationship' in self.citizen_data:
             index = self.part2_popup.register_citizen_comboBox_Relationship.findText(self.citizen_data['relationship'])
             if index >= 0:
@@ -677,7 +700,7 @@ class CitizenController(BaseFileController):
 
     def return_to_part1_from_part2(self):
         # self.save_part2_data()
-        print(self.get_form_data_part_2())
+        print(self.get_form_data())
         self.part2_popup.close()
         self.part1_popup.show()
     def return_to_part2_from_part3(self):

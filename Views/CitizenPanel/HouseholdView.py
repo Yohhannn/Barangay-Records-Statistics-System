@@ -26,6 +26,7 @@ class HouseholdView:
         # Connect buttons
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
         ui_screen.cp_household_button_register.clicked.connect(self.controller.show_register_household_popup)
+        ui_screen.inst_tableView_List_RegHousehold.cellClicked.connect(self.controller.handle_row_click_household)
 
     def show_register_household_popup(self, parent):
         self.popup = load_popup("Resources/UIs/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", parent)

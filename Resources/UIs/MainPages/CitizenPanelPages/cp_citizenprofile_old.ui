@@ -757,9 +757,9 @@
      <widget class="QFrame" name="basePopUpBodyFrame_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>190</x>
         <y>20</y>
-        <width>521</width>
+        <width>351</width>
         <height>171</height>
        </rect>
       </property>
@@ -810,7 +810,7 @@
         <rect>
          <x>130</x>
          <y>10</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -838,7 +838,7 @@
         <rect>
          <x>130</x>
          <y>30</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -924,7 +924,7 @@
         <rect>
          <x>130</x>
          <y>70</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -952,7 +952,7 @@
         <rect>
          <x>130</x>
          <y>50</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -1038,7 +1038,7 @@
         <rect>
          <x>130</x>
          <y>90</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -1152,7 +1152,7 @@
         <rect>
          <x>130</x>
          <y>130</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -1180,7 +1180,7 @@
         <rect>
          <x>130</x>
          <y>110</y>
-         <width>371</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -1968,6 +1968,88 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="basePopUpBodyFrame_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>161</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#basePopUpBodyFrame_7 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="cp_labelHomeImage">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>141</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelHomeImage{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Profile Picture</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="imageLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>141</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#imageLabel {
+	background-color: rgb(230, 230, 230);
+	color: #rgb(49, 49, 49);
+	border: 1px solid rgb(0, 0, 0);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </widget>

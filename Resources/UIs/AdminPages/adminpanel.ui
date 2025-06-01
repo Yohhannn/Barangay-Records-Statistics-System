@@ -256,8 +256,7 @@
 }
 #nav_buttonTransactions:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
-}
-</string>
+}</string>
      </property>
      <property name="text">
       <string>  TRANSACTIONS</string>
@@ -291,9 +290,6 @@
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonInstitutions {
@@ -346,14 +342,18 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonHistoryRecords {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-</string>
+#nav_buttonHistoryRecords:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonHistoryRecords:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  HISTORY RECORDS</string>
@@ -626,22 +626,18 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonAdminPanel {
-    background-color: #f2efff;
-    color: #969696;
+    background-color: #fdfdff;
+    color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
-}
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+</string>
      </property>
      <property name="text">
       <string>  ADMIN PANEL</string>
@@ -672,11 +668,11 @@
 	border-radius: 20px;
 	border: 2px solid #d3d2e2;
 	opacity: 0.1;
-	color: #c01111;
+	color: #165416;
 }</string>
      </property>
      <property name="text">
-      <string>  Requires Admin Access</string>
+      <string>  Admin Access Open</string>
      </property>
      <property name="icon">
       <iconset>
@@ -706,22 +702,22 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonActivityLogs {
     background-color: #f2efff;
-    color: #969696;
+    color: #141c52;
     border-radius: 5px;
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-/*#nav_buttonAdminOverview:hover {
-    background-color: #fdfdff;
+#nav_buttonActivityLogs:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#nav_buttonAdminOverview:pressed {
-    background-color: #e7e5f4; 
-}*/</string>
+#nav_buttonActivityLogs:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  ACTIVITY LOGS</string>
@@ -765,7 +761,7 @@
      <rect>
       <x>30</x>
       <y>0</y>
-      <width>451</width>
+      <width>471</width>
       <height>41</height>
      </rect>
     </property>
@@ -872,7 +868,7 @@
      <string>LOGOUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="title_bodySchedule">
+   <widget class="QLabel" name="title_bodyBusiness">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -889,15 +885,357 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#title_bodySchedule {
+     <string notr="true">#title_bodyBusiness {
 	background-color: transparent;
 	color: #141c52;
 }
 </string>
     </property>
     <property name="text">
-     <string>HISTORY RECORDS</string>
+     <string>ADMIN PANEL</string>
     </property>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>1001</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QToolButton" name="inst_ButtonCategory_Business">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>150</y>
+       <width>451</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_ButtonCategory_Business {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#inst_ButtonCategory_Business:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#inst_ButtonCategory_Business:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#inst_ButtonCategory_Business::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>MANAGE ACCOUNTS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Images/General_Images/img_manageaccount.png</normaloff>../../Images/General_Images/img_manageaccount.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="inst_ButtonCategory_Infrastructure">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>150</y>
+       <width>451</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>ForbiddenCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_ButtonCategory_Infrastructure {
+    background-color: #e5e5e5;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#inst_ButtonCategory_Infrastructure::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>[ COMING SOON ]</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Images/General_Images/img_empty.png</normaloff>../../Images/General_Images/img_empty.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statistics_labelDesc">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1001</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_labelDesc {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_labeltotalregistered_businesses">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_labeltotalregistered_businesses {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>TOTAL STAFF ACCOUNTS: </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_totalregistered_businesses">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>110</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_totalregistered_businesses {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>[ 00 ]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_totalregistered_infrastructure">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>110</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_totalregistered_infrastructure {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>[ 00 ]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_labeltotalregistered_infrastructure">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>110</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_labeltotalregistered_infrastructure {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>N/A</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="desc_01">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>370</y>
+       <width>451</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#desc_01 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [ Register / View / Update / Remove ] Accounts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="desc_2">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>370</y>
+       <width>451</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#desc_2 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* To be updated.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="table_titleFrameStatistics">
     <property name="geometry">
@@ -944,235 +1282,7 @@
 </string>
      </property>
      <property name="text">
-      <string>OVERVIEW OF HISTORY RECORD CATEGORIES</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="statistics_frameBody">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>1001</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#statistics_frameBody{
-	background-color: #f2efff;
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QToolButton" name="hisrec_Button_CitizenHistory">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>150</y>
-       <width>291</width>
-       <height>221</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#hisrec_Button_CitizenHistory {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#hisrec_Button_CitizenHistory:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#hisrec_Button_CitizenHistory:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#hisrec_Button_CitizenHistory::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>CITIZEN HISTORY</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_history_citizen.png</normaloff>../../Assets/Images/img_history_citizen.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="hisrec_Button_MedicalHistory">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>150</y>
-       <width>311</width>
-       <height>221</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#hisrec_Button_MedicalHistory {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#hisrec_Button_MedicalHistory:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#hisrec_Button_MedicalHistory:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#hisrec_Button_MedicalHistory::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>MEDICAL HISTORY</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_history_medical.png</normaloff>../../Assets/Images/img_history_medical.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="statistics_labelDesc">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>1001</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#statistics_labelDesc {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="hisrec_Button_SettlementHistory">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>150</y>
-       <width>301</width>
-       <height>221</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#hisrec_Button_SettlementHistory {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#hisrec_Button_SettlementHistory:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#hisrec_Button_SettlementHistory:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#hisrec_Button_SettlementHistory::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>SETTLEMENT HISTORY</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Images/img_history_settlement.png</normaloff>../../Assets/Images/img_history_settlement.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      <string>ADMIN CONTROLS</string>
      </property>
     </widget>
    </widget>
