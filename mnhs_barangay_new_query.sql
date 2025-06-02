@@ -1,5 +1,5 @@
 
-CREATE DATABASE marigondon_profiling_db;
+-- CREATE DATABASE marigondon_profiling_db;
 
 CREATE TABLE DEPARTMENT(
                                                                              DEP_ID SERIAL PRIMARY KEY,
@@ -189,7 +189,7 @@ CREATE TABLE EDUCATION_STATUS (
                                   EDU_INSTITUTION_NAME VARCHAR(255),
                                   EDAT_ID INT REFERENCES EDUCATIONAL_ATTAINMENT(EDAT_ID)
 );
-SELECT * FROM MEDICAL_HISTORY;
+-- SELECT * FROM MEDICAL_HISTORY;
 
 -- Table: PHILHEALTH_CATEGORY
 CREATE TABLE PHILHEALTH_CATEGORY (
@@ -275,9 +275,9 @@ CREATE TABLE CITIZEN (
                              )
 );
 
-SELECT * FROM CITIZEN;
+-- SELECT * FROM CITIZEN;
 
-SELECT * FROM EMPLOYMENT;
+-- SELECT * FROM EMPLOYMENT;
 
 
 -- Table: CONTACT
