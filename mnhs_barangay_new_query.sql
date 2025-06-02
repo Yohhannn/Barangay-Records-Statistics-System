@@ -333,13 +333,13 @@ CREATE TABLE INFRASTRUCTURE (
                                     )
 );
 
-SELECT * FROM SITIO;
-SELECT
-    SYS_FNAME,
-    SYS_MNAME,
-    SYS_LNAME
-FROM SYSTEM_ACCOUNT
-WHERE SYS_ID = 1;
+-- SELECT * FROM SITIO;
+-- SELECT
+--     SYS_FNAME,
+--     SYS_MNAME,
+--     SYS_LNAME
+-- FROM SYSTEM_ACCOUNT
+-- WHERE SYS_ID = 1;
 
 
 -- Table: FAMILY_PLANNING_METHOD
@@ -847,6 +847,8 @@ INSERT INTO HOUSEHOLD_INFO (
     HH_INTERVIEWER_NAME,
     HH_REVIEWER_NAME,
     HH_DATE_VISIT,
+    ENCODED_BY_SYS_ID,
+    LAST_UPDATED_BY_SYS_ID,
     WATER_ID,
     TOILET_ID,
     SITIO_ID
@@ -859,10 +861,13 @@ INSERT INTO HOUSEHOLD_INFO (
              'Juan Dela Cruz',
              'Maria Reyes',
              CURRENT_DATE,
+             (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+             (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
              (SELECT WATER_ID FROM WATER_SOURCE WHERE WATER_SOURCE_NAME = 'Level 3 - Individual Connection'),
              (SELECT TOIL_ID FROM TOILET_TYPE WHERE TOIL_TYPE_NAME = 'A - Pour/flush type connected to septic tank'),
-             (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Uno')
+             (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Cadulang 1')
          );
+
 
 
 -- EDUCATION
@@ -889,6 +894,7 @@ VALUES (
            'Cebu Technological University',
            3
        )RETURNING EDU_ID;
+
 
 
 --sample citizen (household head)
@@ -922,13 +928,13 @@ INSERT INTO CITIZEN (
              'Cebu City',
              (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
              (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
-             3,
+             1,
              (SELECT SOEC_ID FROM SOCIO_ECONOMIC_STATUS WHERE SOEC_STATUS = 'NHTS 4Ps'),
              (SELECT REL_ID FROM RELIGION WHERE REL_NAME = 'Roman Catholic'),
              3,3,
              (SELECT RTH_ID FROM RELATIONSHIP_TYPE WHERE RTH_RELATIONSHIP_NAME = 'Head'),
              (SELECT HH_ID FROM HOUSEHOLD_INFO WHERE HH_HOUSE_NUMBER = 'HM-2023-001'),
-             (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Uno')
+             (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Mahayahay')
          );
 
 
@@ -945,23 +951,29 @@ VALUES
         ('Tan', 'Michael', 'C'),
         ('Lim', 'Angela', 'B');
 
-INSERT INTO INFRASTRUCTURE (
-    INF_NAME,
-    INF_ACCESS_TYPE,
-    INF_DESCRIPTION,
-    INF_ADDRESS_DESCRIPTION,
-    INFO_ID,
-    INFT_ID,
-    SITIO_ID
-) VALUES
-      ('Marigondon Barangay Hall', 'Public', 'Main government building', 'Near the highway', Null,
-       (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
-       (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Uno')),
+INSERT INTO INFRASTRUCTURE (INF_NAME,
+                            INF_ACCESS_TYPE,
+                            INF_DESCRIPTION,
+                            INF_ADDRESS_DESCRIPTION,
+                            INFO_ID,
+                            ENCODED_BY_SYS_ID,
+                            LAST_UPDATED_BY_SYS_ID,
+                            INFT_ID,
+                            SITIO_ID)
+VALUES ('Marigondon Barangay Hall', 'Public', 'Main government building', 'Near the highway', Null,
+        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+        (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
+        (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Cadulang 2')),
 
-      ('Tan Residence', 'Private', 'Private property', 'Behind the elementary school',
-       (SELECT INFO_ID FROM INFRASTRUCTURE_OWNER WHERE INFO_LNAME = 'Tan' AND INFO_FNAME = 'Michael'),
-       (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
-       (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Sitio Dos'));
+       ('Tan Residence', 'Private', 'Private property', 'Behind the elementary school',
+        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+        (SELECT SYS_ID FROM SYSTEM_ACCOUNT WHERE SYS_FNAME = 'Juan'),
+        (SELECT INFO_ID FROM INFRASTRUCTURE_OWNER WHERE INFO_LNAME = 'Tan' AND INFO_FNAME = 'Michael'),
+        (SELECT INFT_ID FROM INFRASTRUCTURE_TYPE WHERE INFT_TYPE_NAME = 'Barangay Hall'),
+        (SELECT SITIO_ID FROM SITIO WHERE SITIO_NAME = 'Masiwa'));
+
+
 
 
 -- BUSINESS
@@ -1114,12 +1126,13 @@ VALUES
        ('Complaint'),
        ('Violation');
 
+
 INSERT INTO CITIZEN_HISTORY (
     CIHI_DESCRIPTION,
     HIST_ID,
     CTZ_ID,
     ENCODED_BY_SYS_ID,
-     LAST_UPDATED_BY_SYS_ID
+    LAST_UPDATED_BY_SYS_ID
 ) VALUES
     ('Noise complaint',
      (SELECT HIST_ID FROM HISTORY_TYPE WHERE HIST_TYPE_NAME = 'Complaint'),
@@ -1170,6 +1183,7 @@ INSERT INTO FAMILY_PLANNING (
      (SELECT CTZ_ID FROM CITIZEN WHERE CTZ_LAST_NAME = 'Gonzales'),
      (SELECT FPMS_ID FROM FPM_STATUS WHERE FPMS_STATUS_NAME = 'Current User'),
      (SELECT FPM_ID FROM FAMILY_PLANNING_METHOD WHERE FPM_METHOD = 'Condom'));
+
 
 
 --
