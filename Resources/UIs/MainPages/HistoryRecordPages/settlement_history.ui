@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1350</width>
+    <width>1348</width>
     <height>850</height>
    </rect>
   </property>
@@ -712,70 +712,13 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="histrec_labelCitizenID">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>50</y>
-        <width>191</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_labelCitizenID{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Complainant Citizen ID:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="histrec_displayCitizenID">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>50</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenID{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="histrec_labelHistorySettlementDescription">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>310</y>
+        <y>300</y>
         <width>211</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -804,7 +747,7 @@
         <x>30</x>
         <y>340</y>
         <width>501</width>
-        <height>111</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -826,7 +769,7 @@
          <x>20</x>
          <y>10</y>
          <width>461</width>
-         <height>91</height>
+         <height>111</height>
         </rect>
        </property>
        <property name="font">
@@ -881,7 +824,7 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayHistoryID">
+     <widget class="QLabel" name="histrec_displaySettID">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -897,7 +840,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayHistoryID{
+       <string notr="true">#histrec_displaySettID{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -913,7 +856,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>110</y>
+        <y>80</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -938,11 +881,11 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenHistFirstName">
+     <widget class="QLabel" name="histrec_displayComplainantName">
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>110</y>
+        <y>80</y>
         <width>331</width>
         <height>31</height>
        </rect>
@@ -954,7 +897,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenHistFirstName{
+       <string notr="true">#histrec_displayComplainantName{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -970,7 +913,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>140</y>
+        <y>110</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -995,11 +938,11 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenHistLastName">
+     <widget class="QLabel" name="histrec_displayComplaineeName">
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>140</y>
+        <y>110</y>
         <width>331</width>
         <height>31</height>
        </rect>
@@ -1011,7 +954,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenHistLastName{
+       <string notr="true">#histrec_displayComplaineeName{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -1023,11 +966,11 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="histrec_displayCitizenID2">
+     <widget class="QLabel" name="histrec_displayComCtzID">
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>80</y>
+        <y>50</y>
         <width>331</width>
         <height>31</height>
        </rect>
@@ -1039,7 +982,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#histrec_displayCitizenID2{
+       <string notr="true">#histrec_displayComCtzID{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -1055,7 +998,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>80</y>
+        <y>50</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -1084,7 +1027,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>460</y>
+        <y>470</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -1113,7 +1056,7 @@
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>460</y>
+        <y>470</y>
         <width>351</width>
         <height>31</height>
        </rect>
@@ -1141,7 +1084,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>170</y>
+        <y>140</y>
         <width>221</width>
         <height>31</height>
        </rect>
@@ -1170,9 +1113,9 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>200</y>
+        <y>170</y>
         <width>501</width>
-        <height>111</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1194,7 +1137,7 @@
          <x>20</x>
          <y>10</y>
          <width>461</width>
-         <height>91</height>
+         <height>111</height>
         </rect>
        </property>
        <property name="font">
