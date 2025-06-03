@@ -87,13 +87,21 @@ class HouseholdController(BaseFileController):
                     TO_CHAR(HH.HH_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED, -- 9
                     SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME AS ENCODED_BY, -- 10
                     TO_CHAR(HH.HH_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED, -- 11
-                    HH.HH_REVIEWER_NAME -- 12
+                    HH.HH_REVIEWER_NAME, -- 12
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME --13
                  ---   SU.SYS_FNAME || ' ' || COALESCE(LEFT(SU.SYS_MNAME, 1) || '. ', '') || SU.SYS_LNAME AS UPDATED_BY -- 12
                 FROM HOUSEHOLD_INFO HH
                 JOIN SITIO S ON HH.SITIO_ID = S.SITIO_ID
                 LEFT JOIN TOILET_TYPE T ON HH.TOILET_ID = T.toil_id  -- ⬅️ Fixed here
                 LEFT JOIN WATER_SOURCE W ON HH.WATER_ID = W.WATER_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON HH.SYS_ID = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON HH.ENCODED_BY_SYS_ID = SA.SYS_ID
+                -- Join for LAST_UPDATED_BY
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON HH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
             ---    LEFT JOIN SYSTEM_ACCOUNT SU ON HH.SYS_ID_UPDATED = SU.SYS_ID
                 WHERE HH.HH_IS_DELETED = FALSE
                 ORDER BY HH.HH_ID DESC
@@ -166,6 +174,7 @@ class HouseholdController(BaseFileController):
                 self.cp_household_screen.display_EncodedBy.setText(record[10] or "System")  # Encoded By
                 self.cp_household_screen.display_DateUpdated.setText(record[11] or "N/A")  # Last Updated
                 self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "N/A")
+                self.cp_household_screen.display_UpdatedBy.setText(record[13] or "N/A")
                 # self.cp_household_screen.display_UpdatedBy.setText(record[12] or "System")  # Updated By
 
                 break

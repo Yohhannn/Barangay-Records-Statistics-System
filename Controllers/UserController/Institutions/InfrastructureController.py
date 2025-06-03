@@ -76,12 +76,20 @@ class InfrastructureController(BaseFileController):
                     END AS ENCODED_BY,
                     TO_CHAR(INF.INF_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED,
                     TO_CHAR(INF.INF_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
-                    INF.SYS_ID  
+                    INF.ENCODED_BY_SYS_ID,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME 
                 FROM INFRASTRUCTURE INF
                 LEFT JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
                 LEFT JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID = IT.INFT_ID
                 LEFT JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON INF.SYS_ID = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON INF.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+
+                LEFT JOIN SYSTEM_ACCOUNT SA ON INF.ENCODED_BY_SYS_ID = SA.SYS_ID
                 ORDER BY COALESCE(INF.INF_LAST_UPDATED, INF.INF_DATE_ENCODED) DESC
                 LIMIT 20
             """)
@@ -143,6 +151,7 @@ class InfrastructureController(BaseFileController):
                 # Set encoded by information
                 self.inst_infrastructure_screen.inst_display_EncodedBy.setText(record[9])
                 self.inst_infrastructure_screen.inst_display_DateEncoded.setText(record[10])
+                self.inst_infrastructure_screen.inst_display_UpdatedBy.setText(record[13])
 
                 # Set last updated information
                 self.inst_infrastructure_screen.inst_display_DateUpdated.setText(
