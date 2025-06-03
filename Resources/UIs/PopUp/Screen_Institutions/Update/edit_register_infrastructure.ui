@@ -1566,10 +1566,10 @@
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="107">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+         <color alpha="77">
+          <red>249</red>
+          <green>249</green>
+          <blue>249</blue>
          </color>
         </brush>
        </colorrole>
@@ -1629,10 +1629,10 @@
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
-         <color alpha="135">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+         <color alpha="92">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2059,10 +2059,10 @@
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="107">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+         <color alpha="77">
+          <red>249</red>
+          <green>249</green>
+          <blue>249</blue>
          </color>
         </brush>
        </colorrole>
@@ -2122,10 +2122,10 @@
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
-         <color alpha="135">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+         <color alpha="92">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2289,7 +2289,7 @@
     <property name="styleSheet">
      <string notr="true">#filteroptions_label {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -2319,7 +2319,7 @@
     <property name="styleSheet">
      <string notr="true">#display_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -2349,7 +2349,7 @@
     <property name="styleSheet">
      <string notr="true">#label_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>

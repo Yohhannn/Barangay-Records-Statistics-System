@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>15</day>
+      <day>14</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1397,7 +1397,7 @@
     <property name="styleSheet">
      <string notr="true">#filteroptions_label {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>

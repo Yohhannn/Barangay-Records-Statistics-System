@@ -1179,7 +1179,7 @@
     <property name="styleSheet">
      <string notr="true">#filteroptions_label {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -1209,7 +1209,7 @@
     <property name="styleSheet">
      <string notr="true">#label_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -1239,7 +1239,7 @@
     <property name="styleSheet">
      <string notr="true">#display_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>

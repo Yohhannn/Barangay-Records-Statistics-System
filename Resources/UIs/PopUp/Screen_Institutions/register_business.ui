@@ -1293,7 +1293,7 @@
     <property name="styleSheet">
      <string notr="true">#filteroptions_label {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
