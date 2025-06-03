@@ -66,6 +66,7 @@ class CitizenView:
         self.part3_popup.setFixedSize(self.part3_popup.size())
         self.part3_popup.register_buttonReturnToPart2_FromPart3.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_prev'))
         self.part3_popup.register_buttonConfirmPart3_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm'))
+        self.part3_popup.register_buttonConfirmPart3_SaveForm.clicked.connect(self.controller.validate_part3_fields)
         self.part3_popup.register_buttonReturnToPart2_FromPart3.clicked.connect(self.controller.return_to_part2_from_part3)
 
         # if hasattr(self, 'citizen_data'):

@@ -17,6 +17,14 @@ class CitizenController(BaseFileController):
         super().__init__(login_window, emp_first_name)
 
         # INITIALIZE OBJECTS NEEDED
+        self.indig_group = None
+        self.deceased_group = None
+        self.voter_group = None
+        self.pwd_group = None
+        self.fam_plan_group = None
+        self.student_group = None
+        self.gov_group = None
+        self.sex_group = None
         self.stack = stack
         self.model = CitizenModel()
         self.view = CitizenView(self)
@@ -55,6 +63,52 @@ class CitizenController(BaseFileController):
         self.part1_popup = self.view.show_register_citizen_part_01_popup(self)
         self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
         self.part3_popup = self.view.show_register_citizen_part_03_popup(self)
+
+        self.gov_group = QButtonGroup()
+        self.sex_group = QButtonGroup()
+
+        self.sex_group.addButton(self.part1_popup.radioButton_male)
+        self.sex_group.addButton(self.part1_popup.radioButton_female)
+
+        self.gov_group.addButton(self.part2_popup.radioButton_IsGov_Yes)
+        self.gov_group.addButton(self.part2_popup.radioButton_IsGov_No)
+
+        self.student_group = QButtonGroup()
+        self.fam_plan_group = QButtonGroup()
+        self.pwd_group = QButtonGroup()
+        self.voter_group = QButtonGroup()
+        self.deceased_group = QButtonGroup()
+        self.indig_group = QButtonGroup()
+
+        self.student_group.addButton(self.part3_popup.radioButton_IsStudent_Yes)
+        self.student_group.addButton(self.part3_popup.radioButton_IsStudent_No)
+
+        self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_Yes)
+        self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_No)
+
+        self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_Yes)
+        self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_No)
+
+        self.voter_group.addButton(self.part3_popup.register_citizen_RegVote_Yes)
+        self.voter_group.addButton(self.part3_popup.register_citizen_RegVote_No)
+
+
+        # initialize data
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT sitio_id, sitio_name FROM sitio ORDER BY sitio_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part1_popup.register_citizen_comboBox_Sitio
+            combo.clear()
+            for sitio_id, sitio_name in results:
+                combo.addItem(sitio_name, sitio_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
         # self.stacked_widget.addWidget(self.part1_popup)
         # self.stacked_widget.addWidget(self.part2_popup)
         #
@@ -69,6 +123,10 @@ class CitizenController(BaseFileController):
     def show_register_citizen_part_02_initialize(self):
         print("-- Register New Citizen Part 2 Popup")
         self.part2_popup.show()
+
+
+
+
         # self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
         # self.part2_popup.register_citizen_HouseholdID.setText('test')
 
@@ -80,6 +138,21 @@ class CitizenController(BaseFileController):
     def show_register_citizen_part_03_initialize(self):
         print("-- Register New Citizen Part 3 Popup")
         self.part3_popup.show()
+
+
+
+
+
+
+        self.deceased_group.addButton(self.part3_popup.register_citizen_Deceased_Yes)
+        self.deceased_group.addButton(self.part3_popup.register_citizen_Deceased_No)
+
+
+        self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_Yes)
+        self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_No)
+
+
+
         # self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
         # self.part2_popup.register_citizen_HouseholdID.setText('test')
 
@@ -134,9 +207,22 @@ class CitizenController(BaseFileController):
             'phil_member': self.radio_button_phil_member_result(),
             'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
             'phil_id': self.part2_popup.register_citizen_PhilID.text().strip(),
-            'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip()
+            'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip(),
 
-            # ''
+            # PART 3
+            'is_student': self.radio_button_student_result(),
+            'school_name': self.part3_popup.register_citizen_SchoolName.text().strip(),
+            'educ_level': self.part3_popup.register_citizen_comboBox_EducationalLevel.currentText().strip(),
+            'has_fam_plan': self.radio_button_fam_plan_result(),
+            'fam_plan_method': self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.currentText().strip(),
+            'fam_plan_stat': self.part3_popup.register_citizen_comboBox_FamPlanStatus.currentText().strip(),
+            'is_pwd': self.radio_button_pwd_result(),
+            'is_voter': self.radio_button_voter_result(),
+            'is_deceased': self.radio_button_deceased_result(),
+            'is_indig': self.radio_button_indig_result(),
+            'indig_name': self.part3_popup.register_citizen_tribeName.text().strip(),
+
+
 
         }
 
@@ -383,6 +469,62 @@ LIMIT 20;
             phil_member = ''
         return phil_member
 
+    def radio_button_student_result(self):
+        if self.part3_popup.radioButton_IsStudent_Yes.isChecked():
+            student = 'Yes'
+        elif self.part3_popup.radioButton_IsStudent_No.isChecked():
+            student = 'No'
+        else:
+            student = ''
+        return student
+
+    def radio_button_fam_plan_result(self):
+        if self.part3_popup.radioButton_IsFamPlan_Yes.isChecked():
+            fam_plan = 'Yes'
+        elif self.part3_popup.radioButton_IsFamPlan_No.isChecked():
+            fam_plan = 'No'
+        else:
+            fam_plan = ''
+        return fam_plan
+
+    def radio_button_pwd_result(self):
+        if self.part3_popup.register_citizen_IsPWD_Yes.isChecked():
+            pwd = 'Yes'
+        elif self.part3_popup.register_citizen_IsPWD_No.isChecked():
+            pwd = 'No'
+        else:
+            pwd = ''
+        return pwd
+
+
+    def radio_button_voter_result(self):
+        if self.part3_popup.register_citizen_RegVote_Yes.isChecked():
+            voter = 'Yes'
+        elif self.part3_popup.register_citizen_RegVote_No.isChecked():
+            voter = 'No'
+        else:
+            voter = ''
+        return voter
+
+    def radio_button_deceased_result(self):
+        if self.part3_popup.register_citizen_Deceased_Yes.isChecked():
+            deceased = 'Yes'
+        elif self.part3_popup.register_citizen_Deceased_No.isChecked():
+            deceased = 'No'
+        else:
+            deceased = ''
+        return deceased
+
+    def radio_button_indig_result(self):
+        if self.part3_popup.register_citizen_IndGroup_Yes.isChecked():
+            indig = 'Yes'
+        elif self.part3_popup.register_citizen_IndGroup_No.isChecked():
+            indig = 'No'
+        else:
+            indig = ''
+        return indig
+
+
 
     def validate_part1_fields(self, popup):
         form_data_part_1 = self.get_form_data()
@@ -472,6 +614,13 @@ LIMIT 20;
             # self.part2_popup.show()
             self.show_register_citizen_part_02_initialize()
             # self.show_register_citizen_part_02_initialize()
+
+    def validate_part3_fields(self):
+        form_data_part_3 = self.get_form_data()
+        errors_part_3 = []
+        print(form_data_part_3)
+        pass
+
 
     def validate_part2_fields(self):
         form_data_part_2 = self.get_form_data()
