@@ -14,7 +14,7 @@ class DashboardView:
         self.dashboard_screen = None
 
         self.app_name = "MaPro"
-        self.app_version = "5.0.7 - Alpha"
+        self.app_version = "5.1.0 - Alpha"
 
     def setup_dashboard_ui(self, ui_screen):
         self.dashboard_screen = ui_screen
