@@ -54,10 +54,18 @@ class ServiceController(BaseFileController):
                     TL.tl_purpose, -- 6
                     TO_CHAR(TL.tl_date_encoded, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_date_encoded_formatted, -- 7
                     SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME AS ENCODED_BY, -- 8
-                    TO_CHAR(TL.tl_last_updated, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_last_updated_formatted -- 9
+                    TO_CHAR(TL.tl_last_updated, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_last_updated_formatted, -- 9
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME --10
                 FROM TRANSACTION_LOG TL
                 LEFT JOIN TRANSACTION_TYPE TT ON TL.tt_id = TT.tt_id
-                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.sys_id = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+
                 WHERE TL.tl_is_deleted = FALSE
                 ORDER BY TL.tl_id DESC
                 LIMIT 20;
@@ -110,6 +118,7 @@ class ServiceController(BaseFileController):
                 self.trans_services_screen.display_DateEncoded.setText(record[7] or "N/A")
                 self.trans_services_screen.display_EncodedBy.setText(record[8] or "System")
                 self.trans_services_screen.display_DateUpdated.setText(record[9] or "N/A")
+                self.trans_services_screen.display_UpdatedBy.setText(record[10] or "N/A")
 
                 break
 

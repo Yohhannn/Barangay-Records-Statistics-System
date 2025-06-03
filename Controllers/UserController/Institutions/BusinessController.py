@@ -65,12 +65,19 @@ class BusinessController(BaseFileController):
                     END AS ENCODED_BY,
                     TO_CHAR(BI.BS_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED,
                     TO_CHAR(BI.BS_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
-                    BI.SYS_ID
+                    BI.ENCODED_BY_SYS_ID,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME --13
                 FROM BUSINESS_INFO BI
                 JOIN BUSINESS_OWNER BO ON BI.BSO_ID = BO.BSO_ID
                 JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
                 JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON BI.SYS_ID = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
                 ORDER BY COALESCE(BI.BS_LAST_UPDATED, BI.BS_DATE_ENCODED) DESC
                 LIMIT 20
            """)
@@ -127,7 +134,10 @@ class BusinessController(BaseFileController):
                 self.inst_business_screen.inst_display_EncodedBy.setText(record[10])  # ENCODED_BY
                 self.inst_business_screen.inst_display_DateUpdated.setText(
                     record[12] if record[12] else record[11])  # LAST_UPDATED or DATE_ENCODED_FORMATTED
+                self.inst_business_screen.display_UpdatedBy.setText(record[14])
+
                 break
+
 
     def show_register_business_popup(self):
         print("-- Register Business Popup")
