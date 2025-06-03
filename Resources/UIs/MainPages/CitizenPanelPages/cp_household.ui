@@ -70,7 +70,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -428,9 +428,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -445,9 +445,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -463,9 +463,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -480,9 +480,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -1439,9 +1439,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -1456,9 +1456,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -1473,9 +1473,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>

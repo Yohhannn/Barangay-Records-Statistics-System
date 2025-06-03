@@ -161,7 +161,7 @@
       <string notr="true">#login_labellocation{
 	background-color: transparent;
 	border-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 
 </string>
