@@ -278,7 +278,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -507,9 +507,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -524,9 +524,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -541,9 +541,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -559,9 +559,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -576,9 +576,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -593,9 +593,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -610,9 +610,9 @@
       </property>
       <property name="background">
        <color>
-        <red>59</red>
-        <green>57</green>
-        <blue>100</blue>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
        </color>
       </property>
      </column>
@@ -1189,7 +1189,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>27</day>
+       <day>26</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1237,7 +1237,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>8</day>
+       <day>7</day>
       </datetime>
      </property>
      <property name="displayFormat">

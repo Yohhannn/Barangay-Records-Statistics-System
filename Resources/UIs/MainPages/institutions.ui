@@ -774,7 +774,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>

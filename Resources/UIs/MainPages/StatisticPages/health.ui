@@ -70,7 +70,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -2716,7 +2716,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>25</day>
+       <day>24</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -2764,7 +2764,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>6</day>
+       <day>5</day>
       </datetime>
      </property>
      <property name="displayFormat">

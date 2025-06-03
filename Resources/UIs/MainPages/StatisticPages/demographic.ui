@@ -76,7 +76,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -337,7 +337,7 @@
       <property name="styleSheet">
        <string notr="true">#demo_labelTotalPopulation {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
       </property>
@@ -367,7 +367,7 @@
       <property name="styleSheet">
        <string notr="true">#demo_TotalPopulation {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
       </property>
@@ -548,7 +548,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>51</y>
+        <y>40</y>
         <width>31</width>
         <height>20</height>
        </rect>
@@ -572,7 +572,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>80</y>
+        <y>60</y>
         <width>31</width>
         <height>20</height>
        </rect>
@@ -3931,7 +3931,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>26</day>
+       <day>24</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -3979,7 +3979,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>7</day>
+       <day>5</day>
       </datetime>
      </property>
      <property name="displayFormat">
