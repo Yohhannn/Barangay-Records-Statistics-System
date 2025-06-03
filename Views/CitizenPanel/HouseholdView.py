@@ -36,8 +36,8 @@ class HouseholdView:
 
         # Setup popup UI
         self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(QIcon('Resources/Icons//FuncIcons/icon_confirm.svg'))
-        self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
-        self.popup.imageLabel.setAlignment(Qt.AlignCenter)
+        # self.popup.cp_HomeImageuploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
+        # self.popup.imageLabel.setAlignment(Qt.AlignCenter)
 
         date_edit = self.popup.register_household_date_DOV
         date_edit.setDisplayFormat("yyyy-MM-dd")
@@ -46,7 +46,7 @@ class HouseholdView:
 
         # Connect popup buttons
         self.popup.register_buttonConfirmHousehold_SaveForm.clicked.connect(self.controller.validate_fields)
-        self.popup.cp_HomeImageuploadButton.clicked.connect(self.controller.upload_image)
+        # self.popup.cp_HomeImageuploadButton.clicked.connect(self.controller.upload_image)
 
         # Initialize dropdowns
         self._init_dropdowns()
