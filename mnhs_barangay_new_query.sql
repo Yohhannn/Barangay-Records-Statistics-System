@@ -493,7 +493,11 @@ CREATE TABLE SETTLEMENT_LOG(
                                SETT_DELETE_REQ_REASON TEXT,
                                COMP_ID INT NOT NULL REFERENCES COMPLAINANT(COMP_ID),
                                CIHI_ID INT NOT NULL REFERENCES CITIZEN_HISTORY(CIHI_ID),
-                               CONSTRAINT chk_pending_delete CHECK (
+                               ENCODED_BY_SYS_ID INT NOT NULL,
+                               LAST_UPDATED_BY_SYS_ID INT NOT NULL,
+                                CONSTRAINT fk_encoded_by FOREIGN KEY (ENCODED_BY_SYS_ID) REFERENCES SYSTEM_ACCOUNT(SYS_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
+                                CONSTRAINT fk_last_updated_by FOREIGN KEY (LAST_UPDATED_BY_SYS_ID) REFERENCES SYSTEM_ACCOUNT(SYS_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
+                                CONSTRAINT chk_pending_delete CHECK (
                                    (SETT_IS_PENDING_DELETE = FALSE) OR
                                    (SETT_IS_PENDING_DELETE = TRUE AND SETT_DELETE_REQ_REASON IS NOT NULL)
                                    )
@@ -1068,12 +1072,14 @@ INSERT INTO CITIZEN_HISTORY (
 
 INSERT INTO SETTLEMENT_LOG (
     SETT_COMPLAINT_DESCRIPTION,
+    ENCODED_BY_SYS_ID,
+    LAST_UPDATED_BY_SYS_ID,
     SETT_SETTLEMENT_DESCRIPTION,
     SETT_DATE_OF_SETTLEMENT,
     COMP_ID,
     CIHI_ID
 ) VALUES
-    ('Loud karaoke at night', 'Warning issued to homeowner', CURRENT_DATE,
+    ('Loud karaoke at night', 1, 2, 'Warning issued to homeowner', CURRENT_DATE,
      (SELECT COMP_ID FROM COMPLAINANT WHERE COMP_LNAME = 'Santos'),
      (SELECT CIHI_ID FROM CITIZEN_HISTORY WHERE CIHI_DESCRIPTION = 'Noise complaint'));
 
