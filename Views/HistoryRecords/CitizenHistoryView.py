@@ -69,3 +69,4 @@ class CitizenHistoryView:
 
         # Return Button
         self.hist_citizen_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.controller.goto_history_panel)
+        self.hist_citizen_history_screen.histrec_tableView_List_RecordCitizenHistory.cellClicked.connect(self.controller.handle_row_click_citizen_history)

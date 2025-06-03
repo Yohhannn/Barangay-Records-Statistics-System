@@ -135,6 +135,9 @@ class CitizenController(BaseFileController):
             'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
             'phil_id': self.part2_popup.register_citizen_PhilID.text().strip(),
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip()
+
+            # ''
+
         }
 
 
