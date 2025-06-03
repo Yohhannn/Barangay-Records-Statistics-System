@@ -28,8 +28,8 @@ class DemographicsController(BaseFileController):
         # Set icons
         icons = {
             'btn_returnToStatisticsPage': 'Resources/Icons/FuncIcons/img_return.png',
-            'icon_male': 'Resources/Icons/Icons/General_Icons/icon_male.png',
-            'icon_female': 'Resources/Icons/Icons/General_Icons/icon_female.png'
+            'icon_male': 'Resources/Icons/FuncIcons/icon_male.png',
+            'icon_female': 'Resources/Icons/FuncIcons/icon_female.png'
         }
         for widget, path in icons.items():
             getattr(self.view, widget).setIcon(QIcon(path))
