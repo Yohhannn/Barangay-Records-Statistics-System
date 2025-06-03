@@ -1154,9 +1154,9 @@
      <widget class="QLabel" name="display_DateUpdated">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>100</x>
         <y>0</y>
-        <width>111</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -1182,9 +1182,9 @@
      <widget class="QLabel" name="display_UpdatedBy">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>90</x>
         <y>20</y>
-        <width>111</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
@@ -1289,9 +1289,9 @@
      <widget class="QLabel" name="display_DateEncoded">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>100</x>
         <y>0</y>
-        <width>111</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -1317,9 +1317,9 @@
      <widget class="QLabel" name="display_EncodedBy">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>90</x>
         <y>20</y>
-        <width>111</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>

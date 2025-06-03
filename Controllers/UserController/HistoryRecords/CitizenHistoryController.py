@@ -1,10 +1,11 @@
 from PySide6.QtGui import QIcon, Qt
-from PySide6.QtWidgets import QMessageBox, QPushButton
+from PySide6.QtWidgets import QMessageBox, QPushButton, QTableWidgetItem
 
 from Controllers.BaseFileController import BaseFileController
 from Models.HistoryModel import HistoryModel
 from Utils.util_popup import load_popup
 from Views.HistoryRecords.CitizenHistoryView import CitizenHistoryView
+from database import Database
 
 
 class CitizenHistoryController(BaseFileController):
@@ -21,6 +22,7 @@ class CitizenHistoryController(BaseFileController):
         self.view.setup_citizen_history_ui(self.hist_citizen_history_screen)
         # self.view.setup_history_ui(self.hist_citizen_history_screen)
         self.center_on_screen()
+        self.load_citizen_history_data()
 
         self.popup = None
 
@@ -32,8 +34,86 @@ class CitizenHistoryController(BaseFileController):
     def show_citizen_history_initialize(self):
         pass
 
+    def load_citizen_history_data(self):
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            cursor.execute("""
+                SELECT 
+                    H.CIHI_ID,
+                    C.CTZ_FIRST_NAME,
+                    C.CTZ_LAST_NAME,
+                    H.CIHI_DESCRIPTION,
+                    TO_CHAR(H.CIHI_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_RECORDED,
+                    C.CTZ_ID,
+                    TO_CHAR(H.CIHI_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED,
+                    TO_CHAR(H.CIHI_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED,
+                    CASE 
+                        WHEN SA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SA.SYS_FNAME || ' ' || 
+                             COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || 
+                             SA.SYS_LNAME
+                    END AS ENCODED_BY,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' || 
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') || 
+                             SUA.SYS_LNAME
+                    END AS UPDATED_BY
+                FROM CITIZEN_HISTORY H
+                JOIN CITIZEN C ON H.CTZ_ID = C.CTZ_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON H.ENCODED_BY_SYS_ID = SA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON H.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                ORDER BY H.CIHI_DATE_ENCODED DESC
+                LIMIT 50;
+            """)
+            rows = cursor.fetchall()
+            self.history_rows = rows
 
+            table = self.hist_citizen_history_screen.histrec_tableView_List_RecordCitizenHistory
+            table.setRowCount(len(rows))
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["History ID", "Citizen Name", "History Type", "Date Recorded"])
 
+            table.setColumnWidth(0, 100)
+            table.setColumnWidth(1, 200)
+            table.setColumnWidth(2, 250)
+            table.setColumnWidth(3, 200)
+
+            for row_idx, row in enumerate(rows):
+                full_name = f"{row[1]} {row[2]}"
+                for col_idx, value in enumerate([row[0], full_name, row[3], row[4]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.hist_citizen_history_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
+    def handle_row_click_citizen_history(self, row, column):
+        table = self.hist_citizen_history_screen.histrec_tableView_List_RecordCitizenHistory
+        selected_item = table.item(row, 0)
+        if not selected_item:
+            return
+
+        selected_id = selected_item.text()
+
+        for record in self.history_rows:
+            if str(record[0]) == selected_id:
+                self.hist_citizen_history_screen.histrec_displayHistoryID.setText(str(record[0]))
+                self.hist_citizen_history_screen.histrec_displayCitizenID.setText(str(record[5]))
+                self.hist_citizen_history_screen.histrec_displayCitizenHistFirstName.setText(record[1])
+                self.hist_citizen_history_screen.histrec_displayCitizenHistLastName.setText(record[2])
+                self.hist_citizen_history_screen.histrec_displayHistoryType.setText(record[3])
+                self.hist_citizen_history_screen.histrec_displayHistoryDescription.setText(record[3])
+                self.hist_citizen_history_screen.display_DateEncoded.setText(record[6])
+                self.hist_citizen_history_screen.display_DateUpdated.setText(record[7])
+                self.hist_citizen_history_screen.display_EncodedBy.setText(record[8])
+                self.hist_citizen_history_screen.display_UpdatedBy.setText(record[9])
+                break
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
