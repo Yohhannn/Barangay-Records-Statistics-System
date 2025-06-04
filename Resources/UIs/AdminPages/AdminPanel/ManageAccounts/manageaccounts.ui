@@ -546,7 +546,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="histrec_citizenhistory_button_remove">
+    <widget class="QPushButton" name="admn_button_RemAcc">
      <property name="geometry">
       <rect>
        <x>1070</x>
@@ -568,7 +568,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#histrec_citizenhistory_button_remove {
+      <string notr="true">#admn_button_RemAcc {
     background-color: #c9302c; /* Default red */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -576,12 +576,12 @@
     padding: 10px; 
 }
 
-#histrec_citizenhistory_button_remove:hover {
+#admn_button_RemAcc:hover {
     background-color: #d9534f; /* Brighter red when hovered */
     color: white; 
 }
 
-#histrec_citizenhistory_button_remove:pressed {
+#admn_button_RemAcc:pressed {
     background-color: #a52a2a; /* Darker red when pressed */
     color: white; 
 }</string>
@@ -600,7 +600,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="histrec_citizenhistory_button_record">
+    <widget class="QPushButton" name="admn_button_RegAcc">
      <property name="geometry">
       <rect>
        <x>690</x>
@@ -622,7 +622,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#histrec_citizenhistory_button_record {
+      <string notr="true">#admn_button_RegAcc {
     background-color:  #1e7e34; /* Default green */
     color: white;
     border: 1px solid #b5b5b5;
@@ -630,12 +630,12 @@
     padding: 10px; 
 }
 
-#histrec_citizenhistory_button_record:hover {
+#admn_button_RegAcc:hover {
     background-color: #28a745; /* Brighter green when hovered */
     color: white; 
 }
 
-#histrec_citizenhistory_button_record:pressed {
+#admn_button_RegAcc:pressed {
     background-color:  #34c759; /* Darker green when pressed */
     color: white; 
 }
@@ -655,7 +655,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="histrec_citizenhistory_button_update">
+    <widget class="QPushButton" name="admn_button_UpdAcc">
      <property name="geometry">
       <rect>
        <x>890</x>
@@ -677,7 +677,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#histrec_citizenhistory_button_update {
+      <string notr="true">#admn_button_UpdAcc {
     background-color: #6c757d; /* Default gray */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -685,12 +685,12 @@
     padding: 10px; 
 }
 
-#histrec_citizenhistory_button_update:hover {
+#admn_button_UpdAcc:hover {
     background-color: #838b94; /* Brighter gray when hovered */
     color: white; 
 }
 
-#histrec_citizenhistory_button_update:pressed {
+#admn_button_UpdAcc:pressed {
     background-color: #5a6268; /* Darker gray when pressed */
     color: white; 
 }
