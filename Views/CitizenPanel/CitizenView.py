@@ -3,6 +3,7 @@ from Utils.util_popup import load_popup
 from PySide6.QtWidgets import QMessageBox
 
 from Utils.util_widget import load_ui_widget
+from database import Database
 
 
 class CitizenView:
@@ -37,6 +38,22 @@ class CitizenView:
         self.part1_popup.register_buttonPrev.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_prev'))
         self.part1_popup.register_buttonConfirmPart1_NextToPart2.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_next'))
         self.part1_popup.register_buttonConfirmPart1_NextToPart2.clicked.connect(self.controller.validate_part1_fields)
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT rel_id, rel_name FROM religion ORDER BY rel_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part1_popup.register_citizen_comboBox_Religion
+            combo.clear()
+            for rel_id, rel_name in results:
+                combo.addItem(rel_name, rel_id)
+
+        except Exception as e:
+            print(f"Failed to load religion : {e}")
+        finally:
+            db.close()
         # self.setup_image_handlers(self.part1_popup)
         # if hasattr(self, 'citizen_data'):
         #     self.restore_part1_data()
@@ -54,7 +71,55 @@ class CitizenView:
         self.part2_popup.register_buttonConfirmPart2_NextToPart3.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_next'))
         self.part2_popup.register_buttonConfirmPart2_NextToPart3.clicked.connect(self.controller.validate_part2_fields)
         self.part2_popup.register_buttonReturnToPart1_FromPart2.clicked.connect(self.controller.return_to_part1_from_part2)
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT es_id, es_status_name FROM employment_status ORDER BY es_status_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part2_popup.register_citizen_comboBox_EmploymentStatus
+            combo.clear()
+            for es_id, es_status_name in results:
+                combo.addItem(es_status_name, es_id)
+
+        except Exception as e:
+            print(f"Failed to load employment status: {e}")
+        finally:
+            db.close()
+
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT pc_id, pc_category_name FROM philhealth_category ORDER BY pc_category_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part2_popup.register_citizen_comboBox_PhilCat
+            combo.clear()
+            for pc_id, pc_category_name in results:
+                combo.addItem(pc_category_name, pc_id)
+
+        except Exception as e:
+            print(f"Failed to load philhealth categopry name: {e}")
+        finally:
+            db.close()
         # self.part2_popup.exec_()
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT pc_id, pc_category_name FROM philhealth_category ORDER BY pc_category_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part2_popup.register_citizen_comboBox_PhilCat
+            combo.clear()
+            for pc_id, pc_category_name in results:
+                combo.addItem(pc_category_name, pc_id)
+
+        except Exception as e:
+            print(f"Failed to load philhealth categopry name: {e}")
+        finally:
+            db.close()
 
         return self.part2_popup
  #return_to_part1_from_part2
@@ -79,6 +144,22 @@ class CitizenView:
         # if back_btn:
         #     back_btn.clicked.connect(self.return_to_part2_from_part3)
         # self.part3_popup.exec_()
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT edat_id, edat_level FROM EDUCATIONAL_ATTAINMENT ORDER BY edat_level ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part3_popup.register_citizen_comboBox_EducationalLevel
+            combo.clear()
+            for edat_id, educational_attainment in results:
+                combo.addItem(educational_attainment, edat_id)
+
+        except Exception as e:
+            print(f"Failed to load educ atainment: {e}")
+        finally:
+            db.close()
 
 
         return self.part3_popup
