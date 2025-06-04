@@ -55,19 +55,21 @@ CREATE TABLE RELIGION (
 
 -- Table: SOCIO_ECONOMIC_STATUS
 CREATE TABLE SOCIO_ECONOMIC_STATUS (
-                                       SOEC_ID SERIAL PRIMARY KEY,
-                                       SOEC_STATUS VARCHAR(100) NOT NULL CHECK (
-                                           SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps','Non-NHTS')
-                                           ),
-                                       SOEC_NUMBER VARCHAR(50),
-                                       CONSTRAINT chk_socio_status CHECK (
-                                           (SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps') AND SOEC_NUMBER IS NOT NULL) OR
-                                           (SOEC_STATUS = 'Non-NHTS' AND SOEC_NUMBER IS NULL)
-                                           )
+    SOEC_ID SERIAL PRIMARY KEY,
+    SOEC_STATUS VARCHAR(100) NOT NULL CHECK (
+        SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps', 'Non-NHTS')
+    ),
+    SOEC_NUMBER VARCHAR(50),
+    CONSTRAINT chk_socio_status CHECK (
+        (SOEC_STATUS IN ('NHTS 4Ps', 'NHTS Non-4Ps') AND SOEC_NUMBER IS NOT NULL)
+        OR
+        (SOEC_STATUS = 'Non-NHTS')
+    )
 );
 
+
 CREATE TYPE blood_type_enum AS ENUM(
-    'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-','Unknown'
+    'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-','None'
     );
 
 
@@ -155,9 +157,10 @@ CREATE TABLE PHILHEALTH_CATEGORY (
 -- Table: PHILHEALTH
 CREATE TABLE PHILHEALTH (
                             PHEA_ID SERIAL PRIMARY KEY,
-                            PHEA_ID_NUMBER VARCHAR(50) UNIQUE NOT NULL,
+                            PHEA_ID_NUMBER VARCHAR(50),
                             PHEA_MEMBERSHIP_TYPE VARCHAR(50) CHECK(
                                 PHEA_MEMBERSHIP_TYPE IN (
+                                                         'None',
                                                          'Member',
                                                          'Dependent'
                                     )
@@ -773,7 +776,7 @@ INSERT INTO SOCIO_ECONOMIC_STATUS (SOEC_STATUS, SOEC_NUMBER)
 VALUES
         ('NHTS 4Ps', '123456'),
         ('NHTS Non-4Ps', '654321'),
-        ('Non-NHTS', NULL);
+        ('Non-NHTS', 'N/A');
 
 --sample household
 INSERT INTO HOUSEHOLD_INFO (
@@ -1131,3 +1134,4 @@ INSERT INTO FAMILY_PLANNING (
 -- JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
 -- JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID=IT.INFT_ID
 -- JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID;
+

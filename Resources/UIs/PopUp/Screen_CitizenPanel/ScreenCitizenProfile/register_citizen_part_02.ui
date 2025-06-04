@@ -1920,7 +1920,7 @@
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="register_citizen_comboBox_PhilCa">
+    <widget class="QComboBox" name="register_citizen_comboBox_PhilCat">
      <property name="geometry">
       <rect>
        <x>180</x>
@@ -2031,12 +2031,12 @@
      </item>
      <item>
       <property name="text">
-       <string>M - Member</string>
+       <string>Member</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>D - Dependent</string>
+       <string>Dependent</string>
       </property>
      </item>
     </widget>
@@ -2314,7 +2314,7 @@
     </item>
     <item>
      <property name="text">
-      <string>Non NHTS</string>
+      <string>Non-NHTS</string>
      </property>
     </item>
    </widget>

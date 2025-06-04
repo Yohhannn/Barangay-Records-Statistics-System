@@ -148,8 +148,8 @@ class CitizenController(BaseFileController):
         self.deceased_group.addButton(self.part3_popup.register_citizen_Deceased_No)
 
 
-        self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_Yes)
-        self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_No)
+        # self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_Yes)
+        # self.indig_group.addButton(self.part3_popup.register_citizen_IndGroup_No)
 
 
 
@@ -167,25 +167,23 @@ class CitizenController(BaseFileController):
         return{
         #PART 1
             'first_name': self.part1_popup.register_citizen_firstname.text().strip(), # REQUIRED
-            'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "N/A",
+            'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "None",
             'last_name': self.part1_popup.register_citizen_lastname.text().strip(), # REQUIRED
-            'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "N/A",
+            'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "None",
 
             'civil_status': self.part1_popup.register_citizen_comboBox_CivilStatus.currentText().strip(), # REQUIRED
             'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"), # REQUIRED
 
             'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(), # REQUIRED
-            # 'religion_others': self.part1_popup.register_citizen_religion_others.text().strip(), # REQUIRED
 
             'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "None",
             'sex': self.radio_button_sex_result(),  #'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
 
-            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "N/A",
-            'email_address': self.part1_popup.register_citizen_Email.text().strip() or "N/A",
+            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "None",
+            'email_address': self.part1_popup.register_citizen_Email.text().strip() or "None",
 
             'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
-            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "N/A",
-            'full_address': self.part1_popup.register_citizen_FullAddress.toPlainText() or "N/A",
+            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "None",
 
             # APRT 2
             # PART 2
@@ -197,16 +195,14 @@ class CitizenController(BaseFileController):
             # house hold info
             'household_id': self.part2_popup.register_citizen_HouseholdID.text().strip(),
             'relationship': self.part2_popup.register_citizen_comboBox_Relationship.currentText().strip(),
-            'other_relationship': self.part2_popup.register_citizen_HouseholdRelationshipOther.text().strip(),
 
             # work information
 
             'employment_status': self.part2_popup.register_citizen_comboBox_EmploymentStatus.currentText().strip(),
             'occupation': self.part2_popup.register_citizen_Occupation.text().strip(),
             'gov_worker': self.radio_button_gov_worker_result(),
-            'phil_member': self.radio_button_phil_member_result(),
             'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
-            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip(),
+            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip() or "N/A",
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip(),
 
             # PART 3
@@ -216,11 +212,8 @@ class CitizenController(BaseFileController):
             'has_fam_plan': self.radio_button_fam_plan_result(),
             'fam_plan_method': self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.currentText().strip(),
             'fam_plan_stat': self.part3_popup.register_citizen_comboBox_FamPlanStatus.currentText().strip(),
-            'is_pwd': self.radio_button_pwd_result(),
             'is_voter': self.radio_button_voter_result(),
             'is_deceased': self.radio_button_deceased_result(),
-            'is_indig': self.radio_button_indig_result(),
-            'indig_name': self.part3_popup.register_citizen_tribeName.text().strip(),
 
 
 
@@ -423,10 +416,10 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
                 self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "N/A")
                 self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "N/A")
-                self.cp_profile_screen.cp_displayPWD.setText("No | None" if record[28] == "None" else "Yes" + " | " + record[28]  )
+                self.cp_profile_screen.cp_displayPWD.setText(record[28] or "N/A")
                 self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[29] == True else "No")
                 self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[30] == True else "No")
-                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
+                # self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
                 self.cp_profile_screen.display_DateEncoded.setText(record[33] or "N/A")
                 self.cp_profile_screen.display_EncodedBy.setText(record[34] or "N/A")
                 self.cp_profile_screen.display_DateUpdated.setText(record[35] or "N/A")
@@ -574,6 +567,8 @@ LIMIT 20;
             finally:
                 db.close()
 
+
+
         if not form_data_part_1['civil_status']:
             errors_part_1.append("Civil status is required.")
             self.part1_popup.register_citizen_comboBox_CivilStatus.setStyleSheet(
@@ -584,33 +579,17 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
 
+
+
+
         if not form_data_part_1['religion']:
             errors_part_1.append("Religion is required.")
             self.part1_popup.register_citizen_comboBox_Religion.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
-        elif form_data_part_1['religion'] == 'Others':
-            if not form_data_part_1['religion_others']:
-                errors_part_1.append("Religion is required.")
-                self.part1_popup.register_citizen_religion_others.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-                self.part1_popup.register_citizen_comboBox_Religion.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
-            else:
-                self.part1_popup.register_citizen_religion_others.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-                self.part1_popup.register_citizen_comboBox_Religion.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
         else:
             self.part1_popup.register_citizen_comboBox_Religion.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-            )
-            self.part1_popup.register_citizen_religion_others.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
         if not form_data_part_1['sex']:
@@ -621,6 +600,8 @@ LIMIT 20;
             self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
             self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
 
+
+
         if not form_data_part_1['sitio']:
             errors_part_1.append("Sitio is required.")
             self.part1_popup.register_citizen_comboBox_Sitio.setStyleSheet(
@@ -630,6 +611,8 @@ LIMIT 20;
             self.part1_popup.register_citizen_comboBox_Sitio.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+
+
 
         if errors_part_1:
             self.view.show_error_message(errors_part_1)
@@ -703,14 +686,7 @@ LIMIT 20;
                 'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
 
 
-        if not form_data_part_3['is_pwd']:
-            errors_part_3.append("PWD is required.")
-            self.part3_popup.register_citizen_IsPWD_Yes.setStyleSheet("color: red")
-            self.part3_popup.register_citizen_IsPWD_No.setStyleSheet("color: red")
 
-        else:
-            self.part3_popup.register_citizen_IsPWD_Yes.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.register_citizen_IsPWD_No.setStyleSheet("color: rgb(18, 18, 18)")
 
 
         if not form_data_part_3['is_voter']:
@@ -730,23 +706,6 @@ LIMIT 20;
             self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
 
 
-        if not form_data_part_3['is_indig']:
-            errors_part_3.append("Indigenous Group is required.")
-            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: red")
-            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: red")
-        elif form_data_part_3['is_indig'] == 'Yes':
-            if not form_data_part_3['indig_name']:
-                errors_part_3.append("Tribe Name is required.")
-                self.part3_popup.register_citizen_tribeName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
-            else:
-                self.part3_popup.register_citizen_tribeName.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
-        else:
-            form_data_part_3['indig_name'] = 'N/A'
-            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.register_citizen_tribeName.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
-
         if errors_part_3:
             self.view.show_error_message(errors_part_3)
         else:
@@ -764,6 +723,7 @@ LIMIT 20;
         # else:
         #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
         #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+
 
 
 
@@ -841,62 +801,36 @@ LIMIT 20;
             self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
-        elif form_data_part_2['relationship'] == 'Others':
-            if not form_data_part_2['other_relationship']:
-                errors_part_2.append("Other Relationship description is required.")
-                self.part2_popup.register_citizen_HouseholdRelationshipOther.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            else:
-                self.part2_popup.register_citizen_HouseholdRelationshipOther.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-            )
+
         else:
             self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
-            self.part2_popup.register_citizen_HouseholdRelationshipOther.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            )
 
         # Philhealth Member
-        if form_data_part_2['phil_member'] == 'Yes':
-            if not form_data_part_2['phil_category']:
-                errors_part_2.append("Philhealth Category is required.")
-                self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
-            else:
-                self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
+        if not form_data_part_2['phil_category']:
+            errors_part_2.append("Philhealth Category is required.")
+            self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
 
-            if not form_data_part_2['phil_id']:
-                errors_part_2.append("Philhealth ID is required.")
-                self.part2_popup.register_citizen_PhilID.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            else:
-                self.part2_popup.register_citizen_PhilID.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-
-            if not form_data_part_2['membership_type']:
-                errors_part_2.append("Membership Type is required.")
-                self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
-            else:
-                self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
-        elif not form_data_part_2['phil_member']:
-            errors_part_2.append("Philhealth Member is required.")
-            self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: red")
-            self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: red")
+        if not form_data_part_2['membership_type']:
+            errors_part_2.append("Membership Type is required.")
+            self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        # elif not form_data_part_2['phil_member']:
+        #     errors_part_2.append("Philhealth Member is required.")
+        #     self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: red")
+        #     self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: red")
 
         # if not form_data_part_1['sex']:
         #     errors_part_1.append("Sex is required.")
@@ -905,16 +839,16 @@ LIMIT 20;
         # else:
         #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
         #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
-        else:
-            self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
-            self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
-            self.part2_popup.register_citizen_PhilID.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            )
+        # else:
+        #     self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
+        #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+        #     self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
+        #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+        #     self.part2_popup.register_citizen_PhilID.setStyleSheet(
+        #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+        #     )
 
 
         # if not form_data_part_1['sex']:
@@ -1205,13 +1139,199 @@ LIMIT 20;
             radio_indigenous.addButton(ind_no)
 
     def confirm_and_save(self):
-        reply = QMessageBox.question(self.part3_popup, "Confirm Registration", "Are you sure you want to register this citizen?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            print("-- Form Submitted")
+        reply = QMessageBox.question(
+            self.part3_popup,
+            "Confirm Registration",
+            "Are you sure you want to register this citizen?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply != QMessageBox.Yes:
+            return
+
+        print("-- Form Submitted")
+
+        # Get form data
+        form_data = self.get_form_data()
+        if not form_data:
+            QMessageBox.critical(self.part3_popup, "Error", "No data to save.")
+            return
+
+        db = Database()
+        connection = db.conn
+        cursor = connection.cursor()
+
+        try:
+            # --- Validate & Insert CONTACT ---
+            email = form_data['email_address']
+            phone = form_data['contact_number']
+
+            contact_query = """
+                INSERT INTO contact (con_email, con_phone)
+                VALUES (%s, %s)
+                RETURNING con_id;
+            """
+            cursor.execute(contact_query, (email, phone))
+            contact_result = cursor.fetchone()
+            if not contact_result:
+                raise Exception("Failed to insert into CONTACT table")
+            contact_id = contact_result[0]
+
+            # --- Validate SITIO ---
+            cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (form_data['sitio'],))
+            sitio_result = cursor.fetchone()
+            if not sitio_result:
+                raise Exception(f"Sitio '{form_data['sitio']}' not found in database.")
+            sitio_id = sitio_result[0]
+
+            # --- Validate/Insert EDUCATION_LEVEL ---
+            edu_level = form_data['educ_level']
+            edat_id = None
+            if edu_level not in ['N/A', '', None]:
+                cursor.execute("SELECT edat_id FROM educational_attainment WHERE edat_level = %s", (edu_level,))
+                edu_level_result = cursor.fetchone()
+                if not edu_level_result:
+                    raise Exception(f"Educational level '{edu_level}' not found.")
+                edat_id = edu_level_result[0]
+
+            # --- Insert EDUCATION_STATUS ---
+            cursor.execute("""
+                INSERT INTO education_status (edu_is_currently_student, edu_institution_name, edat_id)
+                VALUES (%s, %s, %s)
+                RETURNING edu_id;
+            """, (
+                True if form_data['is_student'] == 'Yes' else False,
+                form_data['school_name'] if form_data['school_name'] not in ['', 'N/A'] else None,
+                edat_id
+            ))
+            edu_result = cursor.fetchone()
+            if not edu_result:
+                raise Exception("Failed to insert into EDUCATION_STATUS")
+            edu_id = edu_result[0]
+
+            # --- Insert SOCIO_ECONOMIC_STATUS ---
+            socio_status = form_data['socio_eco_status']
+            nhts_num = form_data['nhts_number'] if socio_status in ['NHTS 4Ps', 'NHTS Non-4Ps'] else None
+
+            cursor.execute("""
+                INSERT INTO socio_economic_status (soec_status, soec_number)
+                VALUES (%s, %s)
+                RETURNING soec_id;
+            """, (socio_status, nhts_num))
+            soec_result = cursor.fetchone()
+            if not soec_result:
+                raise Exception("Failed to insert into SOCIO_ECONOMIC_STATUS")
+            soec_id = soec_result[0]
+
+            # --- Validate RELIGION ---
+            religion = form_data['religion']
+            cursor.execute("SELECT rel_id FROM religion WHERE rel_name = %s", (religion,))
+            rel_result = cursor.fetchone()
+            if not rel_result:
+                cursor.execute("INSERT INTO religion (rel_name) VALUES (%s) RETURNING rel_id", (religion,))
+                rel_insert_result = cursor.fetchone()
+                if not rel_insert_result:
+                    raise Exception("Failed to insert new religion")
+                rel_id = rel_insert_result[0]
+            else:
+                rel_id = rel_result[0]
+
+            # --- Validate PHILHEALTH CATEGORY ---
+            phil_category = form_data['phil_category']
+            cursor.execute("SELECT pc_id FROM philhealth_category WHERE pc_category_name = %s", (phil_category,))
+            pc_result = cursor.fetchone()
+            if not pc_result:
+                raise Exception(f"Philhealth category '{phil_category}' not found.")
+            pc_id = pc_result[0]
+
+            # --- Insert PHILHEALTH ---
+            phil_id = form_data['phil_id'] if form_data['phil_id'] not in ['', 'N/A'] else None
+            membership_type = form_data['membership_type'] if phil_id else None
+
+            cursor.execute("""
+                INSERT INTO philhealth (phea_id_number, pc_id, phea_membership_type)
+                VALUES (%s, %s, %s)
+                RETURNING phea_id;
+            """, (phil_id, pc_id, membership_type))
+            phea_result = cursor.fetchone()
+            if phil_id and not phea_result:
+                raise Exception("Failed to insert into PHILHEALTH")
+            phea_id = phea_result[0] if phil_id else None
+
+            # --- Insert CITIZEN ---
+            citizen_query = """
+                INSERT INTO citizen (
+                    ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
+                    ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
+                    ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death, 
+                    ctz_date_encoded, con_id, sitio_id, edu_id, soec_id, phea_id, rel_id,
+                    rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING ctz_id;
+            """
+            cursor.execute(citizen_query, (
+                form_data['first_name'],
+                form_data['middle_name'] or None,
+                form_data['last_name'],
+                form_data['suffix'] or None,
+                form_data['birth_date'],
+                'M' if form_data['sex'] == 'Male' else 'F',
+                form_data['civil_status'],
+                form_data['place_of_birth'],
+                form_data['blood_type'] or None,
+                True if form_data['is_voter'] == 'Yes' else False,
+                False if form_data['is_deceased'] == 'Yes' else True,
+                form_data['reason_of_Death'],
+                contact_id,
+                sitio_id,
+                edu_id,
+                soec_id,
+                phea_id,
+                rel_id,
+                1,  # rth_id (Head of Household)
+                int(form_data['household_id']),
+                1,
+                2# encoded_by_sys_id (default admin)
+            ))
+            citizen_result = cursor.fetchone()
+            if not citizen_result:
+                raise Exception("Failed to insert into CITIZEN")
+            citizen_id = citizen_result[0]
+
+            # --- Insert EMPLOYMENT ---
+            employment_status = form_data['employment_status']
+            cursor.execute("SELECT es_id FROM employment_status WHERE es_status_name = %s", (employment_status,))
+            es_result = cursor.fetchone()
+            if not es_result:
+                raise Exception(f"Employment status '{employment_status}' not found")
+            es_id = es_result[0]
+
+            cursor.execute("""
+                INSERT INTO employment (emp_occupation, emp_is_gov_worker, es_id, ctz_id)
+                VALUES (%s, %s, %s, %s);
+            """, (
+                form_data['occupation'],
+                True if form_data['gov_worker'] == 'Yes' else False,
+                es_id,
+                citizen_id
+            ))
+
+            # --- Commit transaction ---
+            connection.commit()
             QMessageBox.information(self.part3_popup, "Success", "Citizen successfully registered!")
+
+            # Close popup and refresh UI
             self.part3_popup.close()
+            self.load_citizen_data()
 
-
+        except Exception as e:
+            connection.rollback()
+            QMessageBox.critical(self.part3_popup, "Database Error", f"Failed to register citizen: {e}")
+        finally:
+            cursor.close()
+            connection.close()
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
