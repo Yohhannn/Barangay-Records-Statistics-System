@@ -83,8 +83,8 @@ class CitizenController(BaseFileController):
         self.student_group.addButton(self.part3_popup.radioButton_IsStudent_Yes)
         self.student_group.addButton(self.part3_popup.radioButton_IsStudent_No)
 
-        self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_Yes)
-        self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_No)
+        # self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_Yes)
+        # self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_No)
 
         # self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_Yes)
         # self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_No)
@@ -185,6 +185,7 @@ class CitizenController(BaseFileController):
             'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
             'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "None",
 
+
             # APRT 2
             # PART 2
 
@@ -202,20 +203,20 @@ class CitizenController(BaseFileController):
             'occupation': self.part2_popup.register_citizen_Occupation.text().strip(),
             'gov_worker': self.radio_button_gov_worker_result(),
             'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
-            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip() or "N/A",
+            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip() or "None",
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip(),
 
             # PART 3
             'is_student': self.radio_button_student_result(),
             'school_name': self.part3_popup.register_citizen_SchoolName.text().strip(),
             'educ_level': self.part3_popup.register_citizen_comboBox_EducationalLevel.currentText().strip(),
-            'has_fam_plan': self.radio_button_fam_plan_result(),
+            # 'has_fam_plan': self.radio_button_fam_plan_result(),
             'fam_plan_method': self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.currentText().strip(),
             'fam_plan_stat': self.part3_popup.register_citizen_comboBox_FamPlanStatus.currentText().strip(),
             'is_voter': self.radio_button_voter_result(),
             'is_deceased': self.radio_button_deceased_result(),
-
-
+            'reason_of_death': self.part3_popup.register_citizen_ReasonOfDeath.toPlainText().strip(),
+            'date_of_death': self.part3_popup.register_citizen_death_date.date().toString("yyyy-MM-dd")  # REQUIRED
 
         }
 
@@ -375,8 +376,8 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayCItizenID.setText(str(record[0]))
                 self.cp_profile_screen.cp_displayLastName.setText(record[1])
                 self.cp_profile_screen.cp_displayFirstName.setText(record[2])
-                self.cp_profile_screen.cp_displayMiddleName.setText(record[3] or "N/A")
-                self.cp_profile_screen.cp_displaySuffix.setText(record[4] or "N/A")
+                self.cp_profile_screen.cp_displayMiddleName.setText(record[3] or "None")
+                self.cp_profile_screen.cp_displaySuffix.setText(record[4] or "None")
                 self.cp_profile_screen.cp_displaySitio.setText(record[5])
                 self.cp_profile_screen.display_DateUpdated.setText(record[6])
 
@@ -396,34 +397,34 @@ LIMIT 20;
 
                 # self.cp_profile_screen.cp_displaySex.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
                 self.cp_profile_screen.cp_displayCivilStatus.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
-                self.cp_profile_screen.cp_displayEmail.setText(record[10] or "N/A")
-                self.cp_profile_screen.cp_displayContactNum.setText(record[11] or "N/A")
-                self.cp_profile_screen.cp_displayPlaceOfBirth.setText(record[12] or "N/A")
-                self.cp_profile_screen.cp_displayFullAddress.setText(record[13] or "N/A")
-                self.cp_profile_screen.cp_displaySocioEcoStatus.setText(record[14] or "N/A")
-                self.cp_profile_screen.cp_displayNHTSNum.setText(record[15] or "N/A")
-                self.cp_profile_screen.cp_displayEmploymentStatus.setText(record[16] or "N/A")
-                self.cp_profile_screen.cp_displayOccupation.setText(record[17] or "N/A")
+                self.cp_profile_screen.cp_displayEmail.setText(record[10] or "None")
+                self.cp_profile_screen.cp_displayContactNum.setText(record[11] or "None")
+                self.cp_profile_screen.cp_displayPlaceOfBirth.setText(record[12] or "None")
+                self.cp_profile_screen.cp_displayFullAddress.setText(record[13] or "None")
+                self.cp_profile_screen.cp_displaySocioEcoStatus.setText(record[14] or "None")
+                self.cp_profile_screen.cp_displayNHTSNum.setText(record[15] or "None")
+                self.cp_profile_screen.cp_displayEmploymentStatus.setText(record[16] or "None")
+                self.cp_profile_screen.cp_displayOccupation.setText(record[17] or "None")
                 self.cp_profile_screen.cp_displayGovWorker.setText("Yes" if record[18] == True else "No")
                 self.cp_profile_screen.cp_displayHouseholdID.setText(str(record[19]) if record[19] else "")
-                self.cp_profile_screen.cp_displayRelationship.setText(record[20] or "N/A")
-                self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "N/A")
-                self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "N/A")
-                self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "N/A")
+                self.cp_profile_screen.cp_displayRelationship.setText(record[20] or "None")
+                self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "None")
+                self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "None")
+                self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "None")
                 # self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
-                self.cp_profile_screen.cp_displayReligion.setText(record[23] or "N/A")
-                self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "N/A")
+                self.cp_profile_screen.cp_displayReligion.setText(record[23] or "None")
+                self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "None")
                 self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
-                self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "N/A")
-                self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "N/A")
-                self.cp_profile_screen.cp_displayPWD.setText(record[28] or "N/A")
+                self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "None")
+                self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "None")
+                self.cp_profile_screen.cp_displayPWD.setText(record[28] or "None")
                 self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[29] == True else "No")
                 self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[30] == True else "No")
                 # self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
-                self.cp_profile_screen.display_DateEncoded.setText(record[33] or "N/A")
-                self.cp_profile_screen.display_EncodedBy.setText(record[34] or "N/A")
-                self.cp_profile_screen.display_DateUpdated.setText(record[35] or "N/A")
-                self.cp_profile_screen.display_UpdatedBy.setText(record[36] or "N/A")
+                self.cp_profile_screen.display_DateEncoded.setText(record[33] or "None")
+                self.cp_profile_screen.display_EncodedBy.setText(record[34] or "None")
+                self.cp_profile_screen.display_DateUpdated.setText(record[35] or "None")
+                self.cp_profile_screen.display_UpdatedBy.setText(record[36] or "None")
                 print(record[31])
                 print(record[34])
                 break
@@ -471,14 +472,14 @@ LIMIT 20;
             student = ''
         return student
 
-    def radio_button_fam_plan_result(self):
-        if self.part3_popup.radioButton_IsFamPlan_Yes.isChecked():
-            fam_plan = 'Yes'
-        elif self.part3_popup.radioButton_IsFamPlan_No.isChecked():
-            fam_plan = 'No'
-        else:
-            fam_plan = ''
-        return fam_plan
+    # def radio_button_fam_plan_result(self):
+    #     if self.part3_popup.radioButton_IsFamPlan_Yes.isChecked():
+    #         fam_plan = 'Yes'
+    #     elif self.part3_popup.radioButton_IsFamPlan_No.isChecked():
+    #         fam_plan = 'No'
+    #     else:
+    #         fam_plan = ''
+    #     return fam_plan
 
     def radio_button_pwd_result(self):
         if self.part3_popup.register_citizen_IsPWD_Yes.isChecked():
@@ -649,8 +650,8 @@ LIMIT 20;
                     'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
                 )
         else:
-            form_data_part_3['school_name'] = 'N/A'
-            form_data_part_3['educ_level'] = 'N/A'
+            form_data_part_3['school_name'] = 'None'
+            form_data_part_3['educ_level'] = 'None'
             self.part3_popup.radioButton_IsStudent_Yes.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.radioButton_IsStudent_No.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.register_citizen_SchoolName.setStyleSheet(
@@ -660,30 +661,30 @@ LIMIT 20;
                 'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
             )
 
-        if not form_data_part_3['has_fam_plan']:
-            errors_part_3.append("Family Planning is required.")
-            self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: red")
-            self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: red")
-        elif form_data_part_3['has_fam_plan'] == 'Yes':
-            if not form_data_part_3['fam_plan_method']:
-                errors_part_3.append("Family Method is required.")
-                self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
-            else:
-                self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
-            if not form_data_part_3['fam_plan_stat']:
-                errors_part_3.append("Family Status is required.")
-                self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
-            else:
-                self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        # if not form_data_part_3['has_fam_plan']:
+        #     errors_part_3.append("Family Planning is required.")
+        #     self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: red")
+        #     self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: red")
+        # elif form_data_part_3['has_fam_plan'] == 'Yes':
+        if not form_data_part_3['fam_plan_method']:
+            errors_part_3.append("Family Method is required.")
+            self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
         else:
-            form_data_part_3['fam_plan_method'] = 'N/A'
-            form_data_part_3['fam_plan_stat'] = 'N/A'
-            self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet(
-                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
-            self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet(
-                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+            self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        if not form_data_part_3['fam_plan_stat']:
+            errors_part_3.append("Family Status is required.")
+            self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        else:
+            self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        # else:
+        #     form_data_part_3['fam_plan_method'] = 'N/A'
+        #     form_data_part_3['fam_plan_stat'] = 'N/A'
+        #     self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet(
+        #         'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        #     self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet(
+        #         'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
 
 
 
@@ -701,10 +702,16 @@ LIMIT 20;
             errors_part_3.append("Deceased is required.")
             self.part3_popup.register_citizen_Deceased_Yes.setStyleSheet("color: red")
             self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: red")
+        elif form_data_part_3['is_deceased'] == 'Yes' and not form_data_part_3['reason_of_death'] :
+            errors_part_3.append("Reason of Death is required.")
+            self.part3_popup.register_citizen_Deceased_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_ReasonOfDeath.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
         else:
             self.part3_popup.register_citizen_Deceased_Yes.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
-
+            self.part3_popup.register_citizen_ReasonOfDeath.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
 
         if errors_part_3:
             self.view.show_error_message(errors_part_3)
@@ -753,7 +760,7 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
         else:
-            form_data_part_2['nhts_number'] = "N/A"
+            form_data_part_2['nhts_number'] = "None"
             self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
@@ -1188,7 +1195,7 @@ LIMIT 20;
             # --- Validate/Insert EDUCATION_LEVEL ---
             edu_level = form_data['educ_level']
             edat_id = None
-            if edu_level not in ['N/A', '', None]:
+            if edu_level not in ['None', '', None]:
                 cursor.execute("SELECT edat_id FROM educational_attainment WHERE edat_level = %s", (edu_level,))
                 edu_level_result = cursor.fetchone()
                 if not edu_level_result:
@@ -1202,7 +1209,7 @@ LIMIT 20;
                 RETURNING edu_id;
             """, (
                 True if form_data['is_student'] == 'Yes' else False,
-                form_data['school_name'] if form_data['school_name'] not in ['', 'N/A'] else None,
+                form_data['school_name'] if form_data['school_name'] not in ['', 'None'] else None,
                 edat_id
             ))
             edu_result = cursor.fetchone()
@@ -1246,7 +1253,7 @@ LIMIT 20;
             pc_id = pc_result[0]
 
             # --- Insert PHILHEALTH ---
-            phil_id = form_data['phil_id'] if form_data['phil_id'] not in ['', 'N/A'] else None
+            phil_id = form_data['phil_id'] if form_data['phil_id'] not in ['', 'None'] else None
             membership_type = form_data['membership_type'] if phil_id else None
 
             cursor.execute("""
@@ -1264,11 +1271,11 @@ LIMIT 20;
                 INSERT INTO citizen (
                     ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
                     ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
-                    ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death, 
-                    ctz_date_encoded, con_id, sitio_id, edu_id, soec_id, phea_id, rel_id,
+                    ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death,
+                    ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id, phea_id, rel_id,
                     rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING ctz_id;
             """
             cursor.execute(citizen_query, (
@@ -1283,7 +1290,8 @@ LIMIT 20;
                 form_data['blood_type'] or None,
                 True if form_data['is_voter'] == 'Yes' else False,
                 False if form_data['is_deceased'] == 'Yes' else True,
-                form_data['reason_of_Death'],
+                form_data['date_of_death'],
+                form_data['reason_of_death'],
                 contact_id,
                 sitio_id,
                 edu_id,
