@@ -429,9 +429,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -447,9 +447,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -465,9 +465,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -483,9 +483,9 @@
        </property>
        <property name="background">
         <color>
-         <red>59</red>
-         <green>57</green>
-         <blue>100</blue>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
         </color>
        </property>
       </column>
@@ -587,7 +587,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>   REMOVE CIT HIST.</string>
+      <string>   REMOVE ACCOUNT</string>
      </property>
      <property name="icon">
       <iconset>
@@ -642,7 +642,7 @@
 </string>
      </property>
      <property name="text">
-      <string>   RECORD CIT HIST.</string>
+      <string>   REGISTER ACCOUNT</string>
      </property>
      <property name="icon">
       <iconset>
@@ -697,7 +697,7 @@
 </string>
      </property>
      <property name="text">
-      <string>  UPDATE CIT HIST.</string>
+      <string>  UPDATE ACCOUNT</string>
      </property>
      <property name="icon">
       <iconset>

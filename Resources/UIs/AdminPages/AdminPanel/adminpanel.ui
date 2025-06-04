@@ -630,18 +630,14 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonAdminPanel {
-    background-color: #f2efff;
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonAdminPanel:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonAdminPanel:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
       <string>  ADMIN PANEL</string>
@@ -710,14 +706,18 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonActivityLogs {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-</string>
+#nav_buttonActivityLogs:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonActivityLogs:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  ACTIVITY LOGS</string>
@@ -892,15 +892,364 @@
 </string>
     </property>
     <property name="text">
-     <string>ACTIVITY LOGS</string>
+     <string>ADMIN PANEL</string>
     </property>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>1001</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QToolButton" name="admn_button_ManageAccounts">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>150</y>
+       <width>451</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#admn_button_ManageAccounts {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#admn_button_ManageAccounts:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#admn_button_ManageAccounts:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#admn_button_ManageAccounts::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>MANAGE ACCOUNTS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Images/General_Images/img_manageaccount.png</normaloff>../../Images/General_Images/img_manageaccount.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="admn_button_AdminControls">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>150</y>
+       <width>451</width>
+       <height>220</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#admn_button_AdminControls {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#admn_button_AdminControls:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#admn_button_AdminControls:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#admn_button_AdminControls::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>ADMIN CONTROLS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statistics_labelDesc">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1001</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#statistics_labelDesc {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_labeltotalregistered_businesses">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_labeltotalregistered_businesses {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>TOTAL STAFF ACCOUNTS: </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Total_Staff_Accounts">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>110</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#Total_Staff_Accounts {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>[ 00 ]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Last_Modified_Date_Time">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>110</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#Last_Modified_Date_Time {
+	background-color: transparent;
+	color: rgb(20, 28, 82);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>00:00 N/A | #</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inst_labeltotalregistered_infrastructure">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>110</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#inst_labeltotalregistered_infrastructure {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>LAST MODIFIED:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="desc_01">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>370</y>
+       <width>451</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#desc_01 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [ Register / View / Update / Remove ] Accounts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="desc_2">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>370</y>
+       <width>451</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#desc_2 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [Modify, Add, Control] Action&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="table_titleFrameStatistics">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>90</y>
-      <width>451</width>
+      <width>1001</width>
       <height>51</height>
      </rect>
     </property>
@@ -919,9 +1268,9 @@
     <widget class="QLabel" name="statistics_labelNote">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>30</x>
        <y>0</y>
-       <width>451</width>
+       <width>941</width>
        <height>51</height>
       </rect>
      </property>
@@ -940,160 +1289,10 @@
 </string>
      </property>
      <property name="text">
-      <string>RECENT ACTIVITIES</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
+      <string>ADMIN ACTIONS</string>
      </property>
     </widget>
    </widget>
-   <widget class="QTableWidget" name="table_logs_create">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>451</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#table_logs_create{
-	background-color: #fcfcfc;
-}</string>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-    </property>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>135</number>
-    </attribute>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>CREATE / ADD / REGISTER - LOGS</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-   </widget>
-   <widget class="QTableWidget" name="table_logs_edit">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>300</y>
-      <width>451</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#table_logs_edit{
-	background-color: #fcfcfc;
-}</string>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-    </property>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>135</number>
-    </attribute>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>SET / UPDATE / EDIT - LOGS</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-   </widget>
-   <widget class="QTableWidget" name="table_logs_delete">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>460</y>
-      <width>451</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#table_logs_delete{
-	background-color: #fcfcfc;
-}</string>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-    </property>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>135</number>
-    </attribute>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>REMOVE / DELETE - LOGS</string>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
-     </property>
-     <property name="background">
-      <color>
-       <red>59</red>
-       <green>57</green>
-       <blue>100</blue>
-      </color>
-     </property>
-    </column>
-   </widget>
-   <zorder>table_logs_create</zorder>
-   <zorder>logout_buttonLogout_3</zorder>
-   <zorder>title_bodyBusiness</zorder>
-   <zorder>table_titleFrameStatistics</zorder>
-   <zorder>table_logs_edit</zorder>
-   <zorder>table_logs_delete</zorder>
   </widget>
  </widget>
  <resources/>
