@@ -86,8 +86,8 @@ class CitizenController(BaseFileController):
         self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_Yes)
         self.fam_plan_group.addButton(self.part3_popup.radioButton_IsFamPlan_No)
 
-        self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_Yes)
-        self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_No)
+        # self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_Yes)
+        # self.pwd_group.addButton(self.part3_popup.register_citizen_IsPWD_No)
 
         self.voter_group.addButton(self.part3_popup.register_citizen_RegVote_Yes)
         self.voter_group.addButton(self.part3_popup.register_citizen_RegVote_No)
@@ -175,7 +175,7 @@ class CitizenController(BaseFileController):
             'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"), # REQUIRED
 
             'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(), # REQUIRED
-            'religion_others': self.part1_popup.register_citizen_religion_others.text().strip(), # REQUIRED
+            # 'religion_others': self.part1_popup.register_citizen_religion_others.text().strip(), # REQUIRED
 
             'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "None",
             'sex': self.radio_button_sex_result(),  #'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
@@ -417,7 +417,7 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "N/A")
                 self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "N/A")
                 self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "N/A")
-                self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
+                # self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
                 self.cp_profile_screen.cp_displayReligion.setText(record[23] or "N/A")
                 self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "N/A")
                 self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
