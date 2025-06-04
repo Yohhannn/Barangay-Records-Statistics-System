@@ -750,7 +750,7 @@ LIMIT 20;
         if errors_part_3:
             self.view.show_error_message(errors_part_3)
         else:
-            pass
+            self.confirm_and_save()
 
 
 
@@ -1209,7 +1209,6 @@ LIMIT 20;
         if reply == QMessageBox.Yes:
             print("-- Form Submitted")
             QMessageBox.information(self.part3_popup, "Success", "Citizen successfully registered!")
-            self.citizen_data = {}
             self.part3_popup.close()
 
 
