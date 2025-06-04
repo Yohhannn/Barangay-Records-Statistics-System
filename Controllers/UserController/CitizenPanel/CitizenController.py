@@ -167,9 +167,9 @@ class CitizenController(BaseFileController):
         return{
         #PART 1
             'first_name': self.part1_popup.register_citizen_firstname.text().strip(), # REQUIRED
-            'middle_name': self.part1_popup.register_citizen_middlename.text().strip(),
+            'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "N/A",
             'last_name': self.part1_popup.register_citizen_lastname.text().strip(), # REQUIRED
-            'suffix': self.part1_popup.register_citizen_suffix.text().strip(),
+            'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "N/A",
 
             'civil_status': self.part1_popup.register_citizen_comboBox_CivilStatus.currentText().strip(), # REQUIRED
             'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"), # REQUIRED
@@ -177,15 +177,15 @@ class CitizenController(BaseFileController):
             'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(), # REQUIRED
             'religion_others': self.part1_popup.register_citizen_religion_others.text().strip(), # REQUIRED
 
-            'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip(),
+            'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "None",
             'sex': self.radio_button_sex_result(),  #'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
 
-            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip(),
-            'email_address': self.part1_popup.register_citizen_Email.text().strip(),
+            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "N/A",
+            'email_address': self.part1_popup.register_citizen_Email.text().strip() or "N/A",
 
             'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
-            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip(),
-            'full_address': self.part1_popup.register_citizen_FullAddress.toPlainText(),
+            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "N/A",
+            'full_address': self.part1_popup.register_citizen_FullAddress.toPlainText() or "N/A",
 
             # APRT 2
             # PART 2
@@ -524,13 +524,12 @@ LIMIT 20;
             indig = ''
         return indig
 
-
-
     def validate_part1_fields(self, popup):
         form_data_part_1 = self.get_form_data()
         errors_part_1 = []
         print(form_data_part_1)
 
+        # First name validation
         if not form_data_part_1['first_name']:
             errors_part_1.append("First name is required.")
             self.part1_popup.register_citizen_firstname.setStyleSheet(
@@ -541,6 +540,7 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
+        # Last name validation
         if not form_data_part_1['last_name']:
             errors_part_1.append("Last name is required.")
             self.part1_popup.register_citizen_lastname.setStyleSheet(
@@ -551,6 +551,29 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
+        # Check if first name + last name already exist in the database
+        if form_data_part_1['first_name'] and form_data_part_1['last_name']:
+            try:
+                db = Database()
+                cursor = db.get_cursor()
+                cursor.execute("""
+                    SELECT COUNT(*) FROM citizen 
+                    WHERE LOWER(ctz_first_name) = LOWER(%s) AND LOWER(ctz_last_name) = LOWER(%s)
+                """, (form_data_part_1['first_name'], form_data_part_1['last_name']))
+                result = cursor.fetchone()
+                if result[0] > 0:
+                    errors_part_1.append("A citizen with the same first and last name already exists.")
+                    self.part1_popup.register_citizen_firstname.setStyleSheet(
+                        "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+                    self.part1_popup.register_citizen_lastname.setStyleSheet(
+                        "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+            except Exception as e:
+                print(f"Error checking duplicate name: {e}")
+            finally:
+                db.close()
+
         if not form_data_part_1['civil_status']:
             errors_part_1.append("Civil status is required.")
             self.part1_popup.register_citizen_comboBox_CivilStatus.setStyleSheet(
@@ -560,6 +583,7 @@ LIMIT 20;
             self.part1_popup.register_citizen_comboBox_CivilStatus.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+
         if not form_data_part_1['religion']:
             errors_part_1.append("Religion is required.")
             self.part1_popup.register_citizen_comboBox_Religion.setStyleSheet(
@@ -588,6 +612,7 @@ LIMIT 20;
             self.part1_popup.register_citizen_religion_others.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
+
         if not form_data_part_1['sex']:
             errors_part_1.append("Sex is required.")
             self.part1_popup.radioButton_female.setStyleSheet("color: red")
@@ -595,6 +620,7 @@ LIMIT 20;
         else:
             self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
             self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+
         if not form_data_part_1['sitio']:
             errors_part_1.append("Sitio is required.")
             self.part1_popup.register_citizen_comboBox_Sitio.setStyleSheet(
@@ -604,51 +630,170 @@ LIMIT 20;
             self.part1_popup.register_citizen_comboBox_Sitio.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+
         if errors_part_1:
             self.view.show_error_message(errors_part_1)
         else:
-            # self.save_part1_data()
             self.part1_popup.close()
-            # self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
-            #
-            # self.part2_popup.show()
             self.show_register_citizen_part_02_initialize()
-            # self.show_register_citizen_part_02_initialize()
 
     def validate_part3_fields(self):
         form_data_part_3 = self.get_form_data()
         errors_part_3 = []
+        # STUDENT / SCHOOL / EDUC LEVELL
+        if not form_data_part_3['is_student']:
+            errors_part_3.append("Student is required.")
+            self.part3_popup.radioButton_IsStudent_Yes.setStyleSheet("color: red")
+            self.part3_popup.radioButton_IsStudent_No.setStyleSheet("color: red")
+        elif form_data_part_3['is_student'] == 'Yes':
+            if not form_data_part_3['school_name']:
+                errors_part_3.append("School name is required.")
+                self.part3_popup.register_citizen_SchoolName.setStyleSheet(
+                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
+            else:
+                self.part3_popup.register_citizen_SchoolName.setStyleSheet(
+                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
+            if not form_data_part_3['educ_level']:
+                errors_part_3.append("Education Levels is required.")
+                self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
+                    'border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
+                )
+
+            else:
+                self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
+                    'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
+                )
+        else:
+            form_data_part_3['school_name'] = 'N/A'
+            form_data_part_3['educ_level'] = 'N/A'
+            self.part3_popup.radioButton_IsStudent_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.radioButton_IsStudent_No.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_SchoolName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+            self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
+                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
+            )
+
+        if not form_data_part_3['has_fam_plan']:
+            errors_part_3.append("Family Planning is required.")
+            self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: red")
+            self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: red")
+        elif form_data_part_3['has_fam_plan'] == 'Yes':
+            if not form_data_part_3['fam_plan_method']:
+                errors_part_3.append("Family Method is required.")
+                self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+            else:
+                self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+            if not form_data_part_3['fam_plan_stat']:
+                errors_part_3.append("Family Status is required.")
+                self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+            else:
+                self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        else:
+            form_data_part_3['fam_plan_method'] = 'N/A'
+            form_data_part_3['fam_plan_stat'] = 'N/A'
+            self.part3_popup.radioButton_IsFamPlan_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.radioButton_IsFamPlan_No.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_comboBox_FamPlanStatus.setStyleSheet(
+                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+            self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.setStyleSheet(
+                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+
+
+        if not form_data_part_3['is_pwd']:
+            errors_part_3.append("PWD is required.")
+            self.part3_popup.register_citizen_IsPWD_Yes.setStyleSheet("color: red")
+            self.part3_popup.register_citizen_IsPWD_No.setStyleSheet("color: red")
+
+        else:
+            self.part3_popup.register_citizen_IsPWD_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_IsPWD_No.setStyleSheet("color: rgb(18, 18, 18)")
+
+
+        if not form_data_part_3['is_voter']:
+            errors_part_3.append("Voter is required.")
+            self.part3_popup.register_citizen_RegVote_Yes.setStyleSheet("color: red")
+            self.part3_popup.register_citizen_RegVote_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup.register_citizen_RegVote_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_RegVote_No.setStyleSheet("color: rgb(18, 18, 18)")
+
+        if not form_data_part_3['is_deceased']:
+            errors_part_3.append("Deceased is required.")
+            self.part3_popup.register_citizen_Deceased_Yes.setStyleSheet("color: red")
+            self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup.register_citizen_Deceased_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
+
+
+        if not form_data_part_3['is_indig']:
+            errors_part_3.append("Indigenous Group is required.")
+            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: red")
+            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: red")
+        elif form_data_part_3['is_indig'] == 'Yes':
+            if not form_data_part_3['indig_name']:
+                errors_part_3.append("Tribe Name is required.")
+                self.part3_popup.register_citizen_tribeName.setStyleSheet("border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+            else:
+                self.part3_popup.register_citizen_tribeName.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            form_data_part_3['indig_name'] = 'N/A'
+            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_tribeName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        if errors_part_3:
+            self.view.show_error_message(errors_part_3)
+        else:
+            pass
+
+
+
+
+
         print(form_data_part_3)
-        pass
+        # if not form_data_part_1['sex']:
+        #     errors_part_1.append("Sex is required.")
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: red")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: red")
+        # else:
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+
+
+
 
 
     def validate_part2_fields(self):
         form_data_part_2 = self.get_form_data()
         errors_part_2 = []
-        print(form_data_part_2)
 
+        # Socio Economic Status & NHTS Number
         if not form_data_part_2['socio_eco_status']:
             errors_part_2.append("Socio Economic Status is required.")
             self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
-        elif form_data_part_2['socio_eco_status'] == 'NHTS 4Ps' or form_data_part_2['socio_eco_status'] == 'NHTS Non-4Ps':
+        elif form_data_part_2['socio_eco_status'] in ['NHTS 4Ps', 'NHTS Non-4Ps']:
             if not form_data_part_2['nhts_number']:
                 errors_part_2.append("NHTS Number is required.")
                 self.part2_popup.register_citizen_NHTSNum.setStyleSheet(
                     "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
                 )
-                self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
             else:
                 self.part2_popup.register_citizen_NHTSNum.setStyleSheet(
                     "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
                 )
-                self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
+            self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
         else:
+            form_data_part_2['nhts_number'] = "N/A"
             self.part2_popup.register_citizen_comboBox_SocEcoStat.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
@@ -656,6 +801,9 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
+
+
+        # Employment Status
         if not form_data_part_2['employment_status']:
             errors_part_2.append("Employment Status is required.")
             self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
@@ -666,17 +814,28 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
 
-
+        # Household ID (Existence Check)
         if not form_data_part_2['household_id']:
             errors_part_2.append("Household ID is required.")
             self.part2_popup.register_citizen_HouseholdID.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
-            self.part2_popup.register_citizen_HouseholdID.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            )
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT 1 FROM household_info WHERE hh_id = %s", (form_data_part_2['household_id'],))
+            result = cursor.fetchone()
+            if not result:
+                errors_part_2.append("Household ID does not exist.")
+                self.part2_popup.register_citizen_HouseholdID.setStyleSheet(
+                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
+            else:
+                self.part2_popup.register_citizen_HouseholdID.setStyleSheet(
+                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
 
+        # Relationship
         if not form_data_part_2['relationship']:
             errors_part_2.append("Relationship is required.")
             self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
@@ -684,20 +843,17 @@ LIMIT 20;
             )
         elif form_data_part_2['relationship'] == 'Others':
             if not form_data_part_2['other_relationship']:
-                errors_part_2.append("Relationship is required.")
+                errors_part_2.append("Other Relationship description is required.")
                 self.part2_popup.register_citizen_HouseholdRelationshipOther.setStyleSheet(
                     "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-                self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
                 )
             else:
                 self.part2_popup.register_citizen_HouseholdRelationshipOther.setStyleSheet(
                     "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
                 )
-                self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-                )
+            self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
         else:
             self.part2_popup.register_citizen_comboBox_Relationship.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
@@ -706,17 +862,7 @@ LIMIT 20;
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
-        if not form_data_part_2['employment_status']:
-            errors_part_2.append("Employment Status is required.")
-            self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
-                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-            )
-        else:
-            self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
-            )
-
-
+        # Philhealth Member
         if form_data_part_2['phil_member'] == 'Yes':
             if not form_data_part_2['phil_category']:
                 errors_part_2.append("Philhealth Category is required.")
@@ -727,6 +873,7 @@ LIMIT 20;
                 self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
                     "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
                 )
+
             if not form_data_part_2['phil_id']:
                 errors_part_2.append("Philhealth ID is required.")
                 self.part2_popup.register_citizen_PhilID.setStyleSheet(
@@ -736,6 +883,7 @@ LIMIT 20;
                 self.part2_popup.register_citizen_PhilID.setStyleSheet(
                     "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
                 )
+
             if not form_data_part_2['membership_type']:
                 errors_part_2.append("Membership Type is required.")
                 self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
@@ -745,8 +893,48 @@ LIMIT 20;
                 self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
                     "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
                 )
+        elif not form_data_part_2['phil_member']:
+            errors_part_2.append("Philhealth Member is required.")
+            self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: red")
+            self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: red")
+
+        # if not form_data_part_1['sex']:
+        #     errors_part_1.append("Sex is required.")
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: red")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: red")
+        # else:
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+        else:
+            self.part2_popup.radioButton_IsPhilMem_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part2_popup.radioButton_IsPhilMem_No.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part2_popup.register_citizen_comboBox_PhilCat.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+            self.part2_popup.register_citizen_comboBox_PhilMemType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)")
+            self.part2_popup.register_citizen_PhilID.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
 
 
+        # if not form_data_part_1['sex']:
+        #     errors_part_1.append("Sex is required.")
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: red")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: red")
+        # else:
+        #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+
+
+        if not form_data_part_2['gov_worker']:
+            errors_part_2.append("Government Worker is required.")
+            self.part2_popup.radioButton_IsGov_Yes.setStyleSheet("color: red")
+            self.part2_popup.radioButton_IsGov_No.setStyleSheet("color: red")
+        else:
+            self.part2_popup.radioButton_IsGov_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part2_popup.radioButton_IsGov_No.setStyleSheet("color: rgb(18, 18, 18)")
+
+        print(form_data_part_2)
 
         if errors_part_2:
             self.view.show_error_message(errors_part_2)
