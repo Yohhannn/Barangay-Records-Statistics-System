@@ -3,6 +3,8 @@ from PySide6.QtWidgets import QMessageBox, QFileDialog
 from Utils.util_popup import load_popup
 from PySide6.QtCore import QDate
 
+from database import Database
+
 
 class HouseholdView:
     def __init__(self, controller):
@@ -54,11 +56,24 @@ class HouseholdView:
         return self.popup
 
     def _init_dropdowns(self):
-        # Sitio dropdown
         self.popup.register_household_comboBox_Sitio.clear()
-        self.popup.register_household_comboBox_Sitio.addItem("Sitio Uno", "1")
-        self.popup.register_household_comboBox_Sitio.addItem("Sitio Dos", "2")
-        self.popup.register_household_comboBox_Sitio.addItem("Sitio Tres", "3")
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT sitio_id, sitio_name FROM sitio ORDER BY sitio_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.popup.register_household_comboBox_Sitio
+            combo.clear()
+            for sitio_id, sitio_name in results:
+                combo.addItem(sitio_name, sitio_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
+
+
 
         # Ownership status dropdown
         self.popup.register_household_comboBox_OwnershipStatus.clear()
