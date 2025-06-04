@@ -426,7 +426,7 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayPWD.setText("No | None" if record[28] == "None" else "Yes" + " | " + record[28]  )
                 self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[29] == True else "No")
                 self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[30] == True else "No")
-                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
+                # self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
                 self.cp_profile_screen.display_DateEncoded.setText(record[33] or "N/A")
                 self.cp_profile_screen.display_EncodedBy.setText(record[34] or "N/A")
                 self.cp_profile_screen.display_DateUpdated.setText(record[35] or "N/A")
