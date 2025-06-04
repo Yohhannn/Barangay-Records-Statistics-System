@@ -1004,9 +1004,10 @@ VALUES
 INSERT INTO EMPLOYMENT_STATUS (ES_STATUS_NAME)
 VALUES
         ('Employed'),
+        ('None'),
         ('Unemployed'),
-        ('Self-Employed'),
-        ('Not in Labor Force');
+        ('Self Employed'),
+        ('Retired');
 
 
 
