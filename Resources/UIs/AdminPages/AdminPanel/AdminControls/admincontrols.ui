@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>User_dashboardWidget</class>
+ <widget class="QWidget" name="User_dashboardWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1350</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1350</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#User_dashboardWidget{
+	background-color: #f2efff;
+}</string>
+  </property>
+  <widget class="QFrame" name="border_blueLines1">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>-1</y>
+     <width>1371</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines1{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="app_title">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>1301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#app_title {
+	background-color: transparent;
+	color: #white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>MaPro: Marigondon Records and Statistics System</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="border_blueLines2">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>820</y>
+     <width>1381</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#border_blueLines2{
+	background-color: #141c52;
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="baseBodyFrame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>1311</width>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#baseBodyFrame {
+	background-color: #e7e2ff;
+	border: none;
+	border-radius: 10px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="logout_buttonLogout_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#logout_buttonLogout {
+    background-color: #bc1c1c;
+    color: white;
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#logout_buttonLogout:hover {
+    background-color: #d82020; /* Slightly lighter blue when hovered */
+}
+#logout_buttonLogout:pressed {
+    background-color: #8c1515; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>LOGOUT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title_bodyStatistics">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>641</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#title_bodyStatistics {
+	background-color: transparent;
+	color: #141c52;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ADMIN PANEL: &lt;span style=&quot; color:#3600a1;&quot;&gt;ADMIN CONTROLS&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="statistics_frameBody">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>1271</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#statistics_frameBody{
+	background-color: #f2efff;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QFrame" name="basePopUpBodyFrame">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>90</y>
+       <width>291</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#basePopUpBodyFrame {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="admn_button_RegAcc">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#admn_button_RegAcc {
+    background-color:  #1e7e34; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#admn_button_RegAcc:hover {
+    background-color: #28a745; /* Brighter green when hovered */
+    color: white; 
+}
+
+#admn_button_RegAcc:pressed {
+    background-color:  #34c759; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>   ADD</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../../Icons/FuncIcons/icon_add.svg</normaloff>../../../../Icons/FuncIcons/icon_add.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="admn_button_RemAcc">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>10</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#admn_button_RemAcc {
+    background-color: #c9302c; /* Default red */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#admn_button_RemAcc:hover {
+    background-color: #d9534f; /* Brighter red when hovered */
+    color: white; 
+}
+
+#admn_button_RemAcc:pressed {
+    background-color: #a52a2a; /* Darker red when pressed */
+    color: white; 
+}</string>
+      </property>
+      <property name="text">
+       <string>   DEL</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../../Icons/FuncIcons/icon_del.svg</normaloff>../../../../Icons/FuncIcons/icon_del.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="admn_button_UpdAcc">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#admn_button_UpdAcc {
+    background-color: #6c757d; /* Default gray */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#admn_button_UpdAcc:hover {
+    background-color: #838b94; /* Brighter gray when hovered */
+    color: white; 
+}
+
+#admn_button_UpdAcc:pressed {
+    background-color: #5a6268; /* Darker gray when pressed */
+    color: white; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>  EDIT</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../../Icons/FuncIcons/icon_edit.svg</normaloff>../../../../Icons/FuncIcons/icon_edit.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QTableWidget" name="adminpanel_tableView_List_StaffAccounts">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>291</width>
+       <height>461</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#adminpanel_tableView_List_StaffAccounts {
+	background-color: white;
+	color: #black;
+}
+</string>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>148</number>
+     </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Sitio Name</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="background">
+       <color>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
+       </color>
+      </property>
+     </column>
+    </widget>
+    <widget class="QFrame" name="basePopUpTitleFrame_3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>50</y>
+       <width>291</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#basePopUpTitleFrame_3 {
+	background-color: #141c52;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="statistics_labelNote">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>271</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#statistics_labelNote {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>SITIO LIST</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QToolButton" name="btn_returnToHistoryRecordPage">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#btn_returnToHistoryRecordPage {
+    background-color: #f2efff;
+    color: #141c52;
+	border: 2px solid #141c52; 
+	border-radius: 18px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#btn_returnToHistoryRecordPage:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#btn_returnToHistoryRecordPage:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/img_return.png</normaloff>../../../Assets/FuncIcons/img_return.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
