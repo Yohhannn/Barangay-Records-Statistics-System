@@ -1970,63 +1970,6 @@
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelPWD">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>90</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelPWD{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Health Classification:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayPWD">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>90</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayPWD{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
      </widget>
      <widget class="QFrame" name="basePopUpBodyFrame_9">
       <property name="geometry">
@@ -2392,120 +2335,6 @@
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelPhilMem">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>150</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelPhilMem{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Phil Mem:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayPhilMem">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>150</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayPhilMem{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelPartOfIndigenousGroup">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>170</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelPartOfIndigenousGroup{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Part of Indigenous Grp:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayPartOfIndigenousGroup">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>170</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayPartOfIndigenousGroup{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
       <widget class="QLabel" name="cp_labelSitio">
        <property name="geometry">
         <rect>
@@ -2678,6 +2507,63 @@
        </property>
        <property name="wordWrap">
         <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayPWD">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>190</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayPWD{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>[N/A]</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelPWD">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>170</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelPWD{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Health Classification:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </widget>
