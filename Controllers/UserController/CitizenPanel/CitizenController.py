@@ -417,7 +417,7 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "N/A")
                 self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "N/A")
                 self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "N/A")
-                self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
+                # self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
                 self.cp_profile_screen.cp_displayReligion.setText(record[23] or "N/A")
                 self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "N/A")
                 self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
