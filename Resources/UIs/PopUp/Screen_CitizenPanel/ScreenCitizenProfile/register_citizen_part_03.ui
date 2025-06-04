@@ -502,7 +502,7 @@
      <x>620</x>
      <y>60</y>
      <width>531</width>
-     <height>341</height>
+     <height>391</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -572,7 +572,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>350</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -2731,7 +2731,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>190</y>
+      <y>240</y>
       <width>451</width>
       <height>101</height>
      </rect>
@@ -2755,6 +2755,90 @@
     </property>
     <property name="placeholderText">
      <string>If 'Yes' Enter Reason of Death</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="register_citizen_death_date">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>200</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_death_date{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>0</second>
+      <year>1999</year>
+      <month>12</month>
+      <day>20</day>
+     </datetime>
+    </property>
+    <property name="displayFormat">
+     <string>MM/dd/yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+    <property name="currentSectionIndex">
+     <number>0</number>
+    </property>
+    <property name="timeSpec">
+     <enum>Qt::TimeSpec::UTC</enum>
+    </property>
+    <property name="date">
+     <date>
+      <year>1999</year>
+      <month>12</month>
+      <day>20</day>
+     </date>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_citizen_labelDeceased_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_labelDeceased_2 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Date of Death &amp; Reason:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
