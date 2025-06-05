@@ -30,6 +30,24 @@ CREATE TABLE SYSTEM_ACCOUNT (
 
 );
 
+CREATE TYPE action_type_enum AS ENUM (
+    'INSERT',
+    'UPDATE',
+    'DELETE',
+    'LOGIN',
+    'LOGOUT'
+    );
+
+CREATE TABLE SYSTEM_ACTIVITY_LOG(
+                                    ACT_ID SERIAL PRIMARY KEY,
+                                    ACT_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    ACT_ACTION_TYPE action_type_enum,
+                                    ACT_TABLE_NAME VARCHAR(50) NOT NULL,
+                                    ACT_ENTITY_ID INT,
+                                    ACT_DESCRIPTION TEXT,
+                                    SYS_ID INT NOT NULL REFERENCES SYSTEM_ACCOUNT(SYS_ID) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 -- Table: SITIO
 CREATE TABLE SITIO (
                        SITIO_ID SERIAL PRIMARY KEY,
@@ -666,7 +684,46 @@ FROM
 WHERE
     ctz_is_alive = TRUE;
 
+-- ONLY FOR CTIZEN
+CREATE OR REPLACE FUNCTION log_entity_activity()
+    RETURNS TRIGGER AS $$
+DECLARE
+    v_entity_id INT;
+BEGIN
 
+    IF TG_OP = 'INSERT' THEN
+        v_entity_id := NEW.CTZ_ID;
+    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+        v_entity_id := OLD.CTZ_ID;
+    END IF;
+
+    INSERT INTO SYSTEM_ACTIVITY_LOG (
+        ACT_ACTION_TYPE,
+        ACT_TABLE_NAME,
+        ACT_ENTITY_ID,
+        SYS_ID,
+        ACT_DESCRIPTION
+    )
+    VALUES (
+               TG_OP,
+               TG_TABLE_NAME,
+               v_entity_id,
+               current_setting('app.current_user_id')::INT,
+               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+           );
+
+    RETURN CASE
+               WHEN TG_OP = 'DELETE' THEN OLD
+               ELSE NEW
+        END;
+END;
+$$ LANGUAGE plpgsql;
+
+-- CITIZEN
+CREATE TRIGGER trg_log_citizen
+    AFTER INSERT OR UPDATE OR DELETE ON CITIZEN
+    FOR EACH ROW
+EXECUTE FUNCTION log_entity_activity();
 
 
 
