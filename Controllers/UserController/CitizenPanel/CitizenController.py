@@ -327,8 +327,8 @@ class CitizenController(BaseFileController):
     LEFT JOIN EDUCATION_STATUS EDU ON C.EDU_ID = EDU.EDU_ID
     LEFT JOIN EDUCATIONAL_ATTAINMENT EDAT ON EDU.EDAT_ID = EDAT.EDAT_ID
     LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLAH_ID = CHR.CLAH_ID
-    LEFT JOIN SYSTEM_ACCOUNT SA ON C.ENCODED_BY_SYS_ID = SA.SYS_ID
-    LEFT JOIN SYSTEM_ACCOUNT SUA ON C.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+    LEFT JOIN SYSTEM_ACCOUNT SA ON C.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+    LEFT JOIN SYSTEM_ACCOUNT SUA ON C.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
 
     WHERE C.CTZ_IS_DELETED = FALSE
     ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
@@ -1314,8 +1314,8 @@ class CitizenController(BaseFileController):
                 rel_id,
                 1,  # rth_id (Head of Household)
                 int(form_data['household_id']),
-                1,  # encoded_by_sys_id (default admin)
-                2  # last_updated_by_sys_id (default admin)
+                self.sys_user_id,  # encoded_by_sys_id (default admin)
+                self.sys_user_id  # last_updated_by_sys_id (default admin)
             ))
             citizen_result = cursor.fetchone()
             if not citizen_result:
