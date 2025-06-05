@@ -63,8 +63,8 @@ class ServiceController(BaseFileController):
                     END AS LAST_UPDATED_BY_NAME --10
                 FROM TRANSACTION_LOG TL
                 LEFT JOIN TRANSACTION_TYPE TT ON TL.tt_id = TT.tt_id
-                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_ID
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
 
                 WHERE TL.tl_is_deleted = FALSE
                 ORDER BY TL.tl_id DESC
