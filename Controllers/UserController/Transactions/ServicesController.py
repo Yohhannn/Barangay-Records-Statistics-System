@@ -8,8 +8,8 @@ from Utils.util_popup import load_popup
 
 
 class ServiceController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.trans_services_screen = self.load_ui("Resources/UIs/MainPages/TransactionPages/services.ui")
         self.setup_services_ui()
@@ -158,7 +158,7 @@ class ServiceController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)

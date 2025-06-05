@@ -6,8 +6,8 @@ from Views.CitizenPanelView import CitizenPanelView
 
 
 class CitizenPanelController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
@@ -57,7 +57,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -67,7 +67,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -77,7 +77,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -87,7 +87,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -142,7 +142,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Citizen Profile")
         if not hasattr(self, 'citizenprofile'):
             from Controllers.UserController.CitizenPanel.CitizenController import CitizenController
-            self.citizen_profile_sub_panel = CitizenController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_profile_sub_panel = CitizenController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_profile_sub_panel.cp_profile_screen)
 
         self.stack.setCurrentWidget(self.citizen_profile_sub_panel.cp_profile_screen)
@@ -152,7 +152,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Household Sub Panel")
         if not hasattr(self, 'household'):
             from Controllers.UserController.CitizenPanel.HouseholdController import HouseholdController
-            self.household_sub_panel = HouseholdController(self.login_window, self.emp_first_name, self.stack)
+            self.household_sub_panel = HouseholdController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.household_sub_panel.cp_household_screen)
 
         self.stack.setCurrentWidget(self.household_sub_panel.cp_household_screen)

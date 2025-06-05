@@ -3,10 +3,11 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
 
 class BaseFileController(QMainWindow):
-    def __init__(self, login_window, emp_first_name):
+    def __init__(self, login_window, emp_first_name, sys_user_id):
         super().__init__()
         self.login_window = login_window
         self.emp_first_name = emp_first_name
+        self.sys_user_id = sys_user_id
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
         self.loader = QUiLoader()

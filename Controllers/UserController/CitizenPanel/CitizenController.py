@@ -13,8 +13,8 @@ from database import Database
 
 
 class CitizenController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.indig_group = None
@@ -28,6 +28,7 @@ class CitizenController(BaseFileController):
         self.stack = stack
         self.model = CitizenModel()
         self.view = CitizenView(self)
+        print(self.sys_user_id)
 
 
         self.cp_profile_screen = self.load_ui("Resources/UIs/MainPages/CitizenPanelPages/cp_citizenprofile.ui")
@@ -213,7 +214,11 @@ class CitizenController(BaseFileController):
             # 'has_fam_plan': self.radio_button_fam_plan_result(),
             'fam_plan_method': self.part3_popup.register_citizen_comboBox_FamilyPlanningMethod.currentText().strip(),
             'fam_plan_stat': self.part3_popup.register_citizen_comboBox_FamPlanStatus.currentText().strip(),
+            'fam_plan_start_date': self.part3_popup.register_citizen_start_date.date().toString("yyyy-MM-dd"),
+            'fam_plan_end_date': self.part3_popup.register_citizen_end_date.date().toString("yyyy-MM-dd"),
+            'health_class': self.part3_popup.register_citizen_health_classification.currentText().strip(),
             'is_voter': self.radio_button_voter_result(),
+            'is_indig': self.radio_button_indig_result(),
             'is_deceased': self.radio_button_deceased_result(),
             'reason_of_death': self.part3_popup.register_citizen_ReasonOfDeath.toPlainText().strip(),
             'date_of_death': self.part3_popup.register_citizen_death_date.date().toString("yyyy-MM-dd")  # REQUIRED
@@ -257,86 +262,77 @@ class CitizenController(BaseFileController):
             connection = Database()
             cursor = connection.cursor
             cursor.execute("""
-SELECT DISTINCT ON (C.CTZ_ID)
-    C.CTZ_ID, --0
-    C.CTZ_LAST_NAME,
-    C.CTZ_FIRST_NAME,
-    C.CTZ_MIDDLE_NAME,
-    C.CTZ_SUFFIX,
-    S.SITIO_NAME, --5
-    TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
-    C.CTZ_DATE_OF_BIRTH,
-    C.CTZ_SEX,
-    C.CTZ_CIVIL_STATUS,
-    COALESCE(CON.CON_EMAIL, '') AS EMAIL, --10
-    COALESCE(CON.CON_PHONE, '') AS CONTACT_NUM,
-    C.CTZ_PLACE_OF_BIRTH,
-    HH.HH_ADDRESS,
-    SES.SOEC_STATUS,
-    SES.SOEC_NUMBER, --15
-    ES.ES_STATUS_NAME AS EMPLOYMENT_STATUS,
-    EMP.EMP_OCCUPATION AS OCCUPATION,
-    EMP.EMP_IS_GOV_WORKER,
-    HH.HH_ID, --19
-    RT.RTH_RELATIONSHIP_NAME AS RELATIONSHIP_NAME,
-    PHC.PC_CATEGORY_NAME AS PHILHEALTH_CATEGORY_NAME,
-    PH.PHEA_MEMBERSHIP_TYPE, --22
-    R.REL_NAME AS RELIGION,
-    C.CTZ_BLOOD_TYPE,
-    EDU.EDU_IS_CURRENTLY_STUDENT AS IS_STUDENT,
-    EDU.EDU_INSTITUTION_NAME AS SCHOOL_NAME, --26
-    EDAT.EDAT_LEVEL AS EDUCATIONAL_ATTAINMENT, --27
-    CHR.CLAH_CLASSIFICATION_NAME AS CLASSIFICATION_HEALTH_RISK_NAME, --28
-    C.CTZ_IS_REGISTERED_VOTER, --29
-    NOT C.CTZ_IS_ALIVE AS IS_DECEASED, --30
-    C.CTZ_IS_IP,
-    PH.PHEA_ID_NUMBER,
-    TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED, --33
+    SELECT DISTINCT ON (C.CTZ_ID)
+        C.CTZ_ID, --0
+        C.CTZ_LAST_NAME,
+        C.CTZ_FIRST_NAME,
+        C.CTZ_MIDDLE_NAME,
+        C.CTZ_SUFFIX,
+        S.SITIO_NAME, --5
+        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED,
+        C.CTZ_DATE_OF_BIRTH,
+        C.CTZ_SEX,
+        C.CTZ_CIVIL_STATUS,
+        COALESCE(CON.CON_EMAIL, '') AS EMAIL, --10
+        COALESCE(CON.CON_PHONE, '') AS CONTACT_NUM,
+        C.CTZ_PLACE_OF_BIRTH,
+        HH.HH_ADDRESS,
+        SES.SOEC_STATUS,
+        SES.SOEC_NUMBER, --15
+        ES.ES_STATUS_NAME AS EMPLOYMENT_STATUS,
+        EMP.EMP_OCCUPATION AS OCCUPATION,
+        EMP.EMP_IS_GOV_WORKER,
+        HH.HH_ID, --19
+        RT.RTH_RELATIONSHIP_NAME AS RELATIONSHIP_NAME,
+        PHC.PC_CATEGORY_NAME AS PHILHEALTH_CATEGORY_NAME,
+        PH.PHEA_MEMBERSHIP_TYPE, --22
+        R.REL_NAME AS RELIGION,
+        C.CTZ_BLOOD_TYPE,
+        EDU.EDU_IS_CURRENTLY_STUDENT AS IS_STUDENT,
+        EDU.EDU_INSTITUTION_NAME AS SCHOOL_NAME, --26
+        EDAT.EDAT_LEVEL AS EDUCATIONAL_ATTAINMENT, --27
+        CHR.CLAH_CLASSIFICATION_NAME AS CLASSIFICATION_HEALTH_RISK_NAME, --28
+        C.CTZ_IS_REGISTERED_VOTER, --29
+        NOT C.CTZ_IS_ALIVE AS IS_DECEASED, --30
+        C.CTZ_IS_IP,
+        PH.PHEA_ID_NUMBER,
+        TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED, --33
 
-    -- ENCODED BY
-    CASE 
-        WHEN SA.SYS_FNAME IS NULL THEN 'System'
-        ELSE SA.SYS_FNAME || ' ' ||
-             COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') ||
-             SA.SYS_LNAME
-    END AS ENCODED_BY, --34
+        CASE 
+            WHEN SA.SYS_FNAME IS NULL THEN 'System'
+            ELSE SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME
+        END AS ENCODED_BY, --34
 
-    TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED, --35
+        TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED, --35
 
-    -- LAST UPDATED BY (moved to 36)
-    CASE 
-        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
-        ELSE SUA.SYS_FNAME || ' ' ||
-             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
-             SUA.SYS_LNAME
-    END AS LAST_UPDATED_BY_NAME --36
+        CASE 
+            WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+            ELSE SUA.SYS_FNAME || ' ' || COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') || SUA.SYS_LNAME
+        END AS LAST_UPDATED_BY_NAME, --36
 
-FROM CITIZEN C
-LEFT JOIN CONTACT CON ON C.CON_ID = CON.CON_ID
-LEFT JOIN EMPLOYMENT EMP ON C.CTZ_ID = EMP.CTZ_ID
-LEFT JOIN EMPLOYMENT_STATUS ES ON EMP.ES_ID = ES.ES_ID
-JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
-JOIN HOUSEHOLD_INFO HH ON C.HH_ID = HH.HH_ID
-LEFT JOIN SOCIO_ECONOMIC_STATUS SES ON C.SOEC_ID = SES.SOEC_ID
-LEFT JOIN RELATIONSHIP_TYPE RT ON C.RTH_ID = RT.RTH_ID
-LEFT JOIN PHILHEALTH PH ON C.PHEA_ID = PH.PHEA_ID
-LEFT JOIN PHILHEALTH_CATEGORY PHC ON PH.PC_ID = PHC.PC_ID
-LEFT JOIN RELIGION R ON C.REL_ID = R.REL_ID
-LEFT JOIN EDUCATION_STATUS EDU ON C.EDU_ID = EDU.EDU_ID
-LEFT JOIN EDUCATIONAL_ATTAINMENT EDAT ON EDU.EDAT_ID = EDAT.EDAT_ID
-LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLAH_ID = CHR.CLAH_ID
+        C.CTZ_REASON_OF_DEATH, --37
+        TO_CHAR(C.CTZ_DATE_OF_DEATH, 'FMMonth FMDD, YYYY') --38
 
--- Join for ENCODED_BY
-LEFT JOIN SYSTEM_ACCOUNT SA ON C.ENCODED_BY_SYS_ID = SA.SYS_ID
+    FROM CITIZEN C
+    LEFT JOIN CONTACT CON ON C.CON_ID = CON.CON_ID
+    LEFT JOIN EMPLOYMENT EMP ON C.CTZ_ID = EMP.CTZ_ID
+    LEFT JOIN EMPLOYMENT_STATUS ES ON EMP.ES_ID = ES.ES_ID
+    JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
+    JOIN HOUSEHOLD_INFO HH ON C.HH_ID = HH.HH_ID
+    LEFT JOIN SOCIO_ECONOMIC_STATUS SES ON C.SOEC_ID = SES.SOEC_ID
+    LEFT JOIN RELATIONSHIP_TYPE RT ON C.RTH_ID = RT.RTH_ID
+    LEFT JOIN PHILHEALTH PH ON C.PHEA_ID = PH.PHEA_ID
+    LEFT JOIN PHILHEALTH_CATEGORY PHC ON PH.PC_ID = PHC.PC_ID
+    LEFT JOIN RELIGION R ON C.REL_ID = R.REL_ID
+    LEFT JOIN EDUCATION_STATUS EDU ON C.EDU_ID = EDU.EDU_ID
+    LEFT JOIN EDUCATIONAL_ATTAINMENT EDAT ON EDU.EDAT_ID = EDAT.EDAT_ID
+    LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLAH_ID = CHR.CLAH_ID
+    LEFT JOIN SYSTEM_ACCOUNT SA ON C.ENCODED_BY_SYS_ID = SA.SYS_ID
+    LEFT JOIN SYSTEM_ACCOUNT SUA ON C.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
 
--- Join for LAST_UPDATED_BY
-LEFT JOIN SYSTEM_ACCOUNT SUA ON C.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
-
-WHERE C.CTZ_IS_DELETED = FALSE
-ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
-LIMIT 20;
-
-
+    WHERE C.CTZ_IS_DELETED = FALSE
+    ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+    LIMIT 20;
             """)
             rows = cursor.fetchall()
             self.rows = rows
@@ -384,19 +380,17 @@ LIMIT 20;
                 dob = record[7]
                 if dob:
                     try:
-                        # self.cp_profile_screen.cp_displayDOB.setText(dob.strftime('%B %d, %Y'))
                         today = date.today()
                         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-                        self.cp_profile_screen.cp_displayAge.setText(dob.strftime('%B %d, %Y | ') + str(age) + " years old")
+                        self.cp_profile_screen.cp_displayAge.setText(
+                            dob.strftime('%B %d, %Y | ') + str(age) + " years old")
                     except Exception:
-                        # self.cp_profile_screen.cp_displayDOB.setText(str(dob))
                         self.cp_profile_screen.cp_displayAge.setText("")
                 else:
-                    # self.cp_profile_screen.cp_displayDOB.setText("")
                     self.cp_profile_screen.cp_displayAge.setText("")
 
-                # self.cp_profile_screen.cp_displaySex.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
-                self.cp_profile_screen.cp_displayCivilStatus.setText("Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
+                self.cp_profile_screen.cp_displayCivilStatus.setText(
+                    "Male | " + record[9] if record[8] == 'M' else "Female | " + record[9])
                 self.cp_profile_screen.cp_displayEmail.setText(record[10] or "None")
                 self.cp_profile_screen.cp_displayContactNum.setText(record[11] or "None")
                 self.cp_profile_screen.cp_displayPlaceOfBirth.setText(record[12] or "None")
@@ -411,22 +405,21 @@ LIMIT 20;
                 self.cp_profile_screen.cp_displayPhilCat.setText(record[21] or "None")
                 self.cp_profile_screen.cp_displayPhilID.setText(record[32] or "None")
                 self.cp_profile_screen.cp_displayMembershipType.setText(record[22] or "None")
-                # self.cp_profile_screen.cp_displayPhilMem.setText("Yes" if record[23] else "No")
                 self.cp_profile_screen.cp_displayReligion.setText(record[23] or "None")
                 self.cp_profile_screen.cp_displayBloodType.setText(record[24] or "None")
                 self.cp_profile_screen.cp_displayStudent.setText("Yes" if record[25] == True else "No")
                 self.cp_profile_screen.cp_displaySchoolName.setText(record[26] or "None")
                 self.cp_profile_screen.cp_displayEducationalAttainment.setText(record[27] or "None")
-                self.cp_profile_screen.cp_displayPWD.setText(record[28] or "None")
+                self.cp_profile_screen.cp_display_health_classification.setText(record[28] or "None")
                 self.cp_profile_screen.cp_displayRegisteredVoter.setText("Yes" if record[29] == True else "No")
                 self.cp_profile_screen.cp_displayDeceased.setText("Yes" if record[30] == True else "No")
-                # self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yes" if record[31] == True else "No")
+                self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("Yesss" if record[31] == True else "No")
                 self.cp_profile_screen.display_DateEncoded.setText(record[33] or "None")
                 self.cp_profile_screen.display_EncodedBy.setText(record[34] or "None")
                 self.cp_profile_screen.display_DateUpdated.setText(record[35] or "None")
                 self.cp_profile_screen.display_UpdatedBy.setText(record[36] or "None")
-                print(record[31])
-                print(record[34])
+                self.cp_profile_screen.cp_displayReasonOfDeath.setText(record[37] or "None")
+                self.cp_profile_screen.cp_displayDoD.setText(record[38] or "None")
                 break
 
     #
@@ -629,37 +622,11 @@ LIMIT 20;
             errors_part_3.append("Student is required.")
             self.part3_popup.radioButton_IsStudent_Yes.setStyleSheet("color: red")
             self.part3_popup.radioButton_IsStudent_No.setStyleSheet("color: red")
-        elif form_data_part_3['is_student'] == 'Yes':
-            if not form_data_part_3['school_name']:
-                errors_part_3.append("School name is required.")
-                self.part3_popup.register_citizen_SchoolName.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            else:
-                self.part3_popup.register_citizen_SchoolName.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            if not form_data_part_3['educ_level']:
-                errors_part_3.append("Education Levels is required.")
-                self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
-                    'border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
-                )
 
-            else:
-                self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
-                    'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
-                )
         else:
-            form_data_part_3['school_name'] = 'None'
-            form_data_part_3['educ_level'] = 'None'
+
             self.part3_popup.radioButton_IsStudent_Yes.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.radioButton_IsStudent_No.setStyleSheet("color: rgb(18, 18, 18)")
-            self.part3_popup.register_citizen_SchoolName.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            )
-            self.part3_popup.register_citizen_comboBox_EducationalLevel.setStyleSheet(
-                'border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)'
-            )
 
         # if not form_data_part_3['has_fam_plan']:
         #     errors_part_3.append("Family Planning is required.")
@@ -712,6 +679,21 @@ LIMIT 20;
             self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.register_citizen_ReasonOfDeath.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+            form_data_part_3['reason_of_death'] = "None"
+        if not form_data_part_3['is_indig']:
+            errors_part_3.append("Indigenous Group is required.")
+            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: red")
+            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part3_popup.register_citizen_IndGroup_No.setStyleSheet("color: rgb(18, 18, 18)")
+        if not form_data_part_3['health_class']:
+            errors_part_3.append("Health Classification is required.")
+            self.part3_popup.register_citizen_health_classification.setStyleSheet('border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+        else:
+            self.part3_popup.register_citizen_health_classification.setStyleSheet('border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)')
+
+
 
         if errors_part_3:
             self.view.show_error_message(errors_part_3)
@@ -776,10 +758,27 @@ LIMIT 20;
             self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+        elif form_data_part_2['employment_status'] in ['Employed', 'Retired', 'Self Employed']:
+            if not form_data_part_2['occupation']:
+                errors_part_2.append("Occupation is required.")
+                self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
+                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+                )
+                self.part2_popup.register_citizen_Occupation.setStyleSheet(
+                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
+            else:
+                self.part2_popup.register_citizen_Occupation.setStyleSheet(
+                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
         else:
+            form_data_part_2['occupation'] = "None"
             self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
+            self.part2_popup.register_citizen_Occupation.setStyleSheet(
+                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
 
         # Household ID (Existence Check)
         if not form_data_part_2['household_id']:
@@ -1253,19 +1252,26 @@ LIMIT 20;
             pc_id = pc_result[0]
 
             # --- Insert PHILHEALTH ---
-            phil_id = form_data['phil_id'] if form_data['phil_id'] not in ['', 'None'] else None
-            membership_type = form_data['membership_type'] if phil_id else None
+            phil_id = form_data['phil_id'].strip() if form_data['phil_id'] and form_data['phil_id'].strip() else None
+            membership_type = form_data['membership_type']
+            phil_category = pc_id  # Already retrieved earlier
+
+            # Always insert PHILHEALTH if category & membership type are present
+            if not membership_type:
+                raise Exception("Membership type cannot be empty")
 
             cursor.execute("""
                 INSERT INTO philhealth (phea_id_number, pc_id, phea_membership_type)
                 VALUES (%s, %s, %s)
                 RETURNING phea_id;
-            """, (phil_id, pc_id, membership_type))
-            phea_result = cursor.fetchone()
-            if phil_id and not phea_result:
-                raise Exception("Failed to insert into PHILHEALTH")
-            phea_id = phea_result[0] if phil_id else None
+            """, (phil_id, phil_category, membership_type))
 
+            phea_result = cursor.fetchone()
+            if not phea_result:
+                raise Exception("Failed to insert into PHILHEALTH")
+            phea_id = phea_result[0]
+
+            # --- Insert CITIZEN ---
             # --- Insert CITIZEN ---
             citizen_query = """
                 INSERT INTO citizen (
@@ -1278,6 +1284,14 @@ LIMIT 20;
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING ctz_id;
             """
+
+            # Prepare ctz_date_of_death and ctz_reason_of_death conditionally
+            date_of_death = form_data['date_of_death'] if form_data['is_deceased'] == 'Yes' else None
+            reason_of_death = form_data['reason_of_death'] if form_data['is_deceased'] == 'Yes' else None
+
+            # Set ctz_is_alive based on is_deceased field
+            is_alive = False if form_data['is_deceased'] == 'Yes' else True
+
             cursor.execute(citizen_query, (
                 form_data['first_name'],
                 form_data['middle_name'] or None,
@@ -1289,9 +1303,9 @@ LIMIT 20;
                 form_data['place_of_birth'],
                 form_data['blood_type'] or None,
                 True if form_data['is_voter'] == 'Yes' else False,
-                False if form_data['is_deceased'] == 'Yes' else True,
-                form_data['date_of_death'],
-                form_data['reason_of_death'],
+                is_alive,
+                date_of_death,
+                reason_of_death,
                 contact_id,
                 sitio_id,
                 edu_id,
@@ -1300,8 +1314,8 @@ LIMIT 20;
                 rel_id,
                 1,  # rth_id (Head of Household)
                 int(form_data['household_id']),
-                1,
-                2# encoded_by_sys_id (default admin)
+                1,  # encoded_by_sys_id (default admin)
+                2  # last_updated_by_sys_id (default admin)
             ))
             citizen_result = cursor.fetchone()
             if not citizen_result:
@@ -1346,7 +1360,7 @@ LIMIT 20;
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
