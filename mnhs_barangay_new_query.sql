@@ -174,8 +174,8 @@ CREATE SEQUENCE SYS_CTZ_ID_SEQ START 1001;
 -- Table: CONTACT
 CREATE TABLE CONTACT (
                          CON_ID SERIAL PRIMARY KEY,
-                         CON_PHONE VARCHAR(20) UNIQUE NOT NULL,
-                         CON_EMAIL VARCHAR(100) UNIQUE NOT NULL
+                         CON_PHONE VARCHAR(20),
+                         CON_EMAIL VARCHAR(100)
 
 );
 
