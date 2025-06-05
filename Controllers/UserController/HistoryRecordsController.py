@@ -6,8 +6,8 @@ from Views.HistoryRecordsView import HistoryRecordsView
 
 
 class HistoryRecordsController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
@@ -33,7 +33,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
@@ -43,7 +43,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -53,7 +53,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -63,7 +63,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -131,7 +131,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Citizen History")
         if not hasattr(self, 'citizen_history'):
             from Controllers.UserController.HistoryRecords.CitizenHistoryController import CitizenHistoryController
-            self.citizen_history_panel = CitizenHistoryController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_history_panel = CitizenHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_history_panel.hist_citizen_history_screen)
 
         self.stack.setCurrentWidget(self.citizen_history_panel.hist_citizen_history_screen)
@@ -141,7 +141,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Medical History")
         if not hasattr(self, 'medical_history'):
             from Controllers.UserController.HistoryRecords.MedicalHistoryController import MedicalHistoryController
-            self.medical_history_panel = MedicalHistoryController(self.login_window, self.emp_first_name, self.stack)
+            self.medical_history_panel = MedicalHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.medical_history_panel.hist_medical_history_screen)
 
         self.stack.setCurrentWidget(self.medical_history_panel.hist_medical_history_screen)
@@ -151,7 +151,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Settlement History")
         if not hasattr(self, 'settlement_history'):
             from Controllers.UserController.HistoryRecords.SettlementHistoryController import SettlementHistoryController
-            self.settlement_history_panel = SettlementHistoryController(self.login_window, self.emp_first_name, self.stack)
+            self.settlement_history_panel = SettlementHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.settlement_history_panel.hist_settlement_history_screen)
 
         self.stack.setCurrentWidget(self.settlement_history_panel.hist_settlement_history_screen)

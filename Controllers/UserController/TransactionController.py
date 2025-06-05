@@ -8,8 +8,8 @@ from Views.TransactionView import TransactionView
 
 
 class TransactionController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
@@ -44,7 +44,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
@@ -54,7 +54,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -64,7 +64,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -74,7 +74,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -146,7 +146,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Services")
         if not hasattr(self, 'services'):
             from Controllers.UserController.Transactions.ServicesController import ServiceController
-            self.services_panel = ServiceController(self.login_window, self.emp_first_name, self.stack)
+            self.services_panel = ServiceController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.services_panel.trans_services_screen)
 
         self.stack.setCurrentWidget(self.services_panel.trans_services_screen)

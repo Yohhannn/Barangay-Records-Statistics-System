@@ -54,7 +54,7 @@ class education_func(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
