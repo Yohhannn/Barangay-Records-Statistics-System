@@ -376,7 +376,7 @@ CREATE TABLE EMPLOYMENT_STATUS (
 -- Table: EMPLOYMENT
 CREATE TABLE EMPLOYMENT (
                             EMP_ID SERIAL PRIMARY KEY,
-                            EMP_OCCUPATION VARCHAR(100) NOT NULL,
+                            EMP_OCCUPATION VARCHAR(100),
                             EMP_IS_GOV_WORKER BOOLEAN DEFAULT FALSE,
                             ES_ID INT REFERENCES EMPLOYMENT_STATUS(ES_ID),
                             CTZ_ID INT NOT NULL REFERENCES CITIZEN(CTZ_ID)
