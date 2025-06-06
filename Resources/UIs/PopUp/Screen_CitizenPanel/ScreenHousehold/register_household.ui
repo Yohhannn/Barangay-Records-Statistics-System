@@ -857,7 +857,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>13</day>
+      <day>12</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1061,6 +1061,66 @@
     </property>
     <property name="placeholderText">
      <string>Full Name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_req_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_req_6 {
+	background-color: transparent;
+	color: red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_req_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_req_7 {
+	background-color: transparent;
+	color: red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
     </property>
    </widget>
   </widget>
@@ -1549,6 +1609,96 @@
     </property>
     <property name="placeholderText">
      <string>Paste Link From Google Maps </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_req_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_req_3 {
+	background-color: transparent;
+	color: red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_req_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>130</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_req_4 {
+	background-color: transparent;
+	color: red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_req_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_req_5 {
+	background-color: transparent;
+	color: red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
     </property>
    </widget>
   </widget>

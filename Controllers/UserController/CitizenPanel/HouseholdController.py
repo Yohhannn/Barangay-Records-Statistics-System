@@ -51,7 +51,13 @@ class HouseholdController(BaseFileController):
         #     errors.append("House Number is required")
         if not form_data['sitio_id']:
             errors.append("Sitio is required")
-
+            self.view.popup.register_household_comboBox_Sitio.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.view.popup.register_household_comboBox_Sitio.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
         if not form_data['ownership_status']:
             errors.append("Ownership is required")
             self.view.popup.register_household_comboBox_OwnershipStatus.setStyleSheet(
@@ -76,8 +82,22 @@ class HouseholdController(BaseFileController):
         #     errors.append("Reviewer Name is required")
         if not form_data['water_id']:
             errors.append("Water source is required")
+            self.view.popup.register_household_comboBox_WaterSource.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.view.popup.register_household_comboBox_WaterSource.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
         if not form_data['toilet_id']:
             errors.append("Toilet type is required")
+            self.view.popup.register_household_comboBox_ToiletType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.view.popup.register_household_comboBox_ToiletType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
 
         if errors:
             self.view.show_error_message(errors)
