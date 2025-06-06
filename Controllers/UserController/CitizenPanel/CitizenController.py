@@ -155,6 +155,22 @@ class CitizenController(BaseFileController):
         print("-- Register New Citizen Part 3 Popup")
         self.part3_popup.show()
 
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT clah_id, clah_classification_name FROM classification_health_risk ORDER BY clah_classification_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part3_popup.register_citizen_health_classification
+            combo.clear()
+            for clah_id, clah_classification_name in results:
+                combo.addItem(clah_classification_name, clah_id)
+
+        except Exception as e:
+            print(f"Failed to load classitiofat: {e}")
+        finally:
+            db.close()
+
 
 
 

@@ -1403,12 +1403,18 @@
         <height>221</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">#cp_tableView_List_DisplayFamilyMembers {
 	background-color: white;
 	color: #black;
 }
 </string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>true</bool>
