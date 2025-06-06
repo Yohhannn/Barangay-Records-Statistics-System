@@ -38,33 +38,15 @@ class SettlementHistoryController(BaseFileController):
 
     def show_settlement_history_popup(self):
         print("-- Record Settlement History Popup")
-        popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_settlement_history.ui", self)
-        popup.setWindowTitle("Mapro: Record New Settlement History")
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_settlement_history.ui", self)
+        self.popup.setWindowTitle("Mapro: Record New Settlement History")
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.record_buttonConfirmSettlementHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.record_buttonConfirmSettlementHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.record_buttonConfirmSettlementHistory_SaveForm.clicked.connect(self.validate_settlement_hist_fields)
 
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "record_buttonConfirmSettlementHistory_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Creation",
-                    "Are you sure you want to record this?",
-                    QMessageBox.Yes | QMessageBox.No,
-                    QMessageBox.No
-                )
-
-                if reply == QMessageBox.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Settlement History Successfully Recorded!")
-                    popup.close()
-
-            save_btn.clicked.connect(confirm_and_save)
-
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
 
     def load_settlement_history_data(self):
         connection = None
@@ -148,6 +130,99 @@ class SettlementHistoryController(BaseFileController):
                 self.hist_settlement_history_screen.display_EncodedBy.setText(record[9])
                 self.hist_settlement_history_screen.display_UpdatedBy.setText(record[10])
                 break
+
+    def validate_settlement_hist_fields(self):
+        errors = []
+
+        # Validate Settlement Record Complainant First Name
+        if not self.popup.record_ComplainantFirstName.text().strip():
+            errors.append("Complainant firstname is required")
+            self.popup.record_ComplainantFirstName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_ComplainantFirstName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Settlement Record Complainant Middle Initial
+        if not self.popup.record_ComplainantMiddleInitial.text().strip():
+            errors.append("Complainant middleinitial is required")
+            self.popup.record_ComplainantMiddleInitial.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_ComplainantMiddleInitial.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Settlement Record Complainant Last Name
+        if not self.popup.record_ComplainantLastName.text().strip():
+            errors.append("Complainant lastname is required")
+            self.popup.record_ComplainantLastName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_ComplainantLastName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Settlement Record Complainee ID
+        if not self.popup.record_citizenIDANDsearch.text().strip():
+            errors.append("Complainee citizen ID is required")
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Settlement Record Complaint Desc
+        if not self.popup.record_ComplaintDesc.toPlainText().strip():
+            errors.append("Complaint Description is required")
+            self.popup.record_ComplaintDesc.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_ComplaintDesc.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Settlement Record Settlement Desc
+        if not self.popup.record_SettlementDesc.toPlainText().strip():
+            errors.append("Settlement Description is required")
+            self.popup.record_SettlementDesc.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_SettlementDesc.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n\n• " + "\n• ".join(errors)
+            )
+        else:
+            self.confirm_and_save()
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Record",
+            "Are you sure you want to record this settlement history?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Settlement History successfully recorded!")
+            self.popup.close()
+            self.load_settlement_history_data()
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
