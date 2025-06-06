@@ -1281,7 +1281,7 @@ class CitizenController(BaseFileController):
                     ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id, phea_id, rel_id,
                     rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING ctz_id;
             """
 
