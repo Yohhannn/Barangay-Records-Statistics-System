@@ -123,6 +123,21 @@ class CitizenController(BaseFileController):
 
     def show_register_citizen_part_02_initialize(self):
         print("-- Register New Citizen Part 2 Popup")
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part2_popup.register_citizen_comboBox_Relationship
+            combo.clear()
+            for rth_id, rth_relationship_name in results:
+                combo.addItem(rth_relationship_name, rth_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
         self.part2_popup.show()
 
 
@@ -311,7 +326,11 @@ class CitizenController(BaseFileController):
         END AS LAST_UPDATED_BY_NAME, --36
 
         C.CTZ_REASON_OF_DEATH, --37
-        TO_CHAR(C.CTZ_DATE_OF_DEATH, 'FMMonth FMDD, YYYY') --38
+        TO_CHAR(C.CTZ_DATE_OF_DEATH, 'FMMonth FMDD, YYYY'), --38
+        FP.fp_start_date AS FAM_PLAN_START_DATE,
+        FP.fp_end_date AS FAM_PLAN_END_DATE,
+        FPM.FPM_METHOD AS FAM_PLAN_METHOD,
+        FPS.FPMS_STATUS_NAME AS FAM_PLAN_STATUS
 
     FROM CITIZEN C
     LEFT JOIN CONTACT CON ON C.CON_ID = CON.CON_ID
@@ -329,10 +348,12 @@ class CitizenController(BaseFileController):
     LEFT JOIN CLASSIFICATION_HEALTH_RISK CHR ON C.CLAH_ID = CHR.CLAH_ID
     LEFT JOIN SYSTEM_ACCOUNT SA ON C.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
     LEFT JOIN SYSTEM_ACCOUNT SUA ON C.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-
+    LEFT JOIN FAMILY_PLANNING FP ON C.CTZ_ID = FP.CTZ_ID
+    LEFT JOIN FAMILY_PLANNING_METHOD FPM ON FP.FPM_METHOD = FPM.FPM_ID
+    LEFT JOIN FPM_STATUS FPS ON FP.FPMS_STATUS = FPS.FPMS_ID
     WHERE C.CTZ_IS_DELETED = FALSE
     ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
-    LIMIT 20;
+    LIMIT 50;
             """)
             rows = cursor.fetchall()
             self.rows = rows
@@ -420,6 +441,29 @@ class CitizenController(BaseFileController):
                 self.cp_profile_screen.display_UpdatedBy.setText(record[36] or "None")
                 self.cp_profile_screen.cp_displayReasonOfDeath.setText(record[37] or "None")
                 self.cp_profile_screen.cp_displayDoD.setText(record[38] or "None")
+                # --- Family Planning Info ---
+                fam_plan_method = str(record[39]) if len(record) > 39 and record[39] is not None else "None"
+                fam_plan_status = str(record[40]) if len(record) > 40 and record[40] is not None else "None"
+                fam_plan_start = record[41] if len(record) > 41 else None
+                fam_plan_end = record[42] if len(record) > 42 else None
+
+                self.cp_profile_screen.cp_displayFamPlanMethod.setText(fam_plan_method)
+                self.cp_profile_screen.cp_displayFamPlanStatus.setText(fam_plan_status)
+
+                self.cp_profile_screen.display_DateStarted.setText(
+                    fam_plan_start.strftime("%B %d, %Y") if isinstance(fam_plan_start, date) else "None"
+                )
+                self.cp_profile_screen.display_DateEnded.setText(
+                    fam_plan_end.strftime("%B %d, %Y") if isinstance(fam_plan_end, date) else "None"
+                )
+
+                # Format dates
+                self.cp_profile_screen.display_DateStarted.setText(
+                    fam_plan_start.strftime("%B %d, %Y") if isinstance(fam_plan_start, date) else str(fam_plan_start)
+                )
+                self.cp_profile_screen.display_DateEnded.setText(
+                    fam_plan_end.strftime("%B %d, %Y") if isinstance(fam_plan_end, date) else str(fam_plan_end)
+                )
                 break
 
     #
@@ -866,7 +910,12 @@ class CitizenController(BaseFileController):
         #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
 
 
-        if not form_data_part_2['gov_worker']:
+        if form_data_part_2['employment_status'] == 'Unemployed':
+            form_data_part_2['gov_worker'] = 'No'
+            self.part2_popup.radioButton_IsGov_Yes.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part2_popup.radioButton_IsGov_No.setStyleSheet("color: rgb(18, 18, 18)")
+
+        elif not form_data_part_2['gov_worker']:
             errors_part_2.append("Government Worker is required.")
             self.part2_popup.radioButton_IsGov_Yes.setStyleSheet("color: red")
             self.part2_popup.radioButton_IsGov_No.setStyleSheet("color: red")
@@ -1168,6 +1217,34 @@ class CitizenController(BaseFileController):
         connection = db.conn
         cursor = connection.cursor()
 
+        # --- GET rth_id FROM RELATIONSHIP_TYPE ---
+        relationship_name = form_data['relationship']
+        cursor.execute("SELECT rth_id FROM relationship_type WHERE rth_relationship_name = %s", (relationship_name,))
+        rth_result = cursor.fetchone()
+
+        if not rth_result:
+            raise Exception(f"Relationship '{relationship_name}' not found in relationship_type table.")
+        rth_id = rth_result[0]
+
+
+
+
+
+
+
+
+        # --- Validate/Insert CLASSIFICATION_HEALTH_RISK ---
+        health_class = form_data.get('health_class')
+        clah_id = None
+
+        if health_class not in ['None', '', None]:
+            cursor.execute("SELECT clah_id FROM classification_health_risk WHERE clah_classification_name = %s",
+                           (health_class,))
+            clah_result = cursor.fetchone()
+            if not clah_result:
+                raise Exception(f"Health classification '{health_class}' not found.")
+            clah_id = clah_result[0]
+
         try:
             # --- Validate & Insert CONTACT ---
             email = form_data['email_address']
@@ -1274,23 +1351,21 @@ class CitizenController(BaseFileController):
             # --- Insert CITIZEN ---
             # --- Insert CITIZEN ---
             citizen_query = """
-                INSERT INTO citizen (
-                    ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
-                    ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
-                    ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death,
-                    ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id, phea_id, rel_id,
-                    rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id
-                )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                RETURNING ctz_id;
+            INSERT INTO citizen (
+                ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
+                ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
+                ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death,
+                ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id,
+                phea_id, rel_id, rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id,
+                clah_id
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING ctz_id;
             """
 
-            # Prepare ctz_date_of_death and ctz_reason_of_death conditionally
             date_of_death = form_data['date_of_death'] if form_data['is_deceased'] == 'Yes' else None
             reason_of_death = form_data['reason_of_death'] if form_data['is_deceased'] == 'Yes' else None
-
-            # Set ctz_is_alive based on is_deceased field
-            is_alive = False if form_data['is_deceased'] == 'Yes' else True
+            is_alive = not (form_data['is_deceased'] == 'Yes')
 
             cursor.execute(citizen_query, (
                 form_data['first_name'],
@@ -1312,15 +1387,53 @@ class CitizenController(BaseFileController):
                 soec_id,
                 phea_id,
                 rel_id,
-                1,  # rth_id (Head of Household)
+                rth_id,
                 int(form_data['household_id']),
-                self.sys_user_id,  # encoded_by_sys_id (default admin)
-                self.sys_user_id  # last_updated_by_sys_id (default admin)
+                self.sys_user_id,
+                self.sys_user_id,
+                clah_id  # ✅ Now properly included
             ))
             citizen_result = cursor.fetchone()
             if not citizen_result:
                 raise Exception("Failed to insert into CITIZEN")
             citizen_id = citizen_result[0]
+
+            # --- FAMILY PLANNING INSERTION ---
+            fam_plan_method = form_data.get('fam_plan_method')
+            fam_plan_stat = form_data.get('fam_plan_stat')
+
+            if fam_plan_method not in ['None', '', None] and fam_plan_stat not in ['None', '', None]:
+                # Retrieve FPM_ID from family_planning_method
+                cursor.execute("SELECT FPM_ID FROM family_planning_method WHERE FPM_METHOD = %s", (fam_plan_method,))
+                fpm_result = cursor.fetchone()
+                if not fpm_result:
+                    raise Exception(f"Family planning method '{fam_plan_method}' not found.")
+                fpm_id = fpm_result[0]
+
+                # Retrieve FPMS_ID from fpm_status
+                cursor.execute("SELECT FPMS_ID FROM fpm_status WHERE FPMS_STATUS_NAME = %s", (fam_plan_stat,))
+                fpms_result = cursor.fetchone()
+                if not fpms_result:
+                    raise Exception(f"Family planning status '{fam_plan_stat}' not found.")
+                fpms_id = fpms_result[0]
+
+                fp_start_date = form_data.get('fam_plan_start_date')
+                fp_end_date = form_data.get('fam_plan_end_date')
+
+                # Use citizen_id here, NOT ctz_id
+                cursor.execute("""
+                    INSERT INTO family_planning (
+                        FP_START_DATE, FP_END_DATE, CTZ_ID, FPMS_STATUS, FPM_METHOD
+                    ) VALUES (%s, %s, %s, %s, %s)
+                """, (
+                    fp_start_date,
+                    fp_end_date,
+                    citizen_id,  # ← Correct variable
+                    fpms_id,
+                    fpm_id
+                ))
+            else:
+                print("-- Skipping Family Planning insertion due to missing data")
 
             # --- Insert EMPLOYMENT ---
             employment_status = form_data['employment_status']

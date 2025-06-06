@@ -838,6 +838,7 @@ VALUES (
        )RETURNING EDU_ID;
 
 
+
 --sample citizen (household head)
 INSERT INTO CITIZEN (
     CTZ_FIRST_NAME,
