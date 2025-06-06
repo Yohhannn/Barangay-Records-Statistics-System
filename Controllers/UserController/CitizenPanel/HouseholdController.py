@@ -47,24 +47,41 @@ class HouseholdController(BaseFileController):
         form_data = self.view.get_form_data()
         errors = []
 
-        if not form_data['house_number']:
-            errors.append("House Number is required")
+        # if not form_data['house_number']:
+        #     errors.append("House Number is required")
         if not form_data['sitio_id']:
             errors.append("Sitio is required")
-        if not form_data['interviewer_name']:
-            errors.append("Interviewer Name is required")
-        if not form_data['reviewer_name']:
-            errors.append("Reviewer Name is required")
+
+        if not form_data['ownership_status']:
+            errors.append("Ownership is required")
+            self.view.popup.register_household_comboBox_OwnershipStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.view.popup.register_household_comboBox_OwnershipStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        if not form_data['home_address']:
+            errors.append("Home Address is required")
+            self.view.popup.register_household_homeAddress.setStyleSheet(
+                        "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+        else:
+            self.view.popup.register_household_homeAddress.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        # if not form_data['interviewer_name']:
+        #     errors.append("Interviewer Name is required")
+        # if not form_data['reviewer_name']:
+        #     errors.append("Reviewer Name is required")
         if not form_data['water_id']:
             errors.append("Water source is required")
         if not form_data['toilet_id']:
             errors.append("Toilet type is required")
-        if not form_data['date_of_visit']:
-            errors.append("Date of visit cannot be in the future")
 
         if errors:
             self.view.show_error_message(errors)
-            self.view.highlight_missing_fields(errors)
+            # self.view.highlight_missing_fields(errors)
         else:
             self.save_household_data(form_data)
 
