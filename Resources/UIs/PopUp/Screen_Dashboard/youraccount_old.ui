@@ -338,7 +338,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>TO BE UPDATED</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -434,10 +434,57 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="employeeaccount_buttonAdminOverride">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#employeeaccount_buttonAdminOverride {
+    background-color: #141c52;
+    color: white;
+    border-radius: 10px;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#employeeaccount_buttonAdminOverride:hover {
+    background-color: #1a237e; /* Slightly lighter blue when hovered */
+}
+#employeeaccount_buttonAdminOverride:pressed {
+    background-color: #0f1442; /* Darker blue when clicked */
+}</string>
+    </property>
+    <property name="text">
+     <string>  ADMIN OVERRIDE</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Assets/FuncIcons/icon_adminoverride.svg</normaloff>../../../Assets/FuncIcons/icon_adminoverride.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
    <widget class="QPushButton" name="employeeaccount_buttonChangePIN">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>240</x>
       <y>230</y>
       <width>201</width>
       <height>31</height>
