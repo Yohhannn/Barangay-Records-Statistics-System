@@ -7,8 +7,8 @@ from Models.StatisticsModel import StatisticsModel
 
 
 class StatisticsController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
@@ -37,7 +37,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
@@ -47,7 +47,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -57,7 +57,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -67,7 +67,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -80,7 +80,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Demographics")
         if not hasattr(self, 'demographic'):
             from Controllers.UserController.Statistics.Demographics.DemographicsController import DemographicsController
-            self.view = DemographicsController(self.login_window, self.emp_first_name, self.stack)
+            self.view = DemographicsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.view.view)
 
         self.stack.setCurrentWidget(self.view.view)
@@ -91,7 +91,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Neighborhood")
         if not hasattr(self, 'neighborhood'):
             from Controllers.UserController.Statistics.Neighborhood.NeighborhoodController import NeighborhoodController
-            self.neighborhood_panel = NeighborhoodController(self.login_window, self.emp_first_name, self.stack)
+            self.neighborhood_panel = NeighborhoodController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.neighborhood_panel.view)
 
         self.stack.setCurrentWidget(self.neighborhood_panel.view)
@@ -102,7 +102,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Household")
         if not hasattr(self, 'household'):
             from Controllers.UserController.Statistics.Household.HouseholdController import HouseholdController
-            self.household_panel = HouseholdController(self.login_window, self.emp_first_name, self.stack)
+            self.household_panel = HouseholdController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.household_panel.view)
 
         self.stack.setCurrentWidget(self.household_panel.view)
@@ -113,7 +113,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Education")
         if not hasattr(self, 'education'):
             from Controllers.UserController.Statistics.Education.EducationController import EducationController
-            self.education_panel = EducationController(self.login_window, self.emp_first_name, self.stack)
+            self.education_panel = EducationController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.education_panel.view)
 
         self.stack.setCurrentWidget(self.education_panel.view)
@@ -124,7 +124,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Employment")
         if not hasattr(self, 'employment'):
             from Controllers.UserController.Statistics.Employment.EmploymentController import EmploymentController
-            self.employment_panel = EmploymentController(self.login_window, self.emp_first_name, self.stack)
+            self.employment_panel = EmploymentController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.employment_panel.view)
 
         self.stack.setCurrentWidget(self.employment_panel.view)
@@ -135,7 +135,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Health")
         if not hasattr(self, 'health'):
             from Controllers.UserController.Statistics.Health.HealthController import HealthController
-            self.health_panel = HealthController(self.login_window, self.emp_first_name, self.stack)
+            self.health_panel = HealthController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.health_panel.view)
 
         self.stack.setCurrentWidget(self.health_panel.view)
@@ -146,7 +146,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Business")
         if not hasattr(self, 'business_stat'):
             from Controllers.UserController.Statistics.Business.BusinessController import BusinessController
-            self.business_panel = BusinessController(self.login_window, self.emp_first_name, self.stack)
+            self.business_panel = BusinessController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.business_panel.view)
 
         self.stack.setCurrentWidget(self.business_panel.view)
@@ -157,7 +157,7 @@ class StatisticsController(BaseFileController):
         print("-- Navigating to Statistics > Infrastructure")
         if not hasattr(self, 'infra'):
             from Controllers.UserController.Statistics.Infrastructure.InfrastructureController import InfrastructureController
-            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.stack)
+            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.infra_panel.view)
 
         self.stack.setCurrentWidget(self.infra_panel.view)

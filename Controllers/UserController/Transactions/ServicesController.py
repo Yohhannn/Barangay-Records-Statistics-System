@@ -8,8 +8,8 @@ from Utils.util_popup import load_popup
 
 
 class ServiceController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.trans_services_screen = self.load_ui("Resources/UIs/MainPages/TransactionPages/services.ui")
         self.setup_services_ui()
@@ -63,8 +63,8 @@ class ServiceController(BaseFileController):
                     END AS LAST_UPDATED_BY_NAME --10
                 FROM TRANSACTION_LOG TL
                 LEFT JOIN TRANSACTION_TYPE TT ON TL.tt_id = TT.tt_id
-                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_ID
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
 
                 WHERE TL.tl_is_deleted = FALSE
                 ORDER BY TL.tl_id DESC
@@ -158,7 +158,7 @@ class ServiceController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)

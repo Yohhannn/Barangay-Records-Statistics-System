@@ -8,8 +8,8 @@ from Views.InstitutionView import InstitutionsView
 
 
 class InstitutionsController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.model = InstitutionsModel()
         self.view = InstitutionsView(self)
@@ -29,7 +29,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
@@ -39,7 +39,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -49,7 +49,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -59,7 +59,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -130,7 +130,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to Business Panel")
         if not hasattr(self, 'business'):
             from Controllers.UserController.Institutions.BusinessController import BusinessController
-            self.business_panel = BusinessController(self.login_window, self.emp_first_name, self.stack)
+            self.business_panel = BusinessController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.business_panel.inst_business_screen)
 
         self.stack.setCurrentWidget(self.business_panel.inst_business_screen)
@@ -141,7 +141,7 @@ class InstitutionsController(BaseFileController):
         print("-- Navigating to Infrastructure Panel")
         if not hasattr(self, 'infrastructure'):
             from Controllers.UserController.Institutions.InfrastructureController import InfrastructureController
-            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.stack)
+            self.infra_panel = InfrastructureController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.infra_panel.inst_infrastructure_screen)
 
         self.stack.setCurrentWidget(self.infra_panel.inst_infrastructure_screen)

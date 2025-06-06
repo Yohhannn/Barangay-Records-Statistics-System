@@ -11,8 +11,8 @@ from PyQt6.QtWidgets import QLabel
 
 
 class HouseholdController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.model = HouseholdModel()
         self.view = HouseholdView(self)
@@ -93,17 +93,35 @@ class HouseholdController(BaseFileController):
                         ELSE SUA.SYS_FNAME || ' ' ||
                              COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
                              SUA.SYS_LNAME
-                    END AS LAST_UPDATED_BY_NAME --13
-                 ---   SU.SYS_FNAME || ' ' || COALESCE(LEFT(SU.SYS_MNAME, 1) || '. ', '') || SU.SYS_LNAME AS UPDATED_BY -- 12
+                    END AS LAST_UPDATED_BY_NAME, -- 13
+                    COUNT(C.CTZ_ID) AS TOTAL_MEMBERS -- Total members from CITIZEN
                 FROM HOUSEHOLD_INFO HH
                 JOIN SITIO S ON HH.SITIO_ID = S.SITIO_ID
-                LEFT JOIN TOILET_TYPE T ON HH.TOILET_ID = T.toil_id  -- ⬅️ Fixed here
+                LEFT JOIN TOILET_TYPE T ON HH.TOILET_ID = T.toil_id
                 LEFT JOIN WATER_SOURCE W ON HH.WATER_ID = W.WATER_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON HH.ENCODED_BY_SYS_ID = SA.SYS_ID
-                -- Join for LAST_UPDATED_BY
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON HH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
-            ---    LEFT JOIN SYSTEM_ACCOUNT SU ON HH.SYS_ID_UPDATED = SU.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON HH.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON HH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                LEFT JOIN CITIZEN C ON HH.HH_ID = C.HH_ID AND C.CTZ_IS_DELETED = FALSE AND C.CTZ_IS_ALIVE = TRUE
                 WHERE HH.HH_IS_DELETED = FALSE
+                GROUP BY
+                    HH.HH_ID,
+                    HH.HH_HOUSE_NUMBER,
+                    S.SITIO_NAME,
+                    HH.HH_OWNERSHIP_STATUS,
+                    HH.HH_HOME_GOOGLE_LINK,
+                    T.TOIL_TYPE_NAME,
+                    W.WATER_SOURCE_NAME,
+                    HH.HH_INTERVIEWER_NAME,
+                    HH.HH_DATE_VISIT,
+                    HH.HH_DATE_ENCODED,
+                    SA.SYS_FNAME,
+                    SA.SYS_MNAME,
+                    SA.SYS_LNAME,
+                    HH.HH_REVIEWER_NAME,
+                    SUA.SYS_FNAME,
+                    SUA.SYS_MNAME,
+                    SUA.SYS_LNAME,
+                    HH.HH_LAST_UPDATED
                 ORDER BY HH.HH_ID DESC
                 LIMIT 20;
             """)
@@ -113,7 +131,7 @@ class HouseholdController(BaseFileController):
             table = self.cp_household_screen.inst_tableView_List_RegHousehold
             table.setRowCount(len(rows))
             table.setColumnCount(4)
-            table.setHorizontalHeaderLabels(["ID", "Household No.", "Sitio", "Date Encoded"])
+            table.setHorizontalHeaderLabels(["ID", "Total Members", "Sitio", "Date Encoded"])
 
             table.setColumnWidth(0, 50)
             table.setColumnWidth(1, 150)
@@ -121,7 +139,8 @@ class HouseholdController(BaseFileController):
             table.setColumnWidth(3, 200)
 
             for row_idx, row_data in enumerate(rows):
-                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[9]]):
+                # col 1 now shows total members instead of household number
+                for col_idx, value in enumerate([row_data[0], row_data[14], row_data[2], row_data[9]]):
                     item = QTableWidgetItem(str(value))
                     table.setItem(row_idx, col_idx, item)
 
@@ -130,6 +149,49 @@ class HouseholdController(BaseFileController):
         finally:
             if connection:
                 connection.close()
+
+    def display_family_members(self, hh_id):
+        """
+        Fetches and displays family members of the selected household,
+        including their relationship names from the RELATIONSHIP_TYPE table.
+        """
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+
+            query = """
+                SELECT 
+                    C.CTZ_FIRST_NAME,
+                    C.CTZ_LAST_NAME,
+                    R.RTH_RELATIONSHIP_NAME
+                FROM CITIZEN C
+                JOIN RELATIONSHIP_TYPE R ON C.RTH_ID = R.RTH_ID
+                WHERE C.HH_ID = %s AND C.CTZ_IS_DELETED = FALSE;
+            """
+            cursor.execute(query, (hh_id,))
+            rows = cursor.fetchall()
+
+            table = self.cp_household_screen.cp_tableView_List_DisplayFamilyMembers
+            table.setRowCount(len(rows))
+            table.setColumnCount(3)
+            table.setHorizontalHeaderLabels(["First Name", "Last Name", "Relationship"])
+            table.setColumnWidth(0, 150)
+            table.setColumnWidth(1, 150)
+            table.setColumnWidth(2, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate(row_data):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.cp_household_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
+
 
     def handle_row_click_household(self, row, column):
         table = self.cp_household_screen.inst_tableView_List_RegHousehold
@@ -175,6 +237,7 @@ class HouseholdController(BaseFileController):
                 self.cp_household_screen.display_DateUpdated.setText(record[11] or "N/A")  # Last Updated
                 self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "N/A")
                 self.cp_household_screen.display_UpdatedBy.setText(record[13] or "N/A")
+                self.display_family_members(int(selected_id))
                 # self.cp_household_screen.display_UpdatedBy.setText(record[12] or "System")  # Updated By
 
                 break
@@ -202,7 +265,7 @@ class HouseholdController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)

@@ -7,8 +7,8 @@ from database import Database
 
 
 class BusinessController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.inst_business_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/business.ui")
         self.setup_business_ui()
@@ -76,8 +76,8 @@ class BusinessController(BaseFileController):
                 JOIN BUSINESS_OWNER BO ON BI.BSO_ID = BO.BSO_ID
                 JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
                 JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_ID
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
                 ORDER BY COALESCE(BI.BS_LAST_UPDATED, BI.BS_DATE_ENCODED) DESC
                 LIMIT 20
            """)
@@ -287,7 +287,7 @@ class BusinessController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)

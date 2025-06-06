@@ -65,7 +65,7 @@ class LoginWindow(QMainWindow):
             return
 
         if self.check_super_admin(user_id, user_pin):
-            self.grant_access("admin")
+            self.grant_access("admin", 123)
             return
 
         self.authenticate_regular_user(user_id, user_pin)
@@ -103,7 +103,7 @@ class LoginWindow(QMainWindow):
             cursor = connection.cursor
 
             query = """
-            SELECT SYS_FNAME 
+            SELECT SYS_FNAME
             FROM SYSTEM_ACCOUNT 
             WHERE SYS_USER_ID = %s AND SYS_PASSWORD = %s
             """
@@ -111,7 +111,7 @@ class LoginWindow(QMainWindow):
             result = cursor.fetchone()
 
             if result:
-                self.grant_access(result[0])
+                self.grant_access(result[0], user_id)
             else:
                 QMessageBox.warning(self, "Error", "Invalid credentials")
                 self.clear_fields()
@@ -122,9 +122,9 @@ class LoginWindow(QMainWindow):
             if 'connection' in locals():
                 connection.close()
 
-    def grant_access(self, first_name):
+    def grant_access(self, first_name, sys_user_id):
         self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
-        self.dashboard = DashboardController(self, first_name)
+        self.dashboard = DashboardController(self, first_name, sys_user_id)
         self.dashboard.show()
         self.close()
 

@@ -2607,31 +2607,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>Head</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Spouse</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Son</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Daugther</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Other Relative</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelHouseholdRelationship">
     <property name="geometry">

@@ -9,8 +9,8 @@ from database import Database
 
 
 class CitizenHistoryController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
 
 
         self.stack = stack
@@ -63,8 +63,8 @@ class CitizenHistoryController(BaseFileController):
                     END AS UPDATED_BY
                 FROM CITIZEN_HISTORY H
                 JOIN CITIZEN C ON H.CTZ_ID = C.CTZ_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON H.ENCODED_BY_SYS_ID = SA.SYS_ID
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON H.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON H.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON H.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
                 ORDER BY H.CIHI_DATE_ENCODED DESC
                 LIMIT 50;
             """)
@@ -120,7 +120,7 @@ class CitizenHistoryController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)

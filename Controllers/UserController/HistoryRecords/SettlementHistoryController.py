@@ -7,8 +7,8 @@ from database import Database
 
 
 class SettlementHistoryController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, stack):
-        super().__init__(login_window, emp_first_name)
+    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+        super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.hist_settlement_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/settlement_history.ui")
         self.setup_settlement_history_ui()
@@ -98,8 +98,8 @@ class SettlementHistoryController(BaseFileController):
                 JOIN COMPLAINANT C2 ON SL.COMP_ID = C2.COMP_ID
                 JOIN CITIZEN_HISTORY CH ON SL.CIHI_ID = CH.CIHI_ID
                 JOIN CITIZEN C1 ON CH.CTZ_ID = C1.CTZ_ID
-                LEFT JOIN SYSTEM_ACCOUNT SA ON SL.ENCODED_BY_SYS_ID = SA.SYS_ID
-                LEFT JOIN SYSTEM_ACCOUNT SUA ON SL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON SL.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON SL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
                 ORDER BY SL.SETT_DATE_ENCODED DESC
                 LIMIT 50;
             """)
@@ -154,7 +154,7 @@ class SettlementHistoryController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
