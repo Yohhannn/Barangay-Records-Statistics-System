@@ -158,25 +158,25 @@ class BusinessController(BaseFileController):
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
 
-    def upload_business_image(self):
-        file_path, _ = QFileDialog.getOpenFileName(
-            self.popup,
-            "Select Business Image",
-            "",
-            "Images (*.png *.jpg *.jpeg *.bmp *.gif)"
-        )
-
-        if file_path:
-            pixmap = QPixmap(file_path)
-            if not pixmap.isNull():
-                image_label = self.popup.findChild(QLabel, "imageLabel")
-                if image_label:
-                    image_label.setPixmap(pixmap.scaled(
-                        image_label.width(),
-                        image_label.height(),
-                        Qt.KeepAspectRatio,
-                        Qt.SmoothTransformation
-                    ))
+    # def upload_business_image(self):
+    #     file_path, _ = QFileDialog.getOpenFileName(
+    #         self.popup,
+    #         "Select Business Image",
+    #         "",
+    #         "Images (*.png *.jpg *.jpeg *.bmp *.gif)"
+    #     )
+    #
+    #     if file_path:
+    #         pixmap = QPixmap(file_path)
+    #         if not pixmap.isNull():
+    #             image_label = self.popup.findChild(QLabel, "imageLabel")
+    #             if image_label:
+    #                 image_label.setPixmap(pixmap.scaled(
+    #                     image_label.width(),
+    #                     image_label.height(),
+    #                     Qt.KeepAspectRatio,
+    #                     Qt.SmoothTransformation
+    #                 ))
 
     def setup_radio_button_groups_business(self):
         # Is DTI Registered?
@@ -233,6 +233,17 @@ class BusinessController(BaseFileController):
             )
         else:
             self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
+        # Validate Business Type
+        if self.popup.register_comboBox_BusinessType.currentIndex() == -1:
+            errors.append("Business type is required")
+            self.popup.register_comboBox_BusinessType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.popup.register_comboBox_BusinessType.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
 
