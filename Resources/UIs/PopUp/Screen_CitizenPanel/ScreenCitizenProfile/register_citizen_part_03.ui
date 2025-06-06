@@ -1645,41 +1645,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Pregnant</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Adolescent Pregnant</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Postpartum</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Infant</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Under 5 Years Old</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Person with Disability</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelClasification">
     <property name="geometry">
