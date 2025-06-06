@@ -18,33 +18,74 @@ class CitizenHistoryView:
 
     def show_citizen_history_popup(self):
         print("-- Record Citizen History Popup")
-        popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_citizen_history.ui")
-        popup.setWindowTitle("Mapro: Record New Citizen History")
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_citizen_history.ui")
+        self.popup.setWindowTitle("Mapro: Record New Citizen History")
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.record_buttonConfirmCitizenHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.record_buttonConfirmCitizenHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.record_buttonConfirmCitizenHistory_SaveForm.clicked.connect(self.validate_citizen_hist_fields)
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
 
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "record_buttonConfirmCitizenHistory_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Creation",
-                    "Are you sure you want to record this?",
-                    QMessageBox.Yes | QMessageBox.No,
-                    QMessageBox.No
-                )
+    def validate_citizen_hist_fields(self):
+        errors = []
 
-                if reply == QMessageBox.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Citizen History Successfully Recorded!")
-                    popup.close()
+        # Validate Citizen ID
+        if not self.popup.record_citizenIDANDsearch.text().strip():
+            errors.append("Info citizen ID is required")
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
 
-            save_btn.clicked.connect(confirm_and_save)
+        # Validate Citizen History Type
+        if self.popup.record_comboBox_citizenhistory_type.currentIndex() == -1:
+            errors.append("Medical history type is required")
+            self.popup.record_comboBox_citizenhistory_type.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_comboBox_citizenhistory_type.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
 
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+        # Validate Citizen Record Description
+        if not self.popup.record_citizenhistory_description.toPlainText().strip():
+            errors.append("Medical description is required")
+            self.popup.record_citizenhistory_description.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_citizenhistory_description.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n\n• " + "\n• ".join(errors)
+            )
+        else:
+            self.confirm_and_save()
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Record",
+            "Are you sure you want to record this citizen history?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Citizen History successfully recorded!")
+            self.popup.close()
+            self.controller.load_citizen_history_data()
 
 
 
