@@ -442,27 +442,22 @@ class CitizenController(BaseFileController):
                 self.cp_profile_screen.cp_displayReasonOfDeath.setText(record[37] or "None")
                 self.cp_profile_screen.cp_displayDoD.setText(record[38] or "None")
                 # --- Family Planning Info ---
-                fam_plan_method = str(record[39]) if len(record) > 39 and record[39] is not None else "None"
-                fam_plan_status = str(record[40]) if len(record) > 40 and record[40] is not None else "None"
-                fam_plan_start = record[41] if len(record) > 41 else None
-                fam_plan_end = record[42] if len(record) > 42 else None
+                # Safely extract family planning fields
+                fam_plan_method = str(record[41]) if len(record) > 41 and record[41] is not None else "None"
+                fam_plan_status = str(record[42]) if len(record) > 42 and record[42] is not None else "None"
+                fam_plan_start = record[39] if len(record) > 39 else None
+                fam_plan_end = record[40] if len(record) > 40 else None
 
+                # Set method and status (always strings)
                 self.cp_profile_screen.cp_displayFamPlanMethod.setText(fam_plan_method)
                 self.cp_profile_screen.cp_displayFamPlanStatus.setText(fam_plan_status)
 
+                # Format dates if valid
                 self.cp_profile_screen.display_DateStarted.setText(
                     fam_plan_start.strftime("%B %d, %Y") if isinstance(fam_plan_start, date) else "None"
                 )
                 self.cp_profile_screen.display_DateEnded.setText(
                     fam_plan_end.strftime("%B %d, %Y") if isinstance(fam_plan_end, date) else "None"
-                )
-
-                # Format dates
-                self.cp_profile_screen.display_DateStarted.setText(
-                    fam_plan_start.strftime("%B %d, %Y") if isinstance(fam_plan_start, date) else str(fam_plan_start)
-                )
-                self.cp_profile_screen.display_DateEnded.setText(
-                    fam_plan_end.strftime("%B %d, %Y") if isinstance(fam_plan_end, date) else str(fam_plan_end)
                 )
                 break
 
