@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMessageBox, QApplication
+from PySide6.QtWidgets import QMessageBox, QApplication, QPushButton, QFrame
 
 from Controllers.BaseFileController import BaseFileController
 from Models.CitizenModel import CitizenModel
@@ -6,8 +6,9 @@ from Views.CitizenPanelView import CitizenPanelView
 
 
 class CitizenPanelController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.user_role = user_role
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
@@ -33,6 +34,30 @@ class CitizenPanelController(BaseFileController):
         self.emp_first_name = emp_first_name
 
 
+        admin_buttons = [
+            self.citizen_panel_screen.findChild(QPushButton, "nav_buttonAdminPanel"),
+            self.citizen_panel_screen.findChild(QPushButton, "nav_buttonActivityLogs"),
+        ]
+        admin_frame = self.citizen_panel_screen.findChild(QFrame, "baseNavFramesub2")  
+
+        if self.user_role in ['Admin', 'Super Admin']:
+            print("Should show admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(True)
+                    btn.setEnabled(True)
+            if admin_frame:
+                admin_frame.setVisible(True)
+        else:
+            print("Should hide admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(False)
+                    btn.setEnabled(False)
+            if admin_frame:
+                admin_frame.setVisible(False)
+
+
     # def goto_citizen_panel(self):
     #     """Handle navigation to Citizen Profile Panel screen."""
     #     print("-- Navigating to Citizen Profile")
@@ -52,12 +77,33 @@ class CitizenPanelController(BaseFileController):
         """Return to dashboard screen"""
         print("-- Navigating to Dashboard")
         self.stack.setCurrentIndex(0)
+    
+    def goto_admin_panel(self):
+        print("-- Navigating to Admin Panel")
+        if not hasattr(self, 'admin_panel'):
+            from Controllers.AdminController.AdminPanelController import AdminPanelController
+            self.admin_panel = AdminPanelController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.admin_panel.admin_panel_screen)
+        self.stack.setCurrentWidget(self.admin_panel.admin_panel_screen)
+
+    def goto_activity_logs(self):
+        print("-- Navigating to Activity Logs")
+        if not hasattr(self, 'activity_logs'):
+            from Controllers.AdminController.ActivityLogsController import ActivityLogsController
+            self.activity_logs = ActivityLogsController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.activity_logs.activity_logs_screen)
+        self.stack.setCurrentWidget(self.activity_logs.activity_logs_screen)
+
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -67,7 +113,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -77,7 +123,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -87,7 +133,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -142,7 +188,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Citizen Profile")
         if not hasattr(self, 'citizenprofile'):
             from Controllers.UserController.CitizenPanel.CitizenController import CitizenController
-            self.citizen_profile_sub_panel = CitizenController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_profile_sub_panel = CitizenController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_profile_sub_panel.cp_profile_screen)
 
         self.stack.setCurrentWidget(self.citizen_profile_sub_panel.cp_profile_screen)
@@ -152,7 +198,7 @@ class CitizenPanelController(BaseFileController):
         print("-- Navigating to Household Sub Panel")
         if not hasattr(self, 'household'):
             from Controllers.UserController.CitizenPanel.HouseholdController import HouseholdController
-            self.household_sub_panel = HouseholdController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.household_sub_panel = HouseholdController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.household_sub_panel.cp_household_screen)
 
         self.stack.setCurrentWidget(self.household_sub_panel.cp_household_screen)

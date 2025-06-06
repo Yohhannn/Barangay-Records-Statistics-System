@@ -11,11 +11,12 @@ from PyQt6.QtWidgets import QLabel
 
 
 class HouseholdController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.stack = stack
         self.model = HouseholdModel()
         self.view = HouseholdView(self)
+        self.user_role = user_role
 
         # Load UI
         self.cp_household_screen = self.load_ui("Resources/Uis/MainPages/CitizenPanelPages/cp_household.ui")
@@ -282,7 +283,7 @@ class HouseholdController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)

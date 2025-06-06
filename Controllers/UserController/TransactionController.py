@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMessageBox, QApplication
+from PySide6.QtWidgets import QMessageBox, QApplication, QPushButton, QFrame
 
 from Controllers.BaseFileController import BaseFileController
 from Models.CitizenModel import CitizenModel
@@ -8,13 +8,14 @@ from Views.TransactionView import TransactionView
 
 
 class TransactionController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
         self.model = TransactionModel()
         self.view = TransactionView(self)
+        self.user_role = user_role
 
 
         # CALL OBJECT FOR METHOD IMPLEMENTATION
@@ -32,7 +33,29 @@ class TransactionController(BaseFileController):
         # Store references needed for navigation
         self.login_window = login_window
         self.emp_first_name = emp_first_name
+        
+        admin_buttons = [
+            self.transactions_screen.findChild(QPushButton, "nav_buttonAdminPanel"),
+            self.transactions_screen.findChild(QPushButton, "nav_buttonActivityLogs"),
+        ]
+        admin_frame = self.transactions_screen.findChild(QFrame, "baseNavFramesub2")  
 
+        if self.user_role in ['Admin', 'Super Admin']:
+            print("Should show admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(True)
+                    btn.setEnabled(True)
+            if admin_frame:
+                admin_frame.setVisible(True)
+        else:
+            print("Should hide admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(False)
+                    btn.setEnabled(False)
+            if admin_frame:
+                admin_frame.setVisible(False)
 
     # GOTO NAVIGATIONS ================================
     def goto_dashboard_panel(self):
@@ -44,17 +67,37 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
+    
+    def goto_admin_panel(self):
+        print("-- Navigating to Admin Panel")
+        if not hasattr(self, 'admin_panel'):
+            from Controllers.AdminController.AdminPanelController import AdminPanelController
+            self.admin_panel = AdminPanelController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.admin_panel.admin_panel_screen)
+        self.stack.setCurrentWidget(self.admin_panel.admin_panel_screen)
+
+    def goto_activity_logs(self):
+        print("-- Navigating to Activity Logs")
+        if not hasattr(self, 'activity_logs'):
+            from Controllers.AdminController.ActivityLogsController import ActivityLogsController
+            self.activity_logs = ActivityLogsController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.activity_logs.activity_logs_screen)
+        self.stack.setCurrentWidget(self.activity_logs.activity_logs_screen)
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -64,7 +107,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -74,7 +117,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -146,7 +189,7 @@ class TransactionController(BaseFileController):
         print("-- Navigating to Services")
         if not hasattr(self, 'services'):
             from Controllers.UserController.Transactions.ServicesController import ServiceController
-            self.services_panel = ServiceController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.services_panel = ServiceController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.services_panel.trans_services_screen)
 
         self.stack.setCurrentWidget(self.services_panel.trans_services_screen)
