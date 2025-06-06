@@ -43,7 +43,7 @@ class CitizenHistoryView:
 
         # Validate Citizen History Type
         if self.popup.record_comboBox_citizenhistory_type.currentIndex() == -1:
-            errors.append("Medical history type is required")
+            errors.append("Citizen history type is required")
             self.popup.record_comboBox_citizenhistory_type.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
@@ -54,7 +54,7 @@ class CitizenHistoryView:
 
         # Validate Citizen Record Description
         if not self.popup.record_citizenhistory_description.toPlainText().strip():
-            errors.append("Medical description is required")
+            errors.append("Citizen description is required")
             self.popup.record_citizenhistory_description.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
