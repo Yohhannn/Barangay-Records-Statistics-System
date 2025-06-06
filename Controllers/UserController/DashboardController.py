@@ -1,9 +1,9 @@
-from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication
+from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication, QTableWidgetItem
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from Controllers.BaseFileController import BaseFileController
 from Utils.util_popup import load_popup  # Make sure this import exists
 from Views.DashboardView import DashboardView
-
+from database import Database
 
 
 class DashboardController(BaseFileController):
@@ -20,6 +20,7 @@ class DashboardController(BaseFileController):
         # self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
         self.stack.addWidget(self.dashboard_screen)
         self.view.setup_dashboard_ui(self.dashboard_screen)
+        self.load_recent_citizens_data()
 
     # def show_barangayinfo_initialize(self):
     #     print("-- Navigating to Dashboard > Barangay Info")
@@ -64,6 +65,8 @@ class DashboardController(BaseFileController):
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
 
+
+
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""
         print("-- Navigating to Institutions")
@@ -105,6 +108,69 @@ class DashboardController(BaseFileController):
             QApplication.closeAllWindows()
             self.login_window.show()
             self.login_window.clear_fields()
+
+    def load_recent_citizens_data(self):
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+
+            # SQL Query to fetch recently added citizens with middle name
+            cursor.execute("""
+                SELECT 
+                    C.CTZ_ID, -- 0
+                    C.CTZ_LAST_NAME, -- 1
+                    C.HH_ID, -- 2
+                    C.CTZ_FIRST_NAME, -- 3
+                    C.CTZ_MIDDLE_NAME, -- 4
+                    FLOOR(EXTRACT(YEAR FROM AGE(CURRENT_DATE, C.CTZ_DATE_OF_BIRTH))) AS CTZ_AGE, -- 5
+                    C.CTZ_SEX, -- 6
+                    S.SITIO_NAME, -- 7
+                    TO_CHAR(C.CTZ_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED -- 8
+                FROM CITIZEN C
+                JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
+                WHERE C.CTZ_IS_DELETED = FALSE AND C.CTZ_IS_ALIVE = TRUE
+                ORDER BY C.CTZ_DATE_ENCODED DESC
+                LIMIT 10;
+            """)
+            rows = cursor.fetchall()
+            self.citizen_rows = rows  # Optional: store data if needed later
+
+            # Configure the dashboard table
+            table = self.dashboard_screen.table_recentlyAddedCitizensDashboard
+            table.setRowCount(len(rows))
+            table.setColumnCount(9)  # Increased to 9 columns for Middle Name
+            table.setHorizontalHeaderLabels([
+                "Citizen ID", "Family Name", "Household ID", "First Name",
+                "Middle Name", "Age", "Sex", "Sitio", "Date Encoded"
+            ])
+
+            # Set column widths (adjust as needed)
+            table.setColumnWidth(0, 80)  # CTZ ID
+            table.setColumnWidth(1, 150)  # Family Name
+            table.setColumnWidth(2, 120)  # Household ID
+            table.setColumnWidth(3, 150)  # First Name
+            table.setColumnWidth(4, 150)  # Middle Name
+            table.setColumnWidth(5, 60)  # Age
+            table.setColumnWidth(6, 60)  # Sex
+            table.setColumnWidth(7, 150)  # Sitio
+            table.setColumnWidth(8, 200)  # Date Encoded
+
+            # Populate the table with data
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate(row_data):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+            # Optional: Enable sorting or other features
+            table.sortByColumn(8, Qt.DescendingOrder)  # Sort by Date Encoded (descending)
+            table.setSortingEnabled(True)
+
+        except Exception as e:
+            QMessageBox.critical(self.dashboard_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection
 
     def show_barangayinfo_popup(self):
         print("-- Navigating to Dashboard > Barangay Info")
