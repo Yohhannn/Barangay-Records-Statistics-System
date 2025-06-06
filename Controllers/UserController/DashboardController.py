@@ -119,8 +119,8 @@ class DashboardController(BaseFileController):
             cursor.execute("""
                 SELECT 
                     C.CTZ_ID, -- 0
-                    C.CTZ_LAST_NAME, -- 1
                     C.HH_ID, -- 2
+                    C.CTZ_LAST_NAME, -- 1
                     C.CTZ_FIRST_NAME, -- 3
                     C.CTZ_MIDDLE_NAME, -- 4
                     FLOOR(EXTRACT(YEAR FROM AGE(CURRENT_DATE, C.CTZ_DATE_OF_BIRTH))) AS CTZ_AGE, -- 5
@@ -141,7 +141,7 @@ class DashboardController(BaseFileController):
             table.setRowCount(len(rows))
             table.setColumnCount(9)  # Increased to 9 columns for Middle Name
             table.setHorizontalHeaderLabels([
-                "Citizen ID", "Family Name", "Household ID", "First Name",
+                "Citizen ID", "Household ID", "Family Name", "First Name",
                 "Middle Name", "Age", "Sex", "Sitio", "Date Encoded"
             ])
 
@@ -200,7 +200,7 @@ class DashboardController(BaseFileController):
         popup.setFixedSize(popup.size())
 
         popup.employeeaccount_buttonChangePIN.setIcon(QIcon('Resources/Icons/FuncIcons/icon_changepin2.svg'))
-        # popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Resources/Icons/FuncIcons/icon_adminoverride.svg'))
+        popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Resources/Icons/FuncIcons/icon_adminoverride.svg'))
 
         admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
         if admin_override_button:
