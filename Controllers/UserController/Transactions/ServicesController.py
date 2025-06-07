@@ -136,28 +136,40 @@ class ServiceController(BaseFileController):
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
 
+    # FORM DATA HERE [SERVICES] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'serv_req_first_name': self.popup.register_ReqFirstName.text().strip(),  # REQUIRED
+            'serv_req_last_name': self.popup.register_ReqLastName.text().strip(),  # REQUIRED
+            'serv_tran_date_req': self.popup.register_transaction_date_daterequested.date().toString("yyyy-MM-dd"),  # REQUIRED
+            'serv_tran_status': self.popup.register_comboBox_TransactionStatus.text().strip(),  # REQUIRED
+            'serv_tran_type': self.popup.register_comboBox_TransactionType.text().strip(), # REQUIRED
+            'serv_req_reason': self.popup.register_Reason.text().strip() or None,
+            'serv_req_purpose': self.popup.register_Purpose.text().strip(),  # REQUIRED
+        }
+
     def validate_transaction_fields(self):
         errors = []
 
         # Validate requestor first name
-        if not self.popup.register_BusinessOwnerFirstName.text().strip():
+        if not self.popup.register_ReqFirstName.text().strip():
             errors.append("Requester firstname is required")
-            self.popup.register_BusinessOwnerFirstName.setStyleSheet(
+            self.popup.register_ReqFirstName.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
-            self.popup.register_BusinessOwnerFirstName.setStyleSheet(
+            self.popup.register_ReqFirstName.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
         # Validate requestor last name
-        if not self.popup.register_BusinessOwnerLastName.text().strip():
+        if not self.popup.register_ReqLastName.text().strip():
             errors.append("Requester lastname is required")
-            self.popup.register_BusinessOwnerLastName.setStyleSheet(
+            self.popup.register_ReqLastName.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
-            self.popup.register_BusinessOwnerLastName.setStyleSheet(
+            self.popup.register_ReqLastName.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
 
