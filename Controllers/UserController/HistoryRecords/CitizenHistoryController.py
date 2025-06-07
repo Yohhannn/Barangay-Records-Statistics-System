@@ -192,6 +192,14 @@ class CitizenHistoryController(BaseFileController):
                 self.hist_citizen_history_screen.display_UpdatedBy.setText(record[9])
                 break
 
+    # FORM DATA HERE [CITIZEN HISTORY] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'ctz_id_search': self.popup.record_citizenIDANDsearch.text().strip(),  # REQUIRED
+            'ctz_hit_type': self.popup.record_comboBox_citizenhistory_type.text().strip(),  # REQUIRED
+            'hist_desc': self.popup.record_citizenhistory_description.text().strip(), # REQUIRED
+        }
+
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
         print("-- Navigating to History Records")

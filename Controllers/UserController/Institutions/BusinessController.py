@@ -86,7 +86,7 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect signals
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
@@ -241,6 +241,19 @@ class BusinessController(BaseFileController):
 
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
+
+    # FORM DATA HERE [BUSINESS] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'business_name': self.popup.register_BusinessName.text().strip(),  # REQUIRED
+            'business_stat': self.popup.register_comboBox_BusinessStatus.text().strip(),  # REQUIRED
+            'business_address': self.popup.register_BusinessAddress.text().strip(),  # REQUIRED
+            'business_sitio': self.popup.register_comboBox_BusinessAddress_Sitio.text().strip(),  # REQUIRED
+            'business_type': self.popup.register_comboBox_BusinessType.text().strip(),  # REQUIRED
+            'business_desc': self.popup.register_BusinessDesc.to.strip() or None,  # NOT REQUIRED
+            'business_owner_fname': self.popup.register_BusinessOwnerFirstName.text().strip(),  # REQUIRED
+            'business_owner_lname': self.popup.register_BusinessOwnerLastName.text().strip(),  # REQUIRED
+        }
 
     # def upload_business_image(self):
     #     file_path, _ = QFileDialog.getOpenFileName(

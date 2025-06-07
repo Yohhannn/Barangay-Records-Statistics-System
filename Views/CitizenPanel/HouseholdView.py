@@ -23,7 +23,7 @@ class HouseholdView:
         ui_screen.cp_household_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         ui_screen.cp_household_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         ui_screen.cp_household_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect buttons
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)

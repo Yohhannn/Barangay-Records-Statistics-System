@@ -28,7 +28,7 @@ class MedicalHistoryController(BaseFileController):
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.hist_medical_history_screen.histrec_medicalhistory_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.hist_medical_history_screen.histrec_medicalhistory_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        self.hist_medical_history_screen.medicalhistoryList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # self.hist_medical_history_screen.medicalhistoryList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # RECORD BUTTON
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.clicked.connect(self.show_medical_history_popup)
@@ -210,6 +210,14 @@ class MedicalHistoryController(BaseFileController):
                 self.hist_medical_history_screen.display_EncodedBy.setText(record[9])
                 self.hist_medical_history_screen.display_UpdatedBy.setText(record[10])
                 break
+
+    # FORM DATA HERE [MEDICAL HISTORY] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'ctz_id_search': self.popup.record_citizenIDANDsearch.text().strip(),  # REQUIRED
+            'medical_hist_type': self.popup.register_citizen_comboBox_MedicalHistoryOption.text().strip(),  # REQUIRED
+            'medical_hist_desc': self.popup.record_medicalhistory_description.text().strip() or None,
+        }
 
     def validate_medical_hist_fields(self):
         errors = []
