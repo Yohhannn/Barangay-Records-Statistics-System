@@ -37,7 +37,60 @@ class InfrastructureController(BaseFileController):
 
         # REGISTER BUTTON
         self.inst_infrastructure_screen.inst_infra_button_register.clicked.connect(self.show_register_infrastructure_popup)
+        self.inst_infrastructure_screen.inst_InfraName_buttonSearch.clicked.connect(self.perform_infrastructure_search)
 
+    def perform_infrastructure_search(self):
+        search_text = self.inst_infrastructure_screen.inst_InfraName_fieldSearch.text().strip()
+
+        if not search_text:
+            # If empty, reload all infrastructure records
+            self.load_data_infrastructure()
+            return
+
+        query = """
+            SELECT 
+                INF.INF_ID,
+                INF.INF_NAME,
+                IO.INFO_FNAME || ' ' || IO.INFO_LNAME AS INFRASTRUCTURE_OWNER,
+                TO_CHAR(INF.INF_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_REGISTERED
+            FROM INFRASTRUCTURE INF
+            LEFT JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
+            WHERE INF.INF_IS_DELETED = FALSE
+              AND (
+                  CAST(INF.INF_ID AS TEXT) ILIKE %s OR
+                  INF.INF_NAME ILIKE %s OR
+                  (IO.INFO_FNAME || ' ' || IO.INFO_LNAME) ILIKE %s
+              )
+            ORDER BY INF.INF_DATE_ENCODED DESC
+            LIMIT 50;
+        """
+
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            search_pattern = f"%{search_text}%"
+            cursor.execute(query, (search_pattern, search_pattern, search_pattern))
+            rows = cursor.fetchall()
+
+            table = self.inst_infrastructure_screen.inst_tableView_List_RegInfra
+            table.setRowCount(len(rows))
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["ID", "Name", "Owner", "Date Registered"])
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 200)
+            table.setColumnWidth(2, 200)
+            table.setColumnWidth(3, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate(row_data):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.inst_infrastructure_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
 
     def load_data_infrastructure(self):
         try:

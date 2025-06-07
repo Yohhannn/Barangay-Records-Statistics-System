@@ -36,6 +36,8 @@ class MedicalHistoryController(BaseFileController):
 
         # Return Button
         self.hist_medical_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
+        self.hist_medical_history_screen.histrecMedHistoryID_buttonSearch.clicked.connect(
+            self.search_medical_history_data)
 
     def show_medical_history_popup(self):
         print("-- Record Medical History Popup")
@@ -47,6 +49,84 @@ class MedicalHistoryController(BaseFileController):
         self.popup.record_buttonConfirmMedicalHistory_SaveForm.clicked.connect(self.validate_medical_hist_fields)
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
+
+    def search_medical_history_data(self):
+        search_term = self.hist_medical_history_screen.histrec_HistoryID_fieldSearch.text().strip()
+
+        if not search_term:
+            self.load_medical_history_data()
+            return
+
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            query = """
+                SELECT 
+                    MH.MH_ID,
+                    C.CTZ_FIRST_NAME,
+                    C.CTZ_LAST_NAME,
+                    MHT.MHT_TYPE_NAME AS MEDICAL_TYPE,
+                    MH.MH_DESCRIPTION,
+                    TO_CHAR(MH.MH_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_RECORDED,
+                    C.CTZ_ID,
+                    TO_CHAR(MH.MH_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED,
+                    TO_CHAR(MH.MH_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED,
+                    CASE 
+                        WHEN SA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SA.SYS_FNAME || ' ' || 
+                             COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || 
+                             SA.SYS_LNAME
+                    END AS ENCODED_BY,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' || 
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') || 
+                             SUA.SYS_LNAME
+                    END AS UPDATED_BY
+                FROM MEDICAL_HISTORY MH
+                JOIN CITIZEN C ON MH.CTZ_ID = C.CTZ_ID
+                JOIN MEDICAL_HISTORY_TYPE MHT ON MH.MHT_ID = MHT.MHT_ID
+                LEFT JOIN SYSTEM_ACCOUNT SA ON MH.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON MH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE CAST(MH.MH_ID AS TEXT) ILIKE %s OR
+                      C.CTZ_FIRST_NAME ILIKE %s OR
+                      C.CTZ_LAST_NAME ILIKE %s OR
+                      MHT.MHT_TYPE_NAME ILIKE %s
+                ORDER BY MH.MH_DATE_ENCODED DESC
+                LIMIT 50;
+            """
+            search_param = f"%{search_term}%"
+            cursor.execute(query, (search_param, search_param, search_param, search_param))
+            rows = cursor.fetchall()
+            self._populate_medical_history_table(rows)
+
+        except Exception as e:
+            QMessageBox.critical(self.hist_medical_history_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
+    def _populate_medical_history_table(self, rows):
+        table = self.hist_medical_history_screen.histrec_tableView_List_RecordMedicalHistory
+        table.setRowCount(len(rows))
+        table.setColumnCount(4)
+        table.setHorizontalHeaderLabels(["Medical ID", "Citizen Name", "Medical Type", "Date Recorded"])
+
+        table.setColumnWidth(0, 100)
+        table.setColumnWidth(1, 200)
+        table.setColumnWidth(2, 250)
+        table.setColumnWidth(3, 200)
+
+        self.medical_history_rows = rows  # Store for use in display panel
+
+        for row_idx, row in enumerate(rows):
+            full_name = f"{row[1]} {row[2]}"
+            table.setItem(row_idx, 0, QTableWidgetItem(str(row[0])))  # Medical ID
+            table.setItem(row_idx, 1, QTableWidgetItem(full_name))  # Citizen Name
+            table.setItem(row_idx, 2, QTableWidgetItem(row[3]))  # Medical Type
+            table.setItem(row_idx, 3, QTableWidgetItem(row[5] or "N/A"))  # Date Recorded
+        
 
     def load_medical_history_data(self):
         connection = None

@@ -17,6 +17,61 @@ class BusinessController(BaseFileController):
         self.center_on_screen()
         self.load_business_data()
 
+    def perform_business_search(self):
+        search_text = self.inst_business_screen.inst_BusinessName_fieldSearch.text().strip()
+
+        if not search_text:
+            # If empty, reload all businesses
+            self.load_business_data()
+            return
+
+        query = """
+            SELECT 
+                BI.BS_ID,
+                BI.BS_NAME,
+                BI.BS_FNAME || ' ' || BI.BS_LNAME AS BUSINESS_OWNER,
+                TO_CHAR(BI.BS_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_REGISTERED,
+                BT.BST_TYPE_NAME,
+                S.SITIO_NAME
+            FROM BUSINESS_INFO BI
+            JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
+            JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
+            WHERE BI.BS_IS_DELETED = FALSE
+              AND (
+                  CAST(BI.BS_ID AS TEXT) ILIKE %s OR
+                  BI.BS_NAME ILIKE %s OR
+                  (BI.BS_FNAME || ' ' || BI.BS_LNAME) ILIKE %s
+              )
+            ORDER BY BI.BS_ID ASC
+            LIMIT 50;
+        """
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            search_pattern = f"%{search_text}%"
+            cursor.execute(query, (search_pattern, search_pattern, search_pattern))
+            rows = cursor.fetchall()
+
+            table = self.inst_business_screen.inst_tableView_List_RegBusiness
+            table.setRowCount(len(rows))
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["ID", "Business Name", "Owner", "Date Registered"])
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 200)
+            table.setColumnWidth(2, 200)
+            table.setColumnWidth(3, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.inst_business_screen, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
     def setup_business_ui(self):
         """Setup the Business Views layout."""
@@ -37,7 +92,7 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
         self.inst_business_screen.inst_business_button_register.clicked.connect(self.show_register_business_popup)
         self.inst_business_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_business)
-
+        self.inst_business_screen.inst_BusinessName_buttonSearch.clicked.connect(self.perform_business_search)
 
     def load_sitio_list(self):
         try:
@@ -115,8 +170,8 @@ class BusinessController(BaseFileController):
                 JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-                ORDER BY COALESCE(BI.BS_LAST_UPDATED, BI.BS_DATE_ENCODED) DESC
-                LIMIT 20
+                ORDER BY BI.BS_DATE_ENCODED DESC
+                LIMIT 50
            """)
             rows = cursor.fetchall()
             self.rows = rows

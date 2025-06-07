@@ -314,7 +314,7 @@
        <string>Search Transaction ID</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="inst_BusinessName_buttonSearch">
+     <widget class="QPushButton" name="inst_Transaction_buttonSearch">
       <property name="geometry">
        <rect>
         <x>420</x>

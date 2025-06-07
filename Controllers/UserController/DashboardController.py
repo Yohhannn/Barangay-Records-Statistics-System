@@ -176,7 +176,7 @@ class DashboardController(BaseFileController):
                 FROM CITIZEN C
                 JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
                 WHERE C.CTZ_IS_DELETED = FALSE AND C.CTZ_IS_ALIVE = TRUE
-                ORDER BY C.CTZ_DATE_ENCODED DESC
+                ORDER BY C.CTZ_DATE_ENCODED ASC
                 LIMIT 10;
             """)
             rows = cursor.fetchall()

@@ -26,7 +26,7 @@ class ServiceController(BaseFileController):
 
     # Set images and icons
         self.trans_services_screen.btn_returnToTransactionPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
-        self.trans_services_screen.inst_BusinessName_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
+        self.trans_services_screen.inst_Transaction_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
         self.trans_services_screen.trans_Transact_button_create.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.trans_services_screen.trans_Transact_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.trans_services_screen.trans_Transact_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
@@ -37,7 +37,81 @@ class ServiceController(BaseFileController):
         self.trans_services_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_transaction)
 
         # Return Button
+        self.trans_services_screen.inst_Transaction_buttonSearch.clicked.connect(self.search_transaction_data)
         self.trans_services_screen.btn_returnToTransactionPage.clicked.connect(self.goto_transactions_panel)
+
+    def search_transaction_data(self):
+        """Filter transaction data based on ID or Name."""
+        search_term = self.trans_services_screen.trans_TransactionID_fieldSearch.text().strip()
+        if not search_term:
+            self.load_transaction_data()
+            return
+
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            query = """
+                SELECT 
+                    TL.tl_id,
+                    TL.tl_fname,
+                    TL.tl_lname,
+                    TO_CHAR(TL.tl_date_requested, 'FMMonth FMDD, YYYY') AS tl_date_requested_formatted,
+                    TL.tl_status,
+                    TT.tt_type_name,
+                    TL.tl_purpose,
+                    TO_CHAR(TL.tl_date_encoded, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_date_encoded_formatted,
+                    SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME AS ENCODED_BY,
+                    TO_CHAR(TL.tl_last_updated, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_last_updated_formatted,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME
+                FROM TRANSACTION_LOG TL
+                LEFT JOIN TRANSACTION_TYPE TT ON TL.tt_id = TT.tt_id
+                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE TL.tl_is_deleted = FALSE
+                  AND (
+                    CAST(TL.tl_id AS TEXT) ILIKE %s OR
+                    TL.tl_fname ILIKE %s OR
+                    TL.tl_lname ILIKE %s
+                  )
+                ORDER BY TL.tl_id ASC
+                LIMIT 50;
+            """
+            search_param = f"%{search_term}%"
+            cursor.execute(query, (search_param, search_param, search_param))
+            rows = cursor.fetchall()
+            self._populate_table(rows)
+
+        except Exception as e:
+            QMessageBox.critical(self.trans_services_screen, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
+    def _populate_table(self, rows):
+        table = self.trans_services_screen.inst_tableView_List_RegBusiness
+        table.setRowCount(len(rows))
+        table.setColumnCount(4)
+        table.setHorizontalHeaderLabels(["ID", "Name", "Date Requested", "Status"])
+        # Set column widths
+        table.setColumnWidth(0, 50)
+        table.setColumnWidth(1, 200)
+        table.setColumnWidth(2, 150)
+        table.setColumnWidth(3, 150)
+
+        self.transaction_rows = rows  # Store for later use in display panel
+
+        for row_idx, row_data in enumerate(rows):
+            full_name = f"{row_data[1]} {row_data[2]}"
+            table.setItem(row_idx, 0, QTableWidgetItem(str(row_data[0])))  # ID
+            table.setItem(row_idx, 1, QTableWidgetItem(full_name))  # Name
+            table.setItem(row_idx, 2, QTableWidgetItem(row_data[3]))  # Date Requested
+            table.setItem(row_idx, 3, QTableWidgetItem(row_data[4] or "N/A"))  # Status
 
     def load_transaction_data(self):
         connection = None
@@ -70,7 +144,7 @@ class ServiceController(BaseFileController):
 
                 WHERE TL.tl_is_deleted = FALSE
                 ORDER BY TL.tl_id DESC
-                LIMIT 20;
+                LIMIT 50;
             """)
 
             rows = cursor.fetchall()
