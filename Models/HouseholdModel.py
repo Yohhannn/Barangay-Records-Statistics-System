@@ -3,7 +3,7 @@ import shutil
 from database import Database
 
 
-class BusinessModel:
+class HouseholdModel:
     def __init__(self):
         pass
 
@@ -44,7 +44,6 @@ class BusinessModel:
                     HH_ADDRESS,
                     HH_OWNERSHIP_STATUS,
                     HH_HOME_GOOGLE_LINK,
-                    HH_HOME_IMAGE_PATH,
                     HH_INTERVIEWER_NAME,
                     HH_REVIEWER_NAME,
                     HH_DATE_VISIT,
@@ -54,7 +53,7 @@ class BusinessModel:
                     WATER_ID,
                     TOILET_ID,
                     SITIO_ID)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s)
             """
             # HH_HOUSE_NUMBER,
             # HH_ADDRESS,
@@ -73,7 +72,6 @@ class BusinessModel:
                 household_data['home_address'],
                 household_data['ownership_status'],
                 household_data['home_google_link'],
-                household_data['home_image_path'],
                 household_data['interviewer_name'],
                 household_data['reviewer_name'],
                 household_data['date_of_visit'],

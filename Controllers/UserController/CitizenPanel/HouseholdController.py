@@ -291,7 +291,6 @@ class HouseholdController(BaseFileController):
         if not self.view.confirm_registration():
             return
 
-        form_data['home_image_path'] = self.model.image_path
 
         if self.model.save_household_data(form_data, sys_user_id):
             self.view.show_success_message()

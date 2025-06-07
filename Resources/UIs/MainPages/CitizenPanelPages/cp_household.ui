@@ -925,9 +925,9 @@
       <widget class="QLabel" name="cp_displaySitio">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>50</x>
          <y>50</y>
-         <width>81</width>
+         <width>161</width>
          <height>31</height>
         </rect>
        </property>
