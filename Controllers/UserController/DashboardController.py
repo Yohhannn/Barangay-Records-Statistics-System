@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication, QTableWidgetItem, QLineEdit
+from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication, QTableWidgetItem, QFrame, QLineEdit
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from Controllers.BaseFileController import BaseFileController
 from Utils.util_popup import load_popup  # Make sure this import exists
@@ -7,20 +7,42 @@ from database import Database
 
 
 class DashboardController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role=None):
         super().__init__(login_window, emp_first_name, sys_user_id)
 
+        self.user_role = user_role
         self.view = DashboardView(self)
-
         self.sys_user_id = sys_user_id
 
-        print(self.sys_user_id)
+
         self.dashboard_screen = self.load_ui("Resources/UIs/MainPages/dashboard.ui")
-        # self.setWindowTitle(f"{APP_NAME}{self.app_version}")
-        # self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
         self.stack.addWidget(self.dashboard_screen)
         self.view.setup_dashboard_ui(self.dashboard_screen)
         self.load_recent_citizens_data()
+
+        admin_buttons = [
+            self.dashboard_screen.findChild(QPushButton, "nav_buttonAdminPanel"),
+            self.dashboard_screen.findChild(QPushButton, "nav_buttonActivityLogs"),
+        ]
+        admin_frame = self.dashboard_screen.findChild(QFrame, "baseNavFramesub2")  
+
+        if self.user_role in ['Admin', 'Super Admin']:
+            print("Should show admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(True)
+                    btn.setEnabled(True)
+            if admin_frame:
+                admin_frame.setVisible(True)
+        else:
+            print("Should hide admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(False)
+                    btn.setEnabled(False)
+            if admin_frame:
+                admin_frame.setVisible(False)
+
 
     # def show_barangayinfo_initialize(self):
     #     print("-- Navigating to Dashboard > Barangay Info")
@@ -44,13 +66,37 @@ class DashboardController(BaseFileController):
         """Override show to ensure proper centering"""
         super().show()
         self.center_on_screen()
+    
+    # def is_admin(self):
+    #     return self.user_role in ['Admin', 'Super Admin']
+
+
+    def goto_admin_panel(self):
+        print("-- Navigating to Admin Panel")
+        if not hasattr(self, 'admin_panel'):
+            from Controllers.AdminController.AdminPanelController import AdminPanelController
+            self.admin_panel = AdminPanelController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.admin_panel.admin_panel_screen)
+        self.stack.setCurrentWidget(self.admin_panel.admin_panel_screen)
+
+    def goto_activity_logs(self):
+        print("-- Navigating to Activity Logs")
+        if not hasattr(self, 'activity_logs'):
+            from Controllers.AdminController.ActivityLogsController import ActivityLogsController
+            self.activity_logs = ActivityLogsController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.activity_logs.activity_logs_screen)
+        self.stack.setCurrentWidget(self.activity_logs.activity_logs_screen)
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
@@ -60,7 +106,7 @@ class DashboardController(BaseFileController):
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -72,7 +118,7 @@ class DashboardController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -82,7 +128,7 @@ class DashboardController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -92,7 +138,7 @@ class DashboardController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
@@ -200,7 +246,7 @@ class DashboardController(BaseFileController):
         popup.setFixedSize(popup.size())
 
         popup.employeeaccount_buttonChangePIN.setIcon(QIcon('Resources/Icons/FuncIcons/icon_changepin2.svg'))
-        popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Resources/Icons/FuncIcons/icon_adminoverride.svg'))
+        # popup.employeeaccount_buttonAdminOverride.setIcon(QIcon('Resources/Icons/FuncIcons/icon_adminoverride.svg'))
 
         admin_override_button = popup.findChild(QPushButton, "employeeaccount_buttonAdminOverride")
         if admin_override_button:

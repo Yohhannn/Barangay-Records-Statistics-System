@@ -95,6 +95,7 @@ class LoginWindow(QMainWindow):
         except ValueError:
             return False
 
+
     def authenticate_regular_user(self, user_id, user_pin):
         print(f"-- Login Attempt\nSystem User ID: {user_id}\nSystem User PIN: {user_pin}")
 
@@ -103,15 +104,16 @@ class LoginWindow(QMainWindow):
             cursor = connection.cursor
 
             query = """
-            SELECT SYS_FNAME
-            FROM SYSTEM_ACCOUNT 
+            SELECT SYS_FNAME, SYS_ROLE
+            FROM SYSTEM_ACCOUNT
             WHERE SYS_USER_ID = %s AND SYS_PASSWORD = %s
             """
             cursor.execute(query, (user_id, user_pin))
             result = cursor.fetchone()
 
             if result:
-                self.grant_access(result[0], user_id)
+                first_name, user_role = result
+                self.grant_access(first_name, user_role)
             else:
                 QMessageBox.warning(self, "Error", "Invalid credentials")
                 self.clear_fields()
@@ -122,12 +124,14 @@ class LoginWindow(QMainWindow):
             if 'connection' in locals():
                 connection.close()
 
-    def grant_access(self, first_name, sys_user_id):
+    def grant_access(self, first_name, user_role=None):
         self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
-        self.dashboard = DashboardController(self, first_name, sys_user_id)
+        user_id = int(self.login_screen.login_fieldEmp_id.text())
+        self.dashboard = DashboardController(self, first_name, user_id, user_role)
         self.dashboard.show()
         self.close()
 
+        
     def clear_fields(self):
         self.login_screen.login_fieldEmp_id.clear()
         self.login_screen.login_fieldPin.clear()

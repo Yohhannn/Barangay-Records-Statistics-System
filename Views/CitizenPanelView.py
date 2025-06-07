@@ -41,6 +41,8 @@ class CitizenPanelView:
         ui_screen.nav_buttonTransactions.clicked.connect(self.controller.goto_transactions_panel)
         ui_screen.nav_buttonHistoryRecords.clicked.connect(self.controller.goto_history_panel)
         ui_screen.logout_buttonLogout.clicked.connect(self.controller.logout)
+        ui_screen.nav_buttonAdminPanel.clicked.connect(self.controller.goto_admin_panel)
+        ui_screen.nav_buttonActivityLogs.clicked.connect(self.controller.goto_activity_logs)
 
         # SUB PAGES : NAVIGATIONAL BUTTONS --> GOTO
         ui_screen.CP_ButtonCategory_Household.clicked.connect(self.controller.goto_household_sub_panel)

@@ -118,7 +118,8 @@ class DashboardView:
         self.dashboard_screen.nav_buttonTransactions.clicked.connect(self.controller.goto_transactions_panel)
         self.dashboard_screen.nav_buttonHistoryRecords.clicked.connect(self.controller.goto_history_panel)
         self.dashboard_screen.logout_buttonLogout.clicked.connect(self.controller.logout)
-
+        self.dashboard_screen.nav_buttonAdminPanel.clicked.connect(self.controller.goto_admin_panel)
+        self.dashboard_screen.nav_buttonActivityLogs.clicked.connect(self.controller.goto_activity_logs)
 
     # def show_barangayinfo_popup(self):
     #     popup = self.dashboard_screen

@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMessageBox, QApplication
+from PySide6.QtWidgets import QMessageBox, QApplication, QPushButton, QFrame
 
 from Controllers.BaseFileController import BaseFileController
 from Models.HistoryModel import HistoryModel
@@ -6,13 +6,14 @@ from Views.HistoryRecordsView import HistoryRecordsView
 
 
 class HistoryRecordsController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
 
         # INITIALIZE OBJECTS NEEDED
         self.stack = stack
         self.model = HistoryModel()
         self.view = HistoryRecordsView(self)
+        self.user_role = user_role
 
         self.history_screen = self.load_ui("Resources/UIs/MainPages/historyrecords.ui")
 
@@ -21,6 +22,29 @@ class HistoryRecordsController(BaseFileController):
 
         self.login_window = login_window
         self.emp_first_name = emp_first_name
+        
+        admin_buttons = [
+            self.history_screen.findChild(QPushButton, "nav_buttonAdminPanel"),
+            self.history_screen.findChild(QPushButton, "nav_buttonActivityLogs"),
+        ]
+        admin_frame = self.history_screen.findChild(QFrame, "baseNavFramesub2")  
+
+        if self.user_role in ['Admin', 'Super Admin']:
+            print("Should show admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(True)
+                    btn.setEnabled(True)
+            if admin_frame:
+                admin_frame.setVisible(True)
+        else:
+            print("Should hide admin buttons")
+            for btn in admin_buttons:
+                if btn:
+                    btn.setVisible(False)
+                    btn.setEnabled(False)
+            if admin_frame:
+                admin_frame.setVisible(False)
 
 
 #### GOTO
@@ -33,17 +57,37 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)
+    
+    def goto_admin_panel(self):
+        print("-- Navigating to Admin Panel")
+        if not hasattr(self, 'admin_panel'):
+            from Controllers.AdminController.AdminPanelController import AdminPanelController
+            self.admin_panel = AdminPanelController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.admin_panel.admin_panel_screen)
+        self.stack.setCurrentWidget(self.admin_panel.admin_panel_screen)
+
+    def goto_activity_logs(self):
+        print("-- Navigating to Activity Logs")
+        if not hasattr(self, 'activity_logs'):
+            from Controllers.AdminController.ActivityLogsController import ActivityLogsController
+            self.activity_logs = ActivityLogsController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.activity_logs.activity_logs_screen)
+        self.stack.setCurrentWidget(self.activity_logs.activity_logs_screen)
 
     def goto_statistics_panel(self):
         """Handle navigation to Statistics Panel screen."""
         print("-- Navigating to Statistics")
         if not hasattr(self, 'statistics_panel'):
             from Controllers.UserController.StatisticsController import StatisticsController
-            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.statistics_panel = StatisticsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.statistics_panel.statistics_screen)
 
         self.stack.setCurrentWidget(self.statistics_panel.statistics_screen)
@@ -53,7 +97,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Institutions")
         if not hasattr(self, 'institutions_panel'):
             from Controllers.UserController.InstitutionController import InstitutionsController
-            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.institutions_panel = InstitutionsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.institutions_panel.institutions_screen)
 
         self.stack.setCurrentWidget(self.institutions_panel.institutions_screen)
@@ -63,7 +107,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions_panel'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)
@@ -131,7 +175,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Citizen History")
         if not hasattr(self, 'citizen_history'):
             from Controllers.UserController.HistoryRecords.CitizenHistoryController import CitizenHistoryController
-            self.citizen_history_panel = CitizenHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_history_panel = CitizenHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_history_panel.hist_citizen_history_screen)
 
         self.stack.setCurrentWidget(self.citizen_history_panel.hist_citizen_history_screen)
@@ -141,7 +185,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Medical History")
         if not hasattr(self, 'medical_history'):
             from Controllers.UserController.HistoryRecords.MedicalHistoryController import MedicalHistoryController
-            self.medical_history_panel = MedicalHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.medical_history_panel = MedicalHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.medical_history_panel.hist_medical_history_screen)
 
         self.stack.setCurrentWidget(self.medical_history_panel.hist_medical_history_screen)
@@ -151,7 +195,7 @@ class HistoryRecordsController(BaseFileController):
         print("-- Navigating to Settlement History")
         if not hasattr(self, 'settlement_history'):
             from Controllers.UserController.HistoryRecords.SettlementHistoryController import SettlementHistoryController
-            self.settlement_history_panel = SettlementHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.settlement_history_panel = SettlementHistoryController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.settlement_history_panel.hist_settlement_history_screen)
 
         self.stack.setCurrentWidget(self.settlement_history_panel.hist_settlement_history_screen)
