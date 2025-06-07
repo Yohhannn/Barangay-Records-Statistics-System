@@ -31,7 +31,7 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect signals
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)

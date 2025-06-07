@@ -28,7 +28,7 @@ class MedicalHistoryController(BaseFileController):
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.hist_medical_history_screen.histrec_medicalhistory_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.hist_medical_history_screen.histrec_medicalhistory_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        self.hist_medical_history_screen.medicalhistoryList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # self.hist_medical_history_screen.medicalhistoryList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # RECORD BUTTON
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.clicked.connect(self.show_medical_history_popup)

@@ -174,7 +174,7 @@ class CitizenView:
         ui_screen.cp_citizen_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         ui_screen.cp_citizen_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         ui_screen.cp_citizen_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        ui_screen.profileList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # ui_screen.profileList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
         ui_screen.cp_citizen_button_register.clicked.connect(self.controller.show_register_citizen_part_01_initialize)
         ui_screen.cp_tableView_List_RegCitizens.cellClicked.connect(self.controller.handle_row_click_citizen)
