@@ -334,11 +334,11 @@ CREATE TABLE FAMILY_PLANNING (
 );
 
 
-CREATE TABLE BUSINESS_OWNER(
-                               BSO_ID SERIAL PRIMARY KEY,
-                               BSO_FNAME VARCHAR(50) NOT NULL,
-                               BSO_LNAME VARCHAR(50) NOT NULL,
-                               BSO_MI CHAR(1)
+-- CREATE TABLE BUSINESS_OWNER(
+--                                BSO_ID SERIAL PRIMARY KEY,
+--                                BSO_FNAME VARCHAR(50) NOT NULL,
+--                                BSO_LNAME VARCHAR(50) NOT NULL,
+--                                BSO_MI CHAR(1)
 );
 
 CREATE TABLE BUSINESS_TYPE(
@@ -357,7 +357,7 @@ CREATE TYPE business_status_enum AS ENUM(
 CREATE TABLE BUSINESS_INFO (
                                BS_ID SERIAL PRIMARY KEY,
                                BS_NAME VARCHAR(100) NOT NULL,
-                               BS_DESCRIPTION TEXT NOT NULL,
+                               BS_DESCRIPTION TEXT,
                                BS_STATUS business_status_enum NOT NULL,
                                BS_IS_DTI BOOLEAN NOT NULL,
                                BS_DTI_IMAGE TEXT,
@@ -367,8 +367,10 @@ CREATE TABLE BUSINESS_INFO (
                                BS_IS_DELETED BOOLEAN DEFAULT FALSE,
                                BS_IS_PENDING_DELETE BOOLEAN DEFAULT FALSE,
                                BS_DELETE_REQ_REASON TEXT,
+                               BS_FNAME VARCHAR(50) NOT NULL,
+                               BS_LNAME VARCHAR(50) NOT NULL,
                                BST_ID INT NOT NULL REFERENCES BUSINESS_TYPE(BST_ID),
-                               BSO_ID INT NOT NULL REFERENCES BUSINESS_OWNER(BSO_ID),
+--                                BSO_ID INT NOT NULL REFERENCES BUSINESS_OWNER(BSO_ID),
                                SITIO_ID INT NOT NULL REFERENCES SITIO(SITIO_ID) ON DELETE CASCADE ON UPDATE CASCADE,
                                ENCODED_BY_SYS_ID INT NOT NULL,
                                LAST_UPDATED_BY_SYS_ID INT NOT NULL,
@@ -983,10 +985,10 @@ VALUES
     (5, 'Franchise'),
     (6, 'Others');
 
-INSERT INTO BUSINESS_OWNER (BSO_FNAME, BSO_LNAME, BSO_MI)
-VALUES
-        ('Alfredo', 'Garcia', 'D'),
-        ('Corazon', 'Ramos', 'M');
+-- INSERT INTO BUSINESS_OWNER (BSO_FNAME, BSO_LNAME, BSO_MI)
+-- VALUES
+--         ('Alfredo', 'Garcia', 'D'),
+--         ('Corazon', 'Ramos', 'M');
 
 INSERT INTO BUSINESS_INFO (
     BS_NAME,
@@ -996,23 +998,26 @@ INSERT INTO BUSINESS_INFO (
     BS_DTI_IMAGE,
     BS_ADDRESS,
     BST_ID,
-    BSO_ID,
     ENCODED_BY_SYS_ID,
    LAST_UPDATED_BY_SYS_ID,
+    BS_FNAME,
+    BS_LNAME,
     SITIO_ID
 ) VALUES
       ('Aling Nena''s Sari-sari', 'General merchandise store', 'ACTIVE', FALSE, NULL, '123 Purok Santan',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
-       (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Garcia'),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
+       'Alfredo','Garcia',
        1),
 
       ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'ACTIVE', TRUE, '/dti/repair123.jpg', '456 Purok Rosas',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
-       (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Ramos'),
+--       (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Ramos'),
+
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1002),
-       (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
+       (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),'Corazon',
+       'Ramos',
        2);
 
 -- HEALTH
