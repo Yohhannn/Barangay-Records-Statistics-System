@@ -278,9 +278,12 @@ class BusinessController(BaseFileController):
                 "Please complete all required fields:\n\n• " + "\n• ".join(errors)
             )
         else:
-            self.confirm_and_save()
+            self.confirm_and_save(form_data)
 
-    def confirm_and_save(self):
+    def confirm_and_save(self, form_data):
+        sys_user_id = self.sys_user_id
+
+
         reply = QMessageBox.question(
             self.popup,
             "Confirm Registration",
@@ -294,6 +297,21 @@ class BusinessController(BaseFileController):
             QMessageBox.information(self.popup, "Success", "Business successfully registered!")
             self.popup.close()
             self.load_business_data()  # Refresh the business list
+
+
+        # sys_user_id = self.sys_user_id
+        # if not self.view.confirm_registration():
+        #     return
+        #
+        # form_data['home_image_path'] = self.model.image_path
+        #
+        # if self.model.save_household_data(form_data, sys_user_id):
+        #     self.view.show_success_message()
+        #     self.view.popup.close()
+        #     self.load_household_data()
+        # else:
+        #     self.view.show_error_dialog("Database error occurred")
+        #
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""
