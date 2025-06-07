@@ -208,19 +208,112 @@ class ServiceController(BaseFileController):
         self.popup.register_buttonConfirmTransaction_SaveForm.clicked.connect(self.validate_transaction_fields)
 
         self.popup.setWindowModality(Qt.ApplicationModal)
+        self.load_transaction_types()
         self.popup.exec_()
 
     # FORM DATA HERE [SERVICES] -------------------------------------------------------------------------------
     def get_form_data(self):
         return {
-            'serv_req_first_name': self.popup.register_ReqFirstName.text().strip(),  # REQUIRED
-            'serv_req_last_name': self.popup.register_ReqLastName.text().strip(),  # REQUIRED
-            'serv_tran_date_req': self.popup.register_transaction_date_daterequested.date().toString("yyyy-MM-dd"),  # REQUIRED
-            'serv_tran_status': self.popup.register_comboBox_TransactionStatus.text().strip(),  # REQUIRED
-            'serv_tran_type': self.popup.register_comboBox_TransactionType.text().strip(), # REQUIRED
-            'serv_req_reason': self.popup.register_Reason.text().strip() or None,
-            'serv_req_purpose': self.popup.register_Purpose.text().strip(),  # REQUIRED
+            'fname': self.popup.register_ReqFirstName.text().strip(),
+            'lname': self.popup.register_ReqLastName.text().strip(),
+            'status': self.popup.register_comboBox_TransactionStatus.currentText().strip(),
+            'purpose': self.popup.register_Purpose.toPlainText().strip(),
+            'transaction_type': self.popup.register_comboBox_TransactionType.currentText().strip()
         }
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Transaction",
+            "Are you sure you want to create this transaction?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply != QMessageBox.Yes:
+            return
+
+        db = None
+        connection = None
+        try:
+            # Initialize DB connection
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # Get form data
+            req_fname = self.popup.register_ReqFirstName.text().strip()
+            req_lname = self.popup.register_ReqLastName.text().strip()
+            status = self.popup.register_comboBox_TransactionStatus.currentText().strip()
+            purpose = self.popup.register_Purpose.toPlainText().strip()
+            transaction_type = self.popup.register_comboBox_TransactionType.currentText().strip()
+
+            # Validate required fields
+            if not req_fname:
+                raise Exception("Requester First Name is required")
+            if not req_lname:
+                raise Exception("Requester Last Name is required")
+            if not transaction_type:
+                raise Exception("Transaction Type is required")
+
+            # Get transaction type ID
+            cursor.execute("SELECT TT_ID FROM TRANSACTION_TYPE WHERE TT_TYPE_NAME = %s", (transaction_type,))
+            tt_result = cursor.fetchone()
+            if not tt_result:
+                raise Exception(f"Transaction type '{transaction_type}' not found.")
+            tt_id = tt_result[0]
+
+            # Insert into TRANSACTION_LOG
+            insert_query = """
+            INSERT INTO TRANSACTION_LOG (
+                TL_FNAME,
+                TL_LNAME,
+                TL_STATUS,
+                TL_PURPOSE,
+                TL_DATE_REQUESTED,
+                TT_ID,
+                ENCODED_BY_SYS_ID,
+                LAST_UPDATED_BY_SYS_ID
+            ) VALUES (
+                %(fname)s,
+                %(lname)s,
+                %(status)s,
+                %(purpose)s,
+                NOW(),
+                %(tt_id)s,
+                %(encoded_by)s,
+                %(last_updated_by)s
+            ) RETURNING TL_ID;
+            """
+
+            encoded_by = self.sys_user_id
+            last_updated_by = self.sys_user_id
+
+            cursor.execute(insert_query, {
+                'fname': req_fname,
+                'lname': req_lname,
+                'status': status,
+                'purpose': purpose,
+                'tt_id': tt_id,
+                'encoded_by': encoded_by,
+                'last_updated_by': last_updated_by
+            })
+
+            new_tl_id = cursor.fetchone()[0]
+            connection.commit()
+
+            QMessageBox.information(self.popup, "Success", f"Transaction successfully created! ID: {new_tl_id}")
+            self.popup.close()
+            self.load_transaction_data()  # Refresh the transaction list
+
+        except Exception as e:
+            if connection:
+                connection.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
+
 
     def validate_transaction_fields(self):
         errors = []
@@ -300,20 +393,21 @@ class ServiceController(BaseFileController):
         else:
             self.confirm_and_save()
 
-    def confirm_and_save(self):
-        reply = QMessageBox.question(
-            self.popup,
-            "Confirm Registration",
-            "Are you sure you want to register this transaction?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
-        )
+    def load_transaction_types(self):
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT TT_ID, TT_TYPE_NAME FROM TRANSACTION_TYPE ORDER BY TT_TYPE_NAME ASC;")
+            results = cursor.fetchall()
+            combo = self.popup.register_comboBox_TransactionType
+            combo.clear()
+            for tt_id, tt_name in results:
+                combo.addItem(tt_name, tt_id)
+        except Exception as e:
+            print(f"Failed to load transaction types: {e}")
+        finally:
+            db.close()
 
-        if reply == QMessageBox.Yes:
-            print("-- Form Submitted")
-            QMessageBox.information(self.popup, "Success", "Transaction successfully registered!")
-            self.popup.close()
-            self.load_transaction_data()
 
 
     def goto_transactions_panel(self):

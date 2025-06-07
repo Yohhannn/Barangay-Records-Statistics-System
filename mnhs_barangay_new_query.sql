@@ -346,11 +346,12 @@ CREATE TABLE BUSINESS_TYPE(
 );
 
 CREATE TYPE business_status_enum AS ENUM(
-    'ACTIVE',
-    'INACTIVE',
-    'CLOSED',
-    'SUSPENDED'
+    'Active',
+    'Inactive',
+    'Closed',
+    'Suspended'
     );
+
 --
 -- Table: BUSINESS_INFO
 CREATE TABLE BUSINESS_INFO (
@@ -995,14 +996,14 @@ INSERT INTO BUSINESS_INFO (
     BS_LNAME,
     SITIO_ID
 ) VALUES
-      ('Aling Nena''s Sari-sari', 'General merchandise store', 'ACTIVE', FALSE, '123 Purok Santan',
+      ('Aling Nena''s Sari-sari', 'General merchandise store', 'Active', FALSE, '123 Purok Santan',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
        'Alfredo','Garcia',
        1),
 
-      ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'ACTIVE', TRUE, '456 Purok Rosas',
+      ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'Active', TRUE, '456 Purok Rosas',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
 --       (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Ramos'),
 

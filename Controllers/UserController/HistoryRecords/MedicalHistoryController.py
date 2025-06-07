@@ -48,8 +48,23 @@ class MedicalHistoryController(BaseFileController):
         self.popup.record_buttonConfirmMedicalHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
         self.popup.record_buttonConfirmMedicalHistory_SaveForm.clicked.connect(self.validate_medical_hist_fields)
         self.popup.setWindowModality(Qt.ApplicationModal)
+        self.load_medical_history_types()
         self.popup.exec_()
 
+    def load_medical_history_types(self):
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT MHT_ID, MHT_TYPE_NAME FROM MEDICAL_HISTORY_TYPE ORDER BY MHT_TYPE_NAME ASC;")
+            results = cursor.fetchall()
+            combo = self.popup.register_citizen_comboBox_MedicalHistoryOption
+            combo.clear()
+            for mht_id, mht_name in results:
+                combo.addItem(mht_name, mht_id)
+        except Exception as e:
+            print(f"Failed to load medical history types: {e}")
+        finally:
+            db.close()
     def search_medical_history_data(self):
         search_term = self.hist_medical_history_screen.histrec_HistoryID_fieldSearch.text().strip()
 
@@ -223,15 +238,40 @@ class MedicalHistoryController(BaseFileController):
         errors = []
 
         # Validate Medical Record Citizen ID
-        if not self.popup.record_citizenIDANDsearch.text().strip():
-            errors.append("Info citizen ID is required")
+        citizen_search = self.popup.record_citizenIDANDsearch.text().strip()
+        if not citizen_search:
+            errors.append("Citizen ID or Name is required")
             self.popup.record_citizenIDANDsearch.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
-            self.popup.record_citizenIDANDsearch.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            )
+            db = None
+            try:
+                db = Database()
+                cursor = db.get_cursor()
+                cursor.execute("""
+                    SELECT CTZ_ID FROM CITIZEN 
+                    WHERE CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                """, (citizen_search, f"%{citizen_search}%"))
+
+                result = cursor.fetchone()
+                if not result:
+                    errors.append("Citizen ID or Name does not exist")
+                    self.popup.record_citizenIDANDsearch.setStyleSheet(
+                        "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+                else:
+                    self.popup.record_citizenIDANDsearch.setStyleSheet(
+                        "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+            except Exception as e:
+                errors.append("Error validating citizen info")
+                self.popup.record_citizenIDANDsearch.setStyleSheet(
+                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                )
+            finally:
+                if db:
+                    db.close()
 
         # Validate Medical History Type
         if self.popup.register_citizen_comboBox_MedicalHistoryOption.currentIndex() == -1:
@@ -267,17 +307,98 @@ class MedicalHistoryController(BaseFileController):
     def confirm_and_save(self):
         reply = QMessageBox.question(
             self.popup,
-            "Confirm Record",
+            "Confirm Medical History",
             "Are you sure you want to record this medical history?",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
 
-        if reply == QMessageBox.Yes:
-            print("-- Form Submitted")
-            QMessageBox.information(self.popup, "Success", "Medical History successfully recorded!")
+        if reply != QMessageBox.Yes:
+            return
+
+        db = None
+        connection = None
+        try:
+            # Initialize DB connection
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # Get form data
+            ctz_id_search = self.popup.record_citizenIDANDsearch.text().strip()
+            mht_type_name = self.popup.register_citizen_comboBox_MedicalHistoryOption.currentText().strip()
+            mh_description = self.popup.record_medicalhistory_description.toPlainText().strip()
+
+            # Validate required fields
+            if not ctz_id_search:
+                raise Exception("Citizen ID or Name is required")
+            if not mht_type_name:
+                raise Exception("Medical History Type is required")
+            if not mh_description:
+                raise Exception("Medical Description is required")
+
+            # Find CITIZEN by ID or name
+            cursor.execute("""
+                SELECT CTZ_ID FROM CITIZEN 
+                WHERE CTZ_ID = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+            """, (ctz_id_search, f"%{ctz_id_search}%"))
+
+            ctz_result = cursor.fetchone()
+            if not ctz_result:
+                raise Exception(f"No citizen found with ID or name containing '{ctz_id_search}'")
+            ctz_id = ctz_result[0]
+
+            # Get MEDICAL_HISTORY_TYPE ID
+            cursor.execute("SELECT MHT_ID FROM MEDICAL_HISTORY_TYPE WHERE MHT_TYPE_NAME = %s", (mht_type_name,))
+            mht_result = cursor.fetchone()
+            if not mht_result:
+                raise Exception(f"Medical history type '{mht_type_name}' not found.")
+            mht_id = mht_result[0]
+
+            # Insert into MEDICAL_HISTORY
+            insert_query = """
+            INSERT INTO MEDICAL_HISTORY (
+                MH_DESCRIPTION,
+                MH_DATE_DIAGNOSED,
+                MHT_ID,
+                CTZ_ID,
+                ENCODED_BY_SYS_ID,
+                LAST_UPDATED_BY_SYS_ID
+            ) VALUES (
+                %(description)s,
+                NOW(),
+                %(mht_id)s,
+                %(ctz_id)s,
+                %(encoded_by)s,
+                %(last_updated_by)s
+            ) RETURNING MH_ID;
+            """
+
+            encoded_by = self.sys_user_id
+            last_updated_by = self.sys_user_id
+
+            cursor.execute(insert_query, {
+                'description': mh_description,
+                'mht_id': mht_id,
+                'ctz_id': ctz_id,
+                'encoded_by': encoded_by,
+                'last_updated_by': last_updated_by
+            })
+
+            new_mh_id = cursor.fetchone()[0]
+            connection.commit()
+
+            QMessageBox.information(self.popup, "Success", f"Medical History successfully recorded! ID: {new_mh_id}")
             self.popup.close()
-            self.load_medical_history_data()
+            self.load_medical_history_data()  # Refresh the history list
+
+        except Exception as e:
+            if connection:
+                connection.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
 
     def goto_history_panel(self):

@@ -226,15 +226,14 @@ class SettlementHistoryController(BaseFileController):
     # FORM DATA HERE [SETTLEMENT HISTORY] -------------------------------------------------------------------------------
     def get_form_data(self):
         return {
-            'com_first_name': self.popup.record_ComplainantFirstName.text().strip(),  # REQUIRED
-            'com_middle_init': self.popup.record_ComplainantMiddleInitial.text().strip(),  # REQUIRED
-            'com_last_name': self.popup.record_ComplainantLastName.text().strip(),  # REQUIRED
-            'ctz_id_search': self.popup.record_citizenIDANDsearch.text().strip(),  # REQUIRED
-            'com_desc': self.popup.record_ComplaintDesc.text().strip(), # REQUIRED
-            'sett_desc': self.popup.record_SettlementDesc.text().strip(), # REQUIRED
-            'date_settled': self.popup.record_DateOfSettlement.date().toString("yyyy-MM-dd"),  # REQUIRED
+            'comp_fname': self.popup.record_ComplainantFirstName.text().strip(),
+            'comp_mname': self.popup.record_ComplainantMiddleInitial.text().strip() or None,
+            'comp_lname': self.popup.record_ComplainantLastName.text().strip(),
+            'ctz_search': self.popup.record_citizenIDANDsearch.text().strip(),
+            'complaint_desc': self.popup.record_ComplaintDesc.toPlainText().strip(),
+            'settlement_desc': self.popup.record_SettlementDesc.toPlainText().strip(),
+            'date_settled': self.popup.record_DateOfSettlement.date().toString("yyyy-MM-dd"),
         }
-
     def validate_settlement_hist_fields(self):
         errors = []
 
@@ -316,17 +315,135 @@ class SettlementHistoryController(BaseFileController):
     def confirm_and_save(self):
         reply = QMessageBox.question(
             self.popup,
-            "Confirm Record",
-            "Are you sure you want to record this settlement history?",
+            "Confirm Settlement",
+            "Are you sure you want to record this settlement?",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
 
-        if reply == QMessageBox.Yes:
-            print("-- Form Submitted")
-            QMessageBox.information(self.popup, "Success", "Settlement History successfully recorded!")
+        if reply != QMessageBox.Yes:
+            return
+
+        db = None
+        connection = None
+        try:
+            # Initialize DB connection
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # Get form data
+            comp_fname = self.popup.record_ComplainantFirstName.text().strip()
+            comp_mname = self.popup.record_ComplainantMiddleInitial.text().strip() or None
+            comp_lname = self.popup.record_ComplainantLastName.text().strip()
+            ctz_search = self.popup.record_citizenIDANDsearch.text().strip()
+            complaint_desc = self.popup.record_ComplaintDesc.toPlainText().strip()
+            settlement_desc = self.popup.record_SettlementDesc.toPlainText().strip()
+            date_settled = self.popup.record_DateOfSettlement.date().toString("yyyy-MM-dd")
+
+            # Validate required fields
+            if not comp_fname:
+                raise Exception("Complainant First Name is required")
+            if not comp_lname:
+                raise Exception("Complainant Last Name is required")
+            if not ctz_search:
+                raise Exception("Citizen ID or Name is required")
+            if not complaint_desc:
+                raise Exception("Complaint Description is required")
+            if not settlement_desc:
+                raise Exception("Settlement Description is required")
+
+            # Step 1: Insert into COMPLAINANT
+            cursor.execute("""
+                INSERT INTO COMPLAINANT (COMP_FNAME, COMP_MNAME, COMP_LNAME)
+                VALUES (%s, %s, %s)
+                RETURNING COMP_ID;
+            """, (comp_fname, comp_mname, comp_lname))
+
+            comp_id = cursor.fetchone()[0]
+
+            # Step 2: Find CITIZEN by ID or name
+            cursor.execute("""
+                SELECT CTZ_ID FROM CITIZEN 
+                WHERE CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+            """, (ctz_search, f"%{ctz_search}%"))
+
+            ctz_result = cursor.fetchone()
+            if not ctz_result:
+                raise Exception(f"No citizen found with ID or name containing '{ctz_search}'")
+            ctz_id = ctz_result[0]
+
+            # Step 3: Insert into CITIZEN_HISTORY (needed before settlement)
+            cursor.execute("""
+                INSERT INTO CITIZEN_HISTORY (CIHI_DESCRIPTION, HIST_ID, CTZ_ID, ENCODED_BY_SYS_ID, LAST_UPDATED_BY_SYS_ID)
+                VALUES (%s, %s, %s, %s, %s)
+                RETURNING CIHI_ID;
+            """, (
+                complaint_desc,  # As part of citizen history
+                1,  # Assuming default HIST_ID for complaint
+                ctz_id,
+                self.sys_user_id,
+                self.sys_user_id
+            ))
+
+            cihi_id = cursor.fetchone()[0]
+
+            # Step 4: Insert into SETTLEMENT_LOG
+            insert_query = """
+            INSERT INTO SETTLEMENT_LOG (
+                SETT_COMPLAINT_DESCRIPTION,
+                SETT_SETTLEMENT_DESCRIPTION,
+                SETT_DATE_OF_SETTLEMENT,
+                SETT_DATE_ENCODED,
+                SETT_LAST_UPDATED,
+                SETT_IS_DELETED,
+                SETT_IS_PENDING_DELETE,
+                COMP_ID,
+                CIHI_ID,
+                ENCODED_BY_SYS_ID,
+                LAST_UPDATED_BY_SYS_ID
+            ) VALUES (
+                %(complaint_desc)s,
+                %(settlement_desc)s,
+                %(date_settled)s,
+                NOW(),
+                NOW(),
+                FALSE,
+                FALSE,
+                %(comp_id)s,
+                %(cihi_id)s,
+                %(encoded_by)s,
+                %(last_updated_by)s
+            ) RETURNING SETT_ID;
+            """
+
+            encoded_by = self.sys_user_id
+            last_updated_by = self.sys_user_id
+
+            cursor.execute(insert_query, {
+                'complaint_desc': complaint_desc,
+                'settlement_desc': settlement_desc,
+                'date_settled': date_settled,
+                'comp_id': comp_id,
+                'cihi_id': cihi_id,
+                'encoded_by': encoded_by,
+                'last_updated_by': last_updated_by
+            })
+
+            new_sett_id = cursor.fetchone()[0]
+            connection.commit()
+
+            QMessageBox.information(self.popup, "Success", f"Settlement successfully recorded! ID: {new_sett_id}")
             self.popup.close()
-            self.load_settlement_history_data()
+            self.load_settlement_history_data()  # Refresh the list
+
+        except Exception as e:
+            if connection:
+                connection.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""

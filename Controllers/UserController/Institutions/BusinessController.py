@@ -242,18 +242,7 @@ class BusinessController(BaseFileController):
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
 
-    # FORM DATA HERE [BUSINESS] -------------------------------------------------------------------------------
-    def get_form_data(self):
-        return {
-            'business_name': self.popup.register_BusinessName.text().strip(),  # REQUIRED
-            'business_stat': self.popup.register_comboBox_BusinessStatus.text().strip(),  # REQUIRED
-            'business_address': self.popup.register_BusinessAddress.text().strip(),  # REQUIRED
-            'business_sitio': self.popup.register_comboBox_BusinessAddress_Sitio.text().strip(),  # REQUIRED
-            'business_type': self.popup.register_comboBox_BusinessType.text().strip(),  # REQUIRED
-            'business_desc': self.popup.register_BusinessDesc.to.strip() or None,  # NOT REQUIRED
-            'business_owner_fname': self.popup.register_BusinessOwnerFirstName.text().strip(),  # REQUIRED
-            'business_owner_lname': self.popup.register_BusinessOwnerLastName.text().strip(),  # REQUIRED
-        }
+
 
     # def upload_business_image(self):
     #     file_path, _ = QFileDialog.getOpenFileName(
@@ -387,57 +376,100 @@ class BusinessController(BaseFileController):
         if reply != QMessageBox.Yes:
             return
 
+        db = None
+        connection = None
+        try:
+            print("-- Form Submitted")
 
+            # Initialize DB connection
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
 
-        print("-- Form Submitted")
+            # --- Validate SITIO ---
+            sitio_name = self.popup.register_comboBox_BusinessAddress_Sitio.currentText().strip()
+            cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (sitio_name,))
+            sitio_result = cursor.fetchone()
+            if not sitio_result:
+                raise Exception(f"Sitio '{sitio_name}' not found in database.")
+            sitio_id = sitio_result[0]
 
-        # Get form data
-        # form_data = self.get_form_data()
-        # if not form_data:
-        #     QMessageBox.critical(self.part3_popup, "Error", "No data to save.")
-        #     return
+            # --- Validate Business Type ---
+            bst_name = self.popup.register_comboBox_BusinessType.currentText().strip()
+            cursor.execute("SELECT bst_id FROM business_type WHERE bst_type_name = %s", (bst_name,))
+            bst_result = cursor.fetchone()
+            if not bst_result:
+                raise Exception(f"Business type '{bst_name}' not found in database.")
+            bst_id = bst_result[0]
 
-        db = Database()
-        connection = db.conn
-        cursor = connection.cursor()
+            # Get form data
+            business_name = self.popup.register_BusinessName.text().strip()
+            business_address = self.popup.register_BusinessAddress.text().strip()
+            business_description = self.popup.register_BusinessDesc.toPlainText().strip()
+            owner_fname = self.popup.register_BusinessOwnerFirstName.text().strip()
+            owner_lname = self.popup.register_BusinessOwnerLastName.text().strip()
+            status = self.popup.register_comboBox_BusinessStatus.currentText().strip()
 
+            # Insert into BUSINESS_INFO
+            insert_query = """
+            INSERT INTO business_info (
+                BS_NAME, 
+                BS_DESCRIPTION, 
+                BS_STATUS, 
+                BS_IS_DTI,
+                BS_ADDRESS, 
+                BST_ID, 
+                BS_FNAME, 
+                BS_LNAME, 
+                SITIO_ID, 
+                ENCODED_BY_SYS_ID, 
+                LAST_UPDATED_BY_SYS_ID
+            ) VALUES (
+                %(business_name)s, 
+                %(description)s, 
+                %(status)s, 
+                %(is_dti)s, 
+                %(address)s, 
+                %(bst_id)s, 
+                %(fname)s, 
+                %(lname)s, 
+                %(sitio_id)s, 
+                %(encoded_by)s, 
+                %(last_updated_by)s
+            ) RETURNING BS_ID;
+            """
 
-        # --- Validate SITIO ---
-        cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (self.popup.register_comboBox_BusinessAddress_Sitio.currentText().strip(),))
-        sitio_result = cursor.fetchone()
-        if not sitio_result:
-            raise Exception(f"Sitio '{self.popup.register_comboBox_BusinessAddress_Sitio.currentText().strip()}' not found in database.")
-        sitio_id = sitio_result[0]
+            encoded_by = self.sys_user_id
+            last_updated_by = self.sys_user_id
 
-        # --- Validate business type ---
-        cursor.execute("SELECT bst_id FROM business_type WHERE bst_type_name = %s", (self.popup.register_comboBox_BusinessType.currentText().strip(),))
-        bst_result = cursor.fetchone()
-        if not bst_result:
-            raise Exception(f"Sitio '{self.popup.register_comboBox_BusinessType.currentText().strip()}' not found in database.")
-        bst_id = bst_result[0]
+            cursor.execute(insert_query, {
+                'business_name': business_name,
+                'description': business_description,
+                'status': status,
+                'is_dti': False,  # <-- Always set to False
+                'address': business_address,
+                'bst_id': bst_id,
+                'fname': owner_fname,
+                'lname': owner_lname,
+                'sitio_id': sitio_id,
+                'encoded_by': encoded_by,
+                'last_updated_by': last_updated_by
+            })
 
-        business_query = """
-        INSERT INTO business_info (
-            
-        )
-        VALUES (%s, %s,)
-        RETURNING bs_id;
-        """
-        #
-        # reply = QMessageBox.question(
-        #     self.popup,
-        #     "Confirm Registration",
-        #     "Are you sure you want to register this business?",
-        #     QMessageBox.Yes | QMessageBox.No,
-        #     QMessageBox.No
-        # )
-        #
-        # if reply == QMessageBox.Yes:
-        #     print("-- Form Submitted")
-        #     QMessageBox.information(self.popup, "Success", "Business successfully registered!")
-        #     self.popup.close()
-        #     self.load_business_data()  # Refresh the business list
+            new_bs_id = cursor.fetchone()[0]
+            connection.commit()
 
+            QMessageBox.information(self.popup, "Success", f"Business successfully registered! ID: {new_bs_id}")
+            self.popup.close()
+            self.load_business_data()
+
+        except Exception as e:
+            if connection:
+                connection.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""

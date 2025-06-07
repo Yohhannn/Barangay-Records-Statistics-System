@@ -733,6 +733,11 @@
     </item>
     <item>
      <property name="text">
+      <string>Suspended</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Inactive</string>
      </property>
     </item>

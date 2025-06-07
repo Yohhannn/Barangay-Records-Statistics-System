@@ -195,9 +195,9 @@ class CitizenHistoryController(BaseFileController):
     # FORM DATA HERE [CITIZEN HISTORY] -------------------------------------------------------------------------------
     def get_form_data(self):
         return {
-            'ctz_id_search': self.popup.record_citizenIDANDsearch.text().strip(),  # REQUIRED
-            'ctz_hit_type': self.popup.record_comboBox_citizenhistory_type.text().strip(),  # REQUIRED
-            'hist_desc': self.popup.record_citizenhistory_description.text().strip(), # REQUIRED
+            'citizen_search': self.popup.record_citizenIDANDsearch.text().strip(),
+            'hist_type': self.popup.record_comboBox_citizenhistory_type.currentText().strip(),
+            'description': self.popup.record_citizenhistory_description.toPlainText().strip()
         }
 
     def goto_history_panel(self):
