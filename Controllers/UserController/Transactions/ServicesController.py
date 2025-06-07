@@ -124,33 +124,108 @@ class ServiceController(BaseFileController):
 
     def show_transaction_popup(self):
         print("-- Create Transaction Popup")
-        popup = load_popup("Resources/UIs/PopUp/Screen_Transactions/create_transaction.ui", self)
-        popup.setWindowTitle("Mapro: Create New Transaction")
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Transactions/create_transaction.ui", self)
+        self.popup.setWindowTitle("Mapro: Create New Transaction")
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.register_buttonConfirmTransaction_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmTransaction_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmTransaction_SaveForm.clicked.connect(self.validate_transaction_fields)
 
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "register_buttonConfirmTransaction_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Creation",
-                    "Are you sure you want to create this transaction?",
-                    QMessageBox.Yes | QMessageBox.No,
-                    QMessageBox.No
-                )
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
 
-                if reply == QMessageBox.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Transaction successfully registered!")
-                    popup.close()
+    def validate_transaction_fields(self):
+        errors = []
 
-            save_btn.clicked.connect(confirm_and_save)
+        # Validate requestor first name
+        if not self.popup.register_BusinessOwnerFirstName.text().strip():
+            errors.append("Requester firstname is required")
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
 
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+        # Validate requestor last name
+        if not self.popup.register_BusinessOwnerLastName.text().strip():
+            errors.append("Requester lastname is required")
+            self.popup.register_BusinessOwnerLastName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_BusinessOwnerLastName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate request status
+        if self.popup.register_comboBox_TransactionStatus.currentIndex() == -1:
+            errors.append("Request Status is required")
+            self.popup.register_comboBox_TransactionStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_comboBox_TransactionStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate transaction type
+        if self.popup.register_comboBox_TransactionType.currentIndex() == -1:
+            errors.append("transaction type is required")
+            self.popup.register_comboBox_TransactionType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_comboBox_TransactionType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate transaction reason
+        if not self.popup.register_Reason.toPlainText().strip():
+            errors.append("Request reason is required")
+            self.popup.register_Reason.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff;"
+            )
+        else:
+            self.popup.register_Reason.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff;"
+            )
+
+        # Validate transaction purpose
+        if not self.popup.register_Purpose.toPlainText().strip():
+            errors.append("Request purpose is required")
+            self.popup.register_Purpose.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_Purpose.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n\n• " + "\n• ".join(errors)
+            )
+        else:
+            self.confirm_and_save()
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Registration",
+            "Are you sure you want to register this transaction?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Transaction successfully registered!")
+            self.popup.close()
+            self.load_transaction_data()
 
 
     def goto_transactions_panel(self):

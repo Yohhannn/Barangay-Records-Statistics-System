@@ -37,33 +37,14 @@ class MedicalHistoryController(BaseFileController):
 
     def show_medical_history_popup(self):
         print("-- Record Medical History Popup")
-        popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_medical_history.ui", self)
-        popup.setWindowTitle("Mapro: Record New Medical History")
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/record_medical_history.ui", self)
+        self.popup.setWindowTitle("Mapro: Record New Medical History")
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.record_buttonConfirmMedicalHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
-
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "record_buttonConfirmMedicalHistory_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Creation",
-                    "Are you sure you want to record this?",
-                    QMessageBox.Yes | QMessageBox.No,
-                    QMessageBox.No
-                )
-
-                if reply == QMessageBox.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Medical History Successfully Recorded!")
-                    popup.close()
-
-            save_btn.clicked.connect(confirm_and_save)
-
-        popup.setWindowModality(Qt.ApplicationModal)
-        popup.show()
+        self.popup.record_buttonConfirmMedicalHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.record_buttonConfirmMedicalHistory_SaveForm.clicked.connect(self.validate_medical_hist_fields)
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
 
     def load_medical_history_data(self):
         connection = None
@@ -147,6 +128,66 @@ class MedicalHistoryController(BaseFileController):
                 self.hist_medical_history_screen.display_EncodedBy.setText(record[9])
                 self.hist_medical_history_screen.display_UpdatedBy.setText(record[10])
                 break
+
+    def validate_medical_hist_fields(self):
+        errors = []
+
+        # Validate Medical Record Citizen ID
+        if not self.popup.record_citizenIDANDsearch.text().strip():
+            errors.append("Info citizen ID is required")
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_citizenIDANDsearch.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Medical History Type
+        if self.popup.register_citizen_comboBox_MedicalHistoryOption.currentIndex() == -1:
+            errors.append("Medical history type is required")
+            self.popup.register_citizen_comboBox_MedicalHistoryOption.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_citizen_comboBox_MedicalHistoryOption.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Medical Record Description
+        if not self.popup.record_medicalhistory_description.toPlainText().strip():
+            errors.append("Medical description is required")
+            self.popup.record_medicalhistory_description.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.record_medicalhistory_description.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n\n• " + "\n• ".join(errors)
+            )
+        else:
+            self.confirm_and_save()
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Record",
+            "Are you sure you want to record this medical history?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Medical History successfully recorded!")
+            self.popup.close()
+            self.load_medical_history_data()
 
 
     def goto_history_panel(self):
