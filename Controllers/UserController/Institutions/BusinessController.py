@@ -187,6 +187,19 @@ class BusinessController(BaseFileController):
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
 
+    # FORM DATA HERE [BUSINESS] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'business_name': self.popup.register_BusinessName.text().strip(),  # REQUIRED
+            'business_stat': self.popup.register_comboBox_BusinessStatus.text().strip(),  # REQUIRED
+            'business_address': self.popup.register_BusinessAddress.text().strip(),  # REQUIRED
+            'business_sitio': self.popup.register_comboBox_BusinessAddress_Sitio.text().strip(),  # REQUIRED
+            'business_type': self.popup.register_comboBox_BusinessType.text().strip(),  # REQUIRED
+            'business_desc': self.popup.register_BusinessDesc.to.strip() or None,  # NOT REQUIRED
+            'business_owner_fname': self.popup.register_BusinessOwnerFirstName.text().strip(),  # REQUIRED
+            'business_owner_lname': self.popup.register_BusinessOwnerLastName.text().strip(),  # REQUIRED
+        }
+
     # def upload_business_image(self):
     #     file_path, _ = QFileDialog.getOpenFileName(
     #         self.popup,
