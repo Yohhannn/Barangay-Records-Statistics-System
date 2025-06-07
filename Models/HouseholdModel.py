@@ -3,7 +3,7 @@ import shutil
 from database import Database
 
 
-class BusinessModel:
+class HouseholdModel:
     def __init__(self):
         pass
 
