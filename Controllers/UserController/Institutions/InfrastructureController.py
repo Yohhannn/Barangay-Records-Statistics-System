@@ -38,6 +38,7 @@ class InfrastructureController(BaseFileController):
         # REGISTER BUTTON
         self.inst_infrastructure_screen.inst_infra_button_register.clicked.connect(self.show_register_infrastructure_popup)
 
+
     def load_data_infrastructure(self):
         try:
             connection = Database()
@@ -167,45 +168,186 @@ class InfrastructureController(BaseFileController):
 
     def show_register_infrastructure_popup(self):
         print("-- Register Infrastructure Popup")
-        popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/register_infrastructure.ui", self)
-        popup.setWindowTitle("Mapro: Register New Infrastructure")
-        popup.setFixedSize(popup.size())
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/register_infrastructure.ui", self)
+        self.popup.setWindowTitle("Mapro: Register New Infrastructure")
+        self.popup.setFixedSize(self.popup.size())
 
-        popup.register_buttonConfirmInfra_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        # Connect signals
+        self.popup.register_buttonConfirmInfra_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmInfra_SaveForm.clicked.connect(self.validate_infra_fields)
 
-        def setup_radio_button_groups_infrastructure():
-            # Is Private or Public?
-            radio_PP = QButtonGroup(popup)
-            PP_Private = popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Private")
-            PP_Public = popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Public")
-            if PP_Private and PP_Public:
-                radio_PP.addButton(PP_Private)
-                radio_PP.addButton(PP_Public)
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
 
-        setup_radio_button_groups_infrastructure()
+    # def setup_radio_button_groups_infrastructure(self):
+    #     # Is Private or Public?
+    #     radio_PP = QButtonGroup(self.popup)
+    #     PP_Private = self.popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Private")
+    #     PP_Public = self.popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Public")
+    #
+    #     if PP_Private and PP_Public:
+    #         radio_PP.addButton(PP_Private)
+    #         radio_PP.addButton(PP_Public)
+    #         # DTI_no.setChecked(True)  # Default selection
 
-        # Save final form with confirmation
-        save_btn = popup.findChild(QPushButton, "register_buttonConfirmInfra_SaveForm")
-        if save_btn:
-            def confirm_and_save():
-                reply = QMessageBox.question(
-                    popup,
-                    "Confirm Registration",
-                    "Are you sure you want to register this infrastructure?",
-                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                    QMessageBox.StandardButton.No
-                )
 
-                if reply == QMessageBox.StandardButton.Yes:
-                    print("-- Form Submitted")
-                    QMessageBox.information(popup, "Success", "Infrastructure Successfully Registered!")
-                    popup.close()
-                    self.load_data_infrastructure()  # Refresh the data
+    # def get_form_data(self):
+    #     return {
+    #         # 'infra_name': self.popup.register_InfraName.text().strip(),  # REQUIRED
+    #         # 'infra_address': self.popup.register_InfraAddress.text().strip(),  # REQUIRED
+    #         # 'infra_sitio': self.popup.register_comboBox_InfraAddress_Sitio.text().strip(),  # REQUIRED
+    #         # 'infra_type': self.popup.register_comboBox_InfraType.text().strip(),  # REQUIRED
+    #         'infra_pp': self.popup.radio_button_pp_infrastructure(),  # Public or Private
+    #         # 'infra_desc': self.popup.register_InfraDesc.text().strip() or None,
+    #         # 'infra_ownerfname': self.popup.register_InfraOwnerFirstName.text().strip(),  # REQUIRED
+    #         # 'infra_ownerlname': self.popup.register_InfraOwnerLastName.text().strip(),  # REQUIRED
+    #     }
 
-            save_btn.clicked.connect(confirm_and_save)
+    # def radio_button_pp_infrastructure(self):
+    #     if self.popup.register_radioButton_labelInfraPP_Private.isChecked():
+    #         pp_value = 'Private'
+    #     elif self.popup.register_radioButton_labelInfraPP_Public.isChecked():
+    #         pp_value = 'Public'
+    #     else:
+    #         pp_value = ''
+    #     return pp_value
 
-        popup.setWindowModality(Qt.WindowModality.ApplicationModal)
-        popup.show()
+    def validate_infra_fields(self):
+        # form_data = self.get_form_data()
+        # print(form_data)
+        errors = []
+
+
+        # Validate Infra name
+        if not self.popup.register_InfraName.text().strip():
+            errors.append("Infrastructure name is required")
+            self.popup.register_InfraName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_InfraName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Infra address
+        if not self.popup.register_InfraAddress.text().strip():
+            errors.append("Infrastructure address is required")
+            self.popup.register_InfraAddress.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_InfraAddress.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Infra Type
+        if self.popup.register_comboBox_InfraType.currentIndex() == -1:
+            errors.append("Infrastructure type is required")
+            self.popup.register_comboBox_InfraType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.popup.register_comboBox_InfraType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
+        # Validate Private or Public
+        if not (self.popup.register_radioButton_labelInfraPP_Private.isChecked() or
+                self.popup.register_radioButton_labelInfraPP_Public.isChecked()):
+            errors.append("Public or Private is required")
+            self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: red")
+            self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: red")
+        else:
+            self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: rgb(18, 18, 18)")
+            self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: rgb(18, 18, 18)")
+
+        # if not form_data['infra_pp']:
+        #     errors.append("Private or Public is required.")
+        #     self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: red")
+        #     self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: red")
+        # else:
+        #     self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: rgb(18, 18, 18)")
+        #     self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: rgb(18, 18, 18)")
+
+        # Validate Infra Sitio
+        if self.popup.register_comboBox_InfraAddress_Sitio.currentIndex() == -1:
+            errors.append("Infrastructure sitio is required")
+            self.popup.register_comboBox_InfraAddress_Sitio.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+        else:
+            self.popup.register_comboBox_InfraAddress_Sitio.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
+            )
+
+        # Validate First name
+        if not self.popup.register_InfraOwnerFirstName.text().strip():
+            errors.append("Infrastructure owner firstname is required")
+            self.popup.register_InfraOwnerFirstName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_InfraOwnerFirstName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate Last name
+        if not self.popup.register_InfraOwnerLastName.text().strip():
+            errors.append("Infrastructure owner lastname is required")
+            self.popup.register_InfraOwnerLastName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_InfraOwnerLastName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n\n• " + "\n• ".join(errors)
+            )
+        else:
+            self.confirm_and_save()
+
+    def confirm_and_save(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Registration",
+            "Are you sure you want to register this infrastructure?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            print("-- Form Submitted")
+            QMessageBox.information(self.popup, "Success", "Infrastructure successfully registered!")
+            self.popup.close()
+            self.load_data_infrastructure()
+
+        # # Save final form with confirmation
+        # save_btn = self.popup.findChild(QPushButton, "register_buttonConfirmInfra_SaveForm")
+        # if save_btn:
+        #     def confirm_and_save():
+        #         reply = QMessageBox.question(
+        #             self.popup,
+        #             "Confirm Registration",
+        #             "Are you sure you want to register this infrastructure?",
+        #             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+        #             QMessageBox.StandardButton.No
+        #         )
+        #
+        #         if reply == QMessageBox.StandardButton.Yes:
+        #             print("-- Form Submitted")
+        #             QMessageBox.information(self.popup, "Success", "Infrastructure Successfully Registered!")
+        #             self.popup.close()
+        #             self.load_data_infrastructure()  # Refresh the data
+        #
+        #     save_btn.clicked.connect(confirm_and_save)
+        #
+        # self.popup.setWindowModality(Qt.WindowModality.ApplicationModal)
+        # self.popup.show()
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""

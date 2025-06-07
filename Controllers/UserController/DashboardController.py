@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication, QTableWidgetItem, QFrame
+from PySide6.QtWidgets import QPushButton, QMessageBox, QApplication, QTableWidgetItem, QFrame, QLineEdit
 from PySide6.QtGui import QPixmap, QIcon, Qt
 from Controllers.BaseFileController import BaseFileController
 from Utils.util_popup import load_popup  # Make sure this import exists
@@ -289,10 +289,39 @@ class DashboardController(BaseFileController):
         changepin_popup.btn_return_to_youraccount.setIcon(QIcon('Resources/Icons/General_Icons/icon_return_light.svg'))
         changepin_popup.acc_buttonConfirmChangePIN_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
 
-        # Save final form with confirmation
+        # Set up password fields
+        new_pin_field = changepin_popup.findChild(QLineEdit, "change_NewPIN")
+        confirm_pin_field = changepin_popup.findChild(QLineEdit, "change_ConfirmPIN")
+
+        if new_pin_field and confirm_pin_field:
+            # Make them password fields
+            new_pin_field.setEchoMode(QLineEdit.Password)
+            confirm_pin_field.setEchoMode(QLineEdit.Password)
+
+        # Save final form with confirmation and validation
         save_btn = changepin_popup.findChild(QPushButton, "acc_buttonConfirmChangePIN_SaveForm")
-        if save_btn:
+        if save_btn and new_pin_field and confirm_pin_field:
             def confirm_and_save():
+                # Retrieve input values
+                new_pin = new_pin_field.text().strip()
+                confirm_pin = confirm_pin_field.text().strip()
+
+                # Validate the PINs
+                if not new_pin or not confirm_pin:
+                    QMessageBox.warning(changepin_popup, "Validation Error", "Both PIN fields must be filled.")
+                    new_pin_field.setStyleSheet("border: 1px solid red;")
+                    confirm_pin_field.setStyleSheet("border: 1px solid red;")
+                    return
+
+                if new_pin != confirm_pin:
+                    QMessageBox.warning(changepin_popup, "Validation Error", "New PIN and Confirm PIN do not match.")
+                    new_pin_field.setStyleSheet("border: 1px solid red;")
+                    confirm_pin_field.setStyleSheet("border: 1px solid red;")
+                    return
+
+                # If validation passes
+                new_pin_field.setStyleSheet("border: 1px solid gray;")
+                confirm_pin_field.setStyleSheet("border: 1px solid gray;")
                 reply = QMessageBox.question(
                     changepin_popup,
                     "Confirm Registration",
@@ -308,7 +337,7 @@ class DashboardController(BaseFileController):
                     QApplication.closeAllWindows()
                     self.login_window.show()
                     self.login_window.clear_fields()
-                    
+
             save_btn.clicked.connect(confirm_and_save)
 
         return_button = changepin_popup.findChild(QPushButton, "btn_return_to_youraccount")
