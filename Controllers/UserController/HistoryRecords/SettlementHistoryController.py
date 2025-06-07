@@ -133,6 +133,18 @@ class SettlementHistoryController(BaseFileController):
                 self.hist_settlement_history_screen.display_UpdatedBy.setText(record[10])
                 break
 
+    # FORM DATA HERE [SETTLEMENT HISTORY] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'com_first_name': self.popup.record_ComplainantFirstName.text().strip(),  # REQUIRED
+            'com_middle_init': self.popup.record_ComplainantMiddleInitial.text().strip(),  # REQUIRED
+            'com_last_name': self.popup.record_ComplainantLastName.text().strip(),  # REQUIRED
+            'ctz_id_search': self.popup.record_citizenIDANDsearch.text().strip(),  # REQUIRED
+            'com_desc': self.popup.record_ComplaintDesc.text().strip(), # REQUIRED
+            'sett_desc': self.popup.record_SettlementDesc.text().strip(), # REQUIRED
+            'date_settled': self.popup.record_DateOfSettlement.date().toString("yyyy-MM-dd"),  # REQUIRED
+        }
+
     def validate_settlement_hist_fields(self):
         errors = []
 
