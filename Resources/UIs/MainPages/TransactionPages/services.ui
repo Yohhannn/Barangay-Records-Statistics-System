@@ -336,16 +336,16 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_BusinessName_buttonSearch {
+       <string notr="true">#inst_Transaction_buttonSearch {
     background-color:  #141c52;
     color: white;
     border-radius: 5px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#inst_BusinessName_buttonSearch:hover {
+#inst_Transaction_buttonSearch:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-#inst_BusinessName_buttonSearch:pressed {
+#inst_Transaction_buttonSearch:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
       </property>
