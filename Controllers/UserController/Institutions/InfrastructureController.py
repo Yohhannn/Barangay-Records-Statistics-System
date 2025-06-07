@@ -190,19 +190,20 @@ class InfrastructureController(BaseFileController):
     #         radio_PP.addButton(PP_Public)
     #         # DTI_no.setChecked(True)  # Default selection
 
+    # FORM DATA HERE [INFRASTRUCTURE] -------------------------------------------------------------------------------
+    def get_form_data(self):
+        return {
+            'infra_name': self.popup.register_InfraName.text().strip(),  # REQUIRED
+            'infra_address': self.popup.register_InfraAddress.text().strip(),  # REQUIRED
+            'infra_sitio': self.popup.register_comboBox_InfraAddress_Sitio.text().strip(),  # REQUIRED
+            'infra_type': self.popup.register_comboBox_InfraType.text().strip(),  # REQUIRED
+            'infra_pp': self.popup.radio_button_pp_infrastructure(),  # Public or Private
+            'infra_desc': self.popup.register_InfraDesc.text().strip() or None,
+            'infra_ownerfname': self.popup.register_InfraOwnerFirstName.text().strip(),  # REQUIRED
+            'infra_ownerlname': self.popup.register_InfraOwnerLastName.text().strip(),  # REQUIRED
+        }
 
-    # def get_form_data(self):
-    #     return {
-    #         # 'infra_name': self.popup.register_InfraName.text().strip(),  # REQUIRED
-    #         # 'infra_address': self.popup.register_InfraAddress.text().strip(),  # REQUIRED
-    #         # 'infra_sitio': self.popup.register_comboBox_InfraAddress_Sitio.text().strip(),  # REQUIRED
-    #         # 'infra_type': self.popup.register_comboBox_InfraType.text().strip(),  # REQUIRED
-    #         'infra_pp': self.popup.radio_button_pp_infrastructure(),  # Public or Private
-    #         # 'infra_desc': self.popup.register_InfraDesc.text().strip() or None,
-    #         # 'infra_ownerfname': self.popup.register_InfraOwnerFirstName.text().strip(),  # REQUIRED
-    #         # 'infra_ownerlname': self.popup.register_InfraOwnerLastName.text().strip(),  # REQUIRED
-    #     }
-
+    # THIS SHI HERE RADIO
     # def radio_button_pp_infrastructure(self):
     #     if self.popup.register_radioButton_labelInfraPP_Private.isChecked():
     #         pp_value = 'Private'
