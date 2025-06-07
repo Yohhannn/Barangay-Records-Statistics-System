@@ -13,8 +13,9 @@ from database import Database
 
 
 class CitizenController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.user_role = user_role
 
         # INITIALIZE OBJECTS NEEDED
         self.indig_group = None
@@ -1484,7 +1485,7 @@ class CitizenController(BaseFileController):
         print("-- Navigating to Citizen Panel")
         if not hasattr(self, 'citizen_panel'):
             from Controllers.UserController.CitizenPanelController import CitizenPanelController
-            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.citizen_panel = CitizenPanelController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.citizen_panel.citizen_panel_screen)
 
         self.stack.setCurrentWidget(self.citizen_panel.citizen_panel_screen)

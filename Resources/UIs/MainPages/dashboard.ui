@@ -406,7 +406,7 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonAdminPanel {
@@ -486,7 +486,7 @@
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonActivityLogs {

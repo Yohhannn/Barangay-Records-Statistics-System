@@ -7,8 +7,10 @@ from database import Database
 
 
 class MedicalHistoryController(BaseFileController):
-    def __init__(self, login_window, emp_first_name, sys_user_id, stack):
+    def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.user_role = user_role
+        
         self.stack = stack
         self.hist_medical_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/medical_history.ui")
         self.setup_medical_history_ui()
@@ -195,7 +197,7 @@ class MedicalHistoryController(BaseFileController):
         print("-- Navigating to History Records")
         if not hasattr(self, 'history'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
-            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.stack)
+            self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.history_panel.history_screen)
 
         self.stack.setCurrentWidget(self.history_panel.history_screen)
