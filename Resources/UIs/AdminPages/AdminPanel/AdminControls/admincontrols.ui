@@ -219,8 +219,8 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>90</y>
-       <width>291</width>
+       <y>600</y>
+       <width>361</width>
        <height>51</height>
       </rect>
      </property>
@@ -295,7 +295,7 @@
      <widget class="QPushButton" name="admn_button_RemAcc">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>260</x>
         <y>10</y>
         <width>91</width>
         <height>31</height>
@@ -406,9 +406,9 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>140</y>
-       <width>291</width>
-       <height>461</height>
+       <y>90</y>
+       <width>361</width>
+       <height>501</height>
       </rect>
      </property>
      <property name="font">
@@ -475,7 +475,7 @@
       <rect>
        <x>40</x>
        <y>50</y>
-       <width>291</width>
+       <width>361</width>
        <height>41</height>
       </rect>
      </property>
@@ -495,7 +495,7 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>271</width>
+        <width>341</width>
         <height>41</height>
        </rect>
       </property>

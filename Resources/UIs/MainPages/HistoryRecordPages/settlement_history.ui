@@ -287,7 +287,7 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>431</width>
+        <width>611</width>
         <height>31</height>
        </rect>
       </property>
@@ -311,13 +311,13 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Settlement ID</string>
+       <string>Search Settlement ID, Complainee Name</string>
       </property>
      </widget>
      <widget class="QPushButton" name="histrec_SettlementID_buttonSearch">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>600</x>
         <y>40</y>
         <width>31</width>
         <height>31</height>
@@ -469,61 +469,6 @@
         </color>
        </property>
       </column>
-     </widget>
-     <widget class="QPushButton" name="settlementhistoryList_buttonFilter">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>40</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#settlementhistoryList_buttonFilter {
-    background-color:  #474747;
-    color: white;
-    border: 1px solid #b5b5b5;
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#settlementhistoryList_buttonFilter:hover {
-    background-color: #636363;
-    color: white; 
-}
-
-#settlementhistoryList_buttonFilter:pressed {
-    background-color: #bfbfbf;
-    color: white; 
-}
-</string>
-      </property>
-      <property name="text">
-       <string>   FILTER OPTIONS</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>18</width>
-        <height>18</height>
-       </size>
-      </property>
      </widget>
     </widget>
     <widget class="QPushButton" name="histrec_settlementhistory_button_remove">

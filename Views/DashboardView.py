@@ -14,7 +14,7 @@ class DashboardView:
         self.dashboard_screen = None
 
         self.app_name = "MaPro"
-        self.app_version = "5.2.2. - Alpha"
+        self.app_version = "5.3.1 - Alpha"
 
     def setup_dashboard_ui(self, ui_screen):
         self.dashboard_screen = ui_screen
@@ -75,8 +75,8 @@ class DashboardView:
             'nav_buttonInstitutions': 'Resources/Icons/General_Icons/icon_institutions.svg',
             'nav_buttonTransactions': 'Resources/Icons/General_Icons/icon_transaction.svg',
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
-            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_off.svg',
-            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_off.svg',
+            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
+            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg',
             'nav_isLocked': 'Resources/Icons/General_Icons/icon_isLocked.svg'
         }
 

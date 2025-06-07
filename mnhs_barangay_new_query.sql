@@ -117,7 +117,6 @@ CREATE TABLE HOUSEHOLD_INFO (
                                 HH_HOUSE_NUMBER VARCHAR(50) UNIQUE NOT NULL,
                                 HH_ADDRESS TEXT,
                                 HH_OWNERSHIP_STATUS house_ownership_status,
-                                HH_HOME_IMAGE_PATH TEXT,
                                 HH_HOME_GOOGLE_LINK TEXT,
                                 HH_INTERVIEWER_NAME VARCHAR(100),
                                 HH_REVIEWER_NAME VARCHAR(100),
@@ -334,11 +333,12 @@ CREATE TABLE BUSINESS_TYPE(
 );
 
 CREATE TYPE business_status_enum AS ENUM(
-    'ACTIVE',
-    'INACTIVE',
-    'CLOSED',
-    'SUSPENDED'
+    'Active',
+    'Inactive',
+    'Closed',
+    'Suspended'
     );
+
 --
 -- Table: BUSINESS_INFO
 CREATE TABLE BUSINESS_INFO (
@@ -347,7 +347,6 @@ CREATE TABLE BUSINESS_INFO (
                                BS_DESCRIPTION TEXT,
                                BS_STATUS business_status_enum NOT NULL,
                                BS_IS_DTI BOOLEAN NOT NULL,
-                               BS_DTI_IMAGE TEXT,
                                BS_ADDRESS TEXT NOT NULL,
                                BS_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                BS_LAST_UPDATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -363,10 +362,6 @@ CREATE TABLE BUSINESS_INFO (
 
                                CONSTRAINT fk_encoded_by FOREIGN KEY (ENCODED_BY_SYS_ID) REFERENCES SYSTEM_ACCOUNT(SYS_USER_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
                                CONSTRAINT fk_last_updated_by FOREIGN KEY (LAST_UPDATED_BY_SYS_ID) REFERENCES SYSTEM_ACCOUNT(SYS_USER_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
-                               CONSTRAINT chk_is_dti CHECK(
-                                   (BS_IS_DTI = TRUE AND BS_DTI_IMAGE IS NOT NULL) OR
-                                   (BS_IS_DTI = FALSE AND BS_DTI_IMAGE IS NULL)
-                                   ),
                                CONSTRAINT chk_pending_delete CHECK (
                                    (BS_IS_PENDING_DELETE = FALSE) OR
                                    (BS_IS_PENDING_DELETE = TRUE AND BS_DELETE_REQ_REASON IS NOT NULL)
@@ -828,7 +823,6 @@ INSERT INTO HOUSEHOLD_INFO (
     HH_HOUSE_NUMBER,
     HH_ADDRESS,
     HH_OWNERSHIP_STATUS,
-    HH_HOME_IMAGE_PATH,
     HH_HOME_GOOGLE_LINK,
     HH_INTERVIEWER_NAME,
     HH_REVIEWER_NAME,
@@ -842,7 +836,6 @@ INSERT INTO HOUSEHOLD_INFO (
              'HM-2023-001',
              '123 Purok Santan, Barangay Marigondon',
              'Owned',
-             'Assets/Register/HouseholdImages\Screenshot 2023-10-10 193121.png',
              'https://www.google.com/maps/place/Shell+Robinsons+Mobility+Station+-+Galleria+Cebu+City/@10.3024076,123.9108788,19.5z/data=!4m6!3m5!1s0x33a999f29f761867:0x51e0d3123523c12a!8m2!3d10.3025851!4d123.9110295!16s%2Fg%2F11rrs0pzvl?authuser=0&entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D',
              'Juan Dela Cruz',
              'Maria Reyes',
@@ -973,7 +966,6 @@ INSERT INTO BUSINESS_INFO (
     BS_DESCRIPTION,
     BS_STATUS,
     BS_IS_DTI,
-    BS_DTI_IMAGE,
     BS_ADDRESS,
     BST_ID,
     ENCODED_BY_SYS_ID,
@@ -982,14 +974,14 @@ INSERT INTO BUSINESS_INFO (
     BS_LNAME,
     SITIO_ID
 ) VALUES
-      ('Aling Nena''s Sari-sari', 'General merchandise store', 'ACTIVE', FALSE, NULL, '123 Purok Santan',
+      ('Aling Nena''s Sari-sari', 'General merchandise store', 'Active', FALSE, '123 Purok Santan',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
        (SELECT SYS_USER_ID FROM SYSTEM_ACCOUNT WHERE SYS_USER_ID = 1001),
        'Alfredo','Garcia',
        1),
 
-      ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'ACTIVE', TRUE, '/dti/repair123.jpg', '456 Purok Rosas',
+      ('Marigondon Auto Repair', 'Motorcycle and bicycle repairs', 'Active', TRUE, '456 Purok Rosas',
        (SELECT BST_ID FROM BUSINESS_TYPE WHERE BST_TYPE_NAME = 'Sole Proprietorship'),
 --       (SELECT BSO_ID FROM BUSINESS_OWNER WHERE BSO_LNAME = 'Ramos'),
 

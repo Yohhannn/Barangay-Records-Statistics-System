@@ -23,12 +23,13 @@ class HouseholdView:
         ui_screen.cp_household_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         ui_screen.cp_household_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         ui_screen.cp_household_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # ui_screen.householdList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect buttons
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
         ui_screen.cp_household_button_register.clicked.connect(self.controller.show_register_household_popup)
         ui_screen.inst_tableView_List_RegHousehold.cellClicked.connect(self.controller.handle_row_click_household)
+        ui_screen.cp_HouseholdName_buttonSearch.clicked.connect(self.controller.perform_household_search)
 
     def show_register_household_popup(self, parent):
         self.popup = load_popup("Resources/UIs/PopUp/Screen_CitizenPanel/ScreenHousehold/register_household.ui", parent)

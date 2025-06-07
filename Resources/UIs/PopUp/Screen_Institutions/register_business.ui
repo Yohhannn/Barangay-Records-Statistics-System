@@ -733,6 +733,11 @@
     </item>
     <item>
      <property name="text">
+      <string>Suspended</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Inactive</string>
      </property>
     </item>
@@ -1070,36 +1075,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>Sole Proprietorship</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Partnership</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Corporation</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cooperative </string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Franchise</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Others</string>
-     </property>
-    </item>
    </widget>
    <widget class="QPlainTextEdit" name="register_BusinessDesc">
     <property name="geometry">

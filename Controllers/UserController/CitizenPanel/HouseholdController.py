@@ -112,6 +112,95 @@ class HouseholdController(BaseFileController):
         else:
             self.save_household_data(form_data)
 
+    def perform_household_search(self):
+        search_text = self.cp_household_screen.cp_HouseholdName_fieldSearch.text().strip()
+
+        if not search_text:
+            # If empty, reload all households
+            self.load_household_data()
+            return
+
+        query = """
+            SELECT 
+                HH.HH_ID,
+                HH.HH_HOUSE_NUMBER,
+                S.SITIO_NAME,
+                HH.HH_OWNERSHIP_STATUS,
+                HH.HH_HOME_GOOGLE_LINK,
+                T.TOIL_TYPE_NAME,
+                W.WATER_SOURCE_NAME,
+                HH.HH_INTERVIEWER_NAME,
+                HH.HH_DATE_VISIT,
+                TO_CHAR(HH.HH_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_ENCODED_FORMATTED,
+                SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME AS ENCODED_BY,
+                TO_CHAR(HH.HH_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_UPDATED_FORMATTED,
+                HH.HH_REVIEWER_NAME,
+                CASE 
+                    WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                    ELSE SUA.SYS_FNAME || ' ' ||
+                         COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                         SUA.SYS_LNAME
+                END AS LAST_UPDATED_BY_NAME,
+                COUNT(C.CTZ_ID) AS TOTAL_MEMBERS
+            FROM HOUSEHOLD_INFO HH
+            JOIN SITIO S ON HH.SITIO_ID = S.SITIO_ID
+            LEFT JOIN TOILET_TYPE T ON HH.TOILET_ID = T.toil_id
+            LEFT JOIN WATER_SOURCE W ON HH.WATER_ID = W.WATER_ID
+            LEFT JOIN SYSTEM_ACCOUNT SA ON HH.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
+            LEFT JOIN SYSTEM_ACCOUNT SUA ON HH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+            LEFT JOIN CITIZEN C ON HH.HH_ID = C.HH_ID AND C.CTZ_IS_DELETED = FALSE AND C.CTZ_IS_ALIVE = TRUE
+            WHERE HH.HH_IS_DELETED = FALSE
+              AND CAST(HH.HH_ID AS TEXT) ILIKE %s
+            GROUP BY
+                HH.HH_ID,
+                HH.HH_HOUSE_NUMBER,
+                S.SITIO_NAME,
+                HH.HH_OWNERSHIP_STATUS,
+                HH.HH_HOME_GOOGLE_LINK,
+                T.TOIL_TYPE_NAME,
+                W.WATER_SOURCE_NAME,
+                HH.HH_INTERVIEWER_NAME,
+                HH.HH_DATE_VISIT,
+                HH.HH_DATE_ENCODED,
+                SA.SYS_FNAME,
+                SA.SYS_MNAME,
+                SA.SYS_LNAME,
+                HH.HH_REVIEWER_NAME,
+                SUA.SYS_FNAME,
+                SUA.SYS_MNAME,
+                SUA.SYS_LNAME,
+                HH.HH_LAST_UPDATED
+            ORDER BY HH.HH_ID ASC
+            LIMIT 50;
+        """
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            search_pattern = f"%{search_text}%"
+            cursor.execute(query, (search_pattern,))
+            rows = cursor.fetchall()
+
+            table = self.cp_household_screen.inst_tableView_List_RegHousehold
+            table.setRowCount(len(rows))
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["ID", "Total Members", "Sitio", "Date Encoded"])
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 150)
+            table.setColumnWidth(2, 200)
+            table.setColumnWidth(3, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[14], row_data[2], row_data[9]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.cp_household_screen, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
+
     def load_household_data(self):
         connection = None
         try:
@@ -167,7 +256,7 @@ class HouseholdController(BaseFileController):
                     SUA.SYS_LNAME,
                     HH.HH_LAST_UPDATED
                 ORDER BY HH.HH_ID DESC
-                LIMIT 20;
+                LIMIT 50;
             """)
             rows = cursor.fetchall()
             self.household_rows = rows
@@ -290,7 +379,6 @@ class HouseholdController(BaseFileController):
         if not self.view.confirm_registration():
             return
 
-        form_data['home_image_path'] = self.model.image_path
 
         if self.model.save_household_data(form_data, sys_user_id):
             self.view.show_success_message()

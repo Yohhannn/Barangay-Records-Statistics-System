@@ -17,6 +17,62 @@ class BusinessController(BaseFileController):
         self.center_on_screen()
         self.load_business_data()
 
+    def perform_business_search(self):
+        search_text = self.inst_business_screen.inst_BusinessName_fieldSearch.text().strip()
+
+        if not search_text:
+            # If empty, reload all businesses
+            self.load_business_data()
+            return
+
+        query = """
+            SELECT 
+                BI.BS_ID,
+                BI.BS_NAME,
+                BI.BS_FNAME || ' ' || BI.BS_LNAME AS BUSINESS_OWNER,
+                TO_CHAR(BI.BS_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS DATE_REGISTERED,
+                BT.BST_TYPE_NAME,
+                S.SITIO_NAME
+            FROM BUSINESS_INFO BI
+            JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
+            JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
+            WHERE BI.BS_IS_DELETED = FALSE
+              AND (
+                  CAST(BI.BS_ID AS TEXT) ILIKE %s OR
+                  BI.BS_NAME ILIKE %s OR
+                  (BI.BS_FNAME || ' ' || BI.BS_LNAME) ILIKE %s
+              )
+            ORDER BY BI.BS_ID ASC
+            LIMIT 50;
+        """
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            search_pattern = f"%{search_text}%"
+            cursor.execute(query, (search_pattern, search_pattern, search_pattern))
+            rows = cursor.fetchall()
+
+            table = self.inst_business_screen.inst_tableView_List_RegBusiness
+            table.setRowCount(len(rows))
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["ID", "Business Name", "Owner", "Date Registered"])
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 200)
+            table.setColumnWidth(2, 200)
+            table.setColumnWidth(3, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.inst_business_screen, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
+
     def setup_business_ui(self):
         """Setup the Business Views layout."""
         self.setFixedSize(1350, 850)
@@ -30,12 +86,47 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.inst_business_button_register.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.inst_business_screen.inst_business_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.inst_business_screen.inst_business_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
-        self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        # self.inst_business_screen.businessList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # Connect signals
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
         self.inst_business_screen.inst_business_button_register.clicked.connect(self.show_register_business_popup)
         self.inst_business_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_business)
+        self.inst_business_screen.inst_BusinessName_buttonSearch.clicked.connect(self.perform_business_search)
+
+    def load_sitio_list(self):
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT sitio_id, sitio_name FROM sitio ORDER BY sitio_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.popup.register_comboBox_BusinessAddress_Sitio
+            combo.clear()
+            for sitio_id, sitio_name in results:
+                combo.addItem(sitio_name, sitio_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
+
+    def load_bst_type_list(self):
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT bst_id, bst_type_name FROM business_type ORDER BY bst_type_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.popup.register_comboBox_BusinessType
+            combo.clear()
+            for bst_id, bst_type_name in results:
+                combo.addItem(bst_type_name, bst_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
 
     def load_business_data(self):
         connection = None
@@ -46,7 +137,7 @@ class BusinessController(BaseFileController):
                 SELECT 
                     BI.BS_ID,
                     BI.BS_NAME,
-                    CONCAT(BO.BSO_FNAME, ' ', BO.BSO_LNAME) AS BUSINESS_OWNER,
+                    BI.BS_FNAME || ' ' || BI.BS_LNAME AS BUSINESS_OWNER,
                     TO_CHAR(BI.BS_DATE_ENCODED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS BS_DATE_ENCODED,
                     BT.BST_TYPE_NAME,
                     BI.BS_STATUS,
@@ -73,37 +164,32 @@ class BusinessController(BaseFileController):
                         ELSE SUA.SYS_FNAME || ' ' ||
                              COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
                              SUA.SYS_LNAME
-                    END AS LAST_UPDATED_BY_NAME --13
+                    END AS LAST_UPDATED_BY_NAME
                 FROM BUSINESS_INFO BI
-                JOIN BUSINESS_OWNER BO ON BI.BSO_ID = BO.BSO_ID
                 JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
                 JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-                ORDER BY COALESCE(BI.BS_LAST_UPDATED, BI.BS_DATE_ENCODED) DESC
-                LIMIT 20
+                ORDER BY BI.BS_DATE_ENCODED DESC
+                LIMIT 50
            """)
             rows = cursor.fetchall()
             self.rows = rows
-
             # Set the row and column count for the QTableWidget
             table = self.inst_business_screen.inst_tableView_List_RegBusiness
             table.setRowCount(len(rows))
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["ID", "Business Name", "Owner", "Date Registered"])
-
             # Set column widths
             table.setColumnWidth(0, 50)  # ID
             table.setColumnWidth(1, 150)  # Business Name
             table.setColumnWidth(2, 150)  # Owner
             table.setColumnWidth(3, 200)  # Date Registered (wider for formatted date)
-
             # Populate the QTableWidget with data
             for row_idx, row_data in enumerate(rows):
                 for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[3]]):
                     item = QTableWidgetItem(str(value))
                     table.setItem(row_idx, col_idx, item)
-
         except Exception as e:
             QMessageBox.critical(self.inst_business_screen, "Database Error", str(e))
         finally:
@@ -113,31 +199,25 @@ class BusinessController(BaseFileController):
     def handle_row_click_business(self, row, column):
         table = self.inst_business_screen.inst_tableView_List_RegBusiness
         selected_item = table.item(row, 0)
-
         if not selected_item:
             return
-
         selected_id = selected_item.text()
-
         for record in self.rows:
             if str(record[0]) == selected_id:
                 self.inst_business_screen.inst_displayBusinessID.setText(str(record[0]))
                 self.inst_business_screen.inst_displayBusinessName.setText(record[1])
-                self.inst_business_screen.inst_displayBusinessOwnerName.setText(record[2])
+                self.inst_business_screen.inst_displayBusinessOwnerName.setText(record[2])  # BS_FNAME + BS_LNAME
                 self.inst_business_screen.inst_display_DateEncoded.setText(str(record[3]))
                 self.inst_business_screen.inst_displayBusinessType.setText(record[4])
                 self.inst_business_screen.inst_displayBusinessStatus.setText(record[5])
                 self.inst_business_screen.inst_displayBusinessAddress.setText(record[6])
-                # self.inst_business_screen.inst_displayBusinessDTIRegistered.setText("Yes" if record[7] else "No")
                 self.inst_business_screen.inst_displayBusinessAddress_Sitio.setText(record[8])
                 self.inst_business_screen.inst_BusinessDescription.setText(record[9])
-
                 # Display encoded by and last updated information
                 self.inst_business_screen.inst_display_EncodedBy.setText(record[10])  # ENCODED_BY
                 self.inst_business_screen.inst_display_DateUpdated.setText(
                     record[12] if record[12] else record[11])  # LAST_UPDATED or DATE_ENCODED_FORMATTED
                 self.inst_business_screen.display_UpdatedBy.setText(record[14])
-
                 break
 
 
@@ -146,6 +226,8 @@ class BusinessController(BaseFileController):
         self.popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/register_business.ui", self)
         self.popup.setWindowTitle("Mapro: Register New Business")
         self.popup.setFixedSize(self.popup.size())
+        self.load_sitio_list()
+        self.load_bst_type_list()
 
         self.popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
         # self.popup.inst_DTIuploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.png'))
@@ -159,6 +241,8 @@ class BusinessController(BaseFileController):
 
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
+
+
 
     # def upload_business_image(self):
     #     file_path, _ = QFileDialog.getOpenFileName(
@@ -278,12 +362,9 @@ class BusinessController(BaseFileController):
                 "Please complete all required fields:\n\n• " + "\n• ".join(errors)
             )
         else:
-            self.confirm_and_save(form_data)
+            self.confirm_and_save()
 
-    def confirm_and_save(self, form_data):
-        sys_user_id = self.sys_user_id
-
-
+    def confirm_and_save(self):
         reply = QMessageBox.question(
             self.popup,
             "Confirm Registration",
@@ -292,26 +373,103 @@ class BusinessController(BaseFileController):
             QMessageBox.No
         )
 
-        if reply == QMessageBox.Yes:
+        if reply != QMessageBox.Yes:
+            return
+
+        db = None
+        connection = None
+        try:
             print("-- Form Submitted")
-            QMessageBox.information(self.popup, "Success", "Business successfully registered!")
+
+            # Initialize DB connection
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # --- Validate SITIO ---
+            sitio_name = self.popup.register_comboBox_BusinessAddress_Sitio.currentText().strip()
+            cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (sitio_name,))
+            sitio_result = cursor.fetchone()
+            if not sitio_result:
+                raise Exception(f"Sitio '{sitio_name}' not found in database.")
+            sitio_id = sitio_result[0]
+
+            # --- Validate Business Type ---
+            bst_name = self.popup.register_comboBox_BusinessType.currentText().strip()
+            cursor.execute("SELECT bst_id FROM business_type WHERE bst_type_name = %s", (bst_name,))
+            bst_result = cursor.fetchone()
+            if not bst_result:
+                raise Exception(f"Business type '{bst_name}' not found in database.")
+            bst_id = bst_result[0]
+
+            # Get form data
+            business_name = self.popup.register_BusinessName.text().strip()
+            business_address = self.popup.register_BusinessAddress.text().strip()
+            business_description = self.popup.register_BusinessDesc.toPlainText().strip()
+            owner_fname = self.popup.register_BusinessOwnerFirstName.text().strip()
+            owner_lname = self.popup.register_BusinessOwnerLastName.text().strip()
+            status = self.popup.register_comboBox_BusinessStatus.currentText().strip()
+
+            # Insert into BUSINESS_INFO
+            insert_query = """
+            INSERT INTO business_info (
+                BS_NAME, 
+                BS_DESCRIPTION, 
+                BS_STATUS, 
+                BS_IS_DTI,
+                BS_ADDRESS, 
+                BST_ID, 
+                BS_FNAME, 
+                BS_LNAME, 
+                SITIO_ID, 
+                ENCODED_BY_SYS_ID, 
+                LAST_UPDATED_BY_SYS_ID
+            ) VALUES (
+                %(business_name)s, 
+                %(description)s, 
+                %(status)s, 
+                %(is_dti)s, 
+                %(address)s, 
+                %(bst_id)s, 
+                %(fname)s, 
+                %(lname)s, 
+                %(sitio_id)s, 
+                %(encoded_by)s, 
+                %(last_updated_by)s
+            ) RETURNING BS_ID;
+            """
+
+            encoded_by = self.sys_user_id
+            last_updated_by = self.sys_user_id
+
+            cursor.execute(insert_query, {
+                'business_name': business_name,
+                'description': business_description,
+                'status': status,
+                'is_dti': False,  # <-- Always set to False
+                'address': business_address,
+                'bst_id': bst_id,
+                'fname': owner_fname,
+                'lname': owner_lname,
+                'sitio_id': sitio_id,
+                'encoded_by': encoded_by,
+                'last_updated_by': last_updated_by
+            })
+
+            new_bs_id = cursor.fetchone()[0]
+            connection.commit()
+
+            QMessageBox.information(self.popup, "Success", f"Business successfully registered! ID: {new_bs_id}")
             self.popup.close()
-            self.load_business_data()  # Refresh the business list
+            self.load_business_data()
 
-
-        # sys_user_id = self.sys_user_id
-        # if not self.view.confirm_registration():
-        #     return
-        #
-        # form_data['home_image_path'] = self.model.image_path
-        #
-        # if self.model.save_household_data(form_data, sys_user_id):
-        #     self.view.show_success_message()
-        #     self.view.popup.close()
-        #     self.load_household_data()
-        # else:
-        #     self.view.show_error_dialog("Database error occurred")
-        #
+        except Exception as e:
+            if connection:
+                connection.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
     def goto_institutions_panel(self):
         """Handle navigation to Institutions Panel screen."""

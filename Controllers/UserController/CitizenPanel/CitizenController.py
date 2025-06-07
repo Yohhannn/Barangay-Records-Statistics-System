@@ -369,7 +369,7 @@ class CitizenController(BaseFileController):
     LEFT JOIN FAMILY_PLANNING_METHOD FPM ON FP.FPM_METHOD = FPM.FPM_ID
     LEFT JOIN FPM_STATUS FPS ON FP.FPMS_STATUS = FPS.FPMS_ID
     WHERE C.CTZ_IS_DELETED = FALSE
-    ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+    ORDER BY C.CTZ_ID DESC
     LIMIT 50;
             """)
             rows = cursor.fetchall()
@@ -482,7 +482,63 @@ class CitizenController(BaseFileController):
     # BUTTON FUNCTIONS
     #
 
+    def perform_citizen_search(self):
+        search_text = self.cp_profile_screen.cp_CitizenName_fieldSearch.text().strip()
 
+        if not search_text:
+            # If search field is empty, reload all citizens
+            self.load_citizen_data()
+            return
+
+        query = """
+            SELECT DISTINCT ON (C.CTZ_ID)
+                C.CTZ_ID,
+                C.CTZ_LAST_NAME,
+                C.CTZ_FIRST_NAME,
+                C.CTZ_MIDDLE_NAME,
+                C.CTZ_SUFFIX,
+                S.SITIO_NAME,
+                TO_CHAR(C.CTZ_LAST_UPDATED, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS LAST_UPDATED
+            FROM CITIZEN C
+            JOIN SITIO S ON C.SITIO_ID = S.SITIO_ID
+            WHERE C.CTZ_IS_DELETED = FALSE
+              AND (
+                  CAST(C.CTZ_ID AS TEXT) ILIKE %s OR
+                  C.CTZ_LAST_NAME ILIKE %s OR
+                  C.CTZ_FIRST_NAME ILIKE %s OR
+                  S.SITIO_NAME ILIKE %s
+              )
+            ORDER BY C.CTZ_ID, COALESCE(C.CTZ_LAST_UPDATED, C.CTZ_DATE_ENCODED) DESC
+            LIMIT 50;
+        """
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            search_pattern = f"%{search_text}%"
+            cursor.execute(query, (search_pattern, search_pattern, search_pattern, search_pattern))
+            rows = cursor.fetchall()
+
+            table = self.cp_profile_screen.cp_tableView_List_RegCitizens
+            table.setRowCount(len(rows))
+            table.setColumnCount(5)
+            table.setHorizontalHeaderLabels(["ID", "Family Name", "First Name", "Sitio", "Last Updated"])
+            table.setColumnWidth(0, 50)
+            table.setColumnWidth(1, 150)
+            table.setColumnWidth(2, 150)
+            table.setColumnWidth(3, 150)
+            table.setColumnWidth(4, 200)
+
+            for row_idx, row_data in enumerate(rows):
+                for col_idx, value in enumerate([row_data[0], row_data[1], row_data[2], row_data[5], row_data[6]]):
+                    item = QTableWidgetItem(str(value))
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            QMessageBox.critical(self.cp_profile_screen, "Database Error", str(e))
+        finally:
+            if db:
+                db.close()
 
     def radio_button_sex_result(self):
         if self.part1_popup.radioButton_male.isChecked():

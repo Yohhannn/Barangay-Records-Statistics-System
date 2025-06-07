@@ -287,7 +287,7 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>431</width>
+        <width>611</width>
         <height>31</height>
        </rect>
       </property>
@@ -311,13 +311,13 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Transaction ID</string>
+       <string>Search Transaction ID, Requestor Name</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="inst_BusinessName_buttonSearch">
+     <widget class="QPushButton" name="inst_Transaction_buttonSearch">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>600</x>
         <y>40</y>
         <width>31</width>
         <height>31</height>
@@ -336,16 +336,16 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#inst_BusinessName_buttonSearch {
+       <string notr="true">#inst_Transaction_buttonSearch {
     background-color:  #141c52;
     color: white;
     border-radius: 5px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#inst_BusinessName_buttonSearch:hover {
+#inst_Transaction_buttonSearch:hover {
     background-color: #1a237e; /* Slightly lighter blue when hovered */
 }
-#inst_BusinessName_buttonSearch:pressed {
+#inst_Transaction_buttonSearch:pressed {
     background-color: #0f1442; /* Darker blue when clicked */
 }</string>
       </property>
@@ -502,61 +502,6 @@
         </color>
        </property>
       </column>
-     </widget>
-     <widget class="QPushButton" name="transactionList_buttonFilter">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>40</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#transactionList_buttonFilter {
-    background-color:  #474747;
-    color: white;
-    border: 1px solid #b5b5b5;
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#transactionList_buttonFilter:hover {
-    background-color: #636363;
-    color: white; 
-}
-
-#transactionList_buttonFilter:pressed {
-    background-color: #bfbfbf;
-    color: white; 
-}
-</string>
-      </property>
-      <property name="text">
-       <string>   FILTER OPTIONS</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>18</width>
-        <height>18</height>
-       </size>
-      </property>
      </widget>
     </widget>
     <widget class="QPushButton" name="trans_Transact_button_remove">
