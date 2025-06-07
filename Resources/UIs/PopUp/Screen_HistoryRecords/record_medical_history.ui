@@ -754,7 +754,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#record_citizenhistory_description{
+     <string notr="true">#record_medicalhistory_description{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
