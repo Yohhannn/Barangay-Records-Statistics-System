@@ -3,8 +3,8 @@ import shutil
 from database import Database
 
 
-class BusinessModel:
-    def __init__(self):
+class HouseholdModel:
+    def __init__(self, sys_user_id):
         pass
 
     def save_household_data(self, household_data, sys_user_id):

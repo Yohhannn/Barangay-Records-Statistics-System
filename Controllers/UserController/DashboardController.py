@@ -13,6 +13,7 @@ class DashboardController(BaseFileController):
         self.user_role = user_role
         self.view = DashboardView(self)
         self.sys_user_id = sys_user_id
+        
 
 
         self.dashboard_screen = self.load_ui("Resources/UIs/MainPages/dashboard.ui")
@@ -348,6 +349,18 @@ class DashboardController(BaseFileController):
             print("-- Error: 'Return to Your Account' button not found!")
 
         changepin_popup.show()
+    
+    def set_current_user_id(self):
+        """Set the current user ID for the dashboard."""
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            cursor.execute("Set app.current_user_id = %s", (self.sys_user_id,))
+            connection.commit()
+            print(f"Current user ID set to: {self.sys_user_id}")
+        except Exception as e:
+            print(f"Error setting current user ID: {e}")
+            connection.close()
 
     def return_to_account_popup(self, current_popup):
         print("-- Returning to Dashboard > Your Account")
