@@ -598,21 +598,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>Level 1 - Point Source</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Level 2 - Communal Faucet</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Level 3 - Individual Connection</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_household_labelWaterSource">
     <property name="geometry">
@@ -673,51 +658,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>A - Pourflush type connected to septic tank</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>B - Pourflush toilet connected to septic tank and to Sewerage System</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>C - Ventilated Pit (VIP) latrine</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>D - Water-sealed toilet</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>E - Overhung latrine</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>F - Open pit latrine</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>G - Without toilet</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Others</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_household_labelToiletType">
     <property name="geometry">
@@ -857,7 +797,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>12</day>
+      <day>10</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1499,11 +1439,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
     <item>
      <property name="text">
       <string>Renting</string>

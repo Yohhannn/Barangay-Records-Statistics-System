@@ -3,11 +3,37 @@ import shutil
 from database import Database
 
 
-class HouseholdModel:
+class BusinessModel:
     def __init__(self):
-        self.image_path = None
+        pass
 
-    def save_household_data(self, household_data):
+    def save_household_data(self, household_data, sys_user_id):
+        db = Database()
+        connection = db.conn
+        cursor = connection.cursor()
+
+
+        cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (household_data['sitio_id'],))
+        sitio_result = cursor.fetchone()
+        if not sitio_result:
+            raise Exception(f"Sitio '{household_data['sitio_id']}' not found in database.")
+        sitio_id = sitio_result[0]
+
+
+        cursor.execute("SELECT toil_id FROM toilet_type WHERE toil_type_name = %s", (household_data['toilet_id'],))
+        toilet_type_result = cursor.fetchone()
+        if not toilet_type_result:
+            raise Exception(f"Sitio '{household_data['toilet_id']}' not found in database.")
+        toil_id = toilet_type_result[0]
+
+        cursor.execute("SELECT water_id FROM water_source WHERE water_source_name = %s", (household_data['water_id'],))
+        water_source_result = cursor.fetchone()
+        if not water_source_result:
+            raise Exception(f"Sitio '{household_data['water_id']}' not found in database.")
+        water_id = water_source_result[0]
+
+
+
         try:
             connection = Database()
             cursor = connection.cursor
@@ -22,11 +48,13 @@ class HouseholdModel:
                     HH_INTERVIEWER_NAME,
                     HH_REVIEWER_NAME,
                     HH_DATE_VISIT,
-                    SYS_ID,
+                    encoded_by_sys_id,
+                    last_updated_by_sys_id,
+                    hh_date_encoded,
                     WATER_ID,
                     TOILET_ID,
                     SITIO_ID)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s)
             """
             # HH_HOUSE_NUMBER,
             # HH_ADDRESS,
@@ -49,9 +77,11 @@ class HouseholdModel:
                 household_data['interviewer_name'],
                 household_data['reviewer_name'],
                 household_data['date_of_visit'],
-                household_data['water_id'],
-                household_data['toilet_id'],
-                household_data['sitio_id']
+                sys_user_id,
+                sys_user_id,
+                water_id,
+                toil_id,
+                sitio_id
             ))
             connection.commit()
             return True
@@ -59,13 +89,3 @@ class HouseholdModel:
             print("Database error:", e)
             return False
 
-    def save_image(self, file_path, target_folder="Assets/Register/HouseholdImages"):
-        if not file_path:
-            return None
-
-        os.makedirs(target_folder, exist_ok=True)
-        image_filename = os.path.basename(file_path)
-        target_path = os.path.join(target_folder, image_filename)
-        shutil.copy(file_path, target_path)
-        self.image_path = target_path
-        return target_path

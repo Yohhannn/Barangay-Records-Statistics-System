@@ -73,6 +73,38 @@ class HouseholdView:
         finally:
             db.close()
 
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT toil_id, toil_type_name FROM toilet_type ORDER BY toil_type_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.popup.register_household_comboBox_ToiletType
+            combo.clear()
+            for toil_id, toil_type_name in results:
+                combo.addItem(toil_type_name, toil_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT water_id, water_source_name FROM water_source ORDER BY water_source_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.popup.register_household_comboBox_WaterSource
+            combo.clear()
+            for water_id, water_source_name in results:
+                combo.addItem(water_source_name, water_id)
+
+        except Exception as e:
+            print(f"Failed to load water source: {e}")
+        finally:
+            db.close()
+
 
 
         # Ownership status dropdown
@@ -82,22 +114,22 @@ class HouseholdView:
         self.popup.register_household_comboBox_OwnershipStatus.addItem("Leased")
         self.popup.register_household_comboBox_OwnershipStatus.addItem("Informal Settler")
 
-        # Water source dropdown
-        self.popup.register_household_comboBox_WaterSource.clear()
-        self.popup.register_household_comboBox_WaterSource.addItem("Level 1- Point Source", "1")
-        self.popup.register_household_comboBox_WaterSource.addItem("Level 2 - Communal Faucet", "2")
-        self.popup.register_household_comboBox_WaterSource.addItem("Level 3- Individual Connection", "3")
-        self.popup.register_household_comboBox_WaterSource.addItem("Others", "4")
-
-        # Toilet type dropdown
-        self.popup.register_household_comboBox_ToiletType.clear()
-        self.popup.register_household_comboBox_ToiletType.addItem("A - Pour/flush type connected to septic tank", "1")
-        self.popup.register_household_comboBox_ToiletType.addItem("B - Pour/flush toilet connected to Sewerage System","2")
-        self.popup.register_household_comboBox_ToiletType.addItem("C - Ventilated Pit (VIP) latrine", "3")
-        self.popup.register_household_comboBox_ToiletType.addItem("D - Water-sealed toilet", "4")
-        self.popup.register_household_comboBox_ToiletType.addItem("E - Overhung latrine", "5")
-        self.popup.register_household_comboBox_ToiletType.addItem("F - Open pit latrine", "6")
-        self.popup.register_household_comboBox_ToiletType.addItem("G - Without toilet", "7")
+        # # Water source dropdown
+        # self.popup.register_household_comboBox_WaterSource.clear()
+        # self.popup.register_household_comboBox_WaterSource.addItem("Level 1- Point Source", "1")
+        # self.popup.register_household_comboBox_WaterSource.addItem("Level 2 - Communal Faucet", "2")
+        # self.popup.register_household_comboBox_WaterSource.addItem("Level 3- Individual Connection", "3")
+        # self.popup.register_household_comboBox_WaterSource.addItem("Others", "4")
+        #
+        # # Toilet type dropdown
+        # self.popup.register_household_comboBox_ToiletType.clear()
+        # self.popup.register_household_comboBox_ToiletType.addItem("A - Pour/flush type connected to septic tank", "1")
+        # self.popup.register_household_comboBox_ToiletType.addItem("B - Pour/flush toilet connected to Sewerage System","2")
+        # self.popup.register_household_comboBox_ToiletType.addItem("C - Ventilated Pit (VIP) latrine", "3")
+        # self.popup.register_household_comboBox_ToiletType.addItem("D - Water-sealed toilet", "4")
+        # self.popup.register_household_comboBox_ToiletType.addItem("E - Overhung latrine", "5")
+        # self.popup.register_household_comboBox_ToiletType.addItem("F - Open pit latrine", "6")
+        # self.popup.register_household_comboBox_ToiletType.addItem("G - Without toilet", "7")
 
     def show_image_preview(self, file_path):
         pixmap = QPixmap(file_path)
@@ -149,7 +181,7 @@ class HouseholdView:
             'interviewer_name': self.popup.register_household_InterviewedBy_fullname.text().strip(),
             'reviewer_name': self.popup.register_household_ReviewedBy_fullname.text().strip(),
             'date_of_visit': self.popup.register_household_date_DOV.date().toString("yyyy-MM-dd"),
-            'water_id': self.popup.register_household_comboBox_WaterSource.currentData(),
-            'toilet_id': self.popup.register_household_comboBox_ToiletType.currentData(),
-            'sitio_id': self.popup.register_household_comboBox_Sitio.currentData()
+            'water_id': self.popup.register_household_comboBox_WaterSource.currentText().strip(),
+            'toilet_id': self.popup.register_household_comboBox_ToiletType.currentText().strip(),
+            'sitio_id': self.popup.register_household_comboBox_Sitio.currentText().strip()
         }

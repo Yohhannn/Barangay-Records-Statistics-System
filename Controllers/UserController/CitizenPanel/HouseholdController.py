@@ -28,6 +28,12 @@ class HouseholdController(BaseFileController):
         self.login_window = login_window
         self.emp_first_name = emp_first_name
 
+
+
+
+
+
+
     def show_register_household_popup(self):
         print("-- Register New Household Popup")
         popup = self.view.show_register_household_popup(self)
@@ -244,7 +250,7 @@ class HouseholdController(BaseFileController):
                 self.cp_household_screen.cp_displayHouseholdNum.setText(str(record[1]))  # HH Number
                 self.cp_household_screen.cp_displayHouseholdID.setText(str(record[0]))  # HH ID
                 self.cp_household_screen.cp_displaySitio.setText(record[2])  # Sitio Name
-                self.cp_household_screen.cp_displayOwnershipStatus.setText(record[3] or "N/A")  # Ownership Status
+                self.cp_household_screen.cp_displayOwnershipStatus.setText(record[3] or "None")  # Ownership Status
                 from PySide6.QtCore import Qt
                 from PySide6.QtWidgets import QLabel
 
@@ -262,33 +268,35 @@ class HouseholdController(BaseFileController):
                     label.setOpenExternalLinks(True)
                     label.setStyleSheet("QLabel { color: blue; text-decoration: underline; }")
                 else:
-                    label.setText("N/A")
+                    label.setText("None")
                     label.setTextInteractionFlags(Qt.TextInteractionFlag.NoTextInteraction)
-                self.cp_household_screen.cp_DisplayToiletType.setText(record[5] or "N/A")  # Toilet Type
-                self.cp_household_screen.cp_displayWaterSource.setText(record[6] or "N/A")  # Water Source
-                self.cp_household_screen.cp_displayInterviewedBy.setText(record[7] or "N/A")  # Interviewer
+                self.cp_household_screen.cp_DisplayToiletType.setText(record[5] or "None")  # Toilet Type
+                self.cp_household_screen.cp_displayWaterSource.setText(record[6] or "None")  # Water Source
+                self.cp_household_screen.cp_displayInterviewedBy.setText(record[7] or "None")  # Interviewer
                 self.cp_household_screen.cp_displayDateofVisit.setText(
-                    record[8].strftime('%B %d, %Y') if record[8] else "N/A"
+                    record[8].strftime('%B %d, %Y') if record[8] else "None"
                 )  # Date of Visit
-                self.cp_household_screen.display_DateEncoded.setText(record[9] or "N/A")  # Date Encoded
+                self.cp_household_screen.display_DateEncoded.setText(record[9] or "None")  # Date Encoded
                 self.cp_household_screen.display_EncodedBy.setText(record[10] or "System")  # Encoded By
-                self.cp_household_screen.display_DateUpdated.setText(record[11] or "N/A")  # Last Updated
-                self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "N/A")
-                self.cp_household_screen.display_UpdatedBy.setText(record[13] or "N/A")
+                self.cp_household_screen.display_DateUpdated.setText(record[11] or "None")  # Last Updated
+                self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "None")
+                self.cp_household_screen.display_UpdatedBy.setText(record[13] or "None")
                 self.display_family_members(int(selected_id))
                 # self.cp_household_screen.display_UpdatedBy.setText(record[12] or "System")  # Updated By
 
                 break
 
     def save_household_data(self, form_data):
+        sys_user_id = self.sys_user_id
         if not self.view.confirm_registration():
             return
 
         form_data['home_image_path'] = self.model.image_path
 
-        if self.model.save_household_data(form_data):
+        if self.model.save_household_data(form_data, sys_user_id):
             self.view.show_success_message()
             self.view.popup.close()
+            self.load_household_data()
         else:
             self.view.show_error_dialog("Database error occurred")
 
