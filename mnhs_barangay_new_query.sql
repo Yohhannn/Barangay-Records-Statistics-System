@@ -53,11 +53,6 @@ CREATE TABLE CLASSIFICATION_HEALTH_RISK(
                                            CLAH_CLASSIFICATION_NAME VARCHAR(50) NOT NULL
 );
 
--- Table: ETHNICITY
-CREATE TABLE ETHNICITY (
-                           ETH_ID SERIAL PRIMARY KEY,
-                           ETH_TRIBE_NAME VARCHAR(100) NOT NULL
-);
 
 -- Table: RELIGION
 CREATE TABLE RELIGION (
@@ -221,7 +216,6 @@ CREATE TABLE CITIZEN (
                          SOEC_ID INT NOT NULL,
                          PHEA_ID INT,
                          REL_ID INT,
-                         ETH_ID INT,
                          CLAH_ID INT,
                          RTH_ID INT NOT NULL,
                          HH_ID INT NOT NULL,
@@ -236,17 +230,12 @@ CREATE TABLE CITIZEN (
                          CONSTRAINT fk_soec_id FOREIGN KEY (SOEC_ID) REFERENCES SOCIO_ECONOMIC_STATUS(SOEC_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_phea_id FOREIGN KEY (PHEA_ID) REFERENCES PHILHEALTH(PHEA_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_rel_id FOREIGN KEY (REL_ID) REFERENCES RELIGION(REL_ID) ON UPDATE CASCADE ON DELETE CASCADE,
-                         CONSTRAINT fk_eth_id FOREIGN KEY (ETH_ID) REFERENCES ETHNICITY(ETH_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_clah_id FOREIGN KEY (CLAH_ID) REFERENCES CLASSIFICATION_HEALTH_RISK(CLAH_ID) ON UPDATE CASCADE ON DELETE SET NULL,
                          CONSTRAINT fk_rth_id FOREIGN KEY (RTH_ID) REFERENCES RELATIONSHIP_TYPE(RTH_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_hh_id FOREIGN KEY (HH_ID) REFERENCES HOUSEHOLD_INFO(HH_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_sitio_id FOREIGN KEY (SITIO_ID) REFERENCES SITIO(SITIO_ID) ON UPDATE CASCADE ON DELETE CASCADE,
                          CONSTRAINT fk_con_id FOREIGN KEY (CON_ID) REFERENCES CONTACT(CON_ID) ON UPDATE CASCADE ON DELETE SET NULL,
 
-                         CONSTRAINT chk_ethnicity CHECK (
-                             (CTZ_IS_IP = TRUE AND ETH_ID IS NOT NULL) OR
-                             (CTZ_IS_IP = FALSE AND ETH_ID IS NULL)
-                             ),
                          CONSTRAINT chk_pending_delete CHECK (
                              (CTZ_IS_PENDING_DELETE = FALSE) OR
                              (CTZ_IS_PENDING_DELETE = TRUE AND CTZ_DELETE_REQ_REASON IS NOT NULL)
