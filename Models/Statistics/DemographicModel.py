@@ -2,8 +2,8 @@ from database import Database
 
 class DemographicModel:
     def __init__(self):
-        self.connection = Database()
-        self.cursor = self.connection.get_cursor()
+        self.db = Database()
+        self.cursor = self.db.get_cursor()
 
     def get_population_counts(self, from_date, to_date):
         try:

@@ -1045,7 +1045,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="register_buttonConfirmAccount_SaveForm">
+  <widget class="QPushButton" name="register_buttonConfirmHousehold_SaveForm">
    <property name="geometry">
     <rect>
      <x>260</x>
