@@ -687,7 +687,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="register_buttonConfirmHousehold_SaveForm">
+  <widget class="QPushButton" name="register_buttonConfirmAccount_SaveForm">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -707,16 +707,16 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">#register_buttonConfirmHousehold_SaveForm {
+    <string notr="true">#register_buttonConfirmAccount_SaveForm {
     background-color: #006f00;
     color: white;
     border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#register_buttonConfirmHousehold_SaveForm:hover {
+#register_buttonConfirmAccount_SaveForm:hover {
     background-color: #00a600; /* Slightly lighter blue when hovered */
 }
-#register_buttonConfirmHousehold_SaveForm:pressed {
+#register_buttonConfirmAccount_SaveForm:pressed {
     background-color: #005d00; /* Darker blue when clicked */
 }</string>
    </property>

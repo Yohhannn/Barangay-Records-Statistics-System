@@ -363,15 +363,15 @@ class ServiceController(BaseFileController):
             )
 
         # Validate transaction reason
-        if not self.popup.register_Reason.toPlainText().strip():
-            errors.append("Request reason is required")
-            self.popup.register_Reason.setStyleSheet(
-                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff;"
-            )
-        else:
-            self.popup.register_Reason.setStyleSheet(
-                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff;"
-            )
+        # if not self.popup.register_Reason.toPlainText().strip():
+        #     errors.append("Request reason is required")
+        #     self.popup.register_Reason.setStyleSheet(
+        #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff;"
+        #     )
+        # else:
+        #     self.popup.register_Reason.setStyleSheet(
+        #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff;"
+        #     )
 
         # Validate transaction purpose
         if not self.popup.register_Purpose.toPlainText().strip():

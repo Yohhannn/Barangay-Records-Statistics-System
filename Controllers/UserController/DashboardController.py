@@ -91,6 +91,7 @@ class DashboardController(BaseFileController):
             self.stack.addWidget(self.activity_logs.activity_logs_screen)
         self.stack.setCurrentWidget(self.activity_logs.activity_logs_screen)
 
+
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""
         print("-- Navigating to Citizen Panel")

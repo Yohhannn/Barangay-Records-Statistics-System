@@ -29,6 +29,8 @@ class HouseholdView:
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
         ui_screen.cp_household_button_register.clicked.connect(self.controller.show_register_household_popup)
         ui_screen.inst_tableView_List_RegHousehold.cellClicked.connect(self.controller.handle_row_click_household)
+        ui_screen.cp_household_button_remove.clicked.connect(self.controller.handle_remove_household)
+
         ui_screen.cp_HouseholdName_buttonSearch.clicked.connect(self.controller.perform_household_search)
 
     def show_register_household_popup(self, parent):
