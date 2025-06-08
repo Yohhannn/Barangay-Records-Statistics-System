@@ -11,6 +11,7 @@ from database import Database
 class CitizenHistoryController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_citizen_history_id = None
         self.user_role = user_role
 
 
@@ -21,6 +22,8 @@ class CitizenHistoryController(BaseFileController):
 
         self.hist_citizen_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/citizen_history.ui")
         self.view.setup_citizen_history_ui(self.hist_citizen_history_screen)
+        self.hist_citizen_history_screen.histrec_citizenhistory_button_remove.clicked.connect(
+            self.handle_remove_citizen_history)
         # self.view.setup_history_ui(self.hist_citizen_history_screen)
         self.center_on_screen()
         self.load_citizen_history_data()
@@ -34,6 +37,61 @@ class CitizenHistoryController(BaseFileController):
 
     def show_citizen_history_initialize(self):
         pass
+
+    def handle_remove_citizen_history(self):
+        if not getattr(self, 'selected_citizen_history_id', None):
+            QMessageBox.warning(
+                self.hist_citizen_history_screen,
+                "No Selection",
+                "Please select a citizen history record to remove."
+            )
+            return
+
+        cihi_id = self.selected_citizen_history_id
+
+        confirm = QMessageBox.question(
+            self.hist_citizen_history_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete citizen history record with ID {cihi_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Soft-delete the citizen history record
+            cursor.execute("""
+                UPDATE CITIZEN_HISTORY
+                SET CIHI_IS_DELETED = TRUE
+                WHERE CIHI_ID = %s;
+            """, (cihi_id,))
+
+            db.conn.commit()
+            QMessageBox.information(
+                self.hist_citizen_history_screen,
+                "Success",
+                f"Citizen history record {cihi_id} has been deleted."
+            )
+            self.load_citizen_history_data()  # Refresh table
+
+            if hasattr(self, 'selected_citizen_history_id'):
+                delattr(self, 'selected_citizen_history_id')
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(
+                self.hist_citizen_history_screen,
+                "Database Error",
+                f"Failed to delete citizen history record: {str(e)}"
+            )
+        finally:
+            db.close()
+
 
     def load_citizen_history_data(self):
         connection = None
@@ -178,6 +236,7 @@ class CitizenHistoryController(BaseFileController):
             return
 
         selected_id = selected_item.text()
+        self.selected_citizen_history_id = selected_id
 
         for record in self.history_rows:
             if str(record[0]) == selected_id:

@@ -97,7 +97,7 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.inst_BusinessName_buttonSearch.clicked.connect(self.perform_business_search)
 
     def handle_remove_business(self):
-        if not hasattr(self, 'selected_business_id'):
+        if not getattr(self, 'selected_business_id', None):
             QMessageBox.warning(self.inst_business_screen, "No Selection", "Please select a business to remove.")
             return
 

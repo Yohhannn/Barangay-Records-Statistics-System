@@ -150,26 +150,26 @@ class CitizenHistoryView:
             if not description:
                 raise Exception("Description is required")
 
-            # Find CITIZEN by ID or name
-            cursor.execute("""
-                SELECT CTZ_ID FROM CITIZEN 
-                WHERE CTZ_ID = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
-            """, (citizen_search, f"%{citizen_search}%"))
-
-            ctz_result = cursor.fetchone()
-            if not ctz_result:
-                raise Exception(f"No citizen found with ID or name containing '{citizen_search}'")
-            ctz_id = ctz_result[0]
-
-            if not self.popup.record_citizenIDANDsearch.text().strip():
-                errors.append("Info citizen ID is required")
-                self.popup.record_citizenIDANDsearch.setStyleSheet(
-                    "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
-            else:
-                self.popup.record_citizenIDANDsearch.setStyleSheet(
-                    "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-                )
+            # # Find CITIZEN by ID or name
+            # cursor.execute("""
+            #     SELECT CTZ_ID FROM CITIZEN
+            #     WHERE CTZ_ID = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+            # """, (citizen_search, f"%{citizen_search}%"))
+            #
+            # ctz_result = cursor.fetchone()
+            # if not ctz_result:
+            #     raise Exception(f"No citizen found with ID or name containing '{citizen_search}'")
+            # ctz_id = ctz_result[0]
+            #
+            # if not self.popup.record_citizenIDANDsearch.text().strip():
+            #     errors.append("Info citizen ID is required")
+            #     self.popup.record_citizenIDANDsearch.setStyleSheet(
+            #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            #     )
+            # else:
+            #     self.popup.record_citizenIDANDsearch.setStyleSheet(
+            #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            #     )
 
             # Get HISTORY_TYPE ID
             cursor.execute("SELECT HIST_ID FROM HISTORY_TYPE WHERE HIST_TYPE_NAME = %s", (hist_type_name,))

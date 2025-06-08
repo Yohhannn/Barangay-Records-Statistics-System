@@ -10,6 +10,7 @@ from Utils.util_popup import load_popup
 class ServiceController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_transaction_id = None
         self.user_role = user_role
         
         self.stack = stack
@@ -35,6 +36,8 @@ class ServiceController(BaseFileController):
         # REGISTER BUTTON
         self.trans_services_screen.trans_Transact_button_create.clicked.connect(self.show_transaction_popup)
         self.trans_services_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_transaction)
+
+        self.trans_services_screen.trans_Transact_button_remove.clicked.connect(self.handle_remove_transaction)
 
         # Return Button
         self.trans_services_screen.inst_Transaction_buttonSearch.clicked.connect(self.search_transaction_data)
@@ -176,12 +179,15 @@ class ServiceController(BaseFileController):
                 connection.close()
 
     def handle_row_click_transaction(self, row, column):
+
         table = self.trans_services_screen.inst_tableView_List_RegBusiness
         selected_item = table.item(row, 0)
         if not selected_item:
             return
-
         selected_id = selected_item.text()
+        # Store selected transaction ID
+        self.selected_transaction_id = selected_id
+
 
         for record in self.transaction_rows:
             if str(record[0]) == selected_id:
@@ -392,6 +398,60 @@ class ServiceController(BaseFileController):
             )
         else:
             self.confirm_and_save()
+
+    def handle_remove_transaction(self):
+        if not getattr(self, 'selected_transaction_id', None):
+            QMessageBox.warning(
+                self.trans_services_screen,
+                "No Selection",
+                "Please select a transaction to remove."
+            )
+            return
+
+        tl_id = self.selected_transaction_id
+
+        confirm = QMessageBox.question(
+            self.trans_services_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete transaction with ID {tl_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Soft-delete the transaction
+            cursor.execute("""
+                UPDATE TRANSACTION_LOG
+                SET TL_IS_DELETED = TRUE
+                WHERE TL_ID = %s;
+            """, (tl_id,))
+
+            db.conn.commit()
+            QMessageBox.information(
+                self.trans_services_screen,
+                "Success",
+                f"Transaction {tl_id} has been deleted."
+            )
+            self.load_transaction_data()  # Refresh table
+
+            if hasattr(self, 'selected_transaction_id'):
+                delattr(self, 'selected_transaction_id')
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(
+                self.trans_services_screen,
+                "Database Error",
+                f"Failed to delete transaction: {str(e)}"
+            )
+        finally:
+            db.close()
 
     def load_transaction_types(self):
         try:
