@@ -3173,7 +3173,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QToolButton" name="btn_returnToCitizenPanelPage">
+   <widget class="QToolButton" name="btn_returnToTrashBinPage">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -3183,7 +3183,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#btn_returnToCitizenPanelPage {
+     <string notr="true">#btn_returnToTrashBinPage {
     background-color: #f2efff;
     color: #141c52;
 	border: 2px solid #141c52; 
@@ -3191,10 +3191,10 @@
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#btn_returnToCitizenPanelPage:hover {
+#btn_returnToTrashBinPage:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#btn_returnToCitizenPanelPage:pressed {
+#btn_returnToTrashBinPage:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }
 
