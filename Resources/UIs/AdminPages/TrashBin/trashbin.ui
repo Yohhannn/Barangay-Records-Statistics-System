@@ -148,14 +148,18 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#nav_buttonCitizenPanel {
-    background-color: #fdfdff;
+    background-color: #f2efff;
     color: #141c52;
     border-radius: 5px;
-	border: 2px solid #141c52; 
-	text-align: left;
+	text-align: left;;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-</string>
+#nav_buttonCitizenPanel:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonCitizenPanel:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
      </property>
      <property name="text">
       <string>  CITIZEN PANEL</string>
@@ -644,7 +648,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
+       <normaloff>../../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../../Assets/Icons/icon_adminoverview_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -692,7 +696,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+       <normaloff>../../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../../Assets/Icons/icon_activitylogs_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -721,26 +725,22 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#nav_buttonTrashBin {
-    background-color: #f2efff;
+      <string notr="true">#nav_buttonTrashBin  {
+    background-color: #fdfdff;
     color: #141c52;
     border-radius: 5px;
+	border: 2px solid #141c52; 
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#nav_buttonTrashBin:hover {
-    background-color: #fdfdff; /* Slightly lighter blue when hovered */
-}
-#nav_buttonTrashBin:pressed {
-    background-color: #e7e5f4; /* Darker blue when clicked */
-}</string>
+</string>
      </property>
      <property name="text">
       <string>  TRASH BIN</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+       <normaloff>../../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../../Assets/Icons/icon_activitylogs_off.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -938,16 +938,16 @@
 </string>
     </property>
     <property name="text">
-     <string>CITIZEN PANEL</string>
+     <string>TRASH BIN</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
-      <width>1001</width>
-      <height>581</height>
+      <y>120</y>
+      <width>1051</width>
+      <height>601</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -961,13 +961,13 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QToolButton" name="CP_ButtonCategory_CitizenProfile">
+    <widget class="QToolButton" name="trashbin_btn_citizens">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>150</y>
-       <width>451</width>
-       <height>220</height>
+       <y>70</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
@@ -981,7 +981,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#CP_ButtonCategory_CitizenProfile {
+      <string notr="true">#trashbin_btn_citizens {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -992,23 +992,23 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#CP_ButtonCategory_CitizenProfile:hover {
+#trashbin_btn_citizens:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#CP_ButtonCategory_CitizenProfile:pressed {
+#trashbin_btn_citizens:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#CP_ButtonCategory_CitizenProfile::icon {
+#trashbin_btn_citizens::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
      <property name="text">
-      <string>CITIZEN PROFILE</string>
+      <string>CITIZENS</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_CP_citizenprofile.png</normaloff>../../Assets/Images/img_CP_citizenprofile.png</iconset>
+       <normaloff>../../../../../../../Downloads/appicon_active_u.png</normaloff>../../../../../../../Downloads/appicon_active_u.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1020,13 +1020,13 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="CP_ButtonCategory_Household">
+    <widget class="QToolButton" name="trashbin_btn_household">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>150</y>
-       <width>451</width>
-       <height>220</height>
+       <x>230</x>
+       <y>70</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
@@ -1040,7 +1040,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#CP_ButtonCategory_Household {
+      <string notr="true">#trashbin_btn_household {
     background-color: #f8f8f8;
     color: #141c52;
     border-radius: 5px;
@@ -1051,14 +1051,14 @@
     qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
 
-#CP_ButtonCategory_Household:hover {
+#trashbin_btn_household:hover {
     background-color: #e2e5ff; /* Slightly lighter blue when hovered */
 }
-#CP_ButtonCategory_Household:pressed {
+#trashbin_btn_household:pressed {
     background-color: #c8cbef; /* Darker blue when clicked */
 }
 
-#CP_ButtonCategory_Household::icon {
+#trashbin_btn_household::icon {
     margin-bottom: 10px; /* Space between the icon and text */
 }</string>
      </property>
@@ -1067,7 +1067,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../Assets/Images/img_CP_household.png</normaloff>../../Assets/Images/img_CP_household.png</iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1103,190 +1103,423 @@
 </string>
      </property>
      <property name="text">
-      <string>Interact with the cards to explore detailed insights and information about various categories. Select a card to proceed.</string>
+      <string>SOFT DELETED DATAS THAT CAN STILL BE RECOVERED.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="inst_labeltotalregistered_businesses">
+    <widget class="QToolButton" name="trashbin_btn_business">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>70</y>
+       <width>191</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#trashbin_btn_business {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#trashbin_btn_business:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_business:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_business::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>BUSINESS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="trashbin_btn_infra">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>70</y>
+       <width>191</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#trashbin_btn_infra {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#trashbin_btn_infra:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_infra:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_infra::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>INFRASTRUCTURES</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="trashbin_btn_services">
+     <property name="geometry">
+      <rect>
+       <x>830</x>
+       <y>70</y>
+       <width>191</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#trashbin_btn_services {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
+}
+
+#trashbin_btn_services:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_services:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_services::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
+     </property>
+     <property name="text">
+      <string>SERVICES</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="trashbin_btn_ctzhist">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>110</y>
-       <width>231</width>
-       <height>31</height>
+       <y>280</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>9</pointsize>
+       <pointsize>-1</pointsize>
        <bold>true</bold>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">#inst_labeltotalregistered_businesses {
-	background-color: transparent;
-	color: #4f4f4f;
+      <string notr="true">#trashbin_btn_ctzhist {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
-</string>
+
+#trashbin_btn_ctzhist:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_ctzhist:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_ctzhist::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
      </property>
      <property name="text">
-      <string>TOTAL OF REGISTERED CITIZENS: </string>
+      <string>CITIZEN HIST.</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="inst_totalregistered_businesses">
+    <widget class="QToolButton" name="trashbin_btn_medhist">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>110</y>
-       <width>211</width>
-       <height>31</height>
+       <x>230</x>
+       <y>280</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>9</pointsize>
+       <pointsize>-1</pointsize>
        <bold>true</bold>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">#inst_totalregistered_businesses {
-	background-color: transparent;
-	color: rgb(20, 28, 82);
+      <string notr="true">#trashbin_btn_medhist {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
-</string>
+
+#trashbin_btn_medhist:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_medhist:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_medhist::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
      </property>
      <property name="text">
-      <string>[ 00 ]</string>
+      <string>MEDICAL HIST.</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="inst_totalregistered_infrastructure">
+    <widget class="QToolButton" name="trashbin_btn_setthist">
      <property name="geometry">
       <rect>
-       <x>760</x>
-       <y>110</y>
-       <width>211</width>
-       <height>31</height>
+       <x>430</x>
+       <y>280</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>9</pointsize>
+       <pointsize>-1</pointsize>
        <bold>true</bold>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">#inst_totalregistered_infrastructure {
-	background-color: transparent;
-	color: rgb(20, 28, 82);
+      <string notr="true">#trashbin_btn_setthist {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
-</string>
+
+#trashbin_btn_setthist:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_setthist:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_setthist::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
      </property>
      <property name="text">
-      <string>[ 00 ]</string>
+      <string>SETTLEMENT HIST.</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="inst_labeltotalregistered_infrastructure">
+    <widget class="QToolButton" name="trashbin_btn_accounts">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>110</y>
-       <width>241</width>
-       <height>31</height>
+       <x>630</x>
+       <y>280</y>
+       <width>191</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>9</pointsize>
+       <pointsize>-1</pointsize>
        <bold>true</bold>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">#inst_labeltotalregistered_infrastructure {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>TOTAL OF REGISTERED HOUSEHOLDS: </string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="desc_01">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>370</y>
-       <width>451</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-       <bold>true</bold>
-      </font>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#desc_01 {
-	background-color: transparent;
-	color: #4f4f4f;
+      <string notr="true">#trashbin_btn_accounts {
+    background-color: #f8f8f8;
+    color: #141c52;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 25px; /* Adds space inside the button */
+    font-size: 14px; /* Text size */
+    text-align: center; /* Ensures text is centered */
+    qproperty-iconSize: 120px 120px; /* Adjust icon size */
 }
-</string>
+
+#trashbin_btn_accounts:hover {
+    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
+}
+#trashbin_btn_accounts:pressed {
+    background-color: #c8cbef; /* Darker blue when clicked */
+}
+
+#trashbin_btn_accounts::icon {
+    margin-bottom: 10px; /* Space between the icon and text */
+}</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [ Register / View / Update / Remove ] Citizen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>ACCOUNTS</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
      </property>
-    </widget>
-    <widget class="QLabel" name="desc_2">
-     <property name="geometry">
-      <rect>
-       <x>520</x>
-       <y>370</y>
-       <width>451</width>
-       <height>31</height>
-      </rect>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
      </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#desc_2 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;* Click to [ Register / View / Update / Remove ] Household&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
    </widget>
@@ -1294,8 +1527,8 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
-      <width>1001</width>
+      <y>70</y>
+      <width>1051</width>
       <height>51</height>
      </rect>
     </property>
@@ -1335,7 +1568,7 @@
 </string>
      </property>
      <property name="text">
-      <string>OVERVIEW OF CITIZEN PANEL CATEGORIES</string>
+      <string>CATEGORIES</string>
      </property>
     </widget>
    </widget>
