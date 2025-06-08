@@ -56,7 +56,7 @@
       <x>10</x>
       <y>150</y>
       <width>211</width>
-      <height>341</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -587,9 +587,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>500</y>
+      <y>470</y>
       <width>211</width>
-      <height>161</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -609,87 +609,11 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QPushButton" name="nav_buttonAdminPanel">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>191</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>10</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#nav_buttonAdminPanel {
-    background-color: #fdfdff;
-    color: #141c52;
-    border-radius: 5px;
-	border: 2px solid #141c52; 
-	text-align: left;
-    padding: 10px; /* Optional: Adjusts spacing inside the button */
-}
-</string>
-     </property>
-     <property name="text">
-      <string>  ADMIN PANEL</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Icons/icon_adminoverview_off.svg</normaloff>../../Assets/Icons/icon_adminoverview_off.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="nav_isLocked">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>191</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#nav_isLocked{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-	color: #165416;
-}</string>
-     </property>
-     <property name="text">
-      <string>  Admin Access Open</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QPushButton" name="nav_buttonActivityLogs">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>80</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -721,6 +645,82 @@
      </property>
      <property name="text">
       <string>  ACTIVITY LOGS</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="label_admin">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_admin{
+	background-color: #d3d2e2;
+	border-radius: 20px;
+	border: 2px solid #d3d2e2;
+	opacity: 0.1;
+	color: #165416;
+}</string>
+     </property>
+     <property name="text">
+      <string>[ ADMIN ACCESS ]</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_isLocked.svg</normaloff>../../Assets/Icons/icon_isLocked.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nav_buttonAdminPanel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonAdminPanel {
+    background-color: #fdfdff;
+    color: #141c52;
+    border-radius: 5px;
+	border: 2px solid #141c52; 
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+</string>
+     </property>
+     <property name="text">
+      <string>  ADMIN PANEL</string>
      </property>
      <property name="icon">
       <iconset>
@@ -775,7 +775,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
