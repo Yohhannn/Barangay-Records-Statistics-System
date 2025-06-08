@@ -51,6 +51,7 @@ class AdminPanelView:
             'nav_buttonTransactions': 'Resources/Icons/General_Icons/icon_transaction.svg',
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
             'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
+            'nav_buttonTrashBin': 'Resources/Icons/General_Icons/icon_trash_bin.svg',
             'admn_button_ManageAccounts': "Resources/Images/General_Images/img_manageaccount.png",
             'admn_button_AdminControls': 'Resources/Images/General_Images/img_admin_control.png',
             'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg'

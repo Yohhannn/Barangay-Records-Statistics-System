@@ -585,7 +585,7 @@
       <x>10</x>
       <y>470</y>
       <width>211</width>
-      <height>131</height>
+      <height>181</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -701,7 +701,55 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="label_admin">
+    <widget class="QPushButton" name="nav_buttonTrashBin">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nav_buttonTrashBin {
+    background-color: #f2efff;
+    color: #141c52;
+    border-radius: 5px;
+	text-align: left;
+    padding: 10px; /* Optional: Adjusts spacing inside the button */
+}
+#nav_buttonTrashBin:hover {
+    background-color: #fdfdff; /* Slightly lighter blue when hovered */
+}
+#nav_buttonTrashBin:pressed {
+    background-color: #e7e5f4; /* Darker blue when clicked */
+}</string>
+     </property>
+     <property name="text">
+      <string>  TRASH BIN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Assets/Icons/icon_activitylogs_off.svg</normaloff>../../Assets/Icons/icon_activitylogs_off.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_adminaccess">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -710,27 +758,25 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">#label_admin{
-	background-color: #d3d2e2;
-	border-radius: 20px;
-	border: 2px solid #d3d2e2;
-	opacity: 0.1;
-	color: #165416;
-}</string>
+      <string notr="true">#label_adminaccess {
+	background-color: transparent;
+	color: rgb(62, 67, 83);
+}
+</string>
      </property>
      <property name="text">
-      <string>[ ADMIN ACCESS ]</string>
+      <string>[ Admin Access ]</string>
      </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../Assets/Icons/icon_isLocked.svg</normaloff>../Assets/Icons/icon_isLocked.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>

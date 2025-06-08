@@ -47,6 +47,7 @@ class AdminActivityLogsView:
             'nav_buttonInstitutions': 'Resources/Icons/General_Icons/icon_institutions.svg',
             'nav_buttonTransactions': 'Resources/Icons/General_Icons/icon_transaction.svg',
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
+            'nav_buttonTrashBin': 'Resources/Icons/General_Icons/icon_trash_bin.svg',
             'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
             'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg'
         }
