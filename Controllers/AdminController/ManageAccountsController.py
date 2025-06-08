@@ -21,20 +21,7 @@ class ManageAccountsController(BaseFileController):
 
         self._refresh()
         self.admin_manage_accounts_screen.adminpanel_tableView_List_StaffAccounts.clicked.connect(self.handle_row_click_account)
-    
-        # self.set_current_user_id()
-    
-    # def set_current_user_id(self):
-    #     """Set the current user ID for the dashboard."""
-    #     try:
-    #         connection = Database()
-    #         cursor = connection.cursor
-    #         cursor.execute("Set app.current_user_id = %s", (str(self.sys_user_id),))
-    #         connection.commit()
-    #         print(f"Current user ID set to: {self.sys_user_id}")
-    #     except Exception as e:
-    #         print(f"Error setting current user ID: {e}")
-    #         connection.close()
+
 
     def _populate_table(self, table, headers, data):
         table.setRowCount(len(data))

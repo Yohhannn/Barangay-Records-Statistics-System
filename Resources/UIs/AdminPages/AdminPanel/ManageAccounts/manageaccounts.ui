@@ -489,6 +489,18 @@
         </color>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Is Active</string>
+       </property>
+       <property name="background">
+        <color>
+         <red>211</red>
+         <green>205</green>
+         <blue>255</blue>
+        </color>
+       </property>
+      </column>
      </widget>
      <widget class="QPushButton" name="manag_account_buttonFilter">
       <property name="geometry">
@@ -1355,7 +1367,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#btn_returnToHistoryRecordPage {
+     <string notr="true">#btn_returnToAdminPanelPage {
     background-color: #f2efff;
     color: #141c52;
 	border: 2px solid #141c52; 
@@ -1363,10 +1375,10 @@
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#btn_returnToHistoryRecordPage:hover {
+#btn_returnToAdminPanelPage:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#btn_returnToHistoryRecordPage:pressed {
+#btn_returnToAdminPanelPage:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }
 
