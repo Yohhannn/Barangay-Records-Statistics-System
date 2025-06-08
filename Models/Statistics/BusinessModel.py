@@ -10,10 +10,10 @@ class BusinessModel:
             self.cursor.execute("""
                 SELECT
                     s.SITIO_NAME AS "Sitio",
-                    COUNT(CASE WHEN bs.BS_STATUS = 'ACTIVE' THEN 1 END) AS "Active",
-                    COUNT(CASE WHEN bs.BS_STATUS = 'INACTIVE' THEN 1 END) AS "Inactive",
-                    COUNT(CASE WHEN bs.BS_STATUS = 'CLOSED' THEN 1 END) AS "Closed",
-                    COUNT(CASE WHEN bs.BS_STATUS = 'SUSPENDED' THEN 1 END) AS "Suspended"
+                    COUNT(CASE WHEN bs.BS_STATUS = 'Active' THEN 1 END) AS "Active",
+                    COUNT(CASE WHEN bs.BS_STATUS = 'Inactive' THEN 1 END) AS "Inactive",
+                    COUNT(CASE WHEN bs.BS_STATUS = 'Closed' THEN 1 END) AS "Closed",
+                    COUNT(CASE WHEN bs.BS_STATUS = 'Suspended' THEN 1 END) AS "Suspended"
                 FROM
                     SITIO s
                         LEFT JOIN
@@ -43,7 +43,7 @@ class BusinessModel:
                         COUNT(BS_ID) AS active_count
                 FROM BUSINESS_TYPE bt
                 LEFT JOIN BUSINESS_INFO bs on bt.BST_ID = bs.BST_ID
-                    AND BS.BS_STATUS = 'ACTIVE'
+                    AND BS.BS_STATUS = 'Active'
                     AND bs.BS_IS_DELETED = FALSE
                     AND bs.BS_LAST_UPDATED::date BETWEEN %s AND %s
                 GROUP BY bt.BST_TYPE_NAME;
