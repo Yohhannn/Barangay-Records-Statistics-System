@@ -15,7 +15,7 @@ class DemographicModel:
                     COUNT(*) FILTER (WHERE CTZ_IS_ALIVE = FALSE) AS deceased
                 FROM (
                     SELECT * FROM CITIZEN
-                    WHERE CTZ_LAST_UPDATED BETWEEN %s AND %s
+                    WHERE CTZ_LAST_UPDATED ::date BETWEEN %s AND %s
                     AND CTZ_IS_DELETED = FALSE
                 ) AS filtered_citizens
             """, (from_date, to_date))
@@ -37,7 +37,7 @@ class DemographicModel:
                     COUNT(*) FILTER (WHERE EXTRACT(YEAR FROM AGE(current_date, CTZ_DATE_OF_BIRTH)) >= 60) as "Senior"
                 FROM CITIZEN
                 WHERE CTZ_IS_ALIVE = TRUE 
-                AND CTZ_LAST_UPDATED BETWEEN %s AND %s 
+                AND CTZ_LAST_UPDATED ::date BETWEEN %s AND %s 
                 AND CTZ_IS_DELETED = FALSE;
             """, (from_date, to_date))
 
@@ -56,7 +56,7 @@ class DemographicModel:
                 COUNT(*) AS total_count
             FROM citizen
             WHERE CTZ_IS_ALIVE = TRUE
-            AND CTZ_LAST_UPDATED BETWEEN %s AND %s 
+            AND CTZ_LAST_UPDATED ::date BETWEEN %s AND %s
             AND CTZ_IS_DELETED = FALSE
             GROUP BY CTZ_CIVIL_STATUS;
             """, (from_date, to_date))
@@ -87,7 +87,7 @@ class DemographicModel:
 
                 FROM CITIZEN
                 WHERE CTZ_IS_ALIVE = TRUE 
-                AND CTZ_LAST_UPDATED BETWEEN %s AND %s 
+                AND CTZ_LAST_UPDATED ::date BETWEEN %s AND %s
                 AND CTZ_IS_DELETED = FALSE;
             """, (from_date, to_date))
             return self.cursor.fetchone()
@@ -106,7 +106,7 @@ class DemographicModel:
                     SOCIO_ECONOMIC_STATUS s ON c.SOEC_ID = s.SOEC_ID
                 WHERE
                     c.CTZ_IS_ALIVE = TRUE
-                AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s 
+                AND c.CTZ_LAST_UPDATED ::date BETWEEN %s AND %s 
                 AND c.CTZ_IS_DELETED = FALSE
                 GROUP BY
                     s.SOEC_STATUS;
@@ -128,7 +128,7 @@ class DemographicModel:
                     RELIGION r ON c.REL_ID = r.REL_ID
                 WHERE 
                     c.CTZ_IS_ALIVE = TRUE
-                AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s 
+                AND c.CTZ_LAST_UPDATED ::date BETWEEN %s AND %s 
                 AND c.CTZ_IS_DELETED = FALSE
                 GROUP BY 
                     r.REL_NAME;

@@ -12,13 +12,15 @@ class ManageAccountsModel:
                 INSERT INTO SYSTEM_ACCOUNT (
                     SYS_FNAME,
                     SYS_LNAME,
+                    SYS_MNAME,
                     SYS_PASSWORD,
                     SYS_ROLE
-                ) VALUES (%s, %s, %s, %s)
+                ) VALUES (%s, %s, %s, %s, %s)
             """
             self.connection.execute_with_user(query, (
                 account_data['first_name'],
                 account_data['last_name'],
+                account_data['middle_name'],
                 account_data['user_password'],
                 account_data['role']
             ))
