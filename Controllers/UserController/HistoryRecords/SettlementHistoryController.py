@@ -79,7 +79,7 @@ class SettlementHistoryController(BaseFileController):
                 JOIN CITIZEN C1 ON CH.CTZ_ID = C1.CTZ_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON SL.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON SL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-                WHERE CAST(SL.SETT_ID AS TEXT) ILIKE %s OR
+                WHERE SL.SETT_IS_DELETED = FALSE AND CAST(SL.SETT_ID AS TEXT) ILIKE %s OR
                       C1.CTZ_FIRST_NAME ILIKE %s OR
                       C1.CTZ_LAST_NAME ILIKE %s OR
                       C2.COMP_FNAME ILIKE %s OR
@@ -364,8 +364,8 @@ class SettlementHistoryController(BaseFileController):
 
             # Step 2: Find CITIZEN by ID or name
             cursor.execute("""
-                SELECT CTZ_ID FROM CITIZEN 
-                WHERE CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                SELECT CTZ_ID, CTZ_IS_DELETED FROM CITIZEN 
+                WHERE CTZ_IS_DELETED = FALSE AND CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
             """, (ctz_search, f"%{ctz_search}%"))
 
             ctz_result = cursor.fetchone()

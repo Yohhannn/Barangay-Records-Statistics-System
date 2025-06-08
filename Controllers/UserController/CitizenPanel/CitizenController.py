@@ -657,7 +657,7 @@ class CitizenController(BaseFileController):
                 cursor = db.get_cursor()
                 cursor.execute("""
                     SELECT COUNT(*) FROM citizen 
-                    WHERE LOWER(ctz_first_name) = LOWER(%s) AND LOWER(ctz_last_name) = LOWER(%s)
+                    WHERE C.CTZ_IS_DELETED = FALSE AND LOWER(ctz_first_name) = LOWER(%s) AND LOWER(ctz_last_name) = LOWER(%s)
                 """, (form_data_part_1['first_name'], form_data_part_1['last_name']))
                 result = cursor.fetchone()
                 if result[0] > 0:
@@ -901,7 +901,7 @@ class CitizenController(BaseFileController):
         else:
             db = Database()
             cursor = db.get_cursor()
-            cursor.execute("SELECT 1 FROM household_info WHERE hh_id = %s", (form_data_part_2['household_id'],))
+            cursor.execute("SELECT 1 FROM household_info WHERE HH_IS_DELETED = FALSE AND hh_id = %s", (form_data_part_2['household_id'],))
             result = cursor.fetchone()
             if not result:
                 errors_part_2.append("Household ID does not exist.")

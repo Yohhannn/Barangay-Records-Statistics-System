@@ -63,6 +63,7 @@ class CitizenHistoryController(BaseFileController):
                              SUA.SYS_LNAME
                     END AS UPDATED_BY
                 FROM CITIZEN_HISTORY H
+                WHERE H.CIHI_IS_DELETED = FALSE
                 JOIN CITIZEN C ON H.CTZ_ID = C.CTZ_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON H.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON H.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
@@ -132,7 +133,7 @@ class CitizenHistoryController(BaseFileController):
                 JOIN CITIZEN C ON H.CTZ_ID = C.CTZ_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON H.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON H.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-                WHERE CAST(H.CIHI_ID AS TEXT) ILIKE %s OR
+                WHERE H.CIHI_IS_DELETED = FALSE AND CAST(H.CIHI_ID AS TEXT) ILIKE %s OR
                       C.CTZ_FIRST_NAME ILIKE %s OR
                       C.CTZ_LAST_NAME ILIKE %s OR
                       H.CIHI_DESCRIPTION ILIKE %s

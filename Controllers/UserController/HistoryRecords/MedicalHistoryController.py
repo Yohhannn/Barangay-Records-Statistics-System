@@ -104,7 +104,7 @@ class MedicalHistoryController(BaseFileController):
                 JOIN MEDICAL_HISTORY_TYPE MHT ON MH.MHT_ID = MHT.MHT_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON MH.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON MH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
-                WHERE CAST(MH.MH_ID AS TEXT) ILIKE %s OR
+                WHERE MH.MH_IS_DELETED = FALSE AND CAST(MH.MH_ID AS TEXT) ILIKE %s OR
                       C.CTZ_FIRST_NAME ILIKE %s OR
                       C.CTZ_LAST_NAME ILIKE %s OR
                       MHT.MHT_TYPE_NAME ILIKE %s
@@ -250,8 +250,8 @@ class MedicalHistoryController(BaseFileController):
                 db = Database()
                 cursor = db.get_cursor()
                 cursor.execute("""
-                    SELECT CTZ_ID FROM CITIZEN 
-                    WHERE CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                    SELECT CTZ_ID, CTZ_IS_DELETED FROM CITIZEN 
+                    WHERE CTZ_IS_DELETE = FALSE AND CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
                 """, (citizen_search, f"%{citizen_search}%"))
 
                 result = cursor.fetchone()
@@ -339,8 +339,8 @@ class MedicalHistoryController(BaseFileController):
 
             # Find CITIZEN by ID or name
             cursor.execute("""
-                SELECT CTZ_ID FROM CITIZEN 
-                WHERE CTZ_ID = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                SELECT CTZ_ID, CTZ_IS_DELETED FROM CITIZEN 
+                WHERE CTZ_IS_DELETED = FALSE AND CTZ_ID= %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
             """, (ctz_id_search, f"%{ctz_id_search}%"))
 
             ctz_result = cursor.fetchone()
