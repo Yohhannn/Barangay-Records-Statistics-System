@@ -203,7 +203,7 @@ class HouseholdController(BaseFileController):
                 db.close()
 
     def handle_remove_household(self):
-        if not hasattr(self, 'selected_household_id'):
+        if not hasattr(self, 'selected_household_id') or self.selected_household_id is None:
             QMessageBox.warning(self.cp_household_screen, "No Selection", "Please select a household to remove.")
             return
 

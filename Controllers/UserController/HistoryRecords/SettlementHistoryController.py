@@ -33,7 +33,8 @@ class SettlementHistoryController(BaseFileController):
         # RECORD BUTTON
         self.hist_settlement_history_screen.histrec_settlementhistory_button_record.clicked.connect(self.show_settlement_history_popup)
         self.hist_settlement_history_screen.histrec_tableView_List_RecordSettlementHistory.cellClicked.connect(self.handle_row_click_settlement_history)
-
+        self.hist_settlement_history_screen.histrec_settlementhistory_button_remove.clicked.connect(
+            self.handle_remove_settlement)
         # Return Button
         self.hist_settlement_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
         self.hist_settlement_history_screen.histrec_SettlementID_buttonSearch.clicked.connect(
@@ -191,6 +192,7 @@ class SettlementHistoryController(BaseFileController):
                 JOIN CITIZEN C1 ON CH.CTZ_ID = C1.CTZ_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON SL.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON SL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE SL.SETT_IS_DELETED = FALSE
                 ORDER BY SL.SETT_DATE_ENCODED DESC
                 LIMIT 50;
             """)
@@ -253,6 +255,8 @@ class SettlementHistoryController(BaseFileController):
             return
 
         selected_id = selected_item.text()
+        # Store selected settlement ID
+        self.selected_settlement_id = selected_id
 
         for record in self.settlement_history_rows:
             if str(record[0]) == selected_id:
@@ -380,6 +384,60 @@ class SettlementHistoryController(BaseFileController):
             )
         else:
             self.confirm_and_save()
+
+    def handle_remove_settlement(self):
+        if not getattr(self, 'selected_settlement_id', None):
+            QMessageBox.warning(
+                self.hist_settlement_history_screen,
+                "No Selection",
+                "Please select a settlement record to remove."
+            )
+            return
+
+        sett_id = self.selected_settlement_id
+
+        confirm = QMessageBox.question(
+            self.hist_settlement_history_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete settlement record with ID {sett_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Soft-delete the settlement record
+            cursor.execute("""
+                UPDATE SETTLEMENT_LOG
+                SET SETT_IS_DELETED = TRUE
+                WHERE SETT_ID = %s;
+            """, (sett_id,))
+
+            db.conn.commit()
+            QMessageBox.information(
+                self.hist_settlement_history_screen,
+                "Success",
+                f"Settlement record {sett_id} has been deleted."
+            )
+            self.load_settlement_history_data()  # Refresh table
+
+            if hasattr(self, 'selected_settlement_id'):
+                delattr(self, 'selected_settlement_id')
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(
+                self.hist_settlement_history_screen,
+                "Database Error",
+                f"Failed to delete settlement record: {str(e)}"
+            )
+        finally:
+            db.close()
 
     def confirm_and_save(self):
         reply = QMessageBox.question(

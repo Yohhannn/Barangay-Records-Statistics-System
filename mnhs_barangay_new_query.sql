@@ -606,6 +606,7 @@ EXECUTE FUNCTION update_last_updated_citizen_history();
 
 
 
+
 CREATE OR REPLACE FUNCTION update_last_updated_settlement()
     RETURNS TRIGGER AS $$
 BEGIN
@@ -615,9 +616,12 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER set_settlement_last_updated
-    BEFORE UPDATE ON MEDICAL_HISTORY
+    BEFORE UPDATE ON SETTLEMENT_LOG
     FOR EACH ROW
 EXECUTE FUNCTION update_last_updated_settlement();
+
+
+
 
 SELECT sitio_name, COUNT(HH_ID) AS total_households
 FROM HOUSEHOLD_INFO hh
@@ -625,6 +629,9 @@ FROM HOUSEHOLD_INFO hh
 GROUP BY sitio_name
 ORDER BY total_households DESC
 LIMIT 1;
+
+
+
 
 
 

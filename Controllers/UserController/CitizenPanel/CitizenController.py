@@ -1542,9 +1542,11 @@ class CitizenController(BaseFileController):
             connection.close()
 
     def handle_remove_citizen(self):
-        if not hasattr(self, 'selected_citizen_id'):
+        if not getattr(self, 'selected_citizen_id', None):
             QMessageBox.warning(self.cp_profile_screen, "No Selection", "Please select a citizen to remove.")
             return
+
+        citizen_id = self.selected_citizen_id
 
         citizen_id = self.selected_citizen_id
 

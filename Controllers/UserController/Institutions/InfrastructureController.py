@@ -8,6 +8,7 @@ from database import Database
 class InfrastructureController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_infra_id = None
         self.user_role = user_role
         self.selected_id = None
         self.stack = stack
@@ -16,6 +17,8 @@ class InfrastructureController(BaseFileController):
         self.center_on_screen()
         self.load_data_infrastructure()
         self.inst_infrastructure_screen.inst_tableView_List_RegInfra.cellClicked.connect(self.handle_row_click_infrastructure)
+        self.inst_infrastructure_screen.inst_infra_button_remove.clicked.connect(self.handle_remove_infrastructure)
+
 
     def setup_infrastructure_ui(self):
         """Setup the Infrastructure Views layout."""
@@ -39,6 +42,60 @@ class InfrastructureController(BaseFileController):
         # REGISTER BUTTON
         self.inst_infrastructure_screen.inst_infra_button_register.clicked.connect(self.show_register_infrastructure_popup)
         self.inst_infrastructure_screen.inst_InfraName_buttonSearch.clicked.connect(self.perform_infrastructure_search)
+
+    def handle_remove_infrastructure(self):
+        if not getattr(self, 'selected_infra_id', None):
+            QMessageBox.warning(
+                self.inst_infrastructure_screen,
+                "No Selection",
+                "Please select an infrastructure to remove."
+            )
+            return
+
+        infra_id = self.selected_infra_id
+
+        confirm = QMessageBox.question(
+            self.inst_infrastructure_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete infrastructure with ID {infra_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Soft-delete the infrastructure
+            cursor.execute("""
+                UPDATE infrastructure
+                SET INF_IS_DELETED = TRUE
+                WHERE INF_ID = %s;
+            """, (infra_id,))
+
+            db.conn.commit()
+            QMessageBox.information(
+                self.inst_infrastructure_screen,
+                "Success",
+                f"Infrastructure {infra_id} has been deleted."
+            )
+            self.load_data_infrastructure()  # Refresh table
+
+            if hasattr(self, 'selected_infra_id'):
+                delattr(self, 'selected_infra_id')
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(
+                self.inst_infrastructure_screen,
+                "Database Error",
+                f"Failed to delete infrastructure: {str(e)}"
+            )
+        finally:
+            db.close()
 
     def perform_infrastructure_search(self):
         search_text = self.inst_infrastructure_screen.inst_InfraName_fieldSearch.text().strip()
@@ -137,8 +194,9 @@ class InfrastructureController(BaseFileController):
                 LEFT JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON INF.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON INF.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE INF.INF_IS_DELETED = FALSE
                 ORDER BY COALESCE(INF.INF_LAST_UPDATED, INF.INF_DATE_ENCODED) DESC
-                LIMIT 20
+                LIMIT 50
             """)
             rows = cursor.fetchall()
             self.rows = rows
@@ -168,6 +226,7 @@ class InfrastructureController(BaseFileController):
 
     def handle_row_click_infrastructure(self, row):
         self.selected_id = self.inst_infrastructure_screen.inst_tableView_List_RegInfra.item(row, 0).text()
+        self.selected_infra_id = self.selected_id
         for record in self.rows:
             if str(record[0]) == self.selected_id:
                 self.inst_infrastructure_screen.inst_displayInfraID.setText(str(record[0]))

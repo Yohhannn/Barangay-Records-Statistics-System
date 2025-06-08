@@ -9,8 +9,9 @@ from database import Database
 class MedicalHistoryController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_medical_history_id = None
         self.user_role = user_role
-        
+
         self.stack = stack
         self.hist_medical_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/medical_history.ui")
         self.setup_medical_history_ui()
@@ -34,10 +35,67 @@ class MedicalHistoryController(BaseFileController):
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.clicked.connect(self.show_medical_history_popup)
         self.hist_medical_history_screen.histrec_tableView_List_RecordMedicalHistory.cellClicked.connect(self.handle_row_click_medical_history)
 
+        self.hist_medical_history_screen.histrec_medicalhistory_button_remove.clicked.connect(
+            self.handle_remove_medical_history)
         # Return Button
+
         self.hist_medical_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
         self.hist_medical_history_screen.histrecMedHistoryID_buttonSearch.clicked.connect(
             self.search_medical_history_data)
+
+    def handle_remove_medical_history(self):
+        if not getattr(self, 'selected_medical_history_id', None):
+            QMessageBox.warning(
+                self.hist_medical_history_screen,
+                "No Selection",
+                "Please select a medical history record to remove."
+            )
+            return
+
+        mh_id = self.selected_medical_history_id
+
+        confirm = QMessageBox.question(
+            self.hist_medical_history_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete medical history record with ID {mh_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Soft-delete the medical history record
+            cursor.execute("""
+                UPDATE MEDICAL_HISTORY
+                SET MH_IS_DELETED = TRUE
+                WHERE MH_ID = %s;
+            """, (mh_id,))
+
+            db.conn.commit()
+            QMessageBox.information(
+                self.hist_medical_history_screen,
+                "Success",
+                f"Medical history record {mh_id} has been deleted."
+            )
+            self.load_medical_history_data()  # Refresh table
+
+            if hasattr(self, 'selected_medical_history_id'):
+                delattr(self, 'selected_medical_history_id')
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(
+                self.hist_medical_history_screen,
+                "Database Error",
+                f"Failed to delete medical history record: {str(e)}"
+            )
+        finally:
+            db.close()
 
     def show_medical_history_popup(self):
         print("-- Record Medical History Popup")
@@ -177,7 +235,7 @@ class MedicalHistoryController(BaseFileController):
             table.setItem(row_idx, 1, QTableWidgetItem(full_name))  # Citizen Name
             table.setItem(row_idx, 2, QTableWidgetItem(row[3]))  # Medical Type
             table.setItem(row_idx, 3, QTableWidgetItem(row[5] or "N/A"))  # Date Recorded
-        
+
 
     def load_medical_history_data(self):
         connection = None
@@ -212,6 +270,7 @@ class MedicalHistoryController(BaseFileController):
                 JOIN MEDICAL_HISTORY_TYPE MHT ON MH.MHT_ID = MHT.MHT_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON MH.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON MH.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE MH.MH_IS_DELETED = FALSE
                 ORDER BY MH.MH_DATE_ENCODED DESC
                 LIMIT 50;
             """)
@@ -247,6 +306,9 @@ class MedicalHistoryController(BaseFileController):
             return
 
         selected_id = selected_item.text()
+
+        # Store selected medical history ID
+        self.selected_medical_history_id = selected_id
 
         for record in self.medical_history_rows:
             if str(record[0]) == selected_id:
