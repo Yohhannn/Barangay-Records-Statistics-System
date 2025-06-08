@@ -107,9 +107,55 @@ class SettlementHistoryController(BaseFileController):
 
         self.popup.record_buttonConfirmSettlementHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
         self.popup.record_buttonConfirmSettlementHistory_SaveForm.clicked.connect(self.validate_settlement_hist_fields)
+        self.popup.record_citizenIDANDsearch.textChanged.connect(self.handle_citizen_id_search)
 
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.popup.exec_()
+
+    def handle_citizen_id_search(self):
+        citizen_search = self.popup.record_citizenIDANDsearch.text().strip()
+        if not citizen_search:
+            self.popup.display_citizenFullName.setText("None")
+            return
+
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+
+            # Try match by ID first
+            query = """
+                    SELECT CTZ_FIRST_NAME, CTZ_LAST_NAME
+                    FROM CITIZEN
+                    WHERE CTZ_ID = %s \
+                      AND CTZ_IS_DELETED = FALSE; \
+                    """
+            cursor.execute(query, (citizen_search,))
+            result = cursor.fetchone()
+
+            # If no match, try by name
+            if not result:
+                query = """
+                        SELECT CTZ_FIRST_NAME, CTZ_LAST_NAME
+                        FROM CITIZEN
+                        WHERE CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s \
+                          AND CTZ_IS_DELETED = FALSE; \
+                        """
+                cursor.execute(query, (f"%{citizen_search}%",))
+                result = cursor.fetchone()
+
+            if result:
+                full_name = f"{result[0]} {result[1]}"
+                self.popup.display_citizenFullName.setText(full_name)
+            else:
+                self.popup.display_citizenFullName.setText("Not Found")
+
+        except Exception as e:
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
+
 
     def load_settlement_history_data(self):
         connection = None
@@ -239,7 +285,7 @@ class SettlementHistoryController(BaseFileController):
 
         # Validate Settlement Record Complainant First Name
         if not self.popup.record_ComplainantFirstName.text().strip():
-            errors.append("Complainant firstname is required")
+            errors.append("Complainant First Name is required")
             self.popup.record_ComplainantFirstName.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
@@ -250,7 +296,7 @@ class SettlementHistoryController(BaseFileController):
 
         # Validate Settlement Record Complainant Middle Initial
         if not self.popup.record_ComplainantMiddleInitial.text().strip():
-            errors.append("Complainant middleinitial is required")
+            errors.append("Complainant Middle Initial is required")
             self.popup.record_ComplainantMiddleInitial.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
@@ -261,7 +307,7 @@ class SettlementHistoryController(BaseFileController):
 
         # Validate Settlement Record Complainant Last Name
         if not self.popup.record_ComplainantLastName.text().strip():
-            errors.append("Complainant lastname is required")
+            errors.append("Complainant Last Name is required")
             self.popup.record_ComplainantLastName.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
@@ -271,15 +317,38 @@ class SettlementHistoryController(BaseFileController):
             )
 
         # Validate Settlement Record Complainee ID
-        if not self.popup.record_citizenIDANDsearch.text().strip():
-            errors.append("Complainee citizen ID is required")
+        ctz_search = self.popup.record_citizenIDANDsearch.text().strip()
+        if not ctz_search:
+            errors.append("Complainee citizen ID or name is required")
             self.popup.record_citizenIDANDsearch.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
         else:
+
             self.popup.record_citizenIDANDsearch.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
+
+            try:
+                db = Database()
+                cursor = db.cursor
+                cursor.execute("""
+                               SELECT CTZ_ID, CTZ_IS_DELETED
+                               FROM CITIZEN
+                               WHERE CTZ_IS_DELETED = FALSE
+                                 AND (CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s)
+                               """, (ctz_search, f"%{ctz_search}%"))
+
+                ctz_result = cursor.fetchone()
+                if not ctz_result:
+                    errors.append(f"No citizen found with ID '{ctz_search}'")
+
+                    self.popup.record_citizenIDANDsearch.setStyleSheet(
+                        "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+                    )
+                    ctz_id = ctz_result[0]
+            except Exception as e:
+                print(str(e))
 
         # Validate Settlement Record Complaint Desc
         if not self.popup.record_ComplaintDesc.toPlainText().strip():

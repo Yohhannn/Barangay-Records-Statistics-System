@@ -77,6 +77,7 @@ class CitizenPanelController(BaseFileController):
         """Return to dashboard screen"""
         print("-- Navigating to Dashboard")
         self.stack.setCurrentIndex(0)
+        self.load_recent_citizens_data()
     
     def goto_admin_panel(self):
         print("-- Navigating to Admin Panel")

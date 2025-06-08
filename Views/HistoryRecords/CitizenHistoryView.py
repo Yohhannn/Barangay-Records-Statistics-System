@@ -25,6 +25,8 @@ class CitizenHistoryView:
 
         self.popup.record_buttonConfirmCitizenHistory_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
         self.popup.record_buttonConfirmCitizenHistory_SaveForm.clicked.connect(self.validate_citizen_hist_fields)
+        self.popup.record_citizenIDANDsearch.textChanged.connect(self.handle_citizen_id_search)
+
         self.popup.setWindowModality(Qt.ApplicationModal)
         self.load_history_type()
         self.popup.exec_()
@@ -61,8 +63,8 @@ class CitizenHistoryView:
                 db = Database()
                 cursor = db.get_cursor()
                 cursor.execute("""
-                    SELECT CTZ_ID FROM CITIZEN 
-                    WHERE CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                    SELECT CTZ_ID, CTZ_IS_DELETED FROM CITIZEN 
+                    WHERE CTZ_IS_DELETED = FALSE AND CTZ_ID::TEXT = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
                 """, (citizen_search, f"%{citizen_search}%"))
 
                 result = cursor.fetchone()
@@ -219,6 +221,38 @@ class CitizenHistoryView:
             if db:
                 db.close()
 
+    def handle_citizen_id_search(self):
+        citizen_id = self.popup.record_citizenIDANDsearch.text().strip()
+        if not citizen_id:
+            self.popup.display_citizenFullName.setText("None")
+            return
+
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+
+            # Query to fetch citizen by ID
+            query = """
+                    SELECT CTZ_FIRST_NAME, CTZ_LAST_NAME
+                    FROM CITIZEN
+                    WHERE CTZ_ID = %s \
+                      AND CTZ_IS_DELETED = FALSE; \
+                    """
+            cursor.execute(query, (citizen_id,))
+            result = cursor.fetchone()
+
+            if result:
+                full_name = f"{result[0]} {result[1]}"
+                self.popup.display_citizenFullName.setText(full_name)
+            else:
+                self.popup.display_citizenFullName.setText("Not Found")
+
+        except Exception as e:
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            if connection:
+                connection.close()
 
 
     def setup_citizen_history_ui(self, ui_screen):

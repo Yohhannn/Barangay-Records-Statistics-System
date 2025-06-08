@@ -6,8 +6,8 @@ from Models.HouseholdModel import HouseholdModel
 from Views.CitizenPanel.HouseholdView import HouseholdView
 from database import Database
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QLabel
+# from PyQt6.QtCore import Qt
+# from PyQt6.QtWidgets import QLabel
 
 
 class HouseholdController(BaseFileController):
