@@ -47,8 +47,8 @@ class AdminActivityLogsView:
             'nav_buttonInstitutions': 'Resources/Icons/General_Icons/icon_institutions.svg',
             'nav_buttonTransactions': 'Resources/Icons/General_Icons/icon_transaction.svg',
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
-            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_off.svg',
-            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_off.svg'
+            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
+            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg'
         }
 
         for widget_name, icon_path in nav_icons.items():

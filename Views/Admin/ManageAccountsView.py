@@ -1,6 +1,6 @@
 from PySide6.QtCore import QDate, Qt
 from PySide6.QtWidgets import QMessageBox
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPixmap
 from Utils.util_popup import load_popup
 
 
@@ -52,8 +52,11 @@ class ManageAccountsView:
         return reply == QMessageBox.Yes
 
     def _setup_navigation_assets(self):
-        self.manage_accounts_screen.btn_returnToAdminPanelPage.setIcon(
-            QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.manage_accounts_screen.btn_returnToAdminPanelPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.manage_accounts_screen.admn_button_RegAcc.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+        self.manage_accounts_screen.admn_button_UpdAcc.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+        self.manage_accounts_screen.admn_button_RemAcc.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+        self.manage_accounts_screen.buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
 
     def _connect_buttons(self):
         self.manage_accounts_screen.btn_returnToAdminPanelPage.clicked.connect(self.controller.goto_admin_panel)
