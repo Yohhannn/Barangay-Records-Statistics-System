@@ -26,9 +26,9 @@ class HistoryRecordsView:
         ui_screen.nav_buttonHistoryRecords.setIcon(QIcon('Resources/Icons/General_Icons/icon_historyrecord.svg'))
 
         # SET NAVIGATION ADMIN ASSETS
-        ui_screen.nav_buttonAdminPanel.setIcon(QIcon('Resources/Icons/General_Icons/icon_adminoverview_off.svg'))
-        ui_screen.nav_buttonActivityLogs.setIcon(QIcon('Resources/Icons/General_Icons/icon_activitylogs_off.svg'))
-        ui_screen.nav_isLocked.setIcon(QIcon('Resources/Icons/General_Icons/icon_isLocked.svg'))
+        ui_screen.nav_buttonAdminPanel.setIcon(QIcon('Resources/Icons/General_Icons/icon_adminoverview_on.svg'))
+        ui_screen.nav_buttonActivityLogs.setIcon(QIcon('Resources/Icons/General_Icons/icon_activitylogs_on.svg'))
+        # ui_screen.nav_isLocked.setIcon(QIcon('Resources/Icons/General_Icons/icon_isLocked.svg'))
 
         # SET MAIN HISTORY RECORDS SCREEN ASSETS
         ui_screen.hisrec_Button_CitizenHistory.setIcon(QIcon('Resources/Images/General_Images/img_history_citizen.png'))
