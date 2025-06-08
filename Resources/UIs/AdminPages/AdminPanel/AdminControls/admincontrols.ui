@@ -237,7 +237,7 @@
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QPushButton" name="admn_button_RegAcc">
+     <widget class="QPushButton" name="admn_button_RegSitio">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -259,7 +259,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#admn_button_RegAcc {
+       <string notr="true">#admn_button_RegSitio {
     background-color:  #1e7e34; /* Default green */
     color: white;
     border: 1px solid #b5b5b5;
@@ -267,12 +267,12 @@
     padding: 10px; 
 }
 
-#admn_button_RegAcc:hover {
+#admn_button_RegSitio:hover {
     background-color: #28a745; /* Brighter green when hovered */
     color: white; 
 }
 
-#admn_button_RegAcc:pressed {
+#admn_button_RegSitio:pressed {
     background-color:  #34c759; /* Darker green when pressed */
     color: white; 
 }
@@ -292,7 +292,7 @@
        </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="admn_button_RemAcc">
+     <widget class="QPushButton" name="admn_button_RemSitio">
       <property name="geometry">
        <rect>
         <x>260</x>
@@ -314,7 +314,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#admn_button_RemAcc {
+       <string notr="true">#admn_button_RemSitio {
     background-color: #c9302c; /* Default red */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -322,12 +322,12 @@
     padding: 10px; 
 }
 
-#admn_button_RemAcc:hover {
+#admn_button_RemSitio:hover {
     background-color: #d9534f; /* Brighter red when hovered */
     color: white; 
 }
 
-#admn_button_RemAcc:pressed {
+#admn_button_RemSitio:pressed {
     background-color: #a52a2a; /* Darker red when pressed */
     color: white; 
 }</string>
@@ -346,7 +346,7 @@
        </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="admn_button_UpdAcc">
+     <widget class="QPushButton" name="admn_button_UpdSitio">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -368,7 +368,7 @@
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">#admn_button_UpdAcc {
+       <string notr="true">#admn_button_UpdSitio {
     background-color: #6c757d; /* Default gray */
     color: white;
     border: 1px solid #b5b5b5; /* Light gray border */
@@ -376,12 +376,12 @@
     padding: 10px; 
 }
 
-#admn_button_UpdAcc:hover {
+#admn_button_UpdSitio:hover {
     background-color: #838b94; /* Brighter gray when hovered */
     color: white; 
 }
 
-#admn_button_UpdAcc:pressed {
+#admn_button_UpdSitio:pressed {
     background-color: #5a6268; /* Darker gray when pressed */
     color: white; 
 }
