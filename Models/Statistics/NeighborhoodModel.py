@@ -28,7 +28,7 @@ class NeighborhoodModel:
                                   ON c.SITIO_ID = s.SITIO_ID
                                       AND c.CTZ_IS_DELETED = FALSE
                                       AND c.CTZ_IS_ALIVE = TRUE
-                                      AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s
+                                      AND c.CTZ_LAST_UPDATED ::date BETWEEN %s AND %s
                         LEFT JOIN CLASSIFICATION_HEALTH_RISK ch ON c.CLAH_ID = ch.CLAH_ID
                 GROUP BY
                     s.SITIO_NAME

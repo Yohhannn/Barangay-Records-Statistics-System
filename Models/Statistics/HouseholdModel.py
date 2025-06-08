@@ -30,7 +30,7 @@ class HouseholdModel:
                 LEFT JOIN HOUSEHOLD_INFO h 
                     ON h.SITIO_ID = s.SITIO_ID 
                     AND h.HH_IS_DELETED = FALSE
-                    AND h.HH_LAST_UPDATED BETWEEN %s AND %s
+                    AND h.HH_LAST_UPDATED ::date BETWEEN %s AND %s
                 LEFT JOIN CITIZEN c 
                     ON c.HH_ID = h.HH_ID 
                     AND c.CTZ_IS_DELETED = FALSE 
@@ -59,7 +59,7 @@ class HouseholdModel:
                         SITIO s
                             LEFT JOIN HOUSEHOLD_INFO h ON h.SITIO_ID = s.SITIO_ID
                             AND h.HH_IS_DELETED = FALSE
-                            AND h.HH_LAST_UPDATED BETWEEN %s AND %s
+                            AND h.HH_LAST_UPDATED ::date BETWEEN %s AND %s
                     GROUP BY
                         s.SITIO_NAME
                 ),
@@ -95,7 +95,7 @@ class HouseholdModel:
                         LEFT JOIN
                     HOUSEHOLD_INFO hh ON hh.HH_OWNERSHIP_STATUS = OS.OWNERSHIP_STATUS 
                     AND hh.HH_IS_DELETED = FALSE 
-                    AND hh.HH_LAST_UPDATED BETWEEN %s AND %s
+                    AND hh.HH_LAST_UPDATED ::date BETWEEN %s AND %s
                 GROUP BY
                     OS.OWNERSHIP_STATUS 
                 ORDER BY
@@ -118,7 +118,7 @@ class HouseholdModel:
                 LEFT JOIN 
                     HOUSEHOLD_INFO hh ON hh.WATER_ID = ws.WATER_ID AND hh.HH_IS_DELETED = FALSE
                     AND hh.HH_IS_DELETED = FALSE
-                    AND hh.HH_LAST_UPDATED BETWEEN %s AND %s
+                    AND hh.HH_LAST_UPDATED ::date BETWEEN %s AND %s
                 GROUP BY 
                     ws.WATER_SOURCE_NAME
                 ORDER BY
