@@ -15,6 +15,7 @@ from database import Database
 class CitizenController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_citizen_id = None
         self.user_role = user_role
 
         # INITIALIZE OBJECTS NEEDED
@@ -120,6 +121,9 @@ class CitizenController(BaseFileController):
         self.part1_popup.show()
         # self.part2_popup.close()
         print("test")
+
+
+
 
 
     def show_register_citizen_part_02_initialize(self):
@@ -404,7 +408,8 @@ class CitizenController(BaseFileController):
             return
 
         selected_id = selected_item.text()
-
+        self.selected_citizen_id = selected_id  # Store selected ID here
+        
         for record in self.rows:
             if str(record[0]) == selected_id:
                 self.cp_profile_screen.cp_displayCItizenID.setText(str(record[0]))
@@ -1535,6 +1540,45 @@ class CitizenController(BaseFileController):
         finally:
             cursor.close()
             connection.close()
+
+    def handle_remove_citizen(self):
+        if not hasattr(self, 'selected_citizen_id'):
+            QMessageBox.warning(self.cp_profile_screen, "No Selection", "Please select a citizen to remove.")
+            return
+
+        citizen_id = self.selected_citizen_id
+
+        confirm = QMessageBox.question(
+            self.cp_profile_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete citizen with ID {citizen_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("""
+                UPDATE citizen
+                SET ctz_is_deleted = TRUE
+                WHERE ctz_id = %s;
+            """, (citizen_id,))
+            db.conn.commit()
+            QMessageBox.information(self.cp_profile_screen, "Success", f"Citizen {citizen_id} has been deleted.")
+            self.load_citizen_data()  # Refresh table
+            delattr(self, 'selected_citizen_id')  # Clear selection
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.cp_profile_screen, "Database Error", f"Failed to delete citizen: {str(e)}")
+        finally:
+            db.close()
+
+
+
 
     def goto_citizen_panel(self):
         """Handle navigation to Citizen Panel screen."""

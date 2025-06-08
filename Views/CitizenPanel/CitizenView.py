@@ -179,6 +179,8 @@ class CitizenView:
         ui_screen.cp_citizen_button_register.clicked.connect(self.controller.show_register_citizen_part_01_initialize)
         ui_screen.cp_tableView_List_RegCitizens.cellClicked.connect(self.controller.handle_row_click_citizen)
         ui_screen.cp_CitizenName_buttonSearch.clicked.connect(self.controller.perform_citizen_search)
+        ui_screen.cp_citizen_button_remove.clicked.connect(self.controller.handle_remove_citizen)
+
 
         # PART 2
         #     'reviewer_name': self.part1_popup.register_household_ReviewedBy.text().strip(),
