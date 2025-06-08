@@ -2,41 +2,35 @@ import os
 import shutil
 from database import Database
 
-
 class HouseholdModel:
-    def __init__(self):
-        pass
+    def __init__(self, sys_user_id=None):
+        self.connection = Database()
+        self.connection.set_user_id(sys_user_id)  # Set the user ID immediately
+        self.sys_user_id = sys_user_id
+        print(f"System ID initialized: {self.sys_user_id}")
+        print(f"System ID initialized1: {self.sys_user_id}")
 
-    def save_household_data(self, household_data, sys_user_id):
-        db = Database()
-        connection = db.conn
-        cursor = connection.cursor()
+    def save_household_data(self, household_data):
 
-
-        cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (household_data['sitio_id'],))
-        sitio_result = cursor.fetchone()
+        self.connection.execute_with_user("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (household_data['sitio_id'],))
+        sitio_result = self.connection.cursor.fetchone()
         if not sitio_result:
             raise Exception(f"Sitio '{household_data['sitio_id']}' not found in database.")
         sitio_id = sitio_result[0]
 
-
-        cursor.execute("SELECT toil_id FROM toilet_type WHERE toil_type_name = %s", (household_data['toilet_id'],))
-        toilet_type_result = cursor.fetchone()
+        self.connection.execute_with_user("SELECT toil_id FROM toilet_type WHERE toil_type_name = %s", (household_data['toilet_id'],))
+        toilet_type_result = self.connection.cursor.fetchone()
         if not toilet_type_result:
             raise Exception(f"Sitio '{household_data['toilet_id']}' not found in database.")
         toil_id = toilet_type_result[0]
 
-        cursor.execute("SELECT water_id FROM water_source WHERE water_source_name = %s", (household_data['water_id'],))
-        water_source_result = cursor.fetchone()
+        self.connection.execute_with_user("SELECT water_id FROM water_source WHERE water_source_name = %s", (household_data['water_id'],))
+        water_source_result = self.connection.cursor.fetchone()
         if not water_source_result:
             raise Exception(f"Sitio '{household_data['water_id']}' not found in database.")
         water_id = water_source_result[0]
 
-
-
         try:
-            connection = Database()
-            cursor = connection.cursor
 
             query = """
                 INSERT INTO HOUSEHOLD_INFO (
@@ -67,7 +61,7 @@ class HouseholdModel:
             # WATER_ID,
             # TOILET_ID,
             # SITIO_ID
-            cursor.execute(query, (
+            self.connection.execute_with_user(query, (
                 household_data['house_number'],
                 household_data['home_address'],
                 household_data['ownership_status'],
@@ -75,13 +69,13 @@ class HouseholdModel:
                 household_data['interviewer_name'],
                 household_data['reviewer_name'],
                 household_data['date_of_visit'],
-                sys_user_id,
-                sys_user_id,
+                self.sys_user_id,
+                self.sys_user_id,
                 water_id,
                 toil_id,
                 sitio_id
             ))
-            connection.commit()
+            self.connection.commit()
             return True
         except Exception as e:
             print("Database error:", e)

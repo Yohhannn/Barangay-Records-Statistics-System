@@ -13,10 +13,10 @@ class CitizenHistoryController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.user_role = user_role
 
-
+        self.sys_user_id = sys_user_id
         self.stack = stack
         self.model = HistoryModel()
-        self.view = CitizenHistoryView(self)
+        self.view = CitizenHistoryView(self, self.sys_user_id)
 
 
         self.hist_citizen_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/citizen_history.ui")

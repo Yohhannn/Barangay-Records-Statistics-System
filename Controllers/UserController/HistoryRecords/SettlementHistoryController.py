@@ -398,6 +398,7 @@ class SettlementHistoryController(BaseFileController):
         try:
             # Initialize DB connection
             db = Database()
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
             connection = db.conn
             cursor = connection.cursor()
 
@@ -443,6 +444,7 @@ class SettlementHistoryController(BaseFileController):
             ctz_id = ctz_result[0]
 
             # Step 3: Insert into CITIZEN_HISTORY (needed before settlement)
+            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 INSERT INTO CITIZEN_HISTORY (CIHI_DESCRIPTION, HIST_ID, CTZ_ID, ENCODED_BY_SYS_ID, LAST_UPDATED_BY_SYS_ID)
                 VALUES (%s, %s, %s, %s, %s)
@@ -489,6 +491,7 @@ class SettlementHistoryController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'complaint_desc': complaint_desc,
                 'settlement_desc': settlement_desc,
