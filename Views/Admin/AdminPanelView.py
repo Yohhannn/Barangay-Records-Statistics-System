@@ -38,6 +38,9 @@ class AdminPanelView:
     #     formatted_time = current_datetime.toString("h:mm:ss AP")
     #     self.admin_panel_screen.label_timeDashboard.setText(formatted_time)
 
+        # # SET MAIN STATISTICS SCREEN ASSETS
+        # self.admn_button_ManageAccounts.setIcon(QIcon('Resources/Images/General_Images/img_manageaccount.png'))
+
     def _setup_navigation_assets(self):
         nav_icons = {
             'nav_imageLogo': "Resources/Images/General_Images/logo_brgyClear.png",
@@ -47,8 +50,10 @@ class AdminPanelView:
             'nav_buttonInstitutions': 'Resources/Icons/General_Icons/icon_institutions.svg',
             'nav_buttonTransactions': 'Resources/Icons/General_Icons/icon_transaction.svg',
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
-            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_off.svg',
-            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_off.svg'
+            'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
+            'admn_button_ManageAccounts': "Resources/Images/General_Images/img_manageaccount.png",
+            'admn_button_AdminControls': 'Resources/Images/General_Images/img_admin_control.png',
+            'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg'
         }
 
         for widget_name, icon_path in nav_icons.items():
