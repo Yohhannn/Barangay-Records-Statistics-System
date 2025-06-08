@@ -50,10 +50,17 @@ class AdminControlsView:
 
     def _setup_navigation_assets(self):
             self.admin_controls_screen.btn_returnToAdminPanelPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
+            self.admin_controls_screen.admn_button_RegSitio.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+            self.admin_controls_screen.admn_button_UpdSitio.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+            self.admin_controls_screen.admn_button_RemSitio.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+
+            self.admin_controls_screen.admn_button_AddInfra.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+            self.admin_controls_screen.admn_button_UpdInfra.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+            self.admin_controls_screen.admn_button_RemInfra.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
 
     def _connect_buttons(self):
             self.admin_controls_screen.btn_returnToAdminPanelPage.clicked.connect(self.controller.goto_admin_panel)
-            self.admin_controls_screen.admn_button_RegAcc.clicked.connect(
+            self.admin_controls_screen.admn_button_RegSitio.clicked.connect(
                 lambda: self.show_register_sitio_popup(self.admin_controls_screen)
         )
 
