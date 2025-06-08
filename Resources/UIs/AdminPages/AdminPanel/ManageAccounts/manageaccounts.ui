@@ -70,7 +70,7 @@
     <property name="styleSheet">
      <string notr="true">#app_title {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -292,7 +292,7 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>431</width>
+        <width>611</width>
         <height>31</height>
        </rect>
       </property>
@@ -322,7 +322,7 @@
      <widget class="QPushButton" name="buttonSearch">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>600</x>
         <y>40</y>
         <width>31</width>
         <height>31</height>
@@ -502,61 +502,6 @@
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="manag_account_buttonFilter">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>40</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#manag_account_buttonFilter {
-    background-color:  #474747;
-    color: white;
-    border: 1px solid #b5b5b5;
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#manag_account_buttonFilter:hover {
-    background-color: #636363;
-    color: white; 
-}
-
-#manag_account_buttonFilter:pressed {
-    background-color: #bfbfbf;
-    color: white; 
-}
-</string>
-      </property>
-      <property name="text">
-       <string>   FILTER OPTIONS</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>18</width>
-        <height>18</height>
-       </size>
-      </property>
-     </widget>
     </widget>
     <widget class="QPushButton" name="admn_button_RemAcc">
      <property name="geometry">
@@ -722,21 +667,21 @@
       </size>
      </property>
     </widget>
-    <widget class="QFrame" name="basePopUpBodyFrame_3">
+    <widget class="QFrame" name="basePopUpBodyFrame_4">
      <property name="geometry">
       <rect>
        <x>690</x>
        <y>70</y>
        <width>561</width>
-       <height>411</height>
+       <height>231</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">
+      <string notr="true">#basePopUpBodyFrame_4 {
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
-</string>
+}</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
@@ -749,7 +694,7 @@
        <rect>
         <x>30</x>
         <y>50</y>
-        <width>151</width>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
@@ -773,40 +718,12 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="ap_display_user_fname">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>50</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#ap_display_user_fname{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="ap_label_user_role">
+     <widget class="QLabel" name="ap_label_user_mname">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>140</y>
-        <width>151</width>
+        <y>80</y>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
@@ -818,70 +735,13 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">#ap_label_user_role{
+       <string notr="true">#ap_label_user_mname{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
       </property>
       <property name="text">
-       <string>Role:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="ap_display_user_role">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>140</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#ap_display_user_role{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="ap_label_user_id">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#ap_label_user_id{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>User ID:</string>
+       <string>Middle Name:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -915,69 +775,12 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="ap_label_user_mname">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#ap_label_user_mname{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>Middle Name:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="ap_display_user_mname">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>80</y>
-        <width>331</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#ap_display_user_mname{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-      </property>
-      <property name="text">
-       <string>N/A</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="ap_label_user_lname">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>110</y>
-        <width>151</width>
+        <width>181</width>
         <height>31</height>
        </rect>
       </property>
@@ -1029,11 +832,39 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="ap_label_user_role_2">
+     <widget class="QLabel" name="ap_display_user_fname">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>50</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_display_user_fname{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_label_user_id">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>170</y>
+        <y>20</y>
         <width>151</width>
         <height>31</height>
        </rect>
@@ -1046,12 +877,127 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">	background-color:transparent;
+       <string notr="true">#ap_label_user_id{
+	background-color:transparent;
 	color:#4f4f4f;
-</string>
+}</string>
       </property>
       <property name="text">
-       <string>Status</string>
+       <string>User ID:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_mname">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>80</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_display_user_mname{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_label_user_role">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_label_user_role{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Role:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_role">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>140</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_display_user_role{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_label_user_status">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#ap_label_user_status{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+      </property>
+      <property name="text">
+       <string>Status:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1073,10 +1019,10 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">
+       <string notr="true">#ap_display_user_status{
 	background-color:transparent;
 	color:#4f4f4f;
-</string>
+}</string>
       </property>
       <property name="text">
        <string>N/A</string>
