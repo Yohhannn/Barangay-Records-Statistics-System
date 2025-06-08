@@ -244,6 +244,7 @@ class ServiceController(BaseFileController):
         try:
             # Initialize DB connection
             db = Database()
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
             connection = db.conn
             cursor = connection.cursor()
 
@@ -295,6 +296,7 @@ class ServiceController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'fname': req_fname,
                 'lname': req_lname,
