@@ -3,8 +3,8 @@ from database import Database
 
 class NeighborhoodModel:
     def __init__(self):
-        self.db = Database()
-        self.cursor = self.db.get_cursor()
+        self.connection = Database()
+        self.cursor = self.connection.get_cursor()
 
     def get_data_per_sitio(self, from_date, to_date):
         try:

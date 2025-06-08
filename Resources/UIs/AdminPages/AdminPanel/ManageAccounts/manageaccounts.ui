@@ -388,7 +388,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">#adminpanel_tableView_List_StaffAccounts {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	color: #black;
 }
 </string>
@@ -720,11 +720,11 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#basePopUpBodyFrame_3 {
+      <string notr="true">
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
-}</string>
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
@@ -1017,6 +1017,62 @@
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="ap_label_user_role_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">	background-color:transparent;
+	color:#4f4f4f;
+</string>
+      </property>
+      <property name="text">
+       <string>Status</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ap_display_user_status">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>170</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color:transparent;
+	color:#4f4f4f;
+</string>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QFrame" name="basePopUpBodyFrame_5">
      <property name="geometry">
@@ -1289,7 +1345,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QToolButton" name="btn_returnToHistoryRecordPage">
+   <widget class="QToolButton" name="btn_returnToAdminPanelPage">
     <property name="geometry">
      <rect>
       <x>20</x>

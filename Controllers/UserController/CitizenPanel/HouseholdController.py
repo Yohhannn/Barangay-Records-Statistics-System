@@ -6,8 +6,8 @@ from Models.HouseholdModel import HouseholdModel
 from Views.CitizenPanel.HouseholdView import HouseholdView
 from database import Database
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QLabel
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QLabel
 
 
 class HouseholdController(BaseFileController):
@@ -340,8 +340,7 @@ class HouseholdController(BaseFileController):
                 self.cp_household_screen.cp_displayHouseholdID.setText(str(record[0]))  # HH ID
                 self.cp_household_screen.cp_displaySitio.setText(record[2])  # Sitio Name
                 self.cp_household_screen.cp_displayOwnershipStatus.setText(record[3] or "None")  # Ownership Status
-                from PySide6.QtCore import Qt
-                from PySide6.QtWidgets import QLabel
+
 
 
                 link = record[4]

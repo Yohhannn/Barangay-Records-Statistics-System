@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QMessageBox, QPushButton, QLabel, QFileDialog,
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
 from PySide6.QtWidgets import QMessageBox, QPushButton, QFileDialog, QButtonGroup, QRadioButton, QStackedWidget
 from Controllers.BaseFileController import BaseFileController
-from Models.CitizenModel import CitizenModel
+# from Models.CitizenModel import CitizenModel
 from Views.CitizenPanel.CitizenView import CitizenView
 from Utils.util_popup import load_popup
 from database import Database
@@ -27,7 +27,7 @@ class CitizenController(BaseFileController):
         self.gov_group = None
         self.sex_group = None
         self.stack = stack
-        self.model = CitizenModel()
+        # self.model = CitizenModel()
         self.view = CitizenView(self)
         print(self.sys_user_id)
 
@@ -283,7 +283,7 @@ class CitizenController(BaseFileController):
     #     }
 
     from datetime import date
-    from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
+    # from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
 
     from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
     from datetime import date
@@ -1282,6 +1282,7 @@ class CitizenController(BaseFileController):
             return
 
         db = Database()
+        db.set_user_id(self.sys_user_id) #user ID for auditing
         connection = db.conn
         cursor = connection.cursor()
 
@@ -1290,6 +1291,7 @@ class CitizenController(BaseFileController):
         cursor.execute("SELECT rth_id FROM relationship_type WHERE rth_relationship_name = %s", (relationship_name,))
         rth_result = cursor.fetchone()
 
+        print("rth_result", rth_result)
         if not rth_result:
             raise Exception(f"Relationship '{relationship_name}' not found in relationship_type table.")
         rth_id = rth_result[0]
@@ -1371,6 +1373,8 @@ class CitizenController(BaseFileController):
                 RETURNING soec_id;
             """, (socio_status, nhts_num))
             soec_result = cursor.fetchone()
+
+            print("soec_result", soec_result)
             if not soec_result:
                 raise Exception("Failed to insert into SOCIO_ECONOMIC_STATUS")
             soec_id = soec_result[0]
@@ -1412,6 +1416,7 @@ class CitizenController(BaseFileController):
             """, (phil_id, phil_category, membership_type))
 
             phea_result = cursor.fetchone()
+            print("phea_result", phea_result)
             if not phea_result:
                 raise Exception("Failed to insert into PHILHEALTH")
             phea_id = phea_result[0]
@@ -1419,23 +1424,25 @@ class CitizenController(BaseFileController):
             # --- Insert CITIZEN ---
             # --- Insert CITIZEN ---
             citizen_query = """
-            INSERT INTO citizen (
-                ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
-                ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
-                ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death,
-                ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id,
-                phea_id, rel_id, rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id,
-                clah_id
-            )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            RETURNING ctz_id;
-            """
+                    INSERT INTO citizen (
+                        ctz_first_name, ctz_middle_name, ctz_last_name, ctz_suffix,
+                        ctz_date_of_birth, ctz_sex, ctz_civil_status, ctz_place_of_birth,
+                        ctz_blood_type, ctz_is_registered_voter, ctz_is_alive, ctz_date_of_death,
+                        ctz_reason_of_death, ctz_date_encoded, con_id, sitio_id, edu_id, soec_id,
+                        phea_id, rel_id, rth_id, hh_id, encoded_by_sys_id, last_updated_by_sys_id,
+                        clah_id
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    RETURNING ctz_id;
+                    """
 
             date_of_death = form_data['date_of_death'] if form_data['is_deceased'] == 'Yes' else None
             reason_of_death = form_data['reason_of_death'] if form_data['is_deceased'] == 'Yes' else None
             is_alive = not (form_data['is_deceased'] == 'Yes')
 
-            cursor.execute(citizen_query, (
+            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
+
+            db.cursor.execute(citizen_query, (
                 form_data['first_name'],
                 form_data['middle_name'] or None,
                 form_data['last_name'],
@@ -1459,11 +1466,12 @@ class CitizenController(BaseFileController):
                 int(form_data['household_id']),
                 self.sys_user_id,
                 self.sys_user_id,
-                clah_id  # ✅ Now properly included
+                clah_id
             ))
             citizen_result = cursor.fetchone()
+            print("citizen_result:", citizen_result)
             if not citizen_result:
-                raise Exception("Failed to insert into CITIZEN")
+                print("Failed to insert into CITIZEN")
             citizen_id = citizen_result[0]
 
             # --- FAMILY PLANNING INSERTION ---
@@ -1530,6 +1538,7 @@ class CitizenController(BaseFileController):
             self.load_citizen_data()
 
         except Exception as e:
+            print("Exception during citizen insert:", e)
             connection.rollback()
             QMessageBox.critical(self.part3_popup, "Database Error", f"Failed to register citizen: {e}")
         finally:

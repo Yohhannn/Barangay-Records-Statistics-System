@@ -2,8 +2,8 @@ from database import Database
 
 class HealthModel:
     def __init__(self):
-        self.db = Database()
-        self.cursor = self.db.get_cursor()
+        self.connection = Database()
+        self.cursor = self.connection.get_cursor()
 
     def get_health_risk_group_data(self, from_date, to_date):
         try:

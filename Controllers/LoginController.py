@@ -3,9 +3,10 @@ from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
 from Controllers.UserController.DashboardController import DashboardController
+from Controllers.BaseFileController import BaseFileController
 from database import Database
 from Utils.utils_corner import applyRoundedCorners
-
+from passlib.hash import bcrypt
 
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -14,8 +15,8 @@ class LoginWindow(QMainWindow):
         self.login_screen = self.load_ui("Resources/UIs/AuthPages/login.ui")
         self.setCentralWidget(self.login_screen)
 
-        self.SUPER_ADMIN_ID = 1
-        self.SUPER_ADMIN_PIN = "123"
+        # self.SUPER_ADMIN_ID = 1
+        # self.SUPER_ADMIN_PIN = "123"
 
         self.setFixedSize(1080, 720)
         self.setWindowTitle("MaPro - Marigondon Records & Statistics System")
@@ -64,11 +65,11 @@ class LoginWindow(QMainWindow):
         if not self.validate_inputs(user_id, user_pin):
             return
 
-        if self.check_super_admin(user_id, user_pin):
-            self.grant_access("admin", 123)
-            return
+        # if self.check_super_admin(user_id, user_pin):
+        #     self.grant_access("admin", 123)
+        #     return
 
-        self.authenticate_regular_user(user_id, user_pin)
+        self.authenticate_user(user_id, user_pin)
 
     def validate_inputs(self, user_id, user_pin):
         if not user_id and not user_pin:
@@ -88,40 +89,47 @@ class LoginWindow(QMainWindow):
             return False
         return True
 
-    def check_super_admin(self, user_id, user_pin):
-        try:
-            return (int(user_id) == self.SUPER_ADMIN_ID and
-                    user_pin == self.SUPER_ADMIN_PIN)
-        except ValueError:
-            return False
+    # def check_super_admin(self, user_id, user_pin):
+    #     try:
+    #         return (int(user_id) == self.SUPER_ADMIN_ID and
+    #                 user_pin == self.SUPER_ADMIN_PIN)
+    #     except ValueError:
+    #         return False
 
 
-    def authenticate_regular_user(self, user_id, user_pin):
+    def authenticate_user(self, user_id, user_pin):
         print(f"-- Login Attempt\nSystem User ID: {user_id}\nSystem User PIN: {user_pin}")
+        connection = None
 
         try:
             connection = Database()
             cursor = connection.cursor
 
             query = """
-            SELECT SYS_FNAME, SYS_ROLE
-            FROM SYSTEM_ACCOUNT
-            WHERE SYS_USER_ID = %s AND SYS_PASSWORD = %s
+                SELECT SYS_FNAME, SYS_ROLE, SYS_PASSWORD 
+                FROM SYSTEM_ACCOUNT
+                WHERE SYS_USER_ID = %s
             """
-            cursor.execute(query, (user_id, user_pin))
+            cursor.execute(query, (user_id,))
             result = cursor.fetchone()
 
             if result:
-                first_name, user_role = result
-                self.grant_access(first_name, user_role)
+                first_name, user_role, stored_hash = result
+                if bcrypt.verify(user_pin, stored_hash):
+                    connection.set_user_id(user_id)
+                    print(f"Login successful! User ID: {user_id} set in Database.")
+                    self.grant_access(first_name, user_role)
+                else:
+                    QMessageBox.warning(self, "Login Error", "Invalid credentials.")
+                    self.clear_fields()
             else:
-                QMessageBox.warning(self, "Error", "Invalid credentials")
+                QMessageBox.warning(self, "Login Error", "No user found with this ID.")
                 self.clear_fields()
 
         except Exception as e:
-            QMessageBox.critical(self, "Database Error", f"Error occurred while authenticating: {str(e)}")
+            QMessageBox.critical(self, "Database Error", f"An error occurred: {str(e)}")
         finally:
-            if 'connection' in locals():
+            if connection:
                 connection.close()
 
     def grant_access(self, first_name, user_role=None):
