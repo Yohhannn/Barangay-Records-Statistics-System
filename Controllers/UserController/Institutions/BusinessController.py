@@ -9,6 +9,7 @@ from database import Database
 class BusinessController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_business_id = None
         self.user_role = user_role
 
         self.stack = stack
@@ -91,8 +92,46 @@ class BusinessController(BaseFileController):
         # Connect signals
         self.inst_business_screen.btn_returnToInstitutionPage.clicked.connect(self.goto_institutions_panel)
         self.inst_business_screen.inst_business_button_register.clicked.connect(self.show_register_business_popup)
+        self.inst_business_screen.inst_business_button_remove.clicked.connect(self.handle_remove_business)
         self.inst_business_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_business)
         self.inst_business_screen.inst_BusinessName_buttonSearch.clicked.connect(self.perform_business_search)
+
+    def handle_remove_business(self):
+        if not hasattr(self, 'selected_business_id'):
+            QMessageBox.warning(self.inst_business_screen, "No Selection", "Please select a business to remove.")
+            return
+
+        bs_id = self.selected_business_id
+
+        confirm = QMessageBox.question(
+            self.inst_business_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete business with ID {bs_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("""
+                UPDATE business_info
+                SET BS_IS_DELETED = TRUE
+                WHERE BS_ID = %s;
+            """, (bs_id,))
+            db.conn.commit()
+            QMessageBox.information(self.inst_business_screen, "Success", f"Business {bs_id} has been deleted.")
+            self.load_business_data()  # Refresh table
+            if hasattr(self, 'selected_business_id'):
+                delattr(self, 'selected_business_id')  # Clear selection
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.inst_business_screen, "Database Error", f"Failed to delete business: {str(e)}")
+        finally:
+            db.close()
 
     def load_sitio_list(self):
         try:
@@ -170,6 +209,7 @@ class BusinessController(BaseFileController):
                 JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
                 LEFT JOIN SYSTEM_ACCOUNT SA ON BI.ENCODED_BY_SYS_ID = SA.SYS_USER_ID
                 LEFT JOIN SYSTEM_ACCOUNT SUA ON BI.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE BI.BS_IS_DELETED = FALSE
                 ORDER BY BI.BS_DATE_ENCODED DESC
                 LIMIT 50
            """)
@@ -205,6 +245,8 @@ class BusinessController(BaseFileController):
         for record in self.rows:
             if str(record[0]) == selected_id:
                 self.inst_business_screen.inst_displayBusinessID.setText(str(record[0]))
+                # Store selected business ID
+                self.selected_business_id = selected_id
                 self.inst_business_screen.inst_displayBusinessName.setText(record[1])
                 self.inst_business_screen.inst_displayBusinessOwnerName.setText(record[2])  # BS_FNAME + BS_LNAME
                 self.inst_business_screen.inst_display_DateEncoded.setText(str(record[3]))

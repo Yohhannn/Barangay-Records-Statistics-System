@@ -402,7 +402,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QTableWidget" name="adminpanel_tableView_List_StaffAccounts">
+    <widget class="QTableWidget" name="adminpanel_tableView_List_Sitio">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -421,7 +421,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#adminpanel_tableView_List_StaffAccounts {
+      <string notr="true">#adminpanel_tableView_List_Sitio {
 	background-color: white;
 	color: #black;
 }
@@ -451,6 +451,18 @@
      <attribute name="verticalHeaderCascadingSectionResizes">
       <bool>false</bool>
      </attribute>
+     <column>
+      <property name="text">
+       <string>Sitio Id</string>
+      </property>
+      <property name="background">
+       <color>
+        <red>211</red>
+        <green>205</green>
+        <blue>255</blue>
+       </color>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Sitio Name</string>
@@ -522,7 +534,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QToolButton" name="btn_returnToHistoryRecordPage">
+   <widget class="QToolButton" name="btn_returnToAdminPanelPage">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -532,7 +544,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#btn_returnToHistoryRecordPage {
+     <string notr="true">#btn_returnToAdminPanelPage {
     background-color: #f2efff;
     color: #141c52;
 	border: 2px solid #141c52; 
@@ -540,10 +552,10 @@
 	text-align: left;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#btn_returnToHistoryRecordPage:hover {
+#btn_returnToAdminPanelPage:hover {
     background-color: #fdfdff; /* Slightly lighter blue when hovered */
 }
-#btn_returnToHistoryRecordPage:pressed {
+#btn_returnToAdminPanelPage:pressed {
     background-color: #e7e5f4; /* Darker blue when clicked */
 }
 

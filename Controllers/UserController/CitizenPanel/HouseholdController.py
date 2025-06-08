@@ -13,6 +13,7 @@ from database import Database
 class HouseholdController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
+        self.selected_household_id = None
         self.stack = stack
         self.model = HouseholdModel()
         self.view = HouseholdView(self)
@@ -201,6 +202,43 @@ class HouseholdController(BaseFileController):
             if db:
                 db.close()
 
+    def handle_remove_household(self):
+        if not hasattr(self, 'selected_household_id'):
+            QMessageBox.warning(self.cp_household_screen, "No Selection", "Please select a household to remove.")
+            return
+
+        hh_id = self.selected_household_id
+
+        confirm = QMessageBox.question(
+            self.cp_household_screen,
+            "Confirm Deletion",
+            f"Are you sure you want to delete household with ID {hh_id}?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirm != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("""
+                UPDATE household_info
+                SET hh_is_deleted = TRUE
+                WHERE hh_id = %s;
+            """, (hh_id,))
+            db.conn.commit()
+            QMessageBox.information(self.cp_household_screen, "Success", f"Household {hh_id} has been deleted.")
+            self.load_household_data()  # Refresh table
+            if hasattr(self, 'selected_household_id'):
+                delattr(self, 'selected_household_id')  # Clear selection
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.cp_household_screen, "Database Error", f"Failed to delete household: {str(e)}")
+        finally:
+            db.close()
+
     def load_household_data(self):
         connection = None
         try:
@@ -370,6 +408,8 @@ class HouseholdController(BaseFileController):
                 self.cp_household_screen.display_DateUpdated.setText(record[11] or "None")  # Last Updated
                 self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "None")
                 self.cp_household_screen.display_UpdatedBy.setText(record[13] or "None")
+                # Store selected household ID
+                self.selected_household_id = selected_id
                 self.display_family_members(int(selected_id))
                 # self.cp_household_screen.display_UpdatedBy.setText(record[12] or "System")  # Updated By
 
