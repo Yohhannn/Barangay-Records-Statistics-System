@@ -682,7 +682,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>N/A</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>

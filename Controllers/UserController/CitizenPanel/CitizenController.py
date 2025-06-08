@@ -287,7 +287,7 @@ class CitizenController(BaseFileController):
     #     }
 
     from datetime import date
-    from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
+    # from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
 
     from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
     from datetime import date

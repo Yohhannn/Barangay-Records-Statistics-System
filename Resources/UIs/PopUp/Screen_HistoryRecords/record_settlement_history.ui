@@ -957,7 +957,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>N/A</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1158,7 +1158,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>18</day>
+      <day>17</day>
      </datetime>
     </property>
     <property name="displayFormat">
