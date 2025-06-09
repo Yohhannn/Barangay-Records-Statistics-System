@@ -272,6 +272,18 @@ class DashboardController(BaseFileController):
             self.stack.addWidget(self.admin_panel.admin_panel_screen)
         self.stack.setCurrentWidget(self.admin_panel.admin_panel_screen)
 
+    def goto_trashbin_panel(self):
+        print("-- Navigating to AdmiTrashhbin Panel")
+        self.load_account_info()
+        self.load_recent_citizens_data()
+        if not hasattr(self, 'trashbin_panel'):
+            from Controllers.AdminController.AdminBinController import AdminBinController
+            self.trashbin_panel = AdminBinController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.trashbin_panel.trashbin_screen)
+        self.stack.setCurrentWidget(self.trashbin_panel.trashbin_screen)
+
     def goto_activity_logs(self):
         print("-- Navigating to Activity Logs")
         self.load_account_info()

@@ -1463,65 +1463,6 @@
       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
      </property>
     </widget>
-    <widget class="QToolButton" name="trashbin_btn_accounts">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>280</y>
-       <width>191</width>
-       <height>201</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#trashbin_btn_accounts {
-    background-color: #f8f8f8;
-    color: #141c52;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    padding: 25px; /* Adds space inside the button */
-    font-size: 14px; /* Text size */
-    text-align: center; /* Ensures text is centered */
-    qproperty-iconSize: 120px 120px; /* Adjust icon size */
-}
-
-#trashbin_btn_accounts:hover {
-    background-color: #e2e5ff; /* Slightly lighter blue when hovered */
-}
-#trashbin_btn_accounts:pressed {
-    background-color: #c8cbef; /* Darker blue when clicked */
-}
-
-#trashbin_btn_accounts::icon {
-    margin-bottom: 10px; /* Space between the icon and text */
-}</string>
-     </property>
-     <property name="text">
-      <string>ACCOUNTS</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../Icons/General_Icons/icon_admin_control.png</normaloff>../../Icons/General_Icons/icon_admin_control.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
-     </property>
-    </widget>
    </widget>
    <widget class="QFrame" name="table_titleFrameStatistics">
     <property name="geometry">
