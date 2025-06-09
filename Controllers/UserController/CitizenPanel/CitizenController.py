@@ -1,6 +1,7 @@
 from datetime import date
 
 import cv2
+from PySide6.QtCore import QDate
 from PySide6.QtWidgets import (QMessageBox, QPushButton, QLabel, QFileDialog,
                                QButtonGroup, QRadioButton, QTableWidgetItem)
 from PySide6.QtGui import QPixmap, QIcon, Qt, QImage
@@ -47,6 +48,10 @@ class CitizenController(BaseFileController):
         self.part1_popup = None
         self.part2_popup = None
         self.part3_popup = None
+        self.part1_popup_update = None
+        self.part2_popup_update = None
+        self.part3_popup_update = None
+
 
         # Store references needed for navigation
         self.login_window = login_window
@@ -199,29 +204,164 @@ class CitizenController(BaseFileController):
 
         # DATA INTERACTION PART 1
 
+    def show_update_citizen_part_01_initialize(self):
+        print("-- Update Citizen Part 1 Popup")
+        if not self.selected_citizen_id:
+            QMessageBox.warning(self.cp_profile_screen, "No Citizen Selected",
+                                "Please select a citizen from the table first.")
+            return
+        self.part1_popup_update = self.view.show_update_citizen_part_01_popup(self)
+        self.part2_popup_update = self.view.show_update_citizen_part_02_popup(self)
+        self.part3_popup_update = self.view.show_update_citizen_part_03_popup(self)
+
+
+
+        self.gov_group = QButtonGroup()
+        self.sex_group = QButtonGroup()
+
+        self.sex_group.addButton(self.part1_popup_update.radioButton_male)
+        self.sex_group.addButton(self.part1_popup_update.radioButton_female)
+
+        self.gov_group.addButton(self.part2_popup_update.radioButton_IsGov_Yes)
+        self.gov_group.addButton(self.part2_popup_update.radioButton_IsGov_No)
+
+        self.student_group = QButtonGroup()
+        self.fam_plan_group = QButtonGroup()
+        self.pwd_group = QButtonGroup()
+        self.voter_group = QButtonGroup()
+        self.deceased_group = QButtonGroup()
+        self.indig_group = QButtonGroup()
+
+        self.student_group.addButton(self.part3_popup_update.radioButton_IsStudent_Yes)
+        self.student_group.addButton(self.part3_popup_update.radioButton_IsStudent_No)
+
+        # self.fam_plan_group.addButton(self.part3_popup_update.radioButton_IsFamPlan_Yes)
+        # self.fam_plan_group.addButton(self.part3_popup_update.radioButton_IsFamPlan_No)
+
+        # self.pwd_group.addButton(self.part3_popup_update.register_citizen_IsPWD_Yes)
+        # self.pwd_group.addButton(self.part3_popup_update.register_citizen_IsPWD_No)
+
+        self.voter_group.addButton(self.part3_popup_update.register_citizen_RegVote_Yes)
+        self.voter_group.addButton(self.part3_popup_update.register_citizen_RegVote_No)
+
+        # initialize data
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("SELECT sitio_id, sitio_name FROM sitio ORDER BY sitio_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part1_popup_update.register_citizen_comboBox_Sitio
+            combo.clear()
+            for sitio_id, sitio_name in results:
+                combo.addItem(sitio_name, sitio_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
+        # self.stacked_widget.addWidget(self.part1_popup)
+        # self.stacked_widget.addWidget(self.part2_popup)
+        #
+        # self.stacked_widget.setCurrentIndex(0)
+        # if hasattr(self, 'citizen_data'):
+        #     self.restore_part1_data()
+        self.load_citizen_data_for_update()
+        # self.load_citizen_part2_data_for_update()
+        self.part1_popup_update.show()
+
+        # self.part2_popup.close()
+        print("test")
+
+    def show_update_citizen_part_02_initialize(self):
+        print("-- Update Citizen Part 2 Popup")
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute(
+                "SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part2_popup_update.register_citizen_comboBox_Relationship
+            combo.clear()
+            for rth_id, rth_relationship_name in results:
+                combo.addItem(rth_relationship_name, rth_id)
+
+        except Exception as e:
+            print(f"Failed to load sitios: {e}")
+        finally:
+            db.close()
+
+        self.part2_popup_update.show()
+        self.load_citizen_part2_data_for_update()
+
+        # self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
+        # self.part2_popup.register_citizen_HouseholdID.setText('test')
+
+        # if hasattr(self, 'citizen_data'):
+        self.part2_popup_update.exec_()
+        # self.restore_part2_data()
+
+    def show_update_citizen_part_03_initialize(self):
+        print("-- Update Citizen Part 3 Popup")
+        self.part3_popup_update.show()
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute(
+                "SELECT clah_id, clah_classification_name FROM classification_health_risk ORDER BY clah_classification_name ASC;")
+            results = cursor.fetchall()
+
+            combo = self.part3_popup_update.register_citizen_health_classification
+            combo.clear()
+            for clah_id, clah_classification_name in results:
+                combo.addItem(clah_classification_name, clah_id)
+
+        except Exception as e:
+            print(f"Failed to load classitiofat: {e}")
+        finally:
+            db.close()
+
+        self.deceased_group.addButton(self.part3_popup_update.register_citizen_Deceased_Yes)
+        self.deceased_group.addButton(self.part3_popup_update.register_citizen_Deceased_No)
+
+        # self.indig_group.addButton(self.part3_popup_update.register_citizen_IndGroup_Yes)
+        # self.indig_group.addButton(self.part3_popup_update.register_citizen_IndGroup_No)
+
+        # self.part2_popup = self.view.show_register_citizen_part_02_popup(self)
+        # self.part2_popup.register_citizen_HouseholdID.setText('test')
+
+        # if hasattr(self, 'citizen_data'):
+        self.load_citizen_part3_data_for_update()
+
+        self.part3_popup_update.exec_()
+        # self.restore_part3_data()
+
+        # DATA INTERACTION PART 1
 
     def get_form_data(self):
-        return{
-        #PART 1
-            'first_name': self.part1_popup.register_citizen_firstname.text().strip(), # REQUIRED
+        return {
+            # PART 1
+            'first_name': self.part1_popup.register_citizen_firstname.text().strip(),  # REQUIRED
             'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "None",
-            'last_name': self.part1_popup.register_citizen_lastname.text().strip(), # REQUIRED
+            'last_name': self.part1_popup.register_citizen_lastname.text().strip(),  # REQUIRED
             'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "None",
 
-            'civil_status': self.part1_popup.register_citizen_comboBox_CivilStatus.currentText().strip(), # REQUIRED
-            'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"), # REQUIRED
+            'civil_status': self.part1_popup.register_citizen_comboBox_CivilStatus.currentText().strip(),  # REQUIRED
+            'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"),  # REQUIRED
 
-            'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(), # REQUIRED
+            'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(),  # REQUIRED
 
             'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "None",
-            'sex': self.radio_button_sex_result(),  #'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
+            'sex': self.radio_button_sex_result(),
+            # 'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
 
             'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "None",
             'email_address': self.part1_popup.register_citizen_Email.text().strip() or "None",
 
-            'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
+            'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(),  # REQUIRED
             'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "None",
-
 
             # APRT 2
             # PART 2
@@ -258,6 +398,67 @@ class CitizenController(BaseFileController):
             'is_deceased': self.radio_button_deceased_result(),
             'reason_of_death': self.part3_popup.register_citizen_ReasonOfDeath.toPlainText().strip(),
             'date_of_death': self.part3_popup.register_citizen_death_date.date().toString("yyyy-MM-dd")  # REQUIRED
+
+        }
+
+    def get_form_data_update(self):
+        return{
+        #PART 1
+            'first_name': self.part1_popup_update.register_citizen_firstname.text().strip(), # REQUIRED
+            'middle_name': self.part1_popup_update.register_citizen_middlename.text().strip() or "None",
+            'last_name': self.part1_popup_update.register_citizen_lastname.text().strip(), # REQUIRED
+            'suffix': self.part1_popup_update.register_citizen_suffix.text().strip() or "None",
+
+            'civil_status': self.part1_popup_update.register_citizen_comboBox_CivilStatus.currentText().strip(), # REQUIRED
+            'birth_date': self.part1_popup_update.register_citizen_date_dob.date().toString("yyyy-MM-dd"), # REQUIRED
+
+            'religion': self.part1_popup_update.register_citizen_comboBox_Religion.currentText().strip(), # REQUIRED
+
+            'blood_type': self.part1_popup_update.register_citizen_comboBox_BloodType.currentText().strip() or "None",
+            'sex': self.radio_button_sex_result(),  #'Male' if self.part1_popup_update.radioButton_male.isChecked(), 'Female' if self.part1_popup_update.radioButton_female.isChecked(), # REQUIRED
+
+            'contact_number': self.part1_popup_update.register_citizen_ContactNumber.text().strip() or "None",
+            'email_address': self.part1_popup_update.register_citizen_Email.text().strip() or "None",
+
+            'sitio': self.part1_popup_update.register_citizen_comboBox_Sitio.currentText().strip(), # REQUIRED
+            'place_of_birth': self.part1_popup_update.register_citizen_Pob.text().strip() or "None",
+
+
+            # APRT 2
+            # PART 2
+
+            # socio info
+            'socio_eco_status': self.part2_popup_update.register_citizen_comboBox_SocEcoStat.currentText().strip(),
+            'nhts_number': self.part2_popup_update.register_citizen_NHTSNum.text().strip(),
+
+            # house hold info
+            'household_id': self.part2_popup_update.register_citizen_HouseholdID.text().strip(),
+            'relationship': self.part2_popup_update.register_citizen_comboBox_Relationship.currentText().strip(),
+
+            # work information
+
+            'employment_status': self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.currentText().strip(),
+            'occupation': self.part2_popup_update.register_citizen_Occupation.text().strip(),
+            'gov_worker': self.radio_button_gov_worker_result(),
+            'phil_category': self.part2_popup_update.register_citizen_comboBox_PhilCat.currentText().strip(),
+            'phil_id': self.part2_popup_update.register_citizen_PhilID.text().strip() or "None",
+            'membership_type': self.part2_popup_update.register_citizen_comboBox_PhilMemType.currentText().strip(),
+
+            # PART 3
+            'is_student': self.radio_button_student_result(),
+            'school_name': self.part3_popup_update.register_citizen_SchoolName.text().strip(),
+            'educ_level': self.part3_popup_update.register_citizen_comboBox_EducationalLevel.currentText().strip(),
+            # 'has_fam_plan': self.radio_button_fam_plan_result(),
+            'fam_plan_method': self.part3_popup_update.register_citizen_comboBox_FamilyPlanningMethod.currentText().strip(),
+            'fam_plan_stat': self.part3_popup_update.register_citizen_comboBox_FamPlanStatus.currentText().strip(),
+            'fam_plan_start_date': self.part3_popup_update.register_citizen_start_date.date().toString("yyyy-MM-dd"),
+            'fam_plan_end_date': self.part3_popup_update.register_citizen_end_date.date().toString("yyyy-MM-dd"),
+            'health_class': self.part3_popup_update.register_citizen_health_classification.currentText().strip(),
+            'is_voter': self.radio_button_voter_result(),
+            'is_indig': self.radio_button_indig_result(),
+            'is_deceased': self.radio_button_deceased_result(),
+            'reason_of_death': self.part3_popup_update.register_citizen_ReasonOfDeath.toPlainText().strip(),
+            'date_of_death': self.part3_popup_update.register_citizen_death_date.date().toString("yyyy-MM-dd")  # REQUIRED
 
         }
 
@@ -401,6 +602,243 @@ class CitizenController(BaseFileController):
             if connection:
                 connection.close()
 
+    def load_citizen_part2_data_for_update(self):
+        if not self.selected_citizen_id:
+            QMessageBox.warning(self.part2_popup_update, "No Selection", "No citizen selected for update.")
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            query = """
+            SELECT 
+                hh.HH_ID,
+                c.rth_id,
+                ses.soec_number,
+                ses.SOEC_STATUS AS SocioEconomic_Status,
+                emp.ES_ID,
+                emp.EMP_OCCUPATION AS Occupation,
+                emp.EMP_IS_GOV_WORKER AS Is_Government_Worker,
+                ph.phea_id_number AS Philhealth_ID,
+                ph.phea_membership_type AS Membership_Type,
+                ph.pc_id AS Philhealth_Category,
+                ea.EDAT_LEVEL AS Educational_Attainment  -- ✅ Fixed: from EDU_LEVEL → EDAT_LEVEL
+            FROM Citizen c
+            LEFT JOIN HOUSEHOLD_INFO hh ON c.hh_id = hh.hh_id
+            LEFT JOIN SOCIO_ECONOMIC_STATUS ses ON c.soec_id = ses.soec_id
+            LEFT JOIN EMPLOYMENT emp ON c.CTZ_ID = emp.CTZ_ID
+            LEFT JOIN PHILHEALTH ph ON c.phea_id = ph.phea_id
+            LEFT JOIN EDUCATION_STATUS edu ON c.edu_id = edu.edu_id
+            LEFT JOIN EDUCATIONAL_ATTAINMENT ea ON edu.EDAT_ID = ea.EDAT_ID  -- ✅ Join with correct table
+            WHERE c.CTZ_ID = %s;
+            """
+
+            cursor.execute(query, (self.selected_citizen_id,))
+            result = cursor.fetchone()
+
+            if result:
+                # Unpack result
+                (
+                    household_id,
+                    relationship_id,
+                    nhts_number,
+                    socioeco_status,
+                    es_id,
+                    occupation,
+                    gov_worker,
+                    phil_id,
+                    membership_type,
+                    phil_category,
+                    educational_attainment
+                ) = result
+
+                # Populate Part 2 Fields
+                self.part2_popup_update.register_citizen_HouseholdID.setText(str(household_id) if household_id else "")
+
+                # Relationship combo box
+                index = self.part2_popup_update.register_citizen_comboBox_Relationship.findData(relationship_id)
+                if index >= 0:
+                    self.part2_popup_update.register_citizen_comboBox_Relationship.setCurrentIndex(index)
+
+                # NHTS Number
+                self.part2_popup_update.register_citizen_NHTSNum.setText(nhts_number or "")
+
+                # Socioeconomic Status
+                index_se = self.part2_popup_update.register_citizen_comboBox_SocEcoStat.findText(socioeco_status or "")
+                if index_se >= 0:
+                    self.part2_popup_update.register_citizen_comboBox_SocEcoStat.setCurrentIndex(index_se)
+
+                # Employment Status
+                # Employment Status - find by ES_ID
+                index_emp = self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.findData(es_id)
+                if index_emp >= 0:
+                    self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.setCurrentIndex(index_emp)
+
+                # Occupation
+                self.part2_popup_update.register_citizen_Occupation.setText(occupation or "")
+                # Educational Attainment
+                # index_edu = self.part2_popup_update.register_citizen_comboBox_EducationalLevel.findText(
+                #     educational_attainment or "")
+                # if index_edu >= 0:
+                #     self.part2_popup_update.register_citizen_comboBox_EducationalLevel.setCurrentIndex(index_edu)
+                # # Monthly Income
+                # # self.part2_popup_update.register_citizen_MonthlyIncome.setText(monthly_income or "")
+
+                # Government Worker Radio Buttons
+                if gov_worker == 'Yes':
+                    self.part2_popup_update.radioButton_IsGov_Yes.setChecked(True)
+                elif gov_worker == 'No':
+                    self.part2_popup_update.radioButton_IsGov_No.setChecked(True)
+
+                # Philhealth Category
+                index_phil_cat = self.part2_popup_update.register_citizen_comboBox_PhilCat.findText(phil_category or "")
+                if index_phil_cat >= 0:
+                    self.part2_popup_update.register_citizen_comboBox_PhilCat.setCurrentIndex(index_phil_cat)
+
+                # Philhealth ID
+                self.part2_popup_update.register_citizen_PhilID.setText(phil_id or "")
+
+                # Philhealth Membership Type
+                index_mem = self.part2_popup_update.register_citizen_comboBox_PhilMemType.findText(
+                    membership_type or "")
+                if index_mem >= 0:
+                    self.part2_popup_update.register_citizen_comboBox_PhilMemType.setCurrentIndex(index_mem)
+
+        except Exception as e:
+            print("Error loading citizen Part 2 data:", e)
+            QMessageBox.critical(self.part2_popup_update, "Database Error", f"Failed to load Part 2 citizen data: {e}")
+        finally:
+            db.close()
+
+    def load_citizen_part3_data_for_update(self):
+        if not self.selected_citizen_id:
+            QMessageBox.warning(self.part3_popup_update, "No Selection", "No citizen selected for update.")
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            query = """
+            SELECT 
+                edu.EDU_IS_CURRENTLY_STUDENT AS Is_Student,
+                edu.EDU_INSTITUTION_NAME AS School_Name,
+                ea.EDAT_LEVEL AS Educational_Level,
+
+                fp.FPM_METHOD AS Fam_Plan_Method,
+                fp.FPMS_STATUS AS Fam_Plan_Status,
+                fp.FP_START_DATE AS Fam_Start_Date,
+                fp.FP_END_DATE AS Fam_End_Date,
+
+                clah.clah_classification_name AS Health_Class,
+                c.CTZ_IS_REGISTERED_VOTER AS Is_Voter,
+                c.IS_INDIGENOUS AS Is_Indig,
+                c.IS_DECEASED AS Is_Deceased,
+                c.REASON_OF_DEATH AS Reason_Of_Death,
+                c.DATE_OF_DEATH AS Date_Of_Death
+            FROM Citizen c
+            LEFT JOIN EDUCATION_STATUS edu ON c.edu_id = edu.edu_id
+            LEFT JOIN EDUCATIONAL_ATTAINMENT ea ON edu.EDAT_ID = ea.EDAT_ID
+            LEFT JOIN FAMILY_PLANNING fp ON c.CTZ_ID = fp.CTZ_ID
+            LEFT JOIN classification_health_risk clah ON c.clah_id = clah.clah_id
+            WHERE c.CTZ_ID = %s;
+            """
+
+            cursor.execute(query, (self.selected_citizen_id,))
+            result = cursor.fetchone()
+
+            if result:
+                (
+                    is_student,
+                    school_name,
+                    educational_level,
+                    fam_plan_method,
+                    fam_plan_status,
+                    fam_start_date,
+                    fam_end_date,
+                    health_class,
+                    is_voter,
+                    is_indig,
+                    is_deceased,
+                    reason_of_death,
+                    date_of_death
+                ) = result
+
+                # Set Student Radio Buttons
+                if is_student == 'Yes':
+                    self.part3_popup_update.register_citizen_IsStudent_Yes.setChecked(True)
+                elif is_student == 'No':
+                    self.part3_popup_update.register_citizen_IsStudent_No.setChecked(True)
+
+                # School Name
+                self.part3_popup_update.register_citizen_SchoolName.setText(school_name or "")
+
+                # Educational Level Combo Box
+                index_edu = self.part3_popup_update.register_citizen_comboBox_EducationalLevel.findText(
+                    educational_level or "")
+                if index_edu >= 0:
+                    self.part3_popup_update.register_citizen_comboBox_EducationalLevel.setCurrentIndex(index_edu)
+
+                # Family Planning Method
+                index_fam_plan = self.part3_popup_update.register_citizen_comboBox_FamilyPlanningMethod.findText(
+                    fam_plan_method or "")
+                if index_fam_plan >= 0:
+                    self.part3_popup_update.register_citizen_comboBox_FamilyPlanningMethod.setCurrentIndex(
+                        index_fam_plan)
+
+                # Family Planning Status
+                index_fam_stat = self.part3_popup_update.register_citizen_comboBox_FamPlanStatus.findText(
+                    fam_plan_status or "")
+                if index_fam_stat >= 0:
+                    self.part3_popup_update.register_citizen_comboBox_FamPlanStatus.setCurrentIndex(index_fam_stat)
+
+                # Family Plan Dates
+                if fam_start_date:
+                    start_date = QDate.fromString(fam_start_date, "yyyy-MM-dd")
+                    self.part3_popup_update.register_citizen_start_date.setDate(start_date)
+                if fam_end_date:
+                    end_date = QDate.fromString(fam_end_date, "yyyy-MM-dd")
+                    self.part3_popup_update.register_citizen_end_date.setDate(end_date)
+
+                # Health Classification
+                index_health = self.part3_popup_update.register_citizen_health_classification.findText(
+                    health_class or "")
+                if index_health >= 0:
+                    self.part3_popup_update.register_citizen_health_classification.setCurrentIndex(index_health)
+
+                # Voter Radio Buttons
+                if is_voter == 'Yes':
+                    self.part3_popup_update.register_citizen_RegVote_Yes.setChecked(True)
+                elif is_voter == 'No':
+                    self.part3_popup_update.register_citizen_RegVote_No.setChecked(True)
+
+                # Indigenous Group Radio Buttons
+                if is_indig == 'Yes':
+                    self.part3_popup_update.register_citizen_IndGroup_Yes.setChecked(True)
+                elif is_indig == 'No':
+                    self.part3_popup_update.register_citizen_IndGroup_No.setChecked(True)
+
+                # Deceased Radio Buttons
+                if is_deceased == 'Yes':
+                    self.part3_popup_update.register_citizen_Deceased_Yes.setChecked(True)
+                    # Enable death-related fields
+                    self.part3_popup_update.register_citizen_ReasonOfDeath.setPlainText(reason_of_death or "")
+                    if date_of_death:
+                        dod = QDate.fromString(date_of_death, "yyyy-MM-dd")
+                        self.part3_popup_update.register_citizen_death_date.setDate(dod)
+                else:
+                    self.part3_popup_update.register_citizen_Deceased_No.setChecked(True)
+                    # Optionally disable death-related fields
+                    self.part3_popup_update.register_citizen_ReasonOfDeath.setPlainText("")
+                    self.part3_popup_update.register_citizen_death_date.setDate(QDate.currentDate())
+
+        except Exception as e:
+            print("Error loading citizen Part 3 data:", e)
+            QMessageBox.critical(self.part3_popup_update, "Database Error", f"Failed to load Part 3 citizen data: {e}")
+        finally:
+            db.close()
+
     def handle_row_click_citizen(self, row, column):
         table = self.cp_profile_screen.cp_tableView_List_RegCitizens
         selected_item = table.item(row, 0)
@@ -409,7 +847,7 @@ class CitizenController(BaseFileController):
 
         selected_id = selected_item.text()
         self.selected_citizen_id = selected_id  # Store selected ID here
-        
+
         for record in self.rows:
             if str(record[0]) == selected_id:
                 self.cp_profile_screen.cp_displayCItizenID.setText(str(record[0]))
@@ -582,14 +1020,7 @@ class CitizenController(BaseFileController):
             student = ''
         return student
 
-    # def radio_button_fam_plan_result(self):
-    #     if self.part3_popup.radioButton_IsFamPlan_Yes.isChecked():
-    #         fam_plan = 'Yes'
-    #     elif self.part3_popup.radioButton_IsFamPlan_No.isChecked():
-    #         fam_plan = 'No'
-    #     else:
-    #         fam_plan = ''
-    #     return fam_plan
+
 
     def radio_button_pwd_result(self):
         if self.part3_popup.register_citizen_IsPWD_Yes.isChecked():
@@ -627,6 +1058,88 @@ class CitizenController(BaseFileController):
         else:
             indig = ''
         return indig
+
+
+
+
+
+
+    def update_radio_button_sex_result(self):
+        if self.part1_popup_update.radioButton_male.isChecked():
+            sex_value = 'Male'
+        elif self.part1_popup_update.radioButton_female.isChecked():
+            sex_value = 'Female'
+        else:
+            sex_value = ''
+        return sex_value
+
+    def update_radio_button_gov_worker_result(self):
+        if self.part2_popup_update.radioButton_IsGov_Yes.isChecked():
+            gov_worker = 'Yes'
+        elif self.part2_popup_update.radioButton_IsGov_No.isChecked():
+            gov_worker = 'No'
+        else:
+            gov_worker = ''
+        return gov_worker
+
+
+    def update_radio_button_phil_member_result(self):
+        if self.part2_popup_update.radioButton_IsPhilMem_Yes.isChecked():
+            phil_member = 'Yes'
+        elif self.part2_popup_update.radioButton_IsPhilMem_No.isChecked():
+            phil_member = 'No'
+        else:
+            phil_member = ''
+        return phil_member
+
+    def update_radio_button_student_result(self):
+        if self.part3_popup_update.radioButton_IsStudent_Yes.isChecked():
+            student = 'Yes'
+        elif self.part3_popup_update.radioButton_IsStudent_No.isChecked():
+            student = 'No'
+        else:
+            student = ''
+        return student
+
+
+
+    def update_radio_button_pwd_result(self):
+        if self.part3_popup_update.register_citizen_IsPWD_Yes.isChecked():
+            pwd = 'Yes'
+        elif self.part3_popup_update.register_citizen_IsPWD_No.isChecked():
+            pwd = 'No'
+        else:
+            pwd = ''
+        return pwd
+
+
+    def update_radio_button_voter_result(self):
+        if self.part3_popup_update.register_citizen_RegVote_Yes.isChecked():
+            voter = 'Yes'
+        elif self.part3_popup_update.register_citizen_RegVote_No.isChecked():
+            voter = 'No'
+        else:
+            voter = ''
+        return voter
+
+    def update_radio_button_deceased_result(self):
+        if self.part3_popup_update.register_citizen_Deceased_Yes.isChecked():
+            deceased = 'Yes'
+        elif self.part3_popup_update.register_citizen_Deceased_No.isChecked():
+            deceased = 'No'
+        else:
+            deceased = ''
+        return deceased
+
+    def update_radio_button_indig_result(self):
+        if self.part3_popup_update.register_citizen_IndGroup_Yes.isChecked():
+            indig = 'Yes'
+        elif self.part3_popup_update.register_citizen_IndGroup_No.isChecked():
+            indig = 'No'
+        else:
+            indig = ''
+        return indig
+
 
     def validate_part1_fields(self, popup):
         form_data_part_1 = self.get_form_data()
@@ -1009,7 +1522,151 @@ class CitizenController(BaseFileController):
             self.show_register_citizen_part_03_initialize()
             # self.show_register_citizen_part_02_initialize()
 
+    def update_validate_part1_fields(self):
+        errors = []
 
+        # Get field values directly from widgets
+        first_name = self.part1_popup_update.register_citizen_firstname.text().strip()
+        last_name = self.part1_popup_update.register_citizen_lastname.text().strip()
+        suffix = self.part1_popup_update.register_citizen_suffix.text().strip()
+        dob = self.part1_popup_update.register_citizen_date_dob.date()
+        selected_sex_button = self.sex_group.checkedButton()
+        # First Name Validation
+        if not first_name:
+            errors.append("First name is required.")
+            self.part1_popup_update.register_citizen_firstname.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part1_popup_update.register_citizen_firstname.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        # Last Name Validation
+        if not last_name:
+            errors.append("Last name is required.")
+            self.part1_popup_update.register_citizen_lastname.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part1_popup_update.register_citizen_lastname.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        # DOB Validation (Optional but should be valid)
+        if not dob.isValid():
+            errors.append("Date of birth is invalid.")
+            self.part1_popup_update.register_citizen_date_dob.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part1_popup_update.register_citizen_date_dob.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        # Sex Validation
+        if not selected_sex_button:
+            errors.append("Sex is required.")
+            self.part1_popup_update.radioButton_male.setStyleSheet("color: red")
+            self.part1_popup_update.radioButton_female.setStyleSheet("color: red")
+        else:
+            self.part1_popup_update.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
+            self.part1_popup_update.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
+
+        # Civil Status
+        civil_status = self.part1_popup_update.register_citizen_comboBox_CivilStatus.currentText()
+        if not civil_status:
+            errors.append("Civil status is required.")
+            self.part1_popup_update.register_citizen_comboBox_CivilStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part1_popup_update.register_citizen_comboBox_CivilStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        if errors:
+            self.view.show_error_message(errors)
+        else:
+            self.part1_popup_update.close()
+            self.show_update_citizen_part_02_initialize()
+        # if errors:
+        #     self.view.show_error_message(errors)
+        #     return False
+        # return True
+
+    def update_validate_part2_fields(self):
+        errors = []
+
+        emp_status = self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.currentText()
+        occupation = self.part2_popup_update.register_citizen_Occupation.text().strip()
+        # monthly_income = self.part2_popup_update.register_citizen_MonthlyIncome.text().strip()
+
+        if not emp_status:
+            errors.append("Employment status is required.")
+            self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        if not occupation:
+            errors.append("Occupation is required.")
+            self.part2_popup_update.register_citizen_Occupation.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        else:
+            self.part2_popup_update.register_citizen_Occupation.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        # if not monthly_income:
+        #     errors.append("Monthly income is required.")
+        #     self.part2_popup_update.register_citizen_MonthlyIncome.setStyleSheet(
+        #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        # elif not monthly_income.replace('.', '', 1).isdigit():
+        #     errors.append("Monthly income must be a number.")
+        #     self.part2_popup_update.register_citizen_MonthlyIncome.setStyleSheet(
+        #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff")
+        # else:
+        #     self.part2_popup_update.register_citizen_MonthlyIncome.setStyleSheet(
+        #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
+
+        if errors:
+            self.view.show_error_message(errors)
+            return False
+        else:
+            self.part2_popup_update.close()
+            self.show_update_citizen_part_03_initialize()
+
+
+    def update_validate_part3_fields(self):
+        errors = []
+
+        # Student
+        student = self.update_radio_button_student_result()
+        if not student:
+            errors.append("Student status is required.")
+            self.part3_popup_update.register_citizen_IsStudent_Yes.setStyleSheet("color: red")
+            self.part3_popup_update.register_citizen_IsStudent_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup_update.register_citizen_IsStudent_Yes.setStyleSheet("color: black")
+            self.part3_popup_update.register_citizen_IsStudent_No.setStyleSheet("color: black")
+
+        # Voter
+        voter = self.update_radio_button_voter_result()
+        if not voter:
+            errors.append("Voter status is required.")
+            self.part3_popup_update.register_citizen_RegVote_Yes.setStyleSheet("color: red")
+            self.part3_popup_update.register_citizen_RegVote_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup_update.register_citizen_RegVote_Yes.setStyleSheet("color: black")
+            self.part3_popup_update.register_citizen_RegVote_No.setStyleSheet("color: black")
+
+        # Deceased
+        deceased = self.update_radio_button_deceased_result()
+        if not deceased:
+            errors.append("Deceased status is required.")
+            self.part3_popup_update.register_citizen_Deceased_Yes.setStyleSheet("color: red")
+            self.part3_popup_update.register_citizen_Deceased_No.setStyleSheet("color: red")
+        else:
+            self.part3_popup_update.register_citizen_Deceased_Yes.setStyleSheet("color: black")
+            self.part3_popup_update.register_citizen_Deceased_No.setStyleSheet("color: black")
+
+        if errors:
+            self.view.show_error_message(errors)
+            return False
+        return True
     # def save_part1_data(self):
     #     self.citizen_data.update(self.get_form_data_part_1())
 
@@ -1130,6 +1787,18 @@ class CitizenController(BaseFileController):
         # print(self.get_form_data_part_3())
         self.part3_popup.close()
         self.part2_popup.show()
+
+
+    def update_return_to_part1_from_part2(self):
+        # self.save_part2_data()
+        # print(self.get_form_data())
+        self.part2_popup_update.close()
+        self.part1_popup_update.show()
+    def update_return_to_part2_from_part3(self):
+        # self.save_part2_data()
+        # print(self.get_form_data_part_3())
+        self.part3_popup_update.close()
+        self.part2_popup_update.show()
 
 
     # def save_part2_data(self):
@@ -1298,10 +1967,6 @@ class CitizenController(BaseFileController):
         if not rth_result:
             raise Exception(f"Relationship '{relationship_name}' not found in relationship_type table.")
         rth_id = rth_result[0]
-
-
-
-
 
 
 
@@ -1579,7 +2244,100 @@ class CitizenController(BaseFileController):
         finally:
             db.close()
 
+    def load_citizen_data_for_update(self):
+        if not self.selected_citizen_id:
+            QMessageBox.warning(self.part1_popup_update, "No Selection", "No citizen selected for update.")
+            return
+        print(self.selected_citizen_id)
+        try:
+            db = Database()
+            cursor = db.get_cursor()
 
+            query = """
+                SELECT 
+                    c.ctz_first_name, c.ctz_middle_name, c.ctz_last_name, c.ctz_suffix,
+                    c.ctz_date_of_birth, c.ctz_sex, c.ctz_civil_status, c.ctz_place_of_birth,
+                    c.ctz_blood_type, 
+                    co.con_email, co.con_phone,
+                    s.sitio_name,
+                    c.ctz_is_registered_voter, c.ctz_is_alive, c.ctz_reason_of_death,
+                    c.ctz_date_of_death,
+                    r.rel_name
+                FROM citizen c
+                LEFT JOIN contact co ON c.con_id = co.con_id
+                LEFT JOIN sitio s ON c.sitio_id = s.sitio_id
+                LEFT JOIN religion r ON c.rel_id = r.rel_id
+                WHERE c.ctz_id = %s;
+            """
+            cursor.execute(query, (self.selected_citizen_id,))
+            result = cursor.fetchone()
+            print("testeweqwqewewq", result)
+
+            if result:
+                print("Fetched citizen data:", result)
+                # Populate Part 1 Fields
+                self.part1_popup_update.register_citizen_firstname.setText(result[0])
+                self.part1_popup_update.register_citizen_middlename.setText(result[1] or "")
+                self.part1_popup_update.register_citizen_lastname.setText(result[2])
+                self.part1_popup_update.register_citizen_suffix.setText(result[3] or "")
+
+                # DOB
+                from PySide6.QtCore import QDate
+                print("Fetched DOB:", result[4])
+                dob = QDate(result[4].year, result[4].month, result[4].day)
+                if not dob.isValid():
+                    QMessageBox.critical(self.part1_popup_update, "Date Error", f"Invalid date format: {result[4]}")
+                else:
+                    self.part1_popup_update.register_citizen_date_dob.setDate(dob)
+
+                # Sex
+                if result[5] == 'M':
+                    self.part1_popup_update.radioButton_male.setChecked(True)
+                else:
+                    self.part1_popup_update.radioButton_female.setChecked(True)
+
+                # Civil Status
+                index = self.part1_popup_update.register_citizen_comboBox_CivilStatus.findText(result[6])
+                if index >= 0:
+                    self.part1_popup_update.register_citizen_comboBox_CivilStatus.setCurrentIndex(index)
+
+                # Place of Birth
+                self.part1_popup_update.register_citizen_Pob.setText(result[7] or "")
+
+                # Blood Type
+                self.part1_popup_update.register_citizen_comboBox_BloodType.setCurrentText(result[8] or "")
+
+                # Email & Contact
+                self.part1_popup_update.register_citizen_Email.setText(result[9] or "")
+                self.part1_popup_update.register_citizen_ContactNumber.setText(result[10] or "")
+
+                # Sitio
+                self.part1_popup_update.register_citizen_comboBox_Sitio.setCurrentText(result[11])
+
+                # Religion
+                self.part1_popup_update.register_citizen_comboBox_Religion.setCurrentText(result[16])
+
+                # Voter
+                self.part3_popup_update.register_citizen_RegVote_Yes.setChecked(result[12])
+                self.part3_popup_update.register_citizen_RegVote_No.setChecked(not result[12])
+
+                # Deceased
+                self.part3_popup_update.register_citizen_Deceased_Yes.setChecked(not result[13])
+                self.part3_popup_update.register_citizen_Deceased_No.setChecked(result[13])
+
+                # Reason of death
+                self.part3_popup_update.register_citizen_ReasonOfDeath.setPlainText(result[14] or "")
+
+                # Date of Death
+                if result[15]:
+                    dod = QDate.fromString(result[15], "yyyy-MM-dd")
+                    self.part3_popup_update.register_citizen_death_date.setDate(dod)
+
+        except Exception as e:
+            print("Error loading citizen data:", e)
+            QMessageBox.critical(self.part1_popup_update, "Database Error", f"Failed to load citizen data: {e}")
+        finally:
+            db.close()
 
 
     def goto_citizen_panel(self):
