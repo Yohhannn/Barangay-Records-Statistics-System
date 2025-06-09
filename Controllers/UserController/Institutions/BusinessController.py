@@ -116,11 +116,7 @@ class BusinessController(BaseFileController):
 
         try:
             db = Database()
-            db.set_user_id(self.sys_user_id)  # user ID for auditing
-            connection = db.conn
-            cursor = connection.cursor()
-
-            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
+            cursor = db.get_cursor()
             cursor.execute("""
                 UPDATE business_info
                 SET BS_IS_DELETED = TRUE
@@ -429,7 +425,6 @@ class BusinessController(BaseFileController):
 
             # Initialize DB connection
             db = Database()
-            db.set_user_id(self.sys_user_id)  # user ID for auditing
             connection = db.conn
             cursor = connection.cursor()
 
@@ -489,7 +484,6 @@ class BusinessController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
-            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'business_name': business_name,
                 'description': business_description,

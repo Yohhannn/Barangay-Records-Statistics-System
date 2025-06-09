@@ -20,7 +20,7 @@ class EmploymentModel:
                     CITIZEN c ON s.SITIO_ID = c.SITIO_ID
                         AND c.CTZ_IS_DELETED = FALSE
                         AND c.CTZ_IS_ALIVE = TRUE
-                        AND c.CTZ_LAST_UPDATED ::date BETWEEN %s AND %s
+                        AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s
                         LEFT JOIN
                     EMPLOYMENT e ON c.CTZ_ID = e.CTZ_ID
                         LEFT JOIN
