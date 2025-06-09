@@ -72,6 +72,7 @@ class CitizenBinController(BaseFileController):
         ui_screen.cp_CitizenName_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
         ui_screen.cp_citizen_button_restore.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
             # ui_screen.profileList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
+        ui_screen.btn_returnToTrashBinPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
         ui_screen.btn_returnToTrashBinPage.clicked.connect(self.goto_trashbin)
         # ui_screen.cp_citizen_button_update.clicked.connect(self.show_update_citizen_part_01_initialize)
         ui_screen.cp_tableView_List_RegCitizens.cellClicked.connect(self.handle_row_click_citizen)
