@@ -95,6 +95,207 @@ class BusinessController(BaseFileController):
         self.inst_business_screen.inst_business_button_remove.clicked.connect(self.handle_remove_business)
         self.inst_business_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_business)
         self.inst_business_screen.inst_BusinessName_buttonSearch.clicked.connect(self.perform_business_search)
+        self.inst_business_screen.inst_business_button_update.clicked.connect(self.show_update_business_popup)
+
+
+
+    def show_update_business_popup(self):
+        if not getattr(self, 'selected_business_id', None):
+            QMessageBox.warning(self.inst_business_screen, "No Selection", "Please select a business to update.")
+            return
+
+        print("-- Update Business Popup")
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/Update/edit_register_business.ui", self)
+        self.popup.setWindowTitle("Mapro: Update Business")
+        self.popup.setFixedSize(self.popup.size())
+
+        # Load related lists
+        self.load_sitio_list()
+        self.load_bst_type_list()
+
+        # Set icon
+        self.popup.register_buttonConfirmBusiness_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+
+        # Connect signals
+        self.popup.register_buttonConfirmBusiness_SaveForm.clicked.connect(self.validate_and_update_business)
+
+        # Setup radio buttons
+        self.setup_radio_button_groups_business()
+
+        # Populate current business data
+        self.populate_business_data_for_edit()
+
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
+
+    def populate_business_data_for_edit(self):
+        bs_id = self.selected_business_id
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            query = """
+                SELECT 
+                    BI.BS_NAME,
+                    BI.BS_DESCRIPTION,
+                    BI.BS_STATUS,
+                    BI.BS_ADDRESS,
+                    BI.BS_FNAME,
+                    BI.BS_LNAME,
+                    S.SITIO_NAME,
+                    BT.BST_TYPE_NAME
+                FROM BUSINESS_INFO BI
+                JOIN SITIO S ON BI.SITIO_ID = S.SITIO_ID
+                JOIN BUSINESS_TYPE BT ON BI.BST_ID = BT.BST_ID
+                WHERE BI.BS_ID = %s AND BI.BS_IS_DELETED = FALSE;
+            """
+            cursor.execute(query, (bs_id,))
+            result = cursor.fetchone()
+
+            if not result:
+                raise Exception(f"No business found with ID {bs_id}")
+
+            (
+                name, description, status, address,
+                fname, lname, sitio_name, bst_type_name
+            ) = result
+
+            # Fill text fields
+            self.popup.register_BusinessName.setText(name)
+            self.popup.register_BusinessDesc.setPlainText(description)
+            self.popup.register_BusinessAddress.setText(address)
+            self.popup.register_BusinessOwnerFirstName.setText(fname)
+            self.popup.register_BusinessOwnerLastName.setText(lname)
+
+            # Set combo boxes
+            self.popup.register_comboBox_BusinessStatus.setCurrentText(status)
+            self.popup.register_comboBox_BusinessAddress_Sitio.setCurrentText(sitio_name)
+            self.popup.register_comboBox_BusinessType.setCurrentText(bst_type_name)
+
+        except Exception as e:
+            QMessageBox.critical(self.popup, "Error", f"Failed to load business data: {str(e)}")
+        finally:
+            db.close()
+
+    def validate_and_update_business(self):
+        errors = []
+
+        # Validate same as register
+        if not self.popup.register_BusinessName.text().strip():
+            errors.append("Business name is required")
+            self.popup.register_BusinessName.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_BusinessName.setStyleSheet("border: 1px solid gray;")
+
+        if self.popup.register_comboBox_BusinessStatus.currentIndex() == -1:
+            errors.append("Business status is required")
+            self.popup.register_comboBox_BusinessStatus.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_comboBox_BusinessStatus.setStyleSheet("border: 1px solid gray;")
+
+        if not self.popup.register_BusinessAddress.text().strip():
+            errors.append("Business address is required")
+            self.popup.register_BusinessAddress.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_BusinessAddress.setStyleSheet("border: 1px solid gray;")
+
+        if self.popup.register_comboBox_BusinessAddress_Sitio.currentIndex() == -1:
+            errors.append("Business sitio is required")
+            self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_comboBox_BusinessAddress_Sitio.setStyleSheet("border: 1px solid gray;")
+
+        if self.popup.register_comboBox_BusinessType.currentIndex() == -1:
+            errors.append("Business type is required")
+            self.popup.register_comboBox_BusinessType.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_comboBox_BusinessType.setStyleSheet("border: 1px solid gray;")
+
+        if not self.popup.register_BusinessOwnerFirstName.text().strip():
+            errors.append("Business owner first name is required")
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_BusinessOwnerFirstName.setStyleSheet("border: 1px solid gray;")
+
+        if not self.popup.register_BusinessOwnerLastName.text().strip():
+            errors.append("Business owner last name is required")
+            self.popup.register_BusinessOwnerLastName.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_BusinessOwnerLastName.setStyleSheet("border: 1px solid gray;")
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n• " + "\n• ".join(errors)
+            )
+            return
+        else:
+            self.confirm_and_update()
+
+    def confirm_and_update(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Update",
+            "Are you sure you want to update this business?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            bs_id = self.selected_business_id
+            business_name = self.popup.register_BusinessName.text().strip()
+            business_address = self.popup.register_BusinessAddress.text().strip()
+            business_description = self.popup.register_BusinessDesc.toPlainText().strip()
+            owner_fname = self.popup.register_BusinessOwnerFirstName.text().strip()
+            owner_lname = self.popup.register_BusinessOwnerLastName.text().strip()
+            status = self.popup.register_comboBox_BusinessStatus.currentText().strip()
+
+            # Fetch Sitio and Business Type IDs
+            sitio_name = self.popup.register_comboBox_BusinessAddress_Sitio.currentText()
+            cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (sitio_name,))
+            sitio_id = cursor.fetchone()[0]
+
+            bst_name = self.popup.register_comboBox_BusinessType.currentText()
+            cursor.execute("SELECT bst_id FROM business_type WHERE bst_type_name = %s", (bst_name,))
+            bst_id = cursor.fetchone()[0]
+
+            # Update Query
+            update_query = """
+                UPDATE business_info
+                SET 
+                    BS_NAME = %s,
+                    BS_DESCRIPTION = %s,
+                    BS_STATUS = %s,
+                    BS_ADDRESS = %s,
+                    BS_FNAME = %s,
+                    BS_LNAME = %s,
+                    BST_ID = %s,
+                    SITIO_ID = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    BS_LAST_UPDATED = NOW()
+                WHERE BS_ID = %s;
+            """
+            cursor.execute(update_query, (
+                business_name, business_description, status,
+                business_address, owner_fname, owner_lname,
+                bst_id, sitio_id, self.sys_user_id, bs_id
+            ))
+            db.conn.commit()
+
+            QMessageBox.information(self.popup, "Success", "Business successfully updated!")
+            self.popup.close()
+            self.load_business_data()
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            db.close()
+
 
     def handle_remove_business(self):
         if not getattr(self, 'selected_business_id', None):
@@ -276,6 +477,7 @@ class BusinessController(BaseFileController):
 
         # Connect signals
         self.popup.register_buttonConfirmBusiness_SaveForm.clicked.connect(self.validate_business_fields)
+
         # self.popup.inst_DTIuploadButton.clicked.connect(self.upload_business_image)
 
         # Setup radio button groups

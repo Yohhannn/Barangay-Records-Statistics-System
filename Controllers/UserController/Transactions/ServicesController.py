@@ -41,7 +41,10 @@ class ServiceController(BaseFileController):
 
         # Return Button
         self.trans_services_screen.inst_Transaction_buttonSearch.clicked.connect(self.search_transaction_data)
+        self.trans_services_screen.trans_Transact_button_update.clicked.connect(self.show_update_transaction_popup)
         self.trans_services_screen.btn_returnToTransactionPage.clicked.connect(self.goto_transactions_panel)
+
+
 
     def search_transaction_data(self):
         """Filter transaction data based on ID or Name."""
@@ -95,6 +98,202 @@ class ServiceController(BaseFileController):
         finally:
             if connection:
                 connection.close()
+
+    def show_update_transaction_popup(self):
+        if not getattr(self, 'selected_transaction_id', None):
+            QMessageBox.warning(
+                self.trans_services_screen,
+                "No Selection",
+                "Please select a transaction to update."
+            )
+            return
+
+        print("-- Update Transaction Popup")
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Transactions/Update/edit_create_transaction.ui", self)
+        self.popup.setWindowTitle("Mapro: Update Transaction")
+        self.popup.setFixedSize(self.popup.size())
+
+        # Set icon
+        self.popup.register_buttonConfirmTransaction_SaveForm.setIcon(
+            QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+
+        # Connect signals
+        self.popup.register_buttonConfirmTransaction_SaveForm.clicked.connect(self.validate_and_update_transaction)
+
+        # Load transaction types
+        self.load_transaction_types()
+
+        # Populate current transaction data
+        self.populate_transaction_data_for_edit()
+
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
+
+    def populate_transaction_data_for_edit(self):
+        tl_id = self.selected_transaction_id
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            query = """
+                SELECT 
+                    TL_FNAME, TL_LNAME, TL_STATUS, TL_PURPOSE, TT_TYPE_NAME
+                FROM TRANSACTION_LOG TL
+                LEFT JOIN TRANSACTION_TYPE TT ON TL.TT_ID = TT.TT_ID
+                WHERE TL_ID = %s AND TL_IS_DELETED = FALSE;
+            """
+            cursor.execute(query, (tl_id,))
+            result = cursor.fetchone()
+
+            if not result:
+                raise Exception(f"No transaction found with ID {tl_id}")
+
+            fname, lname, status, purpose, tt_name = result
+
+            # Fill text fields
+            self.popup.register_ReqFirstName.setText(fname)
+            self.popup.register_ReqLastName.setText(lname)
+            self.popup.register_Purpose.setPlainText(purpose)
+
+            # Set combo boxes
+            index = self.popup.register_comboBox_TransactionType.findText(tt_name)
+            if index >= 0:
+                self.popup.register_comboBox_TransactionType.setCurrentIndex(index)
+
+            index_status = self.popup.register_comboBox_TransactionStatus.findText(status)
+            if index_status >= 0:
+                self.popup.register_comboBox_TransactionStatus.setCurrentIndex(index_status)
+
+        except Exception as e:
+            QMessageBox.critical(self.popup, "Error", f"Failed to load transaction data: {str(e)}")
+        finally:
+            db.close()
+
+    def validate_and_update_transaction(self):
+        errors = []
+
+        # Validate requestor first name
+        if not self.popup.register_ReqFirstName.text().strip():
+            errors.append("Requester firstname is required")
+            self.popup.register_ReqFirstName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_ReqFirstName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate requestor last name
+        if not self.popup.register_ReqLastName.text().strip():
+            errors.append("Requester lastname is required")
+            self.popup.register_ReqLastName.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_ReqLastName.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate request status
+        if self.popup.register_comboBox_TransactionStatus.currentIndex() == -1:
+            errors.append("Request Status is required")
+            self.popup.register_comboBox_TransactionStatus.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_comboBox_TransactionStatus.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate transaction type
+        if self.popup.register_comboBox_TransactionType.currentIndex() == -1:
+            errors.append("Transaction type is required")
+            self.popup.register_comboBox_TransactionType.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_comboBox_TransactionType.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        # Validate transaction purpose
+        if not self.popup.register_Purpose.toPlainText().strip():
+            errors.append("Request purpose is required")
+            self.popup.register_Purpose.setStyleSheet(
+                "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+        else:
+            self.popup.register_Purpose.setStyleSheet(
+                "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
+            )
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n• " + "\n• ".join(errors)
+            )
+            return
+        else:
+            self.confirm_and_update_transaction()
+
+    def confirm_and_update_transaction(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Update",
+            "Are you sure you want to update this transaction?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        tl_id = self.selected_transaction_id
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            fname = self.popup.register_ReqFirstName.text().strip()
+            lname = self.popup.register_ReqLastName.text().strip()
+            status = self.popup.register_comboBox_TransactionStatus.currentText().strip()
+            purpose = self.popup.register_Purpose.toPlainText().strip()
+            tt_name = self.popup.register_comboBox_TransactionType.currentText().strip()
+
+            # Get transaction type ID
+            cursor.execute("SELECT TT_ID FROM TRANSACTION_TYPE WHERE TT_TYPE_NAME = %s", (tt_name,))
+            tt_result = cursor.fetchone()
+            if not tt_result:
+                raise Exception(f"Transaction type '{tt_name}' not found.")
+            tt_id = tt_result[0]
+
+            # Perform update
+            update_query = """
+                UPDATE TRANSACTION_LOG SET
+                    TL_FNAME = %s,
+                    TL_LNAME = %s,
+                    TL_STATUS = %s,
+                    TL_PURPOSE = %s,
+                    TT_ID = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    TL_LAST_UPDATED = NOW()
+                WHERE TL_ID = %s;
+            """
+            cursor.execute(update_query, (
+                fname, lname, status, purpose,
+                tt_id, self.sys_user_id, tl_id
+            ))
+            db.conn.commit()
+
+            QMessageBox.information(self.popup, "Success", "Transaction successfully updated!")
+            self.popup.close()
+            self.load_transaction_data()
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            db.close()
+
 
     def _populate_table(self, rows):
         table = self.trans_services_screen.inst_tableView_List_RegBusiness

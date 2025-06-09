@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>992</width>
+    <width>781</width>
     <height>583</height>
    </rect>
   </property>
@@ -501,7 +501,7 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>971</width>
+     <width>761</width>
      <height>421</height>
     </rect>
    </property>
@@ -523,7 +523,7 @@
      <rect>
       <x>0</x>
       <y>100</y>
-      <width>971</width>
+      <width>761</width>
       <height>31</height>
      </rect>
     </property>
@@ -543,7 +543,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>971</width>
+       <width>741</width>
        <height>31</height>
       </rect>
      </property>
@@ -561,19 +561,19 @@
 }</string>
      </property>
      <property name="text">
-      <string>COMPLAINEE INFORMATION</string>
+      <string>TRANSACTION INFORMATION</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="record_ComplainantFirstName">
+   <widget class="QLineEdit" name="register_BusinessOwnerFirstName">
     <property name="geometry">
      <rect>
       <x>110</x>
       <y>50</y>
-      <width>221</width>
+      <width>261</width>
       <height>31</height>
      </rect>
     </property>
@@ -584,7 +584,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#record_ComplainantFirstName{
+     <string notr="true">#register_BusinessOwnerFirstName{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -601,15 +601,15 @@
      <number>50</number>
     </property>
     <property name="placeholderText">
-     <string>Input First Name / Given</string>
+     <string>First Name / Given</string>
     </property>
    </widget>
-   <widget class="QLabel" name="record_labelComplaintDesc">
+   <widget class="QLabel" name="register_labelBusinessStatus">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>311</width>
+      <x>390</x>
+      <y>140</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
@@ -620,19 +620,93 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#record_labelComplaintDesc{
+     <string notr="true">#register_labelBusinessStatus{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
     </property>
     <property name="text">
-     <string>Complaint Description:</string>
+     <string>Status:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_labelPurpose">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>290</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_labelPurpose{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>Purpose:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="record_labelComplainantFirstName">
+   <widget class="QComboBox" name="register_comboBox_TransactionStatus">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>140</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_comboBox_TransactionStatus{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Transaction Status</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Pending</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approved</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Declined</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="register_labelBusinessOwnerName">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -648,7 +722,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#record_labelComplainantFirstName{
+     <string notr="true">#register_labelBusinessOwnerName{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -660,12 +734,76 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QLineEdit" name="register_BusinessOwnerLastName">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>50</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_BusinessOwnerLastName{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+    <property name="placeholderText">
+     <string>Last Name / Surname</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="register_labelBusinessOwnerName_2">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>50</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_labelBusinessOwnerName_2{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>Last Name:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
    <widget class="QFrame" name="basePopUpTitleFrame_4">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>971</width>
+      <width>761</width>
       <height>31</height>
      </rect>
     </property>
@@ -685,7 +823,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>971</width>
+       <width>741</width>
        <height>31</height>
       </rect>
      </property>
@@ -703,20 +841,20 @@
 }</string>
      </property>
      <property name="text">
-      <string>COMPLAINANT INFORMATION</string>
+      <string>REQUESTOR INFORMATION</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
-   <widget class="QPlainTextEdit" name="record_ComplaintDesc">
+   <widget class="QPlainTextEdit" name="register_Purpose">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>260</y>
-      <width>311</width>
-      <height>121</height>
+      <x>380</x>
+      <y>320</y>
+      <width>361</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
@@ -726,7 +864,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#record_ComplaintDesc{
+     <string notr="true">#register_Purpose{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -737,210 +875,15 @@
 </string>
     </property>
     <property name="placeholderText">
-     <string>What is it about?</string>
+     <string>State the Purpose Here.</string>
     </property>
    </widget>
-   <widget class="QLabel" name="record_labelComplainantMiddleInitial">
+   <widget class="QDateEdit" name="register_transaction_date_daterequested">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>50</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_labelComplainantMiddleInitial{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Middle Initial:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="record_ComplainantMiddleInitial">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>50</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_ComplainantMiddleInitial{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>50</number>
-    </property>
-    <property name="placeholderText">
-     <string>Ex. A</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="record_labelComplainantLastName">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>50</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_labelComplainantLastName{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Last Name:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="record_ComplainantLastName">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>50</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_ComplainantLastName{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>50</number>
-    </property>
-    <property name="placeholderText">
-     <string>Input Last Name / Surname</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="record_citizenIDANDsearch">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>150</y>
-      <width>231</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_citizenIDANDsearch{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>50</number>
-    </property>
-    <property name="placeholderText">
-     <string>Input Citizen ID</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelNote_2">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
+      <x>150</x>
       <y>140</y>
-      <width>431</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <italic>true</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#labelNote_2 {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>By entering the Citizen ID, the corresponding Name will be displayed.</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="display_citizenFullName">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>160</y>
-      <width>521</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
@@ -951,199 +894,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#display_citizenFullName{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>None</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="record_labelCitizenID">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>150</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_labelCitizenID{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Citizen ID:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="record_SettlementDesc">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>260</y>
-      <width>311</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_SettlementDesc{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="placeholderText">
-     <string>What is it about?</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="record_labelSettlementDesc">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>230</y>
-      <width>311</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_labelSettlementDesc{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Settlement Description</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QFrame" name="basePopUpTitleFrame_5">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>190</y>
-      <width>971</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#basePopUpTitleFrame_5 {
-	background-color: #141c52;
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_title_5">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>961</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#label_title_5{
-	background-color:transparent;
-	color: rgb(255, 255, 255);
-}</string>
-     </property>
-     <property name="text">
-      <string>OTHER INFORMATION</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="record_labelDateOfSettlement">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>230</y>
-      <width>301</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_labelDateOfSettlement{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Date of Settlement</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="record_DateOfSettlement">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>260</y>
-      <width>291</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#record_DateOfSettlement{
+     <string notr="true">#register_transaction_date_daterequested{
 	background-color: rgb(239, 239, 239); /* Correct property name */
     color: #242424; /* Set text color to black for better contrast */
     border: 1px solid #ccc; /* Optional: Add a light border */
@@ -1158,7 +909,7 @@
       <second>0</second>
       <year>1999</year>
       <month>12</month>
-      <day>17</day>
+      <day>16</day>
      </datetime>
     </property>
     <property name="displayFormat">
@@ -1174,102 +925,12 @@
      <enum>Qt::TimeSpec::UTC</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_req_4">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>50</y>
-      <width>20</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_req_4 {
-	background-color: transparent;
-	color: red;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>*</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_req_5">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>50</y>
-      <width>20</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_req_5 {
-	background-color: transparent;
-	color: red;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>*</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_req_6">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>50</y>
-      <width>20</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_req_6 {
-	background-color: transparent;
-	color: red;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>*</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_req_7">
+   <widget class="QLabel" name="register_labelDateRequested">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
-      <width>20</width>
+      <y>140</y>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
@@ -1277,29 +938,277 @@
      <font>
       <family>Arial</family>
       <pointsize>12</pointsize>
-      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_req_7 {
-	background-color: transparent;
-	color: red;
-}
-</string>
+     <string notr="true">#register_labelDateRequested{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
     </property>
     <property name="text">
-     <string>*</string>
+     <string>Date Requested:</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_req_8">
+   <widget class="QFrame" name="basePopUpBodyFrame_5">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>230</y>
-      <width>20</width>
+      <x>20</x>
+      <y>290</y>
+      <width>341</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#basePopUpBodyFrame_5 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelNote_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <italic>true</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#labelNote_4 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>* If 'Others' Please Specify *</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="register_citizen_HouseholdRelationshipOther">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>301</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#register_citizen_HouseholdRelationshipOther{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>30</number>
+     </property>
+     <property name="placeholderText">
+      <string>Input Other Transaction Type</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="basePopUpBodyFrame_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>341</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#basePopUpBodyFrame_6 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelNote_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>361</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <italic>true</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#labelNote_5 {
+	background-color: transparent;
+	color: #4f4f4f;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>* Select Transaction Type *</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="register_comboBox_TransactionType">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>301</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#register_comboBox_TransactionType{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #242424; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Select Transaction Type</string>
+     </property>
+     <property name="duplicatesEnabled">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>Assistance for Government Programs</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Barangay ID</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Barangay Business Clearance</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Barangay Clearance</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Barangay Permit for Events</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Barangay Protection Order (BPO)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Certificate of Death Notification</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Certificate of Indigency</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Certificate for Marriage Requirements</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Certificate of Residency</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Certificate of Transfer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Community Tax Certificate (Cedula)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Endorsement Letter / Refferal Letter</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Health Certificate</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Others</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="register_labelReason">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>180</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
@@ -1307,81 +1216,49 @@
      <font>
       <family>Arial</family>
       <pointsize>12</pointsize>
-      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_req_8 {
-	background-color: transparent;
-	color: red;
-}
-</string>
+     <string notr="true">#register_labelReason{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
     </property>
     <property name="text">
-     <string>*</string>
+     <string>Reason:</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_req_9">
+   <widget class="QPlainTextEdit" name="register_Reason">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>230</y>
-      <width>20</width>
-      <height>31</height>
+      <x>380</x>
+      <y>210</y>
+      <width>361</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial</family>
       <pointsize>12</pointsize>
-      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_req_9 {
-	background-color: transparent;
-	color: red;
+     <string notr="true">#register_Reason{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
 }
+
 </string>
     </property>
-    <property name="text">
-     <string>*</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_req_10">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>230</y>
-      <width>20</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_req_10 {
-	background-color: transparent;
-	color: red;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>*</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+    <property name="placeholderText">
+     <string>State the Reason if Declined.</string>
     </property>
    </widget>
   </widget>
@@ -1390,7 +1267,7 @@
     <rect>
      <x>-1</x>
      <y>-10</y>
-     <width>1001</width>
+     <width>791</width>
      <height>51</height>
     </rect>
    </property>
@@ -1410,7 +1287,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>291</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
@@ -1429,7 +1306,7 @@
 </string>
     </property>
     <property name="text">
-     <string>RECORD SETTLEMENT HISTORY</string>
+     <string>EDIT TRANSACTION</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1440,7 +1317,7 @@
      <rect>
       <x>420</x>
       <y>10</y>
-      <width>561</width>
+      <width>351</width>
       <height>41</height>
      </rect>
     </property>
@@ -1459,19 +1336,79 @@
 </string>
     </property>
     <property name="text">
-     <string>RECORD A CERTAIN SETTLEMENT HISTORY.</string>
+     <string>NOW UPDATING A TRANSACTION</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="display_what_ID">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>10</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#display_what_ID {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_what_ID">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>10</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_what_ID {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>TRANSACTION ID:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
   <widget class="QLabel" name="progress">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>280</x>
      <y>550</y>
-     <width>231</width>
+     <width>221</width>
      <height>21</height>
     </rect>
    </property>
@@ -1497,12 +1434,12 @@
     <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="record_buttonConfirmSettlementHistory_SaveForm">
+  <widget class="QPushButton" name="register_buttonConfirmTransaction_SaveForm">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>280</x>
      <y>510</y>
-     <width>231</width>
+     <width>221</width>
      <height>41</height>
     </rect>
    </property>
@@ -1517,21 +1454,21 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">#record_buttonConfirmSettlementHistory_SaveForm {
+    <string notr="true">#register_buttonConfirmTransaction_SaveForm {
     background-color: #006f00;
     color: white;
     border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#record_buttonConfirmSettlementHistory_SaveForm:hover {
+#register_buttonConfirmTransaction_SaveForm:hover {
     background-color: #00a600; /* Slightly lighter blue when hovered */
 }
-#record_buttonConfirmSettlementHistory_SaveForm:pressed {
+#register_buttonConfirmTransaction_SaveForm:pressed {
     background-color: #005d00; /* Darker blue when clicked */
 }</string>
    </property>
    <property name="text">
-    <string>   CONFIRM AND SAVE</string>
+    <string>   UPDATE AND SAVE</string>
    </property>
    <property name="icon">
     <iconset>
@@ -1549,7 +1486,7 @@
     <rect>
      <x>0</x>
      <y>490</y>
-     <width>991</width>
+     <width>781</width>
      <height>21</height>
     </rect>
    </property>
@@ -1569,7 +1506,7 @@
 </string>
    </property>
    <property name="text">
-    <string>Click to Save</string>
+    <string>Click to Update</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1578,7 +1515,7 @@
   <widget class="QLabel" name="labelNote">
    <property name="geometry">
     <rect>
-     <x>790</x>
+     <x>580</x>
      <y>470</y>
      <width>191</width>
      <height>31</height>

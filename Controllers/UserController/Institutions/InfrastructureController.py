@@ -18,6 +18,7 @@ class InfrastructureController(BaseFileController):
         self.load_data_infrastructure()
         self.inst_infrastructure_screen.inst_tableView_List_RegInfra.cellClicked.connect(self.handle_row_click_infrastructure)
         self.inst_infrastructure_screen.inst_infra_button_remove.clicked.connect(self.handle_remove_infrastructure)
+        self.inst_infrastructure_screen.inst_infra_button_update.clicked.connect(self.show_update_infrastructure_popup)
 
 
     def setup_infrastructure_ui(self):
@@ -42,6 +43,241 @@ class InfrastructureController(BaseFileController):
         # REGISTER BUTTON
         self.inst_infrastructure_screen.inst_infra_button_register.clicked.connect(self.show_register_infrastructure_popup)
         self.inst_infrastructure_screen.inst_InfraName_buttonSearch.clicked.connect(self.perform_infrastructure_search)
+
+    def show_update_infrastructure_popup(self):
+        if not getattr(self, 'selected_infra_id', None):
+            QMessageBox.warning(self.inst_infrastructure_screen, "No Selection",
+                                "Please select an infrastructure to update.")
+            return
+
+        print("-- Update Infrastructure Popup")
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Institutions/Update/edit_register_infrastructure.ui", self)
+        self.popup.setWindowTitle("Mapro: Update Infrastructure")
+        self.popup.setFixedSize(self.popup.size())
+
+        # Load related lists
+        self.load_sitio_list()
+        self.load_infra_type_list()
+
+        # Set icon
+        self.popup.register_buttonConfirmInfra_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+
+        # Connect signals
+        self.popup.register_buttonConfirmInfra_SaveForm.clicked.connect(self.validate_and_update_infrastructure)
+
+        # Setup radio buttons
+        self.setup_radio_button_groups_infrastructure()
+
+        # Populate current infrastructure data
+        self.populate_infrastructure_data_for_edit()
+
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.exec_()
+
+    def populate_infrastructure_data_for_edit(self):
+        infra_id = self.selected_infra_id
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            query = """
+                SELECT 
+                    INF.INF_NAME,
+                    INF.INF_ACCESS_TYPE,
+                    INF.INF_DESCRIPTION,
+                    INF.INF_ADDRESS_DESCRIPTION,
+                    COALESCE(IO.INFO_FNAME, '') AS OWNER_FNAME,
+                    COALESCE(IO.INFO_LNAME, '') AS OWNER_LNAME,
+                    IT.INFT_TYPE_NAME,
+                    S.SITIO_NAME
+                FROM INFRASTRUCTURE INF
+                LEFT JOIN INFRASTRUCTURE_OWNER IO ON INF.INFO_ID = IO.INFO_ID
+                LEFT JOIN INFRASTRUCTURE_TYPE IT ON INF.INFT_ID = IT.INFT_ID
+                LEFT JOIN SITIO S ON INF.SITIO_ID = S.SITIO_ID
+                WHERE INF.INF_ID = %s AND INF.INF_IS_DELETED = FALSE;
+            """
+            cursor.execute(query, (infra_id,))
+            result = cursor.fetchone()
+
+            if not result:
+                raise Exception(f"No infrastructure found with ID {infra_id}")
+
+            (
+                name, access_type, description, address,
+                owner_fname, owner_lname, infra_type_name, sitio_name
+            ) = result
+
+            # Fill text fields
+            self.popup.register_InfraName.setText(name)
+            self.popup.register_InfraAddress.setText(address)
+            self.popup.register_InfraDesc.setPlainText(description)
+            self.popup.register_InfraOwnerFirstName.setText(owner_fname)
+            self.popup.register_InfraOwnerLastName.setText(owner_lname)
+
+            # Set combo boxes
+            self.popup.register_comboBox_InfraType.setCurrentText(infra_type_name)
+            self.popup.register_comboBox_InfraAddress_Sitio.setCurrentText(sitio_name)
+
+            # Set radio buttons
+            access_group = self.popup.findChild(QButtonGroup, "radio_PP")
+            public_btn = self.popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Public")
+            private_btn = self.popup.findChild(QRadioButton, "register_radioButton_labelInfraPP_Private")
+
+            if access_type == "Public":
+                public_btn.setChecked(True)
+            elif access_type == "Private":
+                private_btn.setChecked(True)
+
+        except Exception as e:
+            QMessageBox.critical(self.popup, "Error", f"Failed to load infrastructure data: {str(e)}")
+        finally:
+            db.close()
+
+    def validate_and_update_infrastructure(self):
+        errors = []
+
+        if not self.popup.register_InfraName.text().strip():
+            errors.append("Infrastructure name is required")
+            self.popup.register_InfraName.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_InfraName.setStyleSheet("border: 1px solid gray;")
+
+        if not self.popup.register_InfraAddress.text().strip():
+            errors.append("Infrastructure address is required")
+            self.popup.register_InfraAddress.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_InfraAddress.setStyleSheet("border: 1px solid gray;")
+
+        if self.popup.register_comboBox_InfraType.currentIndex() == -1:
+            errors.append("Infrastructure type is required")
+            self.popup.register_comboBox_InfraType.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_comboBox_InfraType.setStyleSheet("border: 1px solid gray;")
+
+        if self.popup.register_comboBox_InfraAddress_Sitio.currentIndex() == -1:
+            errors.append("Infrastructure sitio is required")
+            self.popup.register_comboBox_InfraAddress_Sitio.setStyleSheet("border: 1px solid red;")
+        else:
+            self.popup.register_comboBox_InfraAddress_Sitio.setStyleSheet("border: 1px solid gray;")
+
+        access_group = self.popup.findChild(QButtonGroup, "radio_PP")
+        selected_button = access_group.checkedButton()
+        if not selected_button:
+            errors.append("Public or Private is required")
+            self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: red")
+            self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: red")
+        else:
+            self.popup.register_radioButton_labelInfraPP_Private.setStyleSheet("color: black")
+            self.popup.register_radioButton_labelInfraPP_Public.setStyleSheet("color: black")
+
+        if selected_button and selected_button.text() == "Private":
+            if not self.popup.register_InfraOwnerFirstName.text().strip():
+                errors.append("First name is required for private infrastructure")
+                self.popup.register_InfraOwnerFirstName.setStyleSheet("border: 1px solid red;")
+            else:
+                self.popup.register_InfraOwnerFirstName.setStyleSheet("border: 1px solid gray;")
+
+            if not self.popup.register_InfraOwnerLastName.text().strip():
+                errors.append("Last name is required for private infrastructure")
+                self.popup.register_InfraOwnerLastName.setStyleSheet("border: 1px solid red;")
+            else:
+                self.popup.register_InfraOwnerLastName.setStyleSheet("border: 1px solid gray;")
+
+        if errors:
+            QMessageBox.warning(
+                self.popup,
+                "Incomplete Form",
+                "Please complete all required fields:\n• " + "\n• ".join(errors)
+            )
+            return
+        else:
+            self.confirm_and_update_infrastructure()
+
+    def confirm_and_update_infrastructure(self):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Update",
+            "Are you sure you want to update this infrastructure?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        infra_id = self.selected_infra_id
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            infra_name = self.popup.register_InfraName.text().strip()
+            infra_address = self.popup.register_InfraAddress.text().strip()
+            infra_description = self.popup.register_InfraDesc.toPlainText().strip()
+            owner_fname = self.popup.register_InfraOwnerFirstName.text().strip()
+            owner_lname = self.popup.register_InfraOwnerLastName.text().strip()
+            access_type = "Public" if self.popup.findChild(QRadioButton,
+                                                           "register_radioButton_labelInfraPP_Public").isChecked() else "Private"
+
+            # Fetch Sitio and Infra Type IDs
+            sitio_name = self.popup.register_comboBox_InfraAddress_Sitio.currentText()
+            cursor.execute("SELECT sitio_id FROM sitio WHERE sitio_name = %s", (sitio_name,))
+            sitio_id = cursor.fetchone()[0]
+
+            infra_type_name = self.popup.register_comboBox_InfraType.currentText()
+            cursor.execute("SELECT inft_id FROM infrastructure_type WHERE inft_type_name = %s", (infra_type_name,))
+            inft_id = cursor.fetchone()[0]
+
+            # Handle Owner Info
+            owner_id = None
+            if access_type == "Private":
+                if not owner_fname or not owner_lname:
+                    raise Exception("First name and Last name are required for private owners.")
+
+                # Check if owner exists or insert new
+                cursor.execute("""
+                    SELECT info_id FROM infrastructure_owner 
+                    WHERE info_fname = %s AND info_lname = %s
+                """, (owner_fname, owner_lname))
+                result = cursor.fetchone()
+                if result:
+                    owner_id = result[0]
+                else:
+                    cursor.execute("""
+                        INSERT INTO infrastructure_owner (INFO_FNAME, INFO_LNAME)
+                        VALUES (%s, %s) RETURNING INFO_ID;
+                    """, (owner_fname, owner_lname))
+                    owner_id = cursor.fetchone()[0]
+
+            # Update Query
+            update_query = """
+                UPDATE infrastructure SET
+                    INF_NAME = %s,
+                    INF_ACCESS_TYPE = %s,
+                    INF_DESCRIPTION = %s,
+                    INF_ADDRESS_DESCRIPTION = %s,
+                    INFT_ID = %s,
+                    INFO_ID = %s,
+                    SITIO_ID = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    INF_LAST_UPDATED = NOW()
+                WHERE INF_ID = %s;
+            """
+            cursor.execute(update_query, (
+                infra_name, access_type, infra_description,
+                infra_address, inft_id, owner_id, sitio_id,
+                self.sys_user_id, infra_id
+            ))
+            db.conn.commit()
+
+            QMessageBox.information(self.popup, "Success", "Infrastructure successfully updated!")
+            self.popup.close()
+            self.load_data_infrastructure()
+
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.popup, "Database Error", str(e))
+        finally:
+            db.close()
+
 
     def handle_remove_infrastructure(self):
         if not getattr(self, 'selected_infra_id', None):
