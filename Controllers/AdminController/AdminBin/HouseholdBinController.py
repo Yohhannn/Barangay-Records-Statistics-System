@@ -29,8 +29,7 @@ class HouseholdBinController(BaseFileController):
         # Store references needed for navigation
         self.login_window = login_window
         self.emp_first_name = emp_first_name
-        
-        
+
     def setup_household_ui(self, ui_screen):
         self.cp_householdbin_screen = ui_screen
         ui_screen.cp_household_button_restore.clicked.connect(self.restore_selected_household)
@@ -49,9 +48,6 @@ class HouseholdBinController(BaseFileController):
         ui_screen.inst_tableView_List_RegHousehold.cellClicked.connect(self.handle_row_click_household)
 
         ui_screen.cp_HouseholdName_buttonSearch.clicked.connect(self.perform_household_search)
-
-        
-
 
     def perform_household_search(self):
         search_text = self.cp_householdbin_screen.cp_HouseholdName_fieldSearch.text().strip()
@@ -203,7 +199,6 @@ class HouseholdBinController(BaseFileController):
             if isinstance(widget, QLabel):
                 widget.setText("None")
 
-
     def load_household_data(self):
         connection = None
         try:
@@ -327,8 +322,6 @@ class HouseholdBinController(BaseFileController):
             if connection:
                 connection.close()
 
-
-
     def handle_row_click_household(self, row, column):
         table = self.cp_householdbin_screen.inst_tableView_List_RegHousehold
         selected_item = table.item(row, 0)
@@ -345,7 +338,6 @@ class HouseholdBinController(BaseFileController):
                 self.cp_householdbin_screen.cp_displayOwnershipStatus.setText(record[3] or "None")  # Ownership Status
                 from PySide6.QtCore import Qt
                 from PySide6.QtWidgets import QLabel
-
 
                 link = record[4]
                 label: QLabel = self.cp_householdbin_screen.cp_displayHomeLink
@@ -386,7 +378,7 @@ class HouseholdBinController(BaseFileController):
         if not hasattr(self, 'citizen_panel'):
             from Controllers.AdminController.AdminBinController import AdminBinController
             self.adminbin_panel = AdminBinController(self.login_window, self.emp_first_name, self.sys_user_id,
-                                                        self.user_role, self.stack)
+                                                     self.user_role, self.stack)
             self.stack.addWidget(self.adminbin_panel.trashbin_screen)
 
         self.stack.setCurrentWidget(self.adminbin_panel.trashbin_screen)
