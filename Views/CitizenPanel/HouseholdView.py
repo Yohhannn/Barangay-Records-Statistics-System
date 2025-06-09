@@ -27,6 +27,8 @@ class HouseholdView:
 
         # Connect buttons
         ui_screen.btn_returnToCitizenPanelPage.clicked.connect(self.controller.goto_citizen_panel)
+        ui_screen.cp_household_button_update.clicked.connect(self.controller.show_update_household_popup)
+
         ui_screen.cp_household_button_register.clicked.connect(self.controller.show_register_household_popup)
         ui_screen.inst_tableView_List_RegHousehold.cellClicked.connect(self.controller.handle_row_click_household)
         ui_screen.cp_household_button_remove.clicked.connect(self.controller.handle_remove_household)
@@ -55,6 +57,24 @@ class HouseholdView:
 
         # Initialize dropdowns
         self._init_dropdowns()
+
+        return self.popup
+
+    def show_edit_household_popup(self, parent):
+        self.popup = load_popup(
+            "Resources/UIs/PopUp/Screen_CitizenPanel/ScreenHousehold/Update/edit_register_household.ui", parent)
+        self.popup.setWindowTitle("MaPro: Update Household")
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.setFixedSize(self.popup.size())
+
+        self._init_dropdowns()
+
+        self.popup.register_buttonConfirmHousehold_SaveForm.setIcon(
+            QIcon('Resources/Icons//FuncIcons/icon_confirm.svg'))
+
+        date_edit = self.popup.register_household_date_DOV
+        date_edit.setDisplayFormat("yyyy-MM-dd")
+        date_edit.setMaximumDate(QDate.currentDate())
 
         return self.popup
 

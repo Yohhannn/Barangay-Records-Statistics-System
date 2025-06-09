@@ -35,6 +35,10 @@ class SettlementHistoryController(BaseFileController):
         self.hist_settlement_history_screen.histrec_tableView_List_RecordSettlementHistory.cellClicked.connect(self.handle_row_click_settlement_history)
         self.hist_settlement_history_screen.histrec_settlementhistory_button_remove.clicked.connect(
             self.handle_remove_settlement)
+
+        self.hist_settlement_history_screen.histrec_settlementhistory_button_update.clicked.connect(
+            self.show_update_settlement_popup
+        )
         # Return Button
         self.hist_settlement_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
         self.hist_settlement_history_screen.histrec_SettlementID_buttonSearch.clicked.connect(
@@ -99,6 +103,192 @@ class SettlementHistoryController(BaseFileController):
         finally:
             if connection:
                 connection.close()
+
+    def show_update_settlement_popup(self):
+        if not getattr(self, 'selected_settlement_id', None):
+            QMessageBox.warning(
+                self.hist_settlement_history_screen,
+                "No Selection",
+                "Please select a settlement history record to update."
+            )
+            return
+
+        sett_id = self.selected_settlement_id
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Fetch full settlement record
+            cursor.execute("""
+                SELECT 
+                    SL.SETT_ID,
+                    C1.CTZ_ID AS COMPLAINEE_CITIZEN_ID,
+                    C1.CTZ_FIRST_NAME || ' ' || C1.CTZ_LAST_NAME AS COMPLAINEE_NAME,
+                    C2.COMP_FNAME,
+                    C2.COMP_MNAME,
+                    C2.COMP_LNAME,
+                    SL.SETT_COMPLAINT_DESCRIPTION,
+                    SL.SETT_SETTLEMENT_DESCRIPTION,
+                    TO_CHAR(SL.SETT_DATE_OF_SETTLEMENT, 'YYYY-MM-DD'),
+                    SL.COMP_ID
+                FROM SETTLEMENT_LOG SL
+                JOIN COMPLAINANT C2 ON SL.COMP_ID = C2.COMP_ID
+                JOIN CITIZEN_HISTORY CH ON SL.CIHI_ID = CH.CIHI_ID
+                JOIN CITIZEN C1 ON CH.CTZ_ID = C1.CTZ_ID
+                WHERE SL.SETT_ID = %s AND SL.SETT_IS_DELETED = FALSE;
+            """, (sett_id,))
+            result = cursor.fetchone()
+
+            if not result:
+                QMessageBox.critical(
+                    self.hist_settlement_history_screen,
+                    "Not Found",
+                    f"No settlement found with ID {sett_id}"
+                )
+                return
+
+            (
+                sett_id, ctz_id, complainee_name, comp_fname, comp_mname,
+                comp_lname, complaint_desc, settlement_desc, date_settled, comp_id
+            ) = result
+
+            # Load the popup UI
+            self.popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/Update/edit_record_settlement_history.ui")
+            self.popup.setWindowTitle("Mapro: Edit Settlement History")
+            self.popup.setFixedSize(self.popup.size())
+            self.popup.setWindowModality(Qt.ApplicationModal)
+
+            # Populate fields
+            self.popup.record_ComplainantFirstName.setText(comp_fname or "")
+            self.popup.record_ComplainantMiddleInitial.setText(comp_mname or "")
+            self.popup.record_ComplainantLastName.setText(comp_lname or "")
+            self.popup.record_citizenIDANDsearch.setText(str(ctz_id))
+            self.popup.display_citizenFullName.setText(complainee_name)
+            self.popup.record_ComplaintDesc.setPlainText(complaint_desc or "")
+            self.popup.record_SettlementDesc.setPlainText(settlement_desc or "")
+
+            # Set date
+            from PySide6.QtCore import QDate
+            self.popup.record_DateOfSettlement.setDate(QDate.fromString(date_settled, "yyyy-MM-dd"))
+
+            # Connect Save button
+            self.popup.record_buttonConfirmSettlementHistory_SaveForm.clicked.connect(
+                lambda: self.save_updated_settlement(sett_id, comp_id)
+            )
+
+            self.popup.exec_()
+
+        except Exception as e:
+            QMessageBox.critical(self.hist_settlement_history_screen, "Database Error", str(e))
+        finally:
+            db.close()
+
+    def save_updated_settlement(self, sett_id, comp_id):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Update",
+            "Are you sure you want to update this settlement?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # Get form data
+            comp_fname = self.popup.record_ComplainantFirstName.text().strip()
+            comp_mname = self.popup.record_ComplainantMiddleInitial.text().strip() or None
+            comp_lname = self.popup.record_ComplainantLastName.text().strip()
+            ctz_search = self.popup.record_citizenIDANDsearch.text().strip()
+            complaint_desc = self.popup.record_ComplaintDesc.toPlainText().strip()
+            settlement_desc = self.popup.record_SettlementDesc.toPlainText().strip()
+            date_settled = self.popup.record_DateOfSettlement.date().toString("yyyy-MM-dd")
+
+            # Validate required fields
+            if not comp_fname:
+                raise Exception("Complainant First Name is required")
+            if not comp_lname:
+                raise Exception("Complainant Last Name is required")
+            if not ctz_search:
+                raise Exception("Citizen ID or Name is required")
+            if not complaint_desc:
+                raise Exception("Complaint Description is required")
+            if not settlement_desc:
+                raise Exception("Settlement Description is required")
+
+            # Update COMPLAINANT
+            cursor.execute("""
+                UPDATE COMPLAINANT
+                SET COMP_FNAME = %s,
+                    COMP_MNAME = %s,
+                    COMP_LNAME = %s
+                WHERE COMP_ID = %s;
+            """, (comp_fname, comp_mname, comp_lname, comp_id))
+
+            # Find CITIZEN by ID or name
+            cursor.execute("""
+                SELECT CTZ_ID FROM CITIZEN 
+                WHERE CTZ_IS_DELETED = FALSE AND (
+                    CTZ_ID::TEXT = %s OR 
+                    CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                )
+            """, (ctz_search, f"%{ctz_search}%"))
+            ctz_result = cursor.fetchone()
+            if not ctz_result:
+                raise Exception(f"No citizen found matching '{ctz_search}'")
+            ctz_id = ctz_result[0]
+
+            # Find CIHI_ID from settlement log
+            cursor.execute("""
+                SELECT CIHI_ID FROM SETTLEMENT_LOG WHERE SETT_ID = %s
+            """, (sett_id,))
+            cihi_result = cursor.fetchone()
+            if not cihi_result:
+                raise Exception("Citizen history not found for this settlement")
+            cihi_id = cihi_result[0]
+
+            # Update CITIZEN_HISTORY
+            cursor.execute("""
+                UPDATE CITIZEN_HISTORY
+                SET CIHI_DESCRIPTION = %s,
+                    CTZ_ID = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    CIHI_LAST_UPDATED = NOW()
+                WHERE CIHI_ID = %s;
+            """, (complaint_desc, ctz_id, self.sys_user_id, cihi_id))
+
+            # Update SETTLEMENT_LOG
+            cursor.execute("""
+                UPDATE SETTLEMENT_LOG
+                SET SETT_COMPLAINT_DESCRIPTION = %s,
+                    SETT_SETTLEMENT_DESCRIPTION = %s,
+                    SETT_DATE_OF_SETTLEMENT = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    SETT_LAST_UPDATED = NOW()
+                WHERE SETT_ID = %s;
+            """, (
+                complaint_desc,
+                settlement_desc,
+                date_settled,
+                self.sys_user_id,
+                sett_id
+            ))
+
+            connection.commit()
+            QMessageBox.information(self.popup, "Success", "Settlement updated successfully!")
+            self.popup.close()
+            self.load_settlement_history_data()  # Refresh list
+
+        except Exception as e:
+            connection.rollback()
+            QMessageBox.critical(self.popup, "Error", f"Failed to update settlement: {str(e)}")
+        finally:
+            db.close()
 
     def show_settlement_history_popup(self):
         print("-- Record Settlement History Popup")

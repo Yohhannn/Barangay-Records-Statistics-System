@@ -7,7 +7,7 @@ class Database:
                 host="localhost",
                 database="marigondon_profiling_db",
                 user="postgres",
-                password="123jp"
+                password="123"
             )
             self.cursor = self.conn.cursor()
             print("Database Connected Successfully!")
