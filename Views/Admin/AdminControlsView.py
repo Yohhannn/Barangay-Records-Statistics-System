@@ -75,5 +75,7 @@ class AdminControlsView:
             self.admin_controls_screen.admn_button_RegSitio.clicked.connect(
                 lambda: self.show_register_sitio_popup(self.admin_controls_screen)
         )
+            self.admin_controls_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
+
 
 

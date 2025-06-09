@@ -200,6 +200,16 @@ class HistoryRecordsController(BaseFileController):
 
         self.stack.setCurrentWidget(self.settlement_history_panel.hist_settlement_history_screen)
 
+    def goto_trashbin_panel(self):
+        print("-- Navigating to AdmiTrashhbin Panel")
+
+        if not hasattr(self, 'trashbin_panel'):
+            from Controllers.AdminController.AdminBinController import AdminBinController
+            self.trashbin_panel = AdminBinController(
+                self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack
+            )
+            self.stack.addWidget(self.trashbin_panel.trashbin_screen)
+        self.stack.setCurrentWidget(self.trashbin_panel.trashbin_screen)
 
     def logout(self):
         confirmation = QMessageBox.question(
