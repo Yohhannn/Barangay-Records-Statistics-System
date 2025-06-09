@@ -992,7 +992,7 @@
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="filter_stat_date_button">
+    <widget class="QPushButton" name="refresh_button">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1014,7 +1014,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">#filter_stat_date_button {
+      <string notr="true">#refresh_button {
 
 background-color: #474747;
 
@@ -1030,7 +1030,7 @@ padding: 10px;
 
 
 
-#filter_stat_date_button:hover {
+#refresh_button:hover {
 
 background-color: #636363;
 
@@ -1040,7 +1040,7 @@ color: white;
 
 
 
-#filter_stat_date_button:pressed {
+#refresh_button:pressed {
 
 background-color: #bfbfbf;
 
@@ -1049,7 +1049,7 @@ color: white;
 }</string>
      </property>
      <property name="text">
-      <string>REFRESH</string>
+      <string>     REFRESH</string>
      </property>
      <property name="icon">
       <iconset>
