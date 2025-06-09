@@ -60,6 +60,13 @@ class AdminBinController(BaseFileController):
         ui_screen.logout_buttonLogout.clicked.connect(self.logout)
         ui_screen.trashbin_btn_citizens.clicked.connect(self.goto_citizin_bin)
         ui_screen.trashbin_btn_household.clicked.connect(self.goto_household_bin)
+        ui_screen.trashbin_btn_business.clicked.connect(self.goto_business_bin)
+        ui_screen.trashbin_btn_infra.clicked.connect(self.goto_infrastructure_bin)
+        ui_screen.trashbin_btn_services.clicked.connect(self.goto_transaction_bin)
+        ui_screen.trashbin_btn_ctzhist.clicked.connect(self.goto_citizen_history_bin)
+        ui_screen.trashbin_btn_medhist.clicked.connect(self.goto_medical_history_bin)
+        ui_screen.trashbin_btn_setthist.clicked.connect(self.goto_settlement_history_bin)
+
 
     def goto_dashboard_panel(self):
         """Return to dashboard screen"""
@@ -224,8 +231,8 @@ class AdminBinController(BaseFileController):
     def goto_history_panel(self):
         """Handle navigation to History Records Panel screen."""
         print("-- Navigating to History Records")
-        self.load_account_info()
-        self.load_recent_citizens_data()
+        # self.load_account_info()
+        # self.load_recent_citizens_data()
         if not hasattr(self, 'history_panel'):
             from Controllers.UserController.HistoryRecordsController import HistoryRecordsController
             self.history_panel = HistoryRecordsController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
@@ -260,9 +267,74 @@ class AdminBinController(BaseFileController):
     def goto_household_bin(self):
         """Handle navigation to Citizen Profile Panel screen."""
         print("-- Navigating to Household Bin")
-        if not hasattr(self, 'citizenbin'):
+        if not hasattr(self, 'householdbin'):
             from Controllers.AdminController.AdminBin.HouseholdBinController import HouseholdBinController
             self.household_bin = HouseholdBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
             self.stack.addWidget(self.household_bin.cp_householdbin_screen)
 
         self.stack.setCurrentWidget(self.household_bin.cp_householdbin_screen)
+
+
+    def goto_business_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to business Bin")
+        if not hasattr(self, 'businessbin'):
+            from Controllers.AdminController.AdminBin.BusinessBinController import BusinessBinController
+            self.business_bin = BusinessBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.business_bin.inst_businessbin_screen)
+
+        self.stack.setCurrentWidget(self.business_bin.inst_businessbin_screen)
+
+    def goto_infrastructure_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to Infra Bin")
+        if not hasattr(self, 'infrabin'):
+            from Controllers.AdminController.AdminBin.InfrastructureBinController import InfrastructureBinController
+            self.infrastructure_bin = InfrastructureBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.infrastructure_bin.inst_infrastructurebin_screen)
+
+        self.stack.setCurrentWidget(self.infrastructure_bin.inst_infrastructurebin_screen)
+
+
+
+    def goto_transaction_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to transaction Bin")
+        if not hasattr(self, 'transactionbin'):
+            from Controllers.AdminController.AdminBin.ServicesBinController import ServicesBinController
+            self.services_bin = ServicesBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.services_bin.trans_servicesbin_screen)
+
+        self.stack.setCurrentWidget(self.services_bin.trans_servicesbin_screen)
+
+
+
+    def goto_citizen_history_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to transaction Bin")
+        if not hasattr(self, 'medicalbin'):
+            from Controllers.AdminController.AdminBin.CitizenHistoryBinController import CitizenHistoryBinController
+            self.citizen_bin_history = CitizenHistoryBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.citizen_bin_history.hist_citizen_history_bin_screen)
+
+        self.stack.setCurrentWidget(self.citizen_bin_history.hist_citizen_history_bin_screen)
+
+    def goto_medical_history_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to medical Bin")
+        if not hasattr(self, 'medicalbin'):
+            from Controllers.AdminController.AdminBin.MedicalHistoryBinController import MedicalHistoryBinController
+            self.medical_bin_history = MedicalHistoryBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.medical_bin_history.hist_medical_history_bin_screen)
+
+        self.stack.setCurrentWidget(self.medical_bin_history.hist_medical_history_bin_screen)
+
+    def goto_settlement_history_bin(self):
+        """Handle navigation to Citizen Profile Panel screen."""
+        print("-- Navigating to settlement Bin")
+        if not hasattr(self, 'settlementbin'):
+            from Controllers.AdminController.AdminBin.SettlementHistoryBinController import SettlementHistoryBinController
+            self.settlement_bin_history = SettlementHistoryBinController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.stack.addWidget(self.settlement_bin_history.hist_settlement_history_bin_screen)
+
+        self.stack.setCurrentWidget(self.settlement_bin_history.hist_settlement_history_bin_screen)
