@@ -968,7 +968,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_citizen_labelHomeAddress{
+     <string notr="true">#register_citizen_labelHomeAddress_2{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -996,7 +996,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#register_citizen_labelHomeNumber{
+     <string notr="true">#register_citizen_labelHomeNumber_2{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
