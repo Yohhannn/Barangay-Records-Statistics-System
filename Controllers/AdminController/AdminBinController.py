@@ -40,13 +40,23 @@ class AdminBinController(BaseFileController):
         ui_screen.nav_buttonStatistics.setIcon(QIcon('Resources/Icons/General_Icons/icon_statistics.svg'))
         ui_screen.nav_buttonInstitutions.setIcon(QIcon('Resources/Icons/General_Icons/icon_institutions.svg'))
         ui_screen.nav_buttonTransactions.setIcon(QIcon('Resources/Icons/General_Icons/icon_transaction.svg'))
-        ui_screen.nav_buttonHistoryRecords.setIcon(QIcon('Resources/Icons/General_Icons/icon_historyrecord.svg'))
+        ui_screen.nav_buttonHistoryRecords.setIcon(QIcon('Resources/Icons/General_Icons/icon_historyrecord_closed.svg'))
 
         # SET NAVIGATION ADMIN ASSETS
         ui_screen.nav_buttonAdminPanel.setIcon(QIcon('Resources/Icons/General_Icons/icon_adminoverview_on.svg'))
         ui_screen.nav_buttonActivityLogs.setIcon(QIcon('Resources/Icons/General_Icons/icon_activitylogs_on.svg'))
         ui_screen.nav_buttonTrashBin.setIcon(QIcon('Resources/Icons/General_Icons/icon_trash_bin.svg'))
         # ui_screen.nav_isLocked.setIcon(QIcon('Resources/Icons/General_Icons/icon_isLocked.svg'))
+
+        #SET ICONS
+        ui_screen.trashbin_btn_citizens.setIcon(QIcon('Resources/Images/General_Images/img_CP_citizenprofile.png'))
+        ui_screen.trashbin_btn_household.setIcon(QIcon('Resources/Images/General_Images/img_CP_household.png'))
+        ui_screen.trashbin_btn_business.setIcon(QIcon('Resources/Images/General_Images/img_business.png'))
+        ui_screen.trashbin_btn_infra.setIcon(QIcon('Resources/Images/General_Images/img_infrastructure.png'))
+        ui_screen.trashbin_btn_services.setIcon(QIcon('Resources/Images/General_Images/img_transaction_papers.png'))
+        ui_screen.trashbin_btn_ctzhist.setIcon(QIcon('Resources/Images/General_Images/img_history_citizen.png'))
+        ui_screen.trashbin_btn_medhist.setIcon(QIcon('Resources/Images/General_Images/img_history_medical.png'))
+        ui_screen.trashbin_btn_setthist.setIcon(QIcon('Resources/Images/General_Images/img_history_settlement.png'))
 
         # NAVIGATIONAL BUTTONS --> GOTO
         ui_screen.nav_buttonDashboard.clicked.connect(self.goto_dashboard_panel)
