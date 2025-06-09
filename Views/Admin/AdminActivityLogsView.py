@@ -12,8 +12,8 @@ class AdminActivityLogsView:
 
     def setup_activity_logs_ui(self, ui_screen):
         self.activity_logs_screen = ui_screen
-        # self._setup_date()
-        # self._setup_time()
+        self._setup_date()
+        self._setup_time()
         self._setup_window_properties()
         self._setup_navigation_assets()
         self._connect_buttons()
@@ -24,19 +24,19 @@ class AdminActivityLogsView:
         self.controller.setWindowTitle(f"{self.app_name} {self.app_version}")
         self.controller.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 
-    # def _setup_time(self):
-    #     self.timer = QTimer(self.activity_logs_screen)
-    #     self._setup_date()
-    #     self.timer.timeout.connect(self._setup_date)
-    #     self.timer.start(1000)
+    def _setup_time(self):
+        self.timer = QTimer(self.activity_logs_screen)
+        self._setup_date()
+        self.timer.timeout.connect(self._setup_date)
+        self.timer.start(1000)
 
-    # def _setup_date(self):
-    #     current_datetime = QDateTime.currentDateTime()
-    #     formatted_date = current_datetime.toString("MMMM d, yyyy")
-    #     day_of_week = current_datetime.toString("dddd")
-    #     self.activity_logs_screen.label_dateDashboard.setText(f"{formatted_date} - {day_of_week}")
-    #     formatted_time = current_datetime.toString("h:mm:ss AP")
-    #     self.activity_logs_screen.label_timeDashboard.setText(formatted_time)
+    def _setup_date(self):
+        current_datetime = QDateTime.currentDateTime()
+        formatted_date = current_datetime.toString("MMMM d, yyyy")
+        day_of_week = current_datetime.toString("dddd")
+        self.activity_logs_screen.text_date.setText(f"{formatted_date} - {day_of_week}")
+        formatted_time = current_datetime.toString("h:mm:ss AP")
+        (self.activity_logs_screen.text_time.setText(formatted_time))
 
     def _setup_navigation_assets(self):
         nav_icons = {
@@ -49,7 +49,6 @@ class AdminActivityLogsView:
             'nav_buttonHistoryRecords': 'Resources/Icons/General_Icons/icon_historyrecord_closed.svg',
             'nav_buttonTrashBin': 'Resources/Icons/General_Icons/icon_trash_bin.svg',
             'nav_buttonAdminPanel': 'Resources/Icons/General_Icons/icon_adminoverview_on.svg',
-            'refresh_button': 'Resources/Icons/FuncIcons/icon_reload.svg',
             'nav_buttonActivityLogs': 'Resources/Icons/General_Icons/icon_activitylogs_on.svg'
         }
 
