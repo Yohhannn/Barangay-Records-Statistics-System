@@ -25,6 +25,17 @@ class ManageAccountsView:
         self.popup.show()
         return self.popup
 
+    def show_Update_account_popup(self, parent):
+        self.popup = load_popup("Resources/UIs/PopUp/Screen_Admin/AdminPanel/Update/edit_register_account.ui", parent)
+        self.popup.setWindowTitle("Mapro: Update System User")
+        self.popup.setWindowModality(Qt.ApplicationModal)
+        self.popup.setFixedSize(self.popup.size())
+        self.popup.register_buttonConfirmAccount_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmAccount_SaveForm.clicked.connect(self.controller.validate_fields)
+        self._init_dropdowns()
+        self.popup.show()
+        return self.popup
+
     def get_form_data(self):
         return {
             'first_name': self.popup.RegAcc_input_fname.text().strip(),
@@ -34,6 +45,17 @@ class ManageAccountsView:
             'confirm_password': self.popup.RegAcc_confirm_PIN.text().strip(),
             'role': self.popup.RegAcc_select_role.currentText().strip()
         }
+
+    def get_update_form_data(self):
+        return {
+            'first_name': self.popup.RegAcc_input_fname.text().strip(),
+            'last_name': self.popup.RegAcc_input_lname.text().strip(),
+            'middle_name': self.popup.RegAcc_input_mname.text().strip(),
+            'user_password': self.popup.RegAcc_input_PIN.text().strip(),
+            'confirm_password': self.popup.RegAcc_confirm_PIN.text().strip(),
+            'role': self.popup.RegAcc_select_role.currentText().strip()
+        }
+
 
     def show_success_message(self):
         QMessageBox.information(self.popup, "Success", "System user successfully registered!")
@@ -63,6 +85,7 @@ class ManageAccountsView:
         self.manage_accounts_screen.admn_button_RegAcc.clicked.connect(
             lambda: self.show_register_account_popup(self.manage_accounts_screen)
         )
+        self.manage_accounts_screen.admn_button_RemAcc.clicked.connect(self.controller.handle_remove_user)
 
     def _init_dropdowns(self):
         self.popup.RegAcc_select_role.clear()

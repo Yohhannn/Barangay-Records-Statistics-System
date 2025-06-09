@@ -30,6 +30,8 @@ class ManageAccountsModel:
             print("Database error:", e)
             return False
 
+
+
     def get_system_users(self):
         try:
             query = """
@@ -47,7 +49,7 @@ class ManageAccountsModel:
                     SYS_DATE_ENCODED::date AS date_encoded
                 FROM SYSTEM_ACCOUNT
                 WHERE SYS_ROLE != 'Super Admin'
-                AND SYS_IS_ACTIVE = TRUE
+                AND SYS_IS_DELETED = FALSE
                 ORDER BY SYS_LNAME, SYS_FNAME;
             """
             self.connection.cursor.execute(query)
@@ -61,3 +63,21 @@ class ManageAccountsModel:
         except Exception as e:
             print(f"Failed to fetch system users: {e}")
             return {'columns': [], 'data': []}
+
+    def soft_delete_account_data(self, account_data):
+        try:
+            query = """
+                UPDATE SYSTEM_ACCOUNT
+                SET SYS_IS_DELETED = TRUE
+                WHERE SYS_USER_ID = %s
+                    AND SYS_ROLE != 'Super Admin';
+            """
+            self.connection.execute_with_user(query, (
+                account_data['user_id'],
+            ))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print("Database error:", e)
+            return False
+

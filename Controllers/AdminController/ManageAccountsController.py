@@ -13,6 +13,7 @@ class ManageAccountsController(BaseFileController):
         self.user_role = user_role
         self.stack = stack
         self.sys_user_id = sys_user_id
+        self.selected_user_id = None
 
         self.view = ManageAccountsView(self)
         self.model = ManageAccountsModel(self.sys_user_id)
@@ -41,6 +42,42 @@ class ManageAccountsController(BaseFileController):
 
         table.resizeColumnsToContents()
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+    def handle_remove_user(self):
+        if not hasattr(self, 'selected_user_id') or not self.selected_user_id:
+            QMessageBox.warning(
+                self.admin_manage_accounts_screen,
+                "No user selected",
+                "Please select a user first."
+            )
+            return
+
+        name = getattr(self, 'selected_user_name', "Unknown")
+        role = getattr(self, 'selected_user_role', "Unknown")
+
+        confirm = QMessageBox.question(
+            self.admin_manage_accounts_screen,
+            "Confirm Delete Account",
+            f"Are you sure you want to delete {role} {name}?",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if confirm == QMessageBox.Yes:
+            success = self.model.soft_delete_account_data({'user_id': self.selected_user_id})
+
+            if success:
+                QMessageBox.information(
+                    self.admin_manage_accounts_screen,
+                    "User Removed",
+                    f"System user {role} {name} has been successfully removed."
+                )
+                self._refresh()
+            else:
+                QMessageBox.critical(
+                    self.admin_manage_accounts_screen,
+                    "Error",
+                    "Failed to remove the selected user."
+                )
 
     def validate_fields(self):
         form_data = self.view.get_form_data()
@@ -89,7 +126,7 @@ class ManageAccountsController(BaseFileController):
                 result['data']
             )
         except Exception as e:
-            self.show_error_message("System Account Data Error", "Could not load system user accounts.")
+            QMessageBox.critical(self,"System Account Data Error", "Could not load system user accounts.")
             print(f"Error loading system user accounts: {e}")
 
     def handle_row_click_account(self, index: QModelIndex = None):
@@ -107,8 +144,8 @@ class ManageAccountsController(BaseFileController):
         if not selected_id:
             return
 
-        selected_id = str(selected_id)
-        print(f"[DEBUG] Clicked ID: {selected_id}")
+        self.selected_user_id = str(selected_id)
+        print(f"[DEBUG] Clicked ID: {self.selected_user_id}")
 
         for record in self.model.account_rows:
             if str(record[0]) == selected_id:
@@ -116,22 +153,30 @@ class ManageAccountsController(BaseFileController):
 
                 full_name_parts = record[1].replace(",", "").split()
 
-                self.admin_manage_accounts_screen.ap_display_user_lname.setText(
-                    full_name_parts[0] if len(full_name_parts) > 0 else "")
-                self.admin_manage_accounts_screen.ap_display_user_fname.setText(
-                    full_name_parts[1] if len(full_name_parts) > 1 else "")
-                self.admin_manage_accounts_screen.ap_display_user_mname.setText(
-                    full_name_parts[2] if len(full_name_parts) > 2 else "")
+                lname = full_name_parts[0] if len(full_name_parts) > 0 else ""
+                fname = full_name_parts[1] if len(full_name_parts) > 1 else ""
+                mname = full_name_parts[2] if len(full_name_parts) > 2 else ""
 
-                self.admin_manage_accounts_screen.ap_display_user_role.setText(record[2])  # SYS_ROLE
-                self.admin_manage_accounts_screen.ap_display_user_status.setText(
-                    "Active" if record[3] else "Inactive")  # SYS_IS_ACTIVE
+                self.admin_manage_accounts_screen.ap_display_user_lname.setText(lname)
+                self.admin_manage_accounts_screen.ap_display_user_fname.setText(fname)
+                self.admin_manage_accounts_screen.ap_display_user_mname.setText(mname)
+
+                role = record[2]  # SYS_ROLE
+                self.admin_manage_accounts_screen.ap_display_user_role.setText(role)
+
+                status = "Active" if record[3] else "Inactive"
+                self.admin_manage_accounts_screen.ap_display_user_status.setText(status)
+
+                #  Store full name and role for confirmation dialogs
+                self.selected_user_name = f"{fname} {mname} {lname}".strip()
+                self.selected_user_role = role
                 break
 
     def _refresh(self):
         try:
             self.populate_system_account_table()
             self.handle_row_click_account()
+            self.selected_user_id = None
 
         except Exception as e:
             QMessageBox.critical(
@@ -156,6 +201,15 @@ class ManageAccountsController(BaseFileController):
 
     def show_register_account_popup(self):
         self.view.show_register_account_popup(self.view.manage_accounts_screen)
+        self.view.show_Update_account_popup(self.view.manage_accounts_screen)
+
+    def show_error_message(self, title, message):
+        QMessageBox.critical(
+            self,
+            title,
+            message,
+            QMessageBox.Ok
+        )
 
     def goto_admin_panel(self):
         if not hasattr(self, 'admin_panel'):
