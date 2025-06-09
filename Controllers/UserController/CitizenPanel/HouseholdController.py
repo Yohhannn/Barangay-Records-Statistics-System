@@ -6,14 +6,16 @@ from Models.HouseholdModel import HouseholdModel
 from Views.CitizenPanel.HouseholdView import HouseholdView
 from database import Database
 
+# from PyQt6.QtCore import Qt
+# from PyQt6.QtWidgets import QLabel
+
 
 class HouseholdController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_household_id = None
         self.stack = stack
-        self.sys_user_id = sys_user_id
-        self.model = HouseholdModel(self.sys_user_id)
+        self.model = HouseholdModel()
         self.view = HouseholdView(self)
         self.user_role = user_role
 
@@ -220,8 +222,8 @@ class HouseholdController(BaseFileController):
 
         try:
             db = Database()
-            db.set_user_id(self.sys_user_id)  # user ID for auditing
-            db.execute_with_user("""
+            cursor = db.get_cursor()
+            cursor.execute("""
                 UPDATE household_info
                 SET hh_is_deleted = TRUE
                 WHERE hh_id = %s;
@@ -419,7 +421,7 @@ class HouseholdController(BaseFileController):
             return
 
 
-        if self.model.save_household_data(form_data):
+        if self.model.save_household_data(form_data, sys_user_id):
             self.view.show_success_message()
             self.view.popup.close()
             self.load_household_data()

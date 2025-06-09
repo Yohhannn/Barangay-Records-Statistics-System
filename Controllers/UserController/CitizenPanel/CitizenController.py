@@ -1287,7 +1287,6 @@ class CitizenController(BaseFileController):
             return
 
         db = Database()
-        db.set_user_id(self.sys_user_id) #user ID for auditing
         connection = db.conn
         cursor = connection.cursor()
 
@@ -1441,8 +1440,6 @@ class CitizenController(BaseFileController):
             reason_of_death = form_data['reason_of_death'] if form_data['is_deceased'] == 'Yes' else None
             is_alive = not (form_data['is_deceased'] == 'Yes')
 
-            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
-
             cursor.execute(citizen_query, (
                 form_data['first_name'],
                 form_data['middle_name'] or None,
@@ -1467,7 +1464,7 @@ class CitizenController(BaseFileController):
                 int(form_data['household_id']),
                 self.sys_user_id,
                 self.sys_user_id,
-                clah_id
+                clah_id  # ✅ Now properly included
             ))
             citizen_result = cursor.fetchone()
             if not citizen_result:

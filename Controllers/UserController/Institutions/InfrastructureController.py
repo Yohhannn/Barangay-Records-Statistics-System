@@ -402,7 +402,6 @@ class InfrastructureController(BaseFileController):
         connection = None
         try:
             db = Database()
-            db.set_user_id(self.sys_user_id)  # user ID for auditing
             connection = db.conn
             cursor = connection.cursor()
 
@@ -439,7 +438,6 @@ class InfrastructureController(BaseFileController):
                 if not owner_fname or not owner_lname:
                     raise Exception("First name and Last name are required for private infrastructure owners.")
 
-                db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     INSERT INTO infrastructure_owner (INFO_FNAME, INFO_LNAME, INFO_MNAME)
                     VALUES (%s, %s, %s)
@@ -490,7 +488,6 @@ class InfrastructureController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
-            db.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'name': infra_name,
                 'access_type': access_type,

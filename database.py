@@ -38,28 +38,14 @@ class Database:
         return self.cursor
 
     def set_user_id(self, user_id):
-        if user_id is not None:
-            self.sys_user_id = str(user_id)
-            print(f"Database user ID set to: {self.sys_user_id}")  # Debug
+        self.sys_user_id = user_id
 
     def execute_with_user(self, query, params=None):
-        try:
-            # Set the user context if available
-            if self.sys_user_id:
-                set_user_query = "SET LOCAL app.current_user_id TO %s"
-                self.cursor.execute(set_user_query, (self.sys_user_id,))
-                print(f"Setting app.current_user_id to: {self.sys_user_id}")  # Debug
-
-            # Execute the main query
-            if params:
-                self.cursor.execute(query, params)
-            else:
-                self.cursor.execute(query)
-
-        except Exception as e:
-            self.conn.rollback()
-            print(f"Error in execute_with_user: {e}")  # Debug
-            raise
+        self.cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
+        if params:
+            self.cursor.execute(query, params)
+        else:
+            self.cursor.execute(query)
 
     # This is for hashing plaintext passwords in the database
     def hash_plaintext_passwords(self):
