@@ -1,8 +1,10 @@
-from PySide6.QtWidgets import QWidget, QMessageBox, QApplication
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QMessageBox, QApplication, QTableWidgetItem, QHeaderView
 from PySide6.QtUiTools import QUiLoader
 
 from Controllers.BaseFileController import BaseFileController
 from Views.Admin.AdminActivityLogsView import AdminActivityLogsView
+from Models.AdminModels.ActivityLogsModel import ActivityLogsModel
 
 
 class ActivityLogsController(BaseFileController):
@@ -14,12 +16,69 @@ class ActivityLogsController(BaseFileController):
         self.user_role = user_role
         self.stack = stack
 
+        self.model = ActivityLogsModel()
         self.view = AdminActivityLogsView(self)
         # Initialize the view
         self.activity_logs_screen = self.load_ui("Resources/UIs/AdminPages/ActivityLogs/activitylogs.ui")
         # Setup the view
         self.view.setup_activity_logs_ui(self.activity_logs_screen)
         self.activity_logs_screen.setWindowTitle("Activity Logs - MaPro")
+
+        self._refresh()
+
+
+    def populate_activity_logs_table(self):
+        try:
+            result = self.model.get_activity_logs()
+            if not result or not result['data']:
+                return
+            self.model.account_rows = result['data']
+            self._populate_table(
+                self.view.activity_logs_screen.table_logs_create,
+                result['columns'],
+                result['data']
+            )
+        except Exception as e:
+            self.show_error_message("System Account Data Error", "Could not load system user accounts.")
+            print(f"Error loading system user accounts: {e}")
+
+    def _refresh(self):
+        try:
+            self.populate_activity_logs_table()
+
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                "Manage Accounts Error",
+                "Error refreshing Manage Accounts",
+                QMessageBox.Ok
+            )
+            print(f"Error refreshing Manage Accounts: {e}")
+
+
+    def show_error_message(self, title, message):
+        QMessageBox.critical(
+            self,
+            title,
+            message,
+            QMessageBox.Ok
+        )
+
+    def _populate_table(self, table, headers, data):
+        table.setRowCount(len(data))
+        table.setColumnCount(len(headers))
+        table.setHorizontalHeaderLabels(headers)
+
+        for row_idx, row_data in enumerate(data):
+            for col_idx, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                item.setForeground(Qt.black)
+                if col_idx > 0:
+                    item.setTextAlignment(Qt.AlignCenter)
+                table.setItem(row_idx, col_idx, item)
+
+        table.resizeColumnsToContents()
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def goto_admin_panel(self):
         print("-- Navigating to Admin Panel")
