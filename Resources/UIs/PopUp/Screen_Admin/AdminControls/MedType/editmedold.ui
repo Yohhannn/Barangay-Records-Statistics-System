@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>edit_register_button_popup</class>
- <widget class="QDialog" name="edit_register_button_popup">
+ <class>PopUp_citizenprofileFilterOptions</class>
+ <widget class="QDialog" name="PopUp_citizenprofileFilterOptions">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -492,7 +492,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#edit_register_button_popup{
+   <string notr="true">#PopUp_citizenprofileFilterOptions{
 	background-color: #f2efff;
 }</string>
   </property>
@@ -612,14 +612,14 @@
 }</string>
      </property>
      <property name="text">
-      <string>EDIT HISTORY TYPE</string>
+      <string>EDIT MEDICAL TYPES</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="update_HistType">
+   <widget class="QLineEdit" name="AdmnCon_Input_Med">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -631,11 +631,11 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#update_HistType{
+     <string notr="true">#AdmnCon_Input_Med{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
@@ -655,7 +655,7 @@
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
     <property name="placeholderText">
-     <string>Enter History Type Name</string>
+     <string>Enter Med Type Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="register_citizen_labelHomeNumber">
@@ -698,7 +698,7 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -712,9 +712,6 @@
 
 </string>
     </property>
-    <property name="inputMask">
-     <string/>
-    </property>
     <property name="text">
      <string/>
     </property>
@@ -725,15 +722,15 @@
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
     <property name="placeholderText">
-     <string>Enter History Type Id</string>
+     <string>Enter Med Type ID</string>
     </property>
    </widget>
    <widget class="QLabel" name="display_searched">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>0</x>
       <y>80</y>
-      <width>301</width>
+      <width>461</width>
       <height>31</height>
      </rect>
     </property>
@@ -753,15 +750,15 @@
      <string>N/A</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_comment">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>40</y>
-      <width>131</width>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -778,42 +775,14 @@
 }</string>
     </property>
     <property name="text">
-     <string>Input History Type ID:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_sitio_name">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_sitio_name{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>History Type Name:</string>
+     <string>Input MedType ID:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="edit_buttonConfirmAccount_SaveForm">
+  <widget class="QPushButton" name="register_buttonConfirmHousehold_SaveForm">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -833,16 +802,16 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">#edit_buttonConfirmAccount_SaveForm {
+    <string notr="true">#register_buttonConfirmHousehold_SaveForm {
     background-color: #006f00;
     color: white;
     border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#edit_buttonConfirmAccount_SaveForm:hover {
+#register_buttonConfirmHousehold_SaveForm:hover {
     background-color: #00a600; /* Slightly lighter blue when hovered */
 }
-#edit_buttonConfirmAccount_SaveForm:pressed {
+#register_buttonConfirmHousehold_SaveForm:pressed {
     background-color: #005d00; /* Darker blue when clicked */
 }</string>
    </property>
