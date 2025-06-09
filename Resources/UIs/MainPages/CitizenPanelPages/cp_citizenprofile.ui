@@ -187,7 +187,7 @@
 </string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TRASH BIN: &lt;span style=&quot; color:#3600a1;&quot;&gt;CITIZEN PROFILES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CITIZEN PANEL: &lt;span style=&quot; color:#3600a1;&quot;&gt;CITIZEN PROFILES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QFrame" name="statistics_frameBody">
@@ -512,61 +512,6 @@
        </property>
       </column>
      </widget>
-    </widget>
-    <widget class="QPushButton" name="cp_citizen_button_restore">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>20</y>
-       <width>191</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#cp_citizen_button_restore {
-    background-color:  #1e7e34; /* Default green */
-    color: white;
-    border: 1px solid #b5b5b5;
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#cp_citizen_button_restore:hover {
-    background-color: #28a745; /* Brighter green when hovered */
-    color: white; 
-}
-
-#cp_citizen_button_restore:pressed {
-    background-color:  #34c759; /* Darker green when pressed */
-    color: white; 
-}
-</string>
-     </property>
-     <property name="text">
-      <string>   RESTORE CITIZEN</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../Assets/FuncIcons/icon_add.svg</normaloff>../../../Assets/FuncIcons/icon_add.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
     </widget>
     <widget class="QFrame" name="basePopUpBodyFrame_3">
      <property name="geometry">
@@ -3171,6 +3116,170 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_remove">
+     <property name="geometry">
+      <rect>
+       <x>1070</x>
+       <y>20</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_remove {
+    background-color: #c9302c; /* Default red */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_remove:hover {
+    background-color: #d9534f; /* Brighter red when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_remove:pressed {
+    background-color: #a52a2a; /* Darker red when pressed */
+    color: white; 
+}</string>
+     </property>
+     <property name="text">
+      <string>   REMOVE CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_del.svg</normaloff>../../../Assets/FuncIcons/icon_del.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_update">
+     <property name="geometry">
+      <rect>
+       <x>890</x>
+       <y>20</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_update {
+    background-color: #6c757d; /* Default gray */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_update:hover {
+    background-color: #838b94; /* Brighter gray when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_update:pressed {
+    background-color: #5a6268; /* Darker gray when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>  UPDATE CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_edit.svg</normaloff>../../../Assets/FuncIcons/icon_edit.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_register">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>20</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_register {
+    background-color:  #1e7e34; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_register:hover {
+    background-color: #28a745; /* Brighter green when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_register:pressed {
+    background-color:  #34c759; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   REGISTER CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_add.svg</normaloff>../../../Assets/FuncIcons/icon_add.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
     </widget>
    </widget>
    <widget class="QToolButton" name="btn_returnToCitizenPanelPage">
