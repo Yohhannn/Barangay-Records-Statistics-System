@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>397</width>
-    <height>285</height>
+    <width>498</width>
+    <height>341</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -501,7 +501,7 @@
     <rect>
      <x>-1</x>
      <y>-10</y>
-     <width>401</width>
+     <width>501</width>
      <height>51</height>
     </rect>
    </property>
@@ -552,8 +552,8 @@
     <rect>
      <x>20</x>
      <y>70</y>
-     <width>351</width>
-     <height>121</height>
+     <width>461</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -574,7 +574,7 @@
      <rect>
       <x>-10</x>
       <y>0</y>
-      <width>361</width>
+      <width>471</width>
       <height>31</height>
      </rect>
     </property>
@@ -594,7 +594,7 @@
       <rect>
        <x>40</x>
        <y>0</y>
-       <width>291</width>
+       <width>401</width>
        <height>31</height>
       </rect>
      </property>
@@ -612,7 +612,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>EDIT</string>
+      <string>EDIT SITIO</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -622,8 +622,8 @@
    <widget class="QLineEdit" name="AdmnCon_Input_Sitio">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>70</y>
+      <x>200</x>
+      <y>130</y>
       <width>241</width>
       <height>31</height>
      </rect>
@@ -631,7 +631,7 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -661,9 +661,9 @@
    <widget class="QLabel" name="register_citizen_labelHomeNumber">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>40</y>
-      <width>351</width>
+      <x>30</x>
+      <y>130</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -680,19 +680,114 @@
 }</string>
     </property>
     <property name="text">
-     <string>SITIO NAME</string>
+     <string>Update / Replace with:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="input_id_search">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#input_id_search{
+	border: 1px solid #b3b3b3;  /* Black border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 5px;               /* Inner spacing */
+    background-color: #f2efff;  /* Gray background */
+    color: #000000; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>35</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Enter Sitio ID</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="display_searched">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>80</y>
+      <width>461</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#display_searched{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_comment">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_comment{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>Input Sitio ID:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
   <widget class="QPushButton" name="register_buttonConfirmHousehold_SaveForm">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>220</y>
-     <width>211</width>
+     <x>140</x>
+     <y>280</y>
+     <width>221</width>
      <height>41</height>
     </rect>
    </property>
@@ -737,9 +832,9 @@
   <widget class="QLabel" name="progress">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>260</y>
-     <width>91</width>
+     <x>200</x>
+     <y>320</y>
+     <width>101</width>
      <height>21</height>
     </rect>
    </property>
@@ -768,9 +863,9 @@
   <widget class="QLabel" name="notenote">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>200</y>
-     <width>211</width>
+     <x>140</x>
+     <y>260</y>
+     <width>221</width>
      <height>21</height>
     </rect>
    </property>
