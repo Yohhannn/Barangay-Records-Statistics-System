@@ -684,7 +684,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#basePopUpBodyFrame {
+      <string notr="true">#basePopUpBodyFrame_2 {
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
@@ -1309,7 +1309,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#basePopUpBodyFrame {
+      <string notr="true">#basePopUpBodyFrame_5 {
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
@@ -1496,7 +1496,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#basePopUpBodyFrame {
+      <string notr="true">#basePopUpBodyFrame_6 {
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
@@ -1683,7 +1683,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#basePopUpBodyFrame {
+      <string notr="true">#basePopUpBodyFrame_7 {
 	background-color: rgb(247, 247, 247);
 	border: 1px solid rgb(194, 194, 194);
 	border-radius: 10px;
