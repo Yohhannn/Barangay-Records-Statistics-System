@@ -58,6 +58,8 @@ class StatisticsView:
         ui_screen.statistics_ButtonHealth.clicked.connect(self.controller.goto_health_panel)
         ui_screen.statistics_ButtonBusiness.clicked.connect(self.controller.goto_business_panel)
         ui_screen.statistics_ButtonInfrastructures.clicked.connect(self.controller.goto_infrastructures_panel)
+        ui_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
+
 
         # NAVIGATIONAL BUTTONS --> GOTO
         ui_screen.nav_buttonDashboard.clicked.connect(self.controller.goto_dashboard_panel)

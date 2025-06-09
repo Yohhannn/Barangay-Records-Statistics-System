@@ -51,3 +51,4 @@ class HistoryRecordsView:
         ui_screen.nav_buttonActivityLogs.clicked.connect(self.controller.goto_activity_logs)
         # self.nav_buttonHistoryRecords.clicked.connect(self.goto_history_panel)
         ui_screen.logout_buttonLogout.clicked.connect(self.controller.logout)
+        ui_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
