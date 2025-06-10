@@ -125,7 +125,6 @@ class CitizenHistoryView:
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
         if reply != QMessageBox.Yes:
             return
 
@@ -150,26 +149,19 @@ class CitizenHistoryView:
             if not description:
                 raise Exception("Description is required")
 
-            # # Find CITIZEN by ID or name
-            # cursor.execute("""
-            #     SELECT CTZ_ID FROM CITIZEN
-            #     WHERE CTZ_ID = %s OR CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
-            # """, (citizen_search, f"%{citizen_search}%"))
-            #
-            # ctz_result = cursor.fetchone()
-            # if not ctz_result:
-            #     raise Exception(f"No citizen found with ID or name containing '{citizen_search}'")
-            # ctz_id = ctz_result[0]
-            #
-            # if not self.popup.record_citizenIDANDsearch.text().strip():
-            #     errors.append("Info citizen ID is required")
-            #     self.popup.record_citizenIDANDsearch.setStyleSheet(
-            #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            #     )
-            # else:
-            #     self.popup.record_citizenIDANDsearch.setStyleSheet(
-            #         "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff"
-            #     )
+            # Find CITIZEN by ID or name
+            cursor.execute("""
+                SELECT CTZ_ID FROM CITIZEN
+                WHERE CTZ_IS_DELETED = FALSE AND (
+                    CTZ_ID::TEXT = %s OR 
+                    CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                )
+            """, (citizen_search, f"%{citizen_search}%"))
+
+            ctz_result = cursor.fetchone()
+            if not ctz_result:
+                raise Exception(f"No citizen found with ID or name containing '{citizen_search}'")
+            ctz_id = ctz_result[0]
 
             # Get HISTORY_TYPE ID
             cursor.execute("SELECT HIST_ID FROM HISTORY_TYPE WHERE HIST_TYPE_NAME = %s", (hist_type_name,))
@@ -277,5 +269,9 @@ class CitizenHistoryView:
         self.hist_citizen_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.controller.goto_history_panel)
         self.hist_citizen_history_screen.histrec_HistoryID_buttonSearch.clicked.connect(
             self.controller.search_citizen_history_data)
+
+        self.hist_citizen_history_screen.histrec_citizenhistory_button_update.clicked.connect(
+            self.controller.show_update_citizen_history_popup
+        )
 
         self.hist_citizen_history_screen.histrec_tableView_List_RecordCitizenHistory.cellClicked.connect(self.controller.handle_row_click_citizen_history)

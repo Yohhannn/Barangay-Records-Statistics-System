@@ -5440,102 +5440,6 @@
      <string>Yes</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="register_citizen_comboBox_FamilyPlanningMethod">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>240</y>
-      <width>351</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_citizen_comboBox_FamilyPlanningMethod{
-	background-color: rgb(239, 239, 239); /* Correct property name */
-    color: #4f4f4f; /* Set text color to black for better contrast */
-    border: 1px solid #ccc; /* Optional: Add a light border */
-    padding: 5px; /* Optional: Add some padding */
-    border-radius: 4px; /* Optional: Rounded corners */
-}</string>
-    </property>
-    <property name="placeholderText">
-     <string>Select Method Type</string>
-    </property>
-    <property name="duplicatesEnabled">
-     <bool>false</bool>
-    </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>COC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>POP</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Injectable</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>IUD</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Condom</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>LAM</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>BTL</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Implant</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>SDM</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>DPT</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Withdrawal</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Others</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningStatus">
     <property name="geometry">
      <rect>
@@ -5596,41 +5500,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>New Acceptor</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Current User</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Changing Method</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Changing Clinic</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Dropout</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Restarter</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethodType">
     <property name="geometry">
@@ -5828,6 +5697,37 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="register_citizen_comboBox_FamilyPlanningMethod">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>240</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#register_citizen_comboBox_FamilyPlanningMethod{
+	background-color: rgb(239, 239, 239); /* Correct property name */
+    color: #4f4f4f; /* Set text color to black for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a light border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 4px; /* Optional: Rounded corners */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Select Method Type</string>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

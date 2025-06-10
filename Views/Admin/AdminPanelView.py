@@ -73,6 +73,7 @@ class AdminPanelView:
         self.admin_panel_screen.nav_buttonActivityLogs.clicked.connect(self.controller.goto_activity_logs)
         self.admin_panel_screen.nav_buttonDashboard.clicked.connect(self.controller.goto_dashboard_panel)
         self.admin_panel_screen.nav_buttonCitizenPanel.clicked.connect(self.controller.goto_citizen_panel)
+        self.admin_panel_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
         self.admin_panel_screen.nav_buttonStatistics.clicked.connect(self.controller.goto_statistics_panel)
         self.admin_panel_screen.nav_buttonInstitutions.clicked.connect(self.controller.goto_institutions_panel)
         self.admin_panel_screen.nav_buttonTransactions.clicked.connect(self.controller.goto_transactions_panel)

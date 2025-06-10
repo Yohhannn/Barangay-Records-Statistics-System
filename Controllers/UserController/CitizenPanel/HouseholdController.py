@@ -29,11 +29,164 @@ class HouseholdController(BaseFileController):
         self.login_window = login_window
         self.emp_first_name = emp_first_name
 
+    def show_update_household_popup(self):
+        if not self.selected_household_id:
+            QMessageBox.warning(self.cp_household_screen, "No Selection", "Please select a household to update.")
+            return
+
+        # Fetch household data
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute("""
+                SELECT hh_house_number, hh_home_google_link, hh_ownership_status,
+                       hh_home_google_link, hh_interviewer_name, hh_date_visit, hh_reviewer_name,
+                       sitio_id, toilet_id, water_id
+                FROM household_info
+                WHERE hh_id = %s;
+            """, (self.selected_household_id,))
+            row = cursor.fetchone()
+
+            if not row:
+                QMessageBox.critical(self.cp_household_screen, "Error", "Household data not found.")
+                return
+
+            household_data = {
+                "house_number": row[0],
+                "home_address": row[1],
+                "ownership_status": row[2],
+                "home_google_link": row[3],
+                "interviewer_name": row[4],
+                "date_of_visit": str(row[5]),
+                "reviewer_name": row[6],
+                "sitio_id": row[7],
+                "toilet_id": row[8],
+                "water_id": row[9]
+            }
+
+        except Exception as e:
+            QMessageBox.critical(self.cp_household_screen, "Error", f"Database error: {str(e)}")
+            return
+        finally:
+            db.close()
+
+        popup = self.view.show_edit_household_popup(self)
+        self.prefill_edit_popup(popup, household_data)
+
+        popup.register_buttonConfirmHousehold_SaveForm.clicked.connect(self.update_household_data)
+        popup.exec_()
+
+    def update_household_data(self):
+        if not self.selected_household_id:
+            QMessageBox.warning(self.cp_household_screen, "No Selection", "Please select a household to update.")
+            return
+
+        form_data = self.view.get_form_data()
+
+        # Validate date
+        if not self.validate_date(form_data["date_of_visit"]):
+            QMessageBox.warning(self.cp_household_screen, "Invalid Date", "Date of Visit cannot be in the future.")
+            return
+
+        # Get and validate sitio_id
+        sitio_id = self.view.popup.register_household_comboBox_Sitio.currentData()
+        if sitio_id is None:
+            QMessageBox.warning(self, "Invalid Input", "Please select a valid Sitio.")
+            return
+        try:
+            sitio_id = int(sitio_id)
+        except (TypeError, ValueError):
+            QMessageBox.critical(self, "Error", "Invalid Sitio ID selected.")
+            return
+
+        # Get and validate toilet_id
+        toilet_id = self.view.popup.register_household_comboBox_ToiletType.currentData()
+        if toilet_id is None:
+            QMessageBox.warning(self, "Invalid Input", "Please select a valid Toilet Type.")
+            return
+        try:
+            toilet_id = int(toilet_id)
+        except (TypeError, ValueError):
+            QMessageBox.critical(self, "Error", "Invalid Toilet ID selected.")
+            return
+
+        # Get and validate water_id
+        water_id = self.view.popup.register_household_comboBox_WaterSource.currentData()
+        if water_id is None:
+            QMessageBox.warning(self, "Invalid Input", "Please select a valid Water Source.")
+            return
+        try:
+            water_id = int(water_id)
+        except (TypeError, ValueError):
+            QMessageBox.critical(self, "Error", "Invalid Water ID selected.")
+            return
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            update_query = """
+                UPDATE household_info SET
+                    hh_house_number = %s,
+                    sitio_id = %s,
+                    hh_ownership_status = %s,
+                    hh_home_google_link = %s,
+                    toilet_id = %s,
+                    water_id = %s,
+                    hh_interviewer_name = %s,
+                    hh_date_visit = %s,
+                    hh_reviewer_name = %s,
+                    last_updated_by_sys_id = %s,
+                    hh_last_updated = CURRENT_TIMESTAMP
+                WHERE hh_id = %s AND hh_is_deleted = FALSE;
+            """
+            cursor.execute(update_query, (
+                form_data['house_number'],
+                sitio_id,
+                form_data['ownership_status'],
+                form_data['home_address'],
+                toilet_id,
+                water_id,
+                form_data['interviewer_name'],
+                form_data['date_of_visit'],
+                form_data['reviewer_name'],
+                self.sys_user_id,
+                self.selected_household_id
+            ))
+            db.conn.commit()
+            self.view.popup.close()
+            self.load_household_data()
+            QMessageBox.information(self.cp_household_screen, "Success", "Household updated successfully.")
+        except Exception as e:
+            db.conn.rollback()
+            QMessageBox.critical(self.cp_household_screen, "Update Error", f"Failed to update household: {str(e)}")
+        finally:
+            db.close()
 
 
+    def prefill_edit_popup(self, popup, data):
+        popup.register_household_homeNumber.setText(data["house_number"] or "")
+        popup.register_household_homeAddress.setText(data["home_address"] or "")
+        popup.register_household_comboBox_OwnershipStatus.setCurrentText(data["ownership_status"] or "")
+        popup.register_household_HomeLink.setPlainText(data["home_google_link"] or "")
+        popup.register_household_InterviewedBy_fullname.setText(data["interviewer_name"] or "")
+        popup.register_household_ReviewedBy_fullname.setText(data["reviewer_name"] or "")
 
+        # dropdowns by id
+        popup.register_household_comboBox_Sitio.setCurrentIndex(
+            popup.register_household_comboBox_Sitio.findData(data["sitio_id"])
+        )
+        popup.register_household_comboBox_ToiletType.setCurrentIndex(
+            popup.register_household_comboBox_ToiletType.findData(data["toilet_id"])
+        )
+        popup.register_household_comboBox_WaterSource.setCurrentIndex(
+            popup.register_household_comboBox_WaterSource.findData(data["water_id"])
+        )
 
-
+        try:
+            qdate = QDate.fromString(data["date_of_visit"], "yyyy-MM-dd")
+            popup.register_household_date_DOV.setDate(qdate if qdate.isValid() else QDate.currentDate())
+        except:
+            popup.register_household_date_DOV.setDate(QDate.currentDate())
 
     def show_register_household_popup(self):
         print("-- Register New Household Popup")

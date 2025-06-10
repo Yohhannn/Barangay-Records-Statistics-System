@@ -34,7 +34,9 @@ class MedicalHistoryController(BaseFileController):
         # RECORD BUTTON
         self.hist_medical_history_screen.histrec_medicalhistory_button_record.clicked.connect(self.show_medical_history_popup)
         self.hist_medical_history_screen.histrec_tableView_List_RecordMedicalHistory.cellClicked.connect(self.handle_row_click_medical_history)
-
+        self.hist_medical_history_screen.histrec_medicalhistory_button_update.clicked.connect(
+            self.show_update_medical_history_popup
+        )
         self.hist_medical_history_screen.histrec_medicalhistory_button_remove.clicked.connect(
             self.handle_remove_medical_history)
         # Return Button
@@ -42,6 +44,157 @@ class MedicalHistoryController(BaseFileController):
         self.hist_medical_history_screen.btn_returnToHistoryRecordPage.clicked.connect(self.goto_history_panel)
         self.hist_medical_history_screen.histrecMedHistoryID_buttonSearch.clicked.connect(
             self.search_medical_history_data)
+
+    def show_update_medical_history_popup(self):
+
+        if not getattr(self, 'selected_medical_history_id', None):
+            QMessageBox.warning(
+                self.hist_medical_history_screen,
+                "No Selection",
+                "Please select a medical history record to update."
+            )
+            return
+
+
+        mh_id = self.selected_medical_history_id
+
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+
+            # Fetch full medical history record
+            cursor.execute("""
+                SELECT 
+                    MH.MH_ID,
+                    C.CTZ_ID,
+                    C.CTZ_FIRST_NAME || ' ' || C.CTZ_LAST_NAME AS CTZ_FULLNAME,
+                    MH.MH_DESCRIPTION,
+                    MHT.MHT_TYPE_NAME,
+                    MH.MH_DATE_DIAGNOSED
+                FROM MEDICAL_HISTORY MH
+                JOIN CITIZEN C ON MH.CTZ_ID = C.CTZ_ID
+                JOIN MEDICAL_HISTORY_TYPE MHT ON MH.MHT_ID = MHT.MHT_ID
+                WHERE MH.MH_ID = %s AND MH.MH_IS_DELETED = FALSE;
+            """, (mh_id,))
+            result = cursor.fetchone()
+
+            if not result:
+                QMessageBox.critical(
+                    self.hist_medical_history_screen,
+                    "Not Found",
+                    f"No medical history found with ID {mh_id}"
+                )
+                return
+
+            mh_id, ctz_id, fullname, description, mht_type_name, diagnosed_date = result
+
+            # Load the popup UI
+
+            self.popup = load_popup("Resources/UIs/PopUp/Screen_HistoryRecords/Update/edit_record_medical_history.ui")
+            self.popup.setWindowTitle("Mapro: Edit Medical History")
+            self.popup.setFixedSize(self.popup.size())
+            self.popup.setWindowModality(Qt.ApplicationModal)
+
+            self.load_medical_history_types()
+
+            # Populate fields
+            self.popup.record_citizenIDANDsearch.setText(str(ctz_id))
+            self.popup.display_citizenFullName.setText(fullname)
+            self.popup.record_medicalhistory_description.setPlainText(description)
+            self.popup.register_citizen_comboBox_MedicalHistoryOption.setCurrentText(mht_type_name)
+
+            # Connect Save button
+            self.popup.record_buttonConfirmMedicalHistory_SaveForm.clicked.connect(
+                lambda: self.save_updated_medical_history(mh_id)
+            )
+
+
+            self.popup.exec_()
+
+        except Exception as e:
+            QMessageBox.critical(self.hist_medical_history_screen, "Database Error", str(e))
+        finally:
+            db.close()
+
+    def save_updated_medical_history(self, mh_id):
+        reply = QMessageBox.question(
+            self.popup,
+            "Confirm Update",
+            "Are you sure you want to update this medical history?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        try:
+            db = Database()
+            connection = db.conn
+            cursor = connection.cursor()
+
+            # Get form data
+            ctz_search = self.popup.record_citizenIDANDsearch.text().strip()
+            mht_type_name = self.popup.register_citizen_comboBox_MedicalHistoryOption.currentText().strip()
+            description = self.popup.record_medicalhistory_description.toPlainText().strip()
+
+            # Validate required fields
+            if not ctz_search:
+                raise Exception("Citizen ID or Name is required")
+            if not mht_type_name:
+                raise Exception("Medical history type is required")
+            if not description:
+                raise Exception("Description is required")
+
+            # Get CTZ_ID
+            cursor.execute("""
+                SELECT CTZ_ID FROM CITIZEN 
+                WHERE CTZ_IS_DELETED = FALSE AND (
+                    CTZ_ID::TEXT = %s OR 
+                    CTZ_FIRST_NAME || ' ' || CTZ_LAST_NAME ILIKE %s
+                )
+            """, (ctz_search, f"%{ctz_search}%"))
+            ctz_result = cursor.fetchone()
+            if not ctz_result:
+                raise Exception(f"No citizen found matching '{ctz_search}'")
+            ctz_id = ctz_result[0]
+
+            # Get MHT_ID
+            cursor.execute("SELECT MHT_ID FROM MEDICAL_HISTORY_TYPE WHERE MHT_TYPE_NAME = %s", (mht_type_name,))
+            mht_result = cursor.fetchone()
+            if not mht_result:
+                raise Exception(f"Medical history type '{mht_type_name}' not found.")
+            mht_id = mht_result[0]
+
+            # Update record
+            cursor.execute("""
+                UPDATE MEDICAL_HISTORY
+                SET MH_DESCRIPTION = %s,
+                    MHT_ID = %s,
+                    CTZ_ID = %s,
+                    LAST_UPDATED_BY_SYS_ID = %s,
+                    MH_LAST_UPDATED = NOW()
+                WHERE MH_ID = %s;
+            """, (
+                description,
+                mht_id,
+                ctz_id,
+                self.sys_user_id,
+                mh_id
+            ))
+
+            connection.commit()
+            QMessageBox.information(self.popup, "Success", "Medical history updated successfully!")
+            self.popup.close()
+            self.load_medical_history_data()  # Refresh list
+
+        except Exception as e:
+            connection.rollback()
+            QMessageBox.critical(self.popup, "Error", f"Failed to update medical history: {str(e)}")
+        finally:
+            db.close()
+
+
+
 
     def handle_remove_medical_history(self):
         if not getattr(self, 'selected_medical_history_id', None):
@@ -143,7 +296,6 @@ class MedicalHistoryController(BaseFileController):
         finally:
             if connection:
                 connection.close()
-
 
     def load_medical_history_types(self):
         try:

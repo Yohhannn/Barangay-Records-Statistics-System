@@ -5375,71 +5375,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>COC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>POP</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Injectable</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>IUD</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Condom</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>LAM</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>BTL</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Implant</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>SDM</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>DPT</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Withdrawal</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Others</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningStatus">
     <property name="geometry">
@@ -5501,41 +5436,6 @@
     <property name="duplicatesEnabled">
      <bool>false</bool>
     </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>New Acceptor</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Current User</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Changing Method</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Changing Clinic</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Dropout</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Restarter</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="register_citizen_labelFamilyPlanningMethodType">
     <property name="geometry">

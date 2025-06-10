@@ -168,7 +168,7 @@ class CitizenView:
         self.part1_popup_update = load_popup(
             "Resources/UIs/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/Update/edit_register_citizen_part_01.ui", parent)
         # self.stack.addWidget(self.part1_popup)
-        self.part1_popup_update.setWindowTitle("Register New Citizen")
+        self.part1_popup_update.setWindowTitle("Update Citizen")
         self.part1_popup_update.setWindowModality(Qt.ApplicationModal)
         self.part1_popup_update.setFixedSize(self.part1_popup_update.size())
         self.part1_popup_update.register_buttonPrev.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_prev'))
@@ -202,7 +202,7 @@ class CitizenView:
         # part_one_popup.close()
         self.part2_popup_update = load_popup(
             "Resources/UIs/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/Update/edit_register_citizen_part_02.ui", parent)
-        self.part2_popup_update.setWindowTitle("Register New Citizen - Part 2")
+        self.part2_popup_update.setWindowTitle("Update Citizen - Part 2")
         self.part2_popup_update.setWindowModality(Qt.ApplicationModal)
         self.part2_popup_update.setFixedSize(self.part2_popup_update.size())
         self.part2_popup_update.register_buttonReturnToPart1_FromPart2.setIcon(
@@ -268,7 +268,7 @@ class CitizenView:
         # part_two_popup.close()
         self.part3_popup_update = load_popup(
             "Resources/UIs/PopUp/Screen_CitizenPanel/ScreenCitizenProfile/Update/edit_register_citizen_part_03.ui", parent)
-        self.part3_popup_update.setWindowTitle("Register New Citizen - Part 3")
+        self.part3_popup_update.setWindowTitle("Update Citizen - Part 3")
         self.part3_popup_update.setWindowModality(Qt.ApplicationModal)
         self.part3_popup_update.setFixedSize(self.part3_popup_update.size())
         self.part3_popup_update.register_buttonReturnToPart2_FromPart3.setIcon(
