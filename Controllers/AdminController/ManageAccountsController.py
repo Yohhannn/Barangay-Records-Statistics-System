@@ -114,6 +114,49 @@ class ManageAccountsController(BaseFileController):
         # Continue saving
         self.save_system_account_data(form_data)
 
+    def validate_update_fields(self):
+        form_data = self.view.get_update_form_data()
+        system_user_id = self.view.popup.input_id_search.text().strip()
+
+        if not system_user_id:
+            self.view.show_error_dialog("Invalid System User ID. Please search and select a valid user.")
+            return
+
+        # Validate input fields
+        missing_fields = []
+        if not form_data['first_name']:
+            missing_fields.append("First Name")
+        if not form_data['last_name']:
+            missing_fields.append("Last Name")
+        if not form_data['user_password']:
+            missing_fields.append("Password")
+        if not form_data['confirm_password']:
+            missing_fields.append("Confirm Password")
+        if form_data['role'] not in ['Staff', 'Admin']:
+            missing_fields.append("Role")
+        if form_data['status'] not in ['Active', 'Inactive']:
+            missing_fields.append("Status")
+
+        if missing_fields:
+            self.view.show_error_dialog(
+                "Please fill out the following required fields:\n- " + "\n- ".join(missing_fields))
+            return
+
+        if form_data['user_password'] != form_data['confirm_password']:
+            self.view.show_error_dialog("Passwords do not match.")
+            return
+
+        # Convert 'Active'/'Inactive' to Boolean strings
+        form_data['is_active'] = 'True' if form_data['status'] == 'Active' else 'False'
+
+        # Hash password
+        password_bytes = form_data['user_password'].encode('utf-8')
+        hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt()).decode('utf-8')
+        form_data['user_password'] = hashed_password
+        del form_data['confirm_password']
+
+        self.save_updated_system_account_data(form_data, system_user_id)
+
     def populate_system_account_table(self):
         try:
             result = self.model.get_system_users()
@@ -188,20 +231,67 @@ class ManageAccountsController(BaseFileController):
             print(f"Error refreshing Manage Accounts: {e}")
 
     def save_system_account_data(self, form_data):
-        if not self.view.confirm_registration():
+        if not self.view.confirm_registration(
+                "Confirm Registration",
+                "Are you sure you want to register this System User?"):
             return
 
         success = self.model.save_new_account_data(form_data)
         if success:
-            self.view.show_success_message()
+            self.view.show_success_message("Success","System user successfully registered!" )
             self.view.popup.close()
             self.populate_system_account_table()
         else:
             self.view.show_error_dialog("Database error occurred")
 
+    def save_updated_system_account_data(self, form_data, system_user_id):
+        if not self.view.confirm_registration("Confirm Update", "Are you sure you want to update this System User?"):
+            return
+
+        success = self.model.save_updated_account_data(form_data, system_user_id)
+        self._refresh()
+        if success:
+            self.view.show_success_message("Success", "System user successfully updated!")
+            self.view.popup.close()
+            self.populate_system_account_table()
+        else:
+            self.view.show_error_dialog("Database error occurred while updating.")
+
+    # def update_system_user(self, system_user_id, new_name):
+    #     old_name = self.model.get_system_user_by_id(system_user_id)  # returns string directly
+    #     if old_name is None:
+    #         QMessageBox.warning(None, "Warning", "system_user type not found.")
+    #         return
+    #
+    #     print(f"Old system_user type Name: {old_name}")
+    #
+    #     if old_name == new_name:
+    #         QMessageBox.information(None, "Info", "The name is already the same.")
+    #         return
+    #
+    #     success = self.model.save_updated_account_data(system_user_id)
+    #     self._refresh()
+    #     if success:
+    #         self.view.show_success_message("Success", f"System user updated Succefully!'")
+    #         self.view.popup.close()
+    #     else:
+    #         QMessageBox.critical(self,"Database error occurred", "Failed to update System user.")
+
+    def handle_system_user_search(self):
+        system_user_id = self.view.popup.input_id_search.text().strip()
+        if not system_user_id:
+            self.view.popup.display_searched.setText("Invalid ID")
+            return
+
+        user_name = self.model.get_system_user_by_id(system_user_id)
+        if user_name:
+            self.view.popup.display_searched.setText(user_name)
+        else:
+            self.view.popup.display_searched.setText("Not found")
+
     def show_register_account_popup(self):
         self.view.show_register_account_popup(self.view.manage_accounts_screen)
-        self.view.show_Update_account_popup(self.view.manage_accounts_screen)
+        self.view.show_update_account_popup(self.view.manage_accounts_screen)
 
     def show_error_message(self, title, message):
         QMessageBox.critical(

@@ -30,7 +30,59 @@ class ManageAccountsModel:
             print("Database error:", e)
             return False
 
+    def save_updated_account_data(self, account_data, sys_user_id):
+        try:
+            query = """
+                UPDATE SYSTEM_ACCOUNT 
+                SET 
+                    SYS_FNAME = %s,
+                    SYS_LNAME = %s,
+                    SYS_MNAME = %s,
+                    SYS_PASSWORD = %s,
+                    SYS_ROLE = %s,
+                    SYS_IS_ACTIVE = %s
+                WHERE SYS_USER_ID = %s;
+            """
+            self.connection.execute_with_user(query, (
+                account_data['first_name'],
+                account_data['last_name'],
+                account_data['middle_name'],
+                account_data['user_password'],
+                account_data['role'],
+                account_data['is_active'],
+                sys_user_id,
+            ))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print("Database error:", e)
+            return False
 
+    def get_system_user_by_id(self, system_user_id, raw=False):
+        try:
+            query = """
+                SELECT
+                    SYS_USER_ID,
+                    COALESCE(SYS_LNAME, '') || ', ' ||
+                    COALESCE(SYS_FNAME, '') ||
+                    CASE
+                        WHEN SYS_MNAME IS NOT NULL AND SYS_MNAME <> ''
+                            THEN ' ' || SYS_MNAME
+                        ELSE ''
+                    END AS full_name
+                FROM SYSTEM_ACCOUNT
+                WHERE SYS_USER_ID = %s 
+                AND SYS_IS_DELETED = FALSE 
+                AND SYS_ROLE != 'Super Admin';
+            """
+            self.connection.cursor.execute(query, (system_user_id,))
+            result = self.connection.cursor.fetchone()
+            if not result:
+                return None
+            return result if raw else result[1]  # index 1 = full_name
+        except Exception as e:
+            print(f"Error fetching system user name: {e}")
+            return None if not raw else []
 
     def get_system_users(self):
         try:
