@@ -680,335 +680,335 @@ CREATE TRIGGER trg_log_system_account_activity
 EXECUTE FUNCTION log_system_account_activity();
 
 
-
-CREATE OR REPLACE FUNCTION log_entity_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.CTZ_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.CTZ_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
--- CITIZEN
-CREATE TRIGGER trg_log_citizen
-    AFTER INSERT OR UPDATE OR DELETE ON CITIZEN
-    FOR EACH ROW
-EXECUTE FUNCTION log_entity_activity();
-
---TEMPORARY ONLY, NEEDS TO BE DELETED LATER
-SET app.current_user_id = '1001';
-
-
-
-
-CREATE OR REPLACE FUNCTION log_household_info_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.HH_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.HH_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_household_info_activity
-    AFTER INSERT OR UPDATE OR DELETE ON HOUSEHOLD_INFO
-    FOR EACH ROW
-EXECUTE FUNCTION log_household_info_activity();
-
-
-
-CREATE OR REPLACE FUNCTION log_business_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.BS_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.BS_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_business_activity
-    AFTER INSERT OR UPDATE OR DELETE ON BUSINESS_INFO
-    FOR EACH ROW
-EXECUTE FUNCTION log_business_activity();
-
-
-
-
-CREATE OR REPLACE FUNCTION log_infrastructure_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.INF_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.INF_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_infrastructure_activity
-    AFTER INSERT OR UPDATE OR DELETE ON INFRASTRUCTURE
-    FOR EACH ROW
-EXECUTE FUNCTION log_infrastructure_activity();
-
-
-
-CREATE OR REPLACE FUNCTION log_transaction_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.TL_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.TL_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_transaction_activity
-    AFTER INSERT OR UPDATE OR DELETE ON TRANSACTION_LOG
-    FOR EACH ROW
-EXECUTE FUNCTION log_transaction_activity();
-
-
-
-
-CREATE OR REPLACE FUNCTION log_citizen_history_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.CIHI_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.CIHI_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_citizen_history_activity
-    AFTER INSERT OR UPDATE OR DELETE ON CITIZEN_HISTORY
-    FOR EACH ROW
-EXECUTE FUNCTION log_citizen_history_activity();
-
-
-
-CREATE OR REPLACE FUNCTION log_medical_history_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.MH_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.MH_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_medical_history_activity
-    AFTER INSERT OR UPDATE OR DELETE ON MEDICAL_HISTORY
-    FOR EACH ROW
-EXECUTE FUNCTION log_medical_history_activity();
-
-
-
-CREATE OR REPLACE FUNCTION log_settlements_activity()
-    RETURNS TRIGGER AS $$
-DECLARE
-    v_entity_id INT;
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        v_entity_id := NEW.SETT_ID;
-    ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
-        v_entity_id := OLD.SETT_ID;
-    END IF;
-
-    INSERT INTO SYSTEM_ACTIVITY_LOG (
-        ACT_ACTION_TYPE,
-        ACT_TABLE_NAME,
-        ACT_ENTITY_ID,
-        SYS_USER_ID,
-        ACT_DESCRIPTION
-    )
-    VALUES (
-               TG_OP::action_type_enum,
-               TG_TABLE_NAME,
-               v_entity_id,
-               current_setting('app.current_user_id')::INT,
-               CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
-           );
-
-    RETURN CASE
-               WHEN TG_OP = 'DELETE' THEN OLD
-               ELSE NEW
-        END;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_log_settlement_activity
-    AFTER INSERT OR UPDATE OR DELETE ON SETTLEMENT_LOG
-    FOR EACH ROW
-EXECUTE FUNCTION log_settlements_activity();
+--
+-- CREATE OR REPLACE FUNCTION log_entity_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.CTZ_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.CTZ_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- -- CITIZEN
+-- CREATE TRIGGER trg_log_citizen
+--     AFTER INSERT OR UPDATE OR DELETE ON CITIZEN
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_entity_activity();
 
 --TEMPORARY ONLY, NEEDS TO BE DELETED LATER
 SET app.current_user_id = '1001';
+
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_household_info_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.HH_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.HH_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_household_info_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON HOUSEHOLD_INFO
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_household_info_activity();
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_business_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.BS_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.BS_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_business_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON BUSINESS_INFO
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_business_activity();
+
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_infrastructure_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.INF_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.INF_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_infrastructure_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON INFRASTRUCTURE
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_infrastructure_activity();
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_transaction_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.TL_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.TL_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_transaction_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON TRANSACTION_LOG
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_transaction_activity();
+
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_citizen_history_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.CIHI_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.CIHI_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_citizen_history_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON CITIZEN_HISTORY
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_citizen_history_activity();
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_medical_history_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.MH_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.MH_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_medical_history_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON MEDICAL_HISTORY
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_medical_history_activity();
+
+
+--
+-- CREATE OR REPLACE FUNCTION log_settlements_activity()
+--     RETURNS TRIGGER AS $$
+-- DECLARE
+--     v_entity_id INT;
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         v_entity_id := NEW.SETT_ID;
+--     ELSIF TG_OP = 'UPDATE' OR TG_OP = 'DELETE' THEN
+--         v_entity_id := OLD.SETT_ID;
+--     END IF;
+--
+--     INSERT INTO SYSTEM_ACTIVITY_LOG (
+--         ACT_ACTION_TYPE,
+--         ACT_TABLE_NAME,
+--         ACT_ENTITY_ID,
+--         SYS_USER_ID,
+--         ACT_DESCRIPTION
+--     )
+--     VALUES (
+--                TG_OP::action_type_enum,
+--                TG_TABLE_NAME,
+--                v_entity_id,
+--                current_setting('app.current_user_id')::INT,
+--                CONCAT('Action ', TG_OP, ' on ', TG_TABLE_NAME, ' ID = ', v_entity_id)
+--            );
+--
+--     RETURN CASE
+--                WHEN TG_OP = 'DELETE' THEN OLD
+--                ELSE NEW
+--         END;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER trg_log_settlement_activity
+--     AFTER INSERT OR UPDATE OR DELETE ON SETTLEMENT_LOG
+--     FOR EACH ROW
+-- EXECUTE FUNCTION log_settlements_activity();
+
+--TEMPORARY ONLY, NEEDS TO BE DELETED LATER
+-- SET app.current_user_id = '1001';
 
 
 
