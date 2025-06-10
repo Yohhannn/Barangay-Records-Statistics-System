@@ -279,7 +279,7 @@ class AdminControlsView:
             lambda: self.show_register_medical_type_popup(self.admin_controls_screen))
         self.admin_controls_screen.admn_button_UpdMed.clicked.connect(
             lambda: self.show_edit_medical_type_popup(self.admin_controls_screen))
-        self.admin_controls_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
+        # self.admin_controls_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto)
 
 
 
