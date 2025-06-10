@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PopUp_citizenprofileFilterOptions</class>
- <widget class="QDialog" name="PopUp_citizenprofileFilterOptions">
+ <class>edit_register_button_popup</class>
+ <widget class="QDialog" name="edit_register_button_popup">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -492,7 +492,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#PopUp_citizenprofileFilterOptions{
+   <string notr="true">#edit_register_button_popup{
 	background-color: #f2efff;
 }</string>
   </property>
@@ -631,7 +631,7 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -698,7 +698,7 @@
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>12</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -728,9 +728,9 @@
    <widget class="QLabel" name="display_searched">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>150</x>
       <y>80</y>
-      <width>461</width>
+      <width>291</width>
       <height>31</height>
      </rect>
     </property>
@@ -750,7 +750,7 @@
      <string>N/A</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_comment">
@@ -781,8 +781,36 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label_sitio_name">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_sitio_name{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+    </property>
+    <property name="text">
+     <string>Sitio Name:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="register_buttonConfirmHousehold_SaveForm">
+  <widget class="QPushButton" name="edit_sitio_buttonConfirmAccount_SaveForm">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -802,16 +830,16 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">#register_buttonConfirmHousehold_SaveForm {
+    <string notr="true">#edit_sitio_buttonConfirmAccount_SaveForm {
     background-color: #006f00;
     color: white;
     border-radius: 20px;
     padding: 10px; /* Optional: Adjusts spacing inside the button */
 }
-#register_buttonConfirmHousehold_SaveForm:hover {
+#edit_sitio_buttonConfirmAccount_SaveForm:hover {
     background-color: #00a600; /* Slightly lighter blue when hovered */
 }
-#register_buttonConfirmHousehold_SaveForm:pressed {
+#edit_sitio_buttonConfirmAccount_SaveForm:pressed {
     background-color: #005d00; /* Darker blue when clicked */
 }</string>
    </property>

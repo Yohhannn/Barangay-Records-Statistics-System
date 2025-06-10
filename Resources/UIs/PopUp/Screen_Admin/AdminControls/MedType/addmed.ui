@@ -619,7 +619,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="AdmnCon_Input_Sitio">
+   <widget class="QLineEdit" name="AdmnCon_Input_MedType">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -635,7 +635,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#AdmnCon_Input_Sitio{
+     <string notr="true">#AdmnCon_Input_MedType{
 	border: 1px solid #b3b3b3;  /* Black border */
     border-radius: 5px;        /* Rounded corners */
     padding: 5px;               /* Inner spacing */
