@@ -161,7 +161,7 @@ class CitizenController(BaseFileController):
                 "SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;")
             results = cursor.fetchall()
 
-            combo = self.part2_popup_update.register_citizen_comboBox_Relationship
+            combo = self.part2_popup.register_citizen_comboBox_Relationship
             combo.clear()
             for rth_id, rth_name in results:
                 combo.addItem(rth_name, rth_id)  # ✅ Binds display text and rth_id as userData
