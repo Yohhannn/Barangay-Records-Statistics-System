@@ -18,6 +18,7 @@ class CitizenController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_citizen_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
         # INITIALIZE OBJECTS NEEDED
         self.indig_group = None
@@ -1884,6 +1885,7 @@ class CitizenController(BaseFileController):
             cursor = db.get_cursor()
 
             # 1. Update CITIZEN
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE citizen SET
                     ctz_first_name = %s,
@@ -2440,6 +2442,7 @@ class CitizenController(BaseFileController):
             reason_of_death = form_data['reason_of_death'] if form_data['is_deceased'] == 'Yes' else None
             is_alive = not (form_data['is_deceased'] == 'Yes')
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(citizen_query, (
                 form_data['first_name'],
                 form_data['middle_name'] or None,
@@ -2464,7 +2467,7 @@ class CitizenController(BaseFileController):
                 int(form_data['household_id']),
                 self.sys_user_id,
                 self.sys_user_id,
-                clah_id  # ✅ Now properly included
+                clah_id
             ))
             citizen_result = cursor.fetchone()
             if not citizen_result:
@@ -2564,6 +2567,7 @@ class CitizenController(BaseFileController):
         try:
             db = Database()
             cursor = db.get_cursor()
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE citizen
                 SET ctz_is_deleted = TRUE

@@ -1111,6 +1111,30 @@ color: white;
     </column>
     <column>
      <property name="text">
+      <string>New Column</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>205</red>
+       <green>205</green>
+       <blue>255</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>205</red>
+       <green>205</green>
+       <blue>255</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Done By</string>
      </property>
      <property name="font">

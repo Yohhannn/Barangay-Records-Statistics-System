@@ -12,6 +12,7 @@ class ServiceController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_transaction_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
         
         self.stack = stack
         self.trans_services_screen = self.load_ui("Resources/UIs/MainPages/TransactionPages/services.ui")
@@ -278,6 +279,7 @@ class ServiceController(BaseFileController):
                     TL_LAST_UPDATED = NOW()
                 WHERE TL_ID = %s;
             """
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(update_query, (
                 fname, lname, status, purpose,
                 tt_id, self.sys_user_id, tl_id
@@ -494,6 +496,7 @@ class ServiceController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'fname': req_fname,
                 'lname': req_lname,
@@ -625,6 +628,7 @@ class ServiceController(BaseFileController):
             cursor = db.get_cursor()
 
             # Soft-delete the transaction
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (self.sys_user_id,))
             cursor.execute("""
                 UPDATE TRANSACTION_LOG
                 SET TL_IS_DELETED = TRUE

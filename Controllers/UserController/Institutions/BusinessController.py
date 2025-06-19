@@ -11,6 +11,7 @@ class BusinessController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_business_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
         self.stack = stack
         self.inst_business_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/business.ui")
@@ -245,7 +246,9 @@ class BusinessController(BaseFileController):
 
         try:
             db = Database()
-            cursor = db.get_cursor()
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
+            connection = db.conn
+            cursor = connection.cursor()
 
             bs_id = self.selected_business_id
             business_name = self.popup.register_BusinessName.text().strip()
@@ -280,7 +283,7 @@ class BusinessController(BaseFileController):
                     BS_LAST_UPDATED = NOW()
                 WHERE BS_ID = %s;
             """
-            cursor.execute(update_query, (
+            db.execute_with_user(update_query, (
                 business_name, business_description, status,
                 business_address, owner_fname, owner_lname,
                 bst_id, sitio_id, self.sys_user_id, bs_id
@@ -317,8 +320,8 @@ class BusinessController(BaseFileController):
 
         try:
             db = Database()
-            cursor = db.get_cursor()
-            cursor.execute("""
+            db.set_user_id(self.sys_user_id)
+            db.execute_with_user("""
                 UPDATE business_info
                 SET BS_IS_DELETED = TRUE
                 WHERE BS_ID = %s;
@@ -627,6 +630,7 @@ class BusinessController(BaseFileController):
 
             # Initialize DB connection
             db = Database()
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
             connection = db.conn
             cursor = connection.cursor()
 
@@ -686,6 +690,7 @@ class BusinessController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'business_name': business_name,
                 'description': business_description,
@@ -711,6 +716,7 @@ class BusinessController(BaseFileController):
             if connection:
                 connection.rollback()
             QMessageBox.critical(self.popup, "Database Error", str(e))
+            print(f"Database Error: {e}")
         finally:
             if db:
                 db.close()

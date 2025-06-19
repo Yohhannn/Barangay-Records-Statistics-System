@@ -13,11 +13,12 @@ class CitizenHistoryController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_citizen_history_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
 
         self.stack = stack
         self.model = HistoryModel()
-        self.view = CitizenHistoryView(self)
+        self.view = CitizenHistoryView(self, self.sys_user_id)
 
 
         self.hist_citizen_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/citizen_history.ui")
@@ -67,6 +68,7 @@ class CitizenHistoryController(BaseFileController):
             cursor = db.get_cursor()
 
             # Soft-delete the citizen history record
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE CITIZEN_HISTORY
                 SET CIHI_IS_DELETED = TRUE
@@ -355,6 +357,7 @@ LIMIT 50;
             ctz_id = ctz_result[0]
 
             # Update record
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE CITIZEN_HISTORY
                 SET CTZ_ID = %s,

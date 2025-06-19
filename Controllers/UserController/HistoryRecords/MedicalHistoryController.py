@@ -11,6 +11,7 @@ class MedicalHistoryController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_medical_history_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
         self.stack = stack
         self.hist_medical_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/medical_history.ui")
@@ -166,6 +167,7 @@ class MedicalHistoryController(BaseFileController):
             mht_id = mht_result[0]
 
             # Update record
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE MEDICAL_HISTORY
                 SET MH_DESCRIPTION = %s,
@@ -223,6 +225,7 @@ class MedicalHistoryController(BaseFileController):
             cursor = db.get_cursor()
 
             # Soft-delete the medical history record
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE MEDICAL_HISTORY
                 SET MH_IS_DELETED = TRUE
@@ -627,6 +630,7 @@ class MedicalHistoryController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'description': mh_description,
                 'mht_id': mht_id,
