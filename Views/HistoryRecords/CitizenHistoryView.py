@@ -10,9 +10,9 @@ from database import Database
 
 
 class CitizenHistoryView:
-    def __init__(self, controller):
+    def __init__(self, controller, sys_user_id):
         self.controller = controller
-
+        self.sys_user_id = sys_user_id
         self.popup = None
 
         self.hist_citizen_history_screen = None
@@ -190,6 +190,7 @@ class CitizenHistoryView:
             encoded_by = self.controller.sys_user_id
             last_updated_by = self.controller.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (self.sys_user_id,))
             cursor.execute(insert_query, {
                 'description': description,
                 'hist_id': hist_id,

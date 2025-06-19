@@ -89,12 +89,6 @@ class LoginWindow(QMainWindow):
             return False
         return True
 
-    # def check_super_admin(self, user_id, user_pin):
-    #     try:
-    #         return (int(user_id) == self.SUPER_ADMIN_ID and
-    #                 user_pin == self.SUPER_ADMIN_PIN)
-    #     except ValueError:
-    #         return False
 
     def authenticate_user(self, user_id, user_pin):
         print(f"-- Login Attempt\nSystem User ID: {user_id}\nSystem User PIN: {user_pin}")

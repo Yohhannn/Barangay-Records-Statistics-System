@@ -10,6 +10,7 @@ class SettlementHistoryController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
         self.stack = stack
         self.hist_settlement_history_screen = self.load_ui("Resources/UIs/MainPages/HistoryRecordPages/settlement_history.ui")
@@ -253,6 +254,7 @@ class SettlementHistoryController(BaseFileController):
             cihi_id = cihi_result[0]
 
             # Update CITIZEN_HISTORY
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE CITIZEN_HISTORY
                 SET CIHI_DESCRIPTION = %s,
@@ -263,6 +265,7 @@ class SettlementHistoryController(BaseFileController):
             """, (complaint_desc, ctz_id, self.sys_user_id, cihi_id))
 
             # Update SETTLEMENT_LOG
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE SETTLEMENT_LOG
                 SET SETT_COMPLAINT_DESCRIPTION = %s,
@@ -602,6 +605,7 @@ class SettlementHistoryController(BaseFileController):
             cursor = db.get_cursor()
 
             # Soft-delete the settlement record
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE SETTLEMENT_LOG
                 SET SETT_IS_DELETED = TRUE
@@ -691,6 +695,7 @@ class SettlementHistoryController(BaseFileController):
             ctz_id = ctz_result[0]
 
             # Step 3: Insert into CITIZEN_HISTORY (needed before settlement)
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 INSERT INTO CITIZEN_HISTORY (CIHI_DESCRIPTION, HIST_ID, CTZ_ID, ENCODED_BY_SYS_ID, LAST_UPDATED_BY_SYS_ID)
                 VALUES (%s, %s, %s, %s, %s)
@@ -706,6 +711,7 @@ class SettlementHistoryController(BaseFileController):
             cihi_id = cursor.fetchone()[0]
 
             # Step 4: Insert into SETTLEMENT_LOG
+
             insert_query = """
             INSERT INTO SETTLEMENT_LOG (
                 SETT_COMPLAINT_DESCRIPTION,
@@ -737,6 +743,7 @@ class SettlementHistoryController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'complaint_desc': complaint_desc,
                 'settlement_desc': settlement_desc,

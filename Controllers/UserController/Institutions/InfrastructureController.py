@@ -10,6 +10,8 @@ class InfrastructureController(BaseFileController):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_infra_id = None
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
+
         self.selected_id = None
         self.stack = stack
         self.inst_infrastructure_screen = self.load_ui("Resources/UIs/MainPages/InstitutionPages/infrastructure.ui")
@@ -261,6 +263,7 @@ class InfrastructureController(BaseFileController):
                     INF_LAST_UPDATED = NOW()
                 WHERE INF_ID = %s;
             """
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(update_query, (
                 infra_name, access_type, infra_description,
                 infra_address, inft_id, owner_id, sitio_id,
@@ -306,6 +309,7 @@ class InfrastructureController(BaseFileController):
             cursor = db.get_cursor()
 
             # Soft-delete the infrastructure
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute("""
                 UPDATE infrastructure
                 SET INF_IS_DELETED = TRUE
@@ -724,6 +728,7 @@ class InfrastructureController(BaseFileController):
             encoded_by = self.sys_user_id
             last_updated_by = self.sys_user_id
 
+            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
             cursor.execute(insert_query, {
                 'name': infra_name,
                 'access_type': access_type,

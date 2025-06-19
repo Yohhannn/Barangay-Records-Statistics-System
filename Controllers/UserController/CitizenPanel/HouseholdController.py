@@ -6,18 +6,16 @@ from Models.HouseholdModel import HouseholdModel
 from Views.CitizenPanel.HouseholdView import HouseholdView
 from database import Database
 
-# from PyQt6.QtCore import Qt
-# from PyQt6.QtWidgets import QLabel
-
 
 class HouseholdController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
         super().__init__(login_window, emp_first_name, sys_user_id)
         self.selected_household_id = None
         self.stack = stack
-        self.model = HouseholdModel()
+        self.model = HouseholdModel(self.sys_user_id)
         self.view = HouseholdView(self)
         self.user_role = user_role
+        self.sys_user_id = sys_user_id
 
         # Load UI
         self.cp_household_screen = self.load_ui("Resources/Uis/MainPages/CitizenPanelPages/cp_household.ui")
@@ -123,7 +121,8 @@ class HouseholdController(BaseFileController):
 
         try:
             db = Database()
-            cursor = db.get_cursor()
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
+
             update_query = """
                 UPDATE household_info SET
                     hh_house_number = %s,
@@ -139,7 +138,7 @@ class HouseholdController(BaseFileController):
                     hh_last_updated = CURRENT_TIMESTAMP
                 WHERE hh_id = %s AND hh_is_deleted = FALSE;
             """
-            cursor.execute(update_query, (
+            db.execute_with_user(update_query, (
                 form_data['house_number'],
                 sitio_id,
                 form_data['ownership_status'],
@@ -375,8 +374,8 @@ class HouseholdController(BaseFileController):
 
         try:
             db = Database()
-            cursor = db.get_cursor()
-            cursor.execute("""
+            db.set_user_id(self.sys_user_id)  # user ID for auditing
+            db.execute_with_user("""
                 UPDATE household_info
                 SET hh_is_deleted = TRUE
                 WHERE hh_id = %s;
@@ -569,12 +568,11 @@ class HouseholdController(BaseFileController):
                 break
 
     def save_household_data(self, form_data):
-        sys_user_id = self.sys_user_id
         if not self.view.confirm_registration():
             return
 
 
-        if self.model.save_household_data(form_data, sys_user_id):
+        if self.model.save_household_data(form_data):
             self.view.show_success_message()
             self.view.popup.close()
             self.load_household_data()
