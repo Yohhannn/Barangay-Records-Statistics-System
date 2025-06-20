@@ -255,6 +255,18 @@ class AdminControlsView:
             self.admin_controls_screen.admn_button_UpdInfra.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
             self.admin_controls_screen.admn_button_RemInfra.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
 
+            self.admin_controls_screen.admn_button_AddTrans.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+            self.admin_controls_screen.admn_button_UpdTrans.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+            self.admin_controls_screen.admn_button_RemTrans.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+
+            self.admin_controls_screen.admn_button_AddHist.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+            self.admin_controls_screen.admn_button_UpdHist.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+            self.admin_controls_screen.admn_button_RemHist.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+
+            self.admin_controls_screen.admn_button_AddMed.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+            self.admin_controls_screen.admn_button_UpdMed.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+            self.admin_controls_screen.admn_button_RemMed.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+
     def _connect_buttons(self):
 
 
