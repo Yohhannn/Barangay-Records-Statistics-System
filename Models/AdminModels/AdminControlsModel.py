@@ -60,7 +60,7 @@ class AdminControlsModel:
                     SITIO_ID,
                     SITIO_NAME
                 FROM SITIO
-                ORDER BY SITIO_ID;
+                WHERE SITIO_IS_DELETED = FALSE;
             """
             self.connection.cursor.execute(query)
             rows = self.connection.cursor.fetchall()
@@ -81,7 +81,7 @@ class AdminControlsModel:
                     INFT_ID,
                     INFT_TYPE_NAME
                 FROM INFRASTRUCTURE_TYPE
-                ORDER BY INFT_TYPE_NAME;
+                WHERE INFT_IS_DELETED = FALSE;
             """
             self.connection.cursor.execute(query)
             rows = self.connection.cursor.fetchall()
@@ -148,7 +148,7 @@ class AdminControlsModel:
                     TT_ID,
                     TT_TYPE_NAME
                 FROM TRANSACTION_TYPE
-                ORDER BY TT_TYPE_NAME;
+                WHERE TT_IS_DELETED = FALSE;
             """
             self.connection.cursor.execute(query)
             rows = self.connection.cursor.fetchall()
@@ -217,7 +217,7 @@ class AdminControlsModel:
                     HIST_ID,
                     HIST_TYPE_NAME
                 FROM HISTORY_TYPE
-                ORDER BY HIST_TYPE_NAME;
+                WHERE HIST_IS_DELETED = FALSE;
             """
             self.connection.cursor.execute(query)
             rows = self.connection.cursor.fetchall()
@@ -286,7 +286,7 @@ class AdminControlsModel:
                     MHT_ID,
                     MHT_TYPE_NAME
                 FROM MEDICAL_HISTORY_TYPE
-                ORDER BY MHT_TYPE_NAME;
+                WHERE MHT_IS_DELETED = FALSE;
             """
             self.connection.cursor.execute(query)
             rows = self.connection.cursor.fetchall()
@@ -347,80 +347,70 @@ class AdminControlsModel:
             return None if not raw else []
 
 
-    def soft_delete_sitio_data(self, account_data):
+    def soft_delete_sitio_data(self, sitio_id):
         try:
             query = """
                 UPDATE SITIO
                 SET SITIO_IS_DELETED = TRUE
                 WHERE SITIO_ID = %s;
             """
-            self.connection.execute_with_user(query, (
-                account_data['sitio_id'],
-            ))
+            self.connection.execute_with_user(query, (sitio_id,))
             self.connection.commit()
             return True
         except Exception as e:
             print("Database error(sitio):", e)
             return False
 
-    def soft_delete_infrastructure_data(self, account_data):
+    def soft_delete_infrastructure_data(self, infrastructure_id):
         try:
             query = """
                 UPDATE INFRASTRUCTURE_TYPE
                 SET INFT_IS_DELETED = TRUE
                 WHERE INFT_ID = %s;
             """
-            self.connection.execute_with_user(query, (
-                account_data['infrastructure_id'],
-            ))
+            self.connection.execute_with_user(query, (infrastructure_id,))
             self.connection.commit()
             return True
         except Exception as e:
             print("Database error(Infrastructure):", e)
             return False
 
-    def soft_delete_transaction_type(self, account_data):
+    def soft_delete_transaction_type(self, transaction_type_id):
         try:
             query = """
                 UPDATE TRANSACTION_TYPE
                 SET TT_IS_DELETED = TRUE
                 WHERE TT_ID = %s;
             """
-            self.connection.execute_with_user(query, (
-                account_data['transaction_type_id'],
-            ))
+            self.connection.execute_with_user(query, (transaction_type_id,))
             self.connection.commit()
             return True
         except Exception as e:
             print("Database error(Transaction Type):", e)
             return False
 
-    def soft_delete_history_type(self, account_data):
+    def soft_delete_history_type(self, history_type_id):
         try:
             query = """
                 UPDATE HISTORY_TYPE
                 SET HIST_IS_DELETED = TRUE
                 WHERE HIST_ID = %s;
             """
-            self.connection.execute_with_user(query, (
-                account_data['history_type_id'],
-            ))
+            self.connection.execute_with_user(query, (history_type_id,))
             self.connection.commit()
             return True
         except Exception as e:
             print("Database error(History type):", e)
             return False
 
-    def soft_delete_medical_hist_type(self, account_data):
+    def soft_delete_medical_hist_type(self, med_hist_id):
         try:
             query = """
                 UPDATE MEDICAL_HISTORY_TYPE
                 SET MHT_IS_DELETED = TRUE
                 WHERE MHT_ID = %s;
             """
-            self.connection.execute_with_user(query, (
-                account_data['med_hist_id'],
-            ))
+            self.connection.execute_with_user(query, (med_hist_id,))
             self.connection.commit()
             return True
         except Exception as e:

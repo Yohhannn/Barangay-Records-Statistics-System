@@ -1,10 +1,9 @@
 from PySide6.QtWidgets import QTableWidgetItem, QHeaderView, QMessageBox, QTableView
-from PySide6.QtCore import Qt, QModelIndex
+from PySide6.QtCore import Qt, QModelIndex, QTimer
 from Controllers.BaseFileController import BaseFileController
 from Models.AdminModels.AdminControlsModel import AdminControlsModel
 from Views.Admin.AdminControlsView import AdminControlsView
-from database import Database
-import bcrypt
+
 
 class AdminControlsController(BaseFileController):
     def __init__(self, login_window, emp_first_name, sys_user_id, user_role, stack):
@@ -37,8 +36,11 @@ class AdminControlsController(BaseFileController):
         self.admin_controls_screen.setWindowTitle("Admin Panel - MaPro")
 
         self._refresh()
-        # self.admin_controls_screen.adminpanel_tableView_List_Sitio.clicked.connect(self.handle_row_click_account)
-
+        self.admin_controls_screen.adminpanel_tableView_List_Sitio.clicked.connect(self.handle_row_click_sitio)
+        self.admin_controls_screen.adminpanel_tableView_List_InfraType.clicked.connect(self.handle_row_click_infrastructure)
+        self.admin_controls_screen.adminpanel_tableView_List_TransType.clicked.connect(self.handle_row_click_transaction)
+        self.admin_controls_screen.adminpanel_tableView_List_HistType.clicked.connect(self.handle_row_click_history)
+        self.admin_controls_screen.adminpanel_tableView_List_MedType.clicked.connect(self.handle_row_click_medical_type)
 
     def show_popup(self):
         self.view.show_register_sitio_popup(self.view.admin_controls_screen)
@@ -52,22 +54,27 @@ class AdminControlsController(BaseFileController):
         self.view.show_edit_medical_type_popup(self.view.admin_controls_screen)
         self.view.show_register_medical_type_popup(self.view.admin_controls_screen)
 
-
     def _populate_table(self, table, headers, data):
-        table.setRowCount(len(data))
-        table.setColumnCount(len(headers))
-        table.setHorizontalHeaderLabels(headers)
+        try:
+            print(f"[DEBUG] Populating table: {table.objectName()} with {len(data)} rows, {len(headers)} columns")
 
-        for row_idx, row_data in enumerate(data):
-            for col_idx, cell_data in enumerate(row_data):
-                item = QTableWidgetItem(str(cell_data))
-                item.setForeground(Qt.black)
-                if col_idx > 0:
-                    item.setTextAlignment(Qt.AlignCenter)
-                table.setItem(row_idx, col_idx, item)
+            table.setUpdatesEnabled(False)
+            table.setRowCount(len(data))
+            table.setColumnCount(len(headers))
+            table.setHorizontalHeaderLabels(headers)
 
-        table.resizeColumnsToContents()
-        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+            for row_idx, row_data in enumerate(data):
+                for col_idx, cell_data in enumerate(row_data):
+                    item = QTableWidgetItem(str(cell_data))
+                    item.setForeground(Qt.black)
+                    if col_idx > 0:
+                        item.setTextAlignment(Qt.AlignCenter)
+                    table.setItem(row_idx, col_idx, item)
+
+        except Exception as e:
+            print(f"[ERROR] Failed to populate table {table.objectName()}: {e}")
+        finally:
+            table.setUpdatesEnabled(True)
 
     def validate_fields(self):
         form_data = self.view.get_form_data()
@@ -130,7 +137,7 @@ class AdminControlsController(BaseFileController):
             result = self.model.get_history_types()
             if not result or not result['data']:
                 return
-            self.model.transact_rows = result['data']
+            self.model.history_rows = result['data']
             self._populate_table(
                 self.view.admin_controls_screen.adminpanel_tableView_List_HistType,
                 result['columns'],
@@ -146,7 +153,7 @@ class AdminControlsController(BaseFileController):
             result = self.model.get_medical_types()
             if not result or not result['data']:
                 return
-            self.model.transact_rows = result['data']
+            self.model.medical_rows = result['data']
             self._populate_table(
                 self.view.admin_controls_screen.adminpanel_tableView_List_MedType,
                 result['columns'],
@@ -502,22 +509,6 @@ class AdminControlsController(BaseFileController):
             self.selected_transaction_id = None
             self.selected_history_id = None
 
-            self.admin_controls_screen.adminpanel_tableView_List_Sitio.clicked.connect(
-                self.handle_row_click_sitio
-            )
-            self.admin_controls_screen.adminpanel_tableView_List_InfraType.clicked.connect(
-                self.handle_row_click_infrastructure
-            )
-            self.admin_controls_screen.adminpanel_tableView_List_TransType.clicked.connect(
-                self.handle_row_click_transaction
-            )
-            self.admin_controls_screen.adminpanel_tableView_List_HistType.clicked.connect(
-                self.handle_row_click_history
-            )
-            self.admin_controls_screen.adminpanel_tableView_List_MedType.clicked.connect(
-                self.handle_row_click_medical_type
-            )
-
         except Exception as e:
             QMessageBox.critical(
                 self,
@@ -526,9 +517,6 @@ class AdminControlsController(BaseFileController):
                 QMessageBox.Ok
             )
             print(f"Error refreshing Admin Controls: {e}")
-
-
-
 
     def save_sitio_data(self, form_data):
         if not self.view.confirm_registration(
