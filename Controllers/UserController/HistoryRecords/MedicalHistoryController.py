@@ -195,8 +195,17 @@ class MedicalHistoryController(BaseFileController):
         finally:
             db.close()
 
-
-
+    def reset_history_medical_display(self):
+        self.hist_medical_history_screen.histrec_displayHistoryID.setText("N/A")
+        self.hist_medical_history_screen.histrec_displayCitizenID.setText("N/A")
+        self.hist_medical_history_screen.histrec_displayCitizenHistFirstName.setText("N/A")
+        self.hist_medical_history_screen.histrec_displayCitizenHistLastName.setText("N/A")
+        self.hist_medical_history_screen.histrec_displayMedicalHistoryType.setText("N/A")
+        self.hist_medical_history_screen.histrec_displayHistoryDescription.setText("N/A")
+        self.hist_medical_history_screen.display_DateEncoded.setText("N/A")
+        self.hist_medical_history_screen.display_DateUpdated.setText("N/A")
+        self.hist_medical_history_screen.display_EncodedBy.setText("N/A")
+        self.hist_medical_history_screen.display_UpdatedBy.setText("N/A")
 
     def handle_remove_medical_history(self):
         if not getattr(self, 'selected_medical_history_id', None):
@@ -239,6 +248,7 @@ class MedicalHistoryController(BaseFileController):
                 f"Medical history record {mh_id} has been deleted."
             )
             self.load_medical_history_data()  # Refresh table
+            self.reset_history_medical_display()
 
             if hasattr(self, 'selected_medical_history_id'):
                 delattr(self, 'selected_medical_history_id')

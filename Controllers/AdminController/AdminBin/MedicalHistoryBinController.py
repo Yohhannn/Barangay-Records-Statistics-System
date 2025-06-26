@@ -62,6 +62,7 @@ class MedicalHistoryBinController(BaseFileController):
                 cursor = connection.cursor
 
                 # Update MH_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE MEDICAL_HISTORY
                     SET MH_IS_DELETED = FALSE
@@ -100,7 +101,7 @@ class MedicalHistoryBinController(BaseFileController):
         ]
         for widget in display_widgets:
             if isinstance(widget, QLabel):
-                widget.setText("None")
+                widget.setText("N/A")
 
     def search_medical_history_data(self):
         search_term = self.hist_medical_history_bin_screen.histrec_HistoryID_fieldSearch.text().strip()

@@ -210,6 +210,7 @@ class InfrastructureBinController(BaseFileController):
                 connection = Database()
                 cursor = connection.cursor
                 # Update INF_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE INFRASTRUCTURE
                     SET INF_IS_DELETED = FALSE
@@ -249,7 +250,7 @@ class InfrastructureBinController(BaseFileController):
         ]
         for widget in display_widgets:
             if isinstance(widget, QLabel):
-                widget.setText("None")
+                widget.setText("N/A")
 
 
     def goto_trashbin(self):

@@ -601,58 +601,58 @@ class ServiceController(BaseFileController):
         else:
             self.confirm_and_save()
 
+    def reset_transaction_profile_display(self):
+        # Transaction Info
+        self.trans_services_screen.trans_displayFirstName.setText("N/A")
+        self.trans_services_screen.trans_displayLastName.setText("N/A")
+        self.trans_services_screen.trans_displayDateRequested.setText("N/A")
+        self.trans_services_screen.trans_displayStatus.setText("N/A")
+        self.trans_services_screen.trans_displayTransactionType.setText("N/A")
+        self.trans_services_screen.trans_displayPurpose.setText("N/A")
+        self.trans_services_screen.display_DateEncoded.setText("N/A")
+        self.trans_services_screen.display_EncodedBy.setText("System")
+        self.trans_services_screen.display_DateUpdated.setText("N/A")
+        self.trans_services_screen.display_UpdatedBy.setText("N/A")
+
     def handle_remove_transaction(self):
         if not getattr(self, 'selected_transaction_id', None):
-            QMessageBox.warning(
-                self.trans_services_screen,
-                "No Selection",
-                "Please select a transaction to remove."
-            )
+            QMessageBox.warning(self.trans_services_screen, "No Selection", "Please select a transaction to remove.")
             return
 
-        tl_id = self.selected_transaction_id
-
+        trans_id = self.selected_transaction_id
         confirm = QMessageBox.question(
             self.trans_services_screen,
             "Confirm Deletion",
-            f"Are you sure you want to delete transaction with ID {tl_id}?",
+            f"Are you sure you want to delete transaction with ID {trans_id}?",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
         if confirm != QMessageBox.Yes:
             return
 
         try:
             db = Database()
-            cursor = db.get_cursor()
+            db.set_user_id(self.sys_user_id)  # Set user for auditing
 
-            # Soft-delete the transaction
-            cursor.execute("SET LOCAL app.current_user_id TO %s", (self.sys_user_id,))
-            cursor.execute("""
-                UPDATE TRANSACTION_LOG
-                SET TL_IS_DELETED = TRUE
-                WHERE TL_ID = %s;
-            """, (tl_id,))
+            db.execute_with_user("""
+                UPDATE transaction_log
+                SET tl_is_deleted = TRUE
+                WHERE tl_id = %s;
+            """, (trans_id,))
 
             db.conn.commit()
-            QMessageBox.information(
-                self.trans_services_screen,
-                "Success",
-                f"Transaction {tl_id} has been deleted."
-            )
+
+            QMessageBox.information(self.trans_services_screen, "Success", f"Transaction {trans_id} has been deleted.")
             self.load_transaction_data()  # Refresh table
+            self.reset_transaction_profile_display()  # Clear profile display
 
             if hasattr(self, 'selected_transaction_id'):
-                delattr(self, 'selected_transaction_id')
+                delattr(self, 'selected_transaction_id')  # Clear selection
 
         except Exception as e:
             db.conn.rollback()
-            QMessageBox.critical(
-                self.trans_services_screen,
-                "Database Error",
-                f"Failed to delete transaction: {str(e)}"
-            )
+            QMessageBox.critical(self.trans_services_screen, "Database Error",
+                                 f"Failed to delete transaction: {str(e)}")
         finally:
             db.close()
 

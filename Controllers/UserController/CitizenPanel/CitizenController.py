@@ -2544,15 +2544,85 @@ class CitizenController(BaseFileController):
             cursor.close()
             connection.close()
 
+    def reset_citizen_profile_display(self):
+        # Reset basic info
+        self.cp_profile_screen.cp_displayCItizenID.setText("N/A")
+        self.cp_profile_screen.cp_displayLastName.setText("N/A")
+        self.cp_profile_screen.cp_displayFirstName.setText("N/A")
+        self.cp_profile_screen.cp_displayMiddleName.setText("N/A")
+        self.cp_profile_screen.cp_displaySuffix.setText("N/A")
+        self.cp_profile_screen.cp_displaySitio.setText("N/A")
+        self.cp_profile_screen.display_DateUpdated.setText("N/A")
+        self.cp_profile_screen.cp_displayAge.setText("")
+
+        # Gender and Civil Status
+        self.cp_profile_screen.cp_displayCivilStatus.setText("N/A")
+
+        # Contact Info
+        self.cp_profile_screen.cp_displayEmail.setText("N/A")
+        self.cp_profile_screen.cp_displayContactNum.setText("N/A")
+
+        # Personal Details
+        self.cp_profile_screen.cp_displayPlaceOfBirth.setText("N/A")
+        self.cp_profile_screen.cp_displayFullAddress.setText("N/A")
+
+        # Socio-Economic Info
+        self.cp_profile_screen.cp_displaySocioEcoStatus.setText("N/A")
+        self.cp_profile_screen.cp_displayNHTSNum.setText("N/A")
+
+        # Employment Info
+        self.cp_profile_screen.cp_displayEmploymentStatus.setText("N/A")
+        self.cp_profile_screen.cp_displayOccupation.setText("N/A")
+        self.cp_profile_screen.cp_displayGovWorker.setText("N/A")
+
+        # Household Info
+        self.cp_profile_screen.cp_displayHouseholdID.setText("N/A")
+        self.cp_profile_screen.cp_displayRelationship.setText("N/A")
+
+        # Philhealth Info
+        self.cp_profile_screen.cp_displayPhilCat.setText("N/A")
+        self.cp_profile_screen.cp_displayPhilID.setText("N/A")
+        self.cp_profile_screen.cp_displayMembershipType.setText("N/A")
+
+        # Religion & Blood Type
+        self.cp_profile_screen.cp_displayReligion.setText("N/A")
+        self.cp_profile_screen.cp_displayBloodType.setText("N/A")
+
+        # Education & Student Info
+        self.cp_profile_screen.cp_displayStudent.setText("N/A")
+        self.cp_profile_screen.cp_displaySchoolName.setText("N/A")
+        self.cp_profile_screen.cp_displayEducationalAttainment.setText("N/A")
+
+        # Health Classification
+        self.cp_profile_screen.cp_display_health_classification.setText("N/A")
+
+        # Voter / Deceased / Indigenous Group
+        self.cp_profile_screen.cp_displayRegisteredVoter.setText("N/A")
+        self.cp_profile_screen.cp_displayDeceased.setText("N/A")
+        self.cp_profile_screen.cp_displayPartOfIndigenousGroup.setText("N/A")
+
+        # Timestamps
+        self.cp_profile_screen.display_DateEncoded.setText("N/A")
+        self.cp_profile_screen.display_EncodedBy.setText("N/A")
+        self.cp_profile_screen.display_DateUpdated.setText("N/A")
+        self.cp_profile_screen.display_UpdatedBy.setText("N/A")
+
+        # Death Info
+        self.cp_profile_screen.cp_displayReasonOfDeath.setText("N/A")
+        self.cp_profile_screen.cp_displayDoD.setText("N/A")
+
+        # Family Planning Info
+        self.cp_profile_screen.cp_displayFamPlanMethod.setText("N/A")
+        self.cp_profile_screen.cp_displayFamPlanStatus.setText("N/A")
+        self.cp_profile_screen.display_DateStarted.setText("N/A")
+        self.cp_profile_screen.display_DateEnded.setText("N/A")
+
     def handle_remove_citizen(self):
         if not getattr(self, 'selected_citizen_id', None):
             QMessageBox.warning(self.cp_profile_screen, "No Selection", "Please select a citizen to remove.")
             return
 
         citizen_id = self.selected_citizen_id
-
-        citizen_id = self.selected_citizen_id
-
         confirm = QMessageBox.question(
             self.cp_profile_screen,
             "Confirm Deletion",
@@ -2560,7 +2630,6 @@ class CitizenController(BaseFileController):
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
         if confirm != QMessageBox.Yes:
             return
 
@@ -2574,9 +2643,12 @@ class CitizenController(BaseFileController):
                 WHERE ctz_id = %s;
             """, (citizen_id,))
             db.conn.commit()
+
             QMessageBox.information(self.cp_profile_screen, "Success", f"Citizen {citizen_id} has been deleted.")
             self.load_citizen_data()  # Refresh table
+            self.reset_citizen_profile_display()  # Clear profile display
             delattr(self, 'selected_citizen_id')  # Clear selection
+
         except Exception as e:
             db.conn.rollback()
             QMessageBox.critical(self.cp_profile_screen, "Database Error", f"Failed to delete citizen: {str(e)}")

@@ -23,6 +23,8 @@ class InfrastructureController(BaseFileController):
         self.inst_infrastructure_screen.inst_infra_button_update.clicked.connect(self.show_update_infrastructure_popup)
 
 
+
+
     def setup_infrastructure_ui(self):
         """Setup the Infrastructure Views layout."""
         self.setFixedSize(1350, 850)
@@ -281,18 +283,32 @@ class InfrastructureController(BaseFileController):
         finally:
             db.close()
 
+    def reset_infra_profile_display(self):
+        # Basic Info
+        self.inst_infrastructure_screen.inst_displayInfraID.setText("N/A")
+        self.inst_infrastructure_screen.inst_displayInfraName.setText("N/A")
+        self.inst_infrastructure_screen.inst_displayInfraType.setText("N/A")
+        self.inst_infrastructure_screen.inst_displayInfraAddress.setText("N/A")
+        self.inst_infrastructure_screen.inst_displayInfraSitio.setText("N/A")
+        self.inst_infrastructure_screen.inst_displayInfraPP.setText("N/A")  # Public/Private
+        self.inst_infrastructure_screen.inst_InfraDescription.setText("N/A")
+
+        # Timestamps
+        self.inst_infrastructure_screen.inst_display_EncodedBy.setText("N/A")
+        self.inst_infrastructure_screen.inst_display_DateEncoded.setText("N/A")
+        self.inst_infrastructure_screen.inst_display_UpdatedBy.setText("N/A")
+        self.inst_infrastructure_screen.inst_display_DateUpdated.setText("N/A")
+
+        # Owner Info
+        self.inst_infrastructure_screen.inst_displayInfraOwnerName.setText("N/A")
 
     def handle_remove_infrastructure(self):
         if not getattr(self, 'selected_infra_id', None):
-            QMessageBox.warning(
-                self.inst_infrastructure_screen,
-                "No Selection",
-                "Please select an infrastructure to remove."
-            )
+            QMessageBox.warning(self.inst_infrastructure_screen, "No Selection",
+                                "Please select an infrastructure to remove.")
             return
 
         infra_id = self.selected_infra_id
-
         confirm = QMessageBox.question(
             self.inst_infrastructure_screen,
             "Confirm Deletion",
@@ -300,40 +316,34 @@ class InfrastructureController(BaseFileController):
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
         if confirm != QMessageBox.Yes:
             return
 
         try:
             db = Database()
-            cursor = db.get_cursor()
+            db.set_user_id(self.sys_user_id)  # Set user for auditing
 
-            # Soft-delete the infrastructure
-            cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
-            cursor.execute("""
+            db.execute_with_user("""
                 UPDATE infrastructure
-                SET INF_IS_DELETED = TRUE
-                WHERE INF_ID = %s;
+                SET inf_is_deleted = TRUE
+                WHERE inf_id = %s;
+                
             """, (infra_id,))
 
             db.conn.commit()
-            QMessageBox.information(
-                self.inst_infrastructure_screen,
-                "Success",
-                f"Infrastructure {infra_id} has been deleted."
-            )
+
+            QMessageBox.information(self.inst_infrastructure_screen, "Success",
+                                    f"Infrastructure {infra_id} has been deleted.")
             self.load_data_infrastructure()  # Refresh table
+            self.reset_infra_profile_display()  # Clear profile display
 
             if hasattr(self, 'selected_infra_id'):
-                delattr(self, 'selected_infra_id')
+                delattr(self, 'selected_infra_id')  # Clear selection
 
         except Exception as e:
             db.conn.rollback()
-            QMessageBox.critical(
-                self.inst_infrastructure_screen,
-                "Database Error",
-                f"Failed to delete infrastructure: {str(e)}"
-            )
+            QMessageBox.critical(self.inst_infrastructure_screen, "Database Error",
+                                 f"Failed to delete infrastructure: {str(e)}")
         finally:
             db.close()
 

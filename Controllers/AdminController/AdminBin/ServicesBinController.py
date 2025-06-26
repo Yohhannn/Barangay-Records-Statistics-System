@@ -61,6 +61,7 @@ class ServicesBinController(BaseFileController):
             try:
                 connection = Database()
                 cursor = connection.cursor
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 # Update TL_IS_DELETED to FALSE
                 cursor.execute("""
                     UPDATE TRANSACTION_LOG
