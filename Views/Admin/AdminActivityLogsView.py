@@ -70,4 +70,5 @@ class AdminActivityLogsView:
         self.activity_logs_screen.nav_buttonInstitutions.clicked.connect(self.controller.goto_institutions_panel)
         self.activity_logs_screen.nav_buttonTransactions.clicked.connect(self.controller.goto_transactions_panel)
         self.activity_logs_screen.nav_buttonHistoryRecords.clicked.connect(self.controller.goto_history_panel)
+        self.activity_logs_screen.nav_buttonTrashBin.clicked.connect(self.controller.goto_trashbin_panel)
         self.activity_logs_screen.logout_buttonLogout.clicked.connect(self.controller.logout)
