@@ -157,6 +157,7 @@ class HouseholdBinController(BaseFileController):
                 connection = Database()
                 cursor = connection.cursor
                 # Update HH_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE HOUSEHOLD_INFO
                     SET HH_IS_DELETED = FALSE

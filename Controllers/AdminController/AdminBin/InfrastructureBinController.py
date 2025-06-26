@@ -210,6 +210,7 @@ class InfrastructureBinController(BaseFileController):
                 connection = Database()
                 cursor = connection.cursor
                 # Update INF_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE INFRASTRUCTURE
                     SET INF_IS_DELETED = FALSE

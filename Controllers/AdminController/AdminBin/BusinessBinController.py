@@ -208,6 +208,7 @@ class BusinessBinController(BaseFileController):
                 connection = Database()
                 cursor = connection.cursor
                 # Update BS_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE BUSINESS_INFO
                     SET BS_IS_DELETED = FALSE

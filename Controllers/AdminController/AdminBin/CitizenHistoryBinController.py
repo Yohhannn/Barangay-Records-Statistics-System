@@ -16,7 +16,7 @@ class CitizenHistoryBinController(BaseFileController):
 
         self.stack = stack
         self.model = HistoryModel()
-        self.view = CitizenHistoryView(self)
+#        self.view = CitizenHistoryView(self)
 
         self.hist_citizen_history_bin_screen = self.load_ui("Resources/UIs/AdminPages/TrashBin/BinHistory/bin_citizen_history.ui")
         self.setup_citizen_history_ui(self.hist_citizen_history_bin_screen)
@@ -80,6 +80,7 @@ class CitizenHistoryBinController(BaseFileController):
                 cursor = connection.cursor
 
                 # Update CIHI_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE CITIZEN_HISTORY
                     SET CIHI_IS_DELETED = FALSE

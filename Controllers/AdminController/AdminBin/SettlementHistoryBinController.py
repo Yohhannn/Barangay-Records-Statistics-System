@@ -58,6 +58,7 @@ class SettlementHistoryBinController(BaseFileController):
                 cursor = connection.cursor
 
                 # Update SETT_IS_DELETED to FALSE
+                cursor.execute("SET LOCAL app.current_user_id TO %s", (str(self.sys_user_id),))
                 cursor.execute("""
                     UPDATE SETTLEMENT_LOG
                     SET SETT_IS_DELETED = FALSE
