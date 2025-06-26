@@ -247,7 +247,7 @@ class BusinessBinController(BaseFileController):
         ]
         for widget in display_widgets:
             if isinstance(widget, QLabel):
-                widget.setText("None")
+                widget.setText("N/A")
 
 
     def goto_trashbin(self):

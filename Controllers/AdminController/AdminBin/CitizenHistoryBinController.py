@@ -119,7 +119,7 @@ class CitizenHistoryBinController(BaseFileController):
         ]
         for widget in display_widgets:
             if isinstance(widget, QLabel):
-                widget.setText("None")
+                widget.setText("N/A")
 
     def load_citizen_history_data(self):
         connection = None

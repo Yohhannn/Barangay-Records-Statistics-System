@@ -101,7 +101,7 @@ class MedicalHistoryBinController(BaseFileController):
         ]
         for widget in display_widgets:
             if isinstance(widget, QLabel):
-                widget.setText("None")
+                widget.setText("N/A")
 
     def search_medical_history_data(self):
         search_term = self.hist_medical_history_bin_screen.histrec_HistoryID_fieldSearch.text().strip()
