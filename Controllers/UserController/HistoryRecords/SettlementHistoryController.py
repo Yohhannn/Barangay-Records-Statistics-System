@@ -578,6 +578,19 @@ class SettlementHistoryController(BaseFileController):
         else:
             self.confirm_and_save()
 
+    def reset_history_settlement_display(self):
+        self.hist_settlement_history_screen.histrec_displaySettID.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayComCtzID.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayComplainantName.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayComplaineeName.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayHistoryComplaintDescription.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayHistorySettlementDescription.setText("N/A")
+        self.hist_settlement_history_screen.histrec_displayDateSettlement.setText("N/A")
+        self.hist_settlement_history_screen.display_DateEncoded.setText("N/A")
+        self.hist_settlement_history_screen.display_DateUpdated.setText("N/A")
+        self.hist_settlement_history_screen.display_EncodedBy.setText("N/A")
+        self.hist_settlement_history_screen.display_UpdatedBy.setText("N/A")
+
     def handle_remove_settlement(self):
         if not getattr(self, 'selected_settlement_id', None):
             QMessageBox.warning(
@@ -619,6 +632,7 @@ class SettlementHistoryController(BaseFileController):
                 f"Settlement record {sett_id} has been deleted."
             )
             self.load_settlement_history_data()  # Refresh table
+            self.reset_history_settlement_display()
 
             if hasattr(self, 'selected_settlement_id'):
                 delattr(self, 'selected_settlement_id')

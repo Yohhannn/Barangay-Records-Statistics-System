@@ -37,9 +37,19 @@ class CitizenHistoryController(BaseFileController):
         self.login_window = login_window
         self.emp_first_name = emp_first_name
 
-
-    def show_citizen_history_initialize(self):
-        pass
+    def reset_history_profile_display(self):
+        self.hist_citizen_history_screen.histrec_displayHistoryID.setText("N/A")
+        self.hist_citizen_history_screen.histrec_displayCitizenID.setText("N/A")
+        self.hist_citizen_history_screen.histrec_displayCitizenHistFirstName.setText("N/A")
+        self.hist_citizen_history_screen.histrec_displayCitizenHistLastName.setText("N/A")
+        self.hist_citizen_history_screen.histrec_displayHistoryType.setText(
+            "N/A")  # Now shows HIST_TYPE_NAME
+        self.hist_citizen_history_screen.histrec_displayHistoryDescription.setText(
+            "N/A")  # CIHI_DESCRIPTION
+        self.hist_citizen_history_screen.display_DateEncoded.setText("N/A")
+        self.hist_citizen_history_screen.display_DateUpdated.setText("N/A")
+        self.hist_citizen_history_screen.display_EncodedBy.setText("N/A")
+        self.hist_citizen_history_screen.display_UpdatedBy.setText("N/A")
 
     def handle_remove_citizen_history(self):
         if not getattr(self, 'selected_citizen_history_id', None):
@@ -81,6 +91,7 @@ class CitizenHistoryController(BaseFileController):
                 "Success",
                 f"Citizen history record {cihi_id} has been deleted."
             )
+            self.reset_history_profile_display()
             self.load_citizen_history_data()  # Refresh table
 
             if hasattr(self, 'selected_citizen_history_id'):

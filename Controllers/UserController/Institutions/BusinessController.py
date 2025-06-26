@@ -299,38 +299,62 @@ class BusinessController(BaseFileController):
         finally:
             db.close()
 
+    def reset_business_profile_display(self):
+        # Basic Info
+        self.inst_business_screen.inst_displayBusinessID.setText("N/A")
+        self.inst_business_screen.inst_displayBusinessName.setText("N/A")
+        self.inst_business_screen.inst_displayBusinessOwnerName.setText("N/A")
+        self.inst_business_screen.inst_BusinessDescription.setText("N/A")
+
+        # Status & Type
+        self.inst_business_screen.inst_displayBusinessStatus.setText("N/A")
+        self.inst_business_screen.inst_displayBusinessType.setText("N/A")
+
+        # Address
+        self.inst_business_screen.inst_displayBusinessAddress.setText("N/A")
+        self.inst_business_screen.inst_displayBusinessAddress_Sitio.setText("N/A")
+
+        # Timestamps
+        self.inst_business_screen.inst_display_DateEncoded.setText("N/A")
+        self.inst_business_screen.inst_display_EncodedBy.setText("N/A")
+        self.inst_business_screen.inst_display_DateUpdated.setText("N/A")
+        self.inst_business_screen.display_UpdatedBy.setText("N/A")
 
     def handle_remove_business(self):
         if not getattr(self, 'selected_business_id', None):
             QMessageBox.warning(self.inst_business_screen, "No Selection", "Please select a business to remove.")
             return
 
-        bs_id = self.selected_business_id
-
+        business_id = self.selected_business_id
         confirm = QMessageBox.question(
             self.inst_business_screen,
             "Confirm Deletion",
-            f"Are you sure you want to delete business with ID {bs_id}?",
+            f"Are you sure you want to delete business with ID {business_id}?",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
         if confirm != QMessageBox.Yes:
             return
 
         try:
             db = Database()
-            db.set_user_id(self.sys_user_id)
+            db.set_user_id(self.sys_user_id)  # Set user for auditing
+
             db.execute_with_user("""
                 UPDATE business_info
-                SET BS_IS_DELETED = TRUE
-                WHERE BS_ID = %s;
-            """, (bs_id,))
+                SET bs_is_deleted = TRUE
+                WHERE bs_id = %s;
+            """, (business_id,))
+
             db.conn.commit()
-            QMessageBox.information(self.inst_business_screen, "Success", f"Business {bs_id} has been deleted.")
+
+            QMessageBox.information(self.inst_business_screen, "Success", f"Business {business_id} has been deleted.")
             self.load_business_data()  # Refresh table
+            self.reset_business_profile_display()  # Clear profile display
+
             if hasattr(self, 'selected_business_id'):
                 delattr(self, 'selected_business_id')  # Clear selection
+
         except Exception as e:
             db.conn.rollback()
             QMessageBox.critical(self.inst_business_screen, "Database Error", f"Failed to delete business: {str(e)}")
