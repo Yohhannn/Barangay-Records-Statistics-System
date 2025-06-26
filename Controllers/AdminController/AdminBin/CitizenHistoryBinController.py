@@ -43,7 +43,7 @@ class CitizenHistoryBinController(BaseFileController):
     # Set images and icons
         self.hist_citizen_history_screen.btn_returnToHistoryRecordPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
         self.hist_citizen_history_screen.histrec_HistoryID_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
-        self.hist_citizen_history_screen.histrec_HistoryID_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
+        self.hist_citizen_history_screen.histrec_citizenhistory_button_restore.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         # self.hist_citizen_history_screen.citizenhistoryList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # RECORD BUTTON
