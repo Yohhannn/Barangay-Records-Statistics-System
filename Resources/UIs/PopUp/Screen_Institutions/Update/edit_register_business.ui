@@ -1045,7 +1045,7 @@
      <rect>
       <x>150</x>
       <y>170</y>
-      <width>251</width>
+      <width>581</width>
       <height>31</height>
      </rect>
     </property>
@@ -1154,70 +1154,6 @@
     </property>
     <property name="text">
      <string>Description:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="register_BusinessType_others">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>170</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_BusinessType_others{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>50</number>
-    </property>
-    <property name="placeholderText">
-     <string>If Others please specify here</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="register_labelBusinessType_others">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>170</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_labelBusinessType_others{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-    </property>
-    <property name="text">
-     <string>Others:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>

@@ -931,7 +931,7 @@
         <x>260</x>
         <y>20</y>
         <width>281</width>
-        <height>91</height>
+        <height>111</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1066,7 +1066,7 @@
         <rect>
          <x>20</x>
          <y>50</y>
-         <width>141</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -1343,9 +1343,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>270</y>
+        <y>310</y>
         <width>521</width>
-        <height>221</height>
+        <height>181</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -1433,6 +1433,86 @@
         </color>
        </property>
       </column>
+     </widget>
+     <widget class="QFrame" name="basePopUpBodyFrame_11">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>270</y>
+        <width>521</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#basePopUpBodyFrame_11 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="cp_displayaddress">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>0</y>
+         <width>381</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayaddress{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelAddress">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelAddress{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Home Address:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QFrame" name="basePopUpBodyFrame_9">
