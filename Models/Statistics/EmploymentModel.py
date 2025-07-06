@@ -12,8 +12,8 @@ class EmploymentModel:
                     s.SITIO_NAME AS "Sitio",
                     COUNT(CASE WHEN es.ES_STATUS_NAME = 'Employed' THEN 1 END) AS "Employed",
                     COUNT(CASE WHEN es.ES_STATUS_NAME = 'Unemployed' THEN 1 END) AS "Unemployed",
-                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Self-employed' THEN 1 END) AS "Self-employed",
-                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Not in Labor Force' THEN 1 END) AS "Not in Labor Force"
+                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Self Employed' THEN 1 END) AS "Self Employed",
+                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Retired' THEN 1 END) AS "Retired"
                 FROM
                     SITIO s
                         LEFT JOIN
