@@ -37,7 +37,7 @@ class HouseholdController(BaseFileController):
             db = Database()
             cursor = db.get_cursor()
             cursor.execute("""
-                SELECT hh_house_number, hh_home_google_link, hh_ownership_status,
+                SELECT hh_house_number, hh_address, hh_ownership_status,
                        hh_home_google_link, hh_interviewer_name, hh_date_visit, hh_reviewer_name,
                        sitio_id, toilet_id, water_id
                 FROM household_info
@@ -128,6 +128,7 @@ class HouseholdController(BaseFileController):
                     hh_house_number = %s,
                     sitio_id = %s,
                     hh_ownership_status = %s,
+                    hh_address = %s,
                     hh_home_google_link = %s,
                     toilet_id = %s,
                     water_id = %s,
@@ -143,6 +144,7 @@ class HouseholdController(BaseFileController):
                 sitio_id,
                 form_data['ownership_status'],
                 form_data['home_address'],
+                form_data['home_google_link'],
                 toilet_id,
                 water_id,
                 form_data['interviewer_name'],
@@ -1044,6 +1046,7 @@ class HouseholdController(BaseFileController):
                              COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
                              SUA.SYS_LNAME
                     END AS LAST_UPDATED_BY_NAME, -- 13
+                    HH.HH_ADDRESS, -- 14
                     COUNT(C.CTZ_ID) AS TOTAL_MEMBERS -- Total members from CITIZEN
                 FROM HOUSEHOLD_INFO HH
                 JOIN SITIO S ON HH.SITIO_ID = S.SITIO_ID
@@ -1090,7 +1093,7 @@ class HouseholdController(BaseFileController):
 
             for row_idx, row_data in enumerate(rows):
                 # col 1 now shows total members instead of household number
-                for col_idx, value in enumerate([row_data[0], row_data[14], row_data[2], row_data[9]]):
+                for col_idx, value in enumerate([row_data[0], row_data[15], row_data[2], row_data[9]]):
                     item = QTableWidgetItem(str(value))
                     table.setItem(row_idx, col_idx, item)
 
@@ -1183,6 +1186,7 @@ class HouseholdController(BaseFileController):
                     record[8].strftime('%B %d, %Y') if record[8] else "None"
                 )  # Date of Visit
                 self.cp_household_screen.display_DateEncoded.setText(record[9] or "None")  # Date Encoded
+                self.cp_household_screen.cp_displayaddress.setText(record[14] or "None")
                 self.cp_household_screen.display_EncodedBy.setText(record[10] or "System")  # Encoded By
                 self.cp_household_screen.display_DateUpdated.setText(record[11] or "None")  # Last Updated
                 self.cp_household_screen.cp_displayReviewedBy.setText(record[12] or "None")
