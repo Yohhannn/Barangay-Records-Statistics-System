@@ -66,7 +66,7 @@ class EmploymentModel:
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Employed') AS "Employed",
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Unemployed') AS "Unemployed",
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Self-Employed') AS "Self-Employed",
-                    COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Not in Labor Force') AS "Not in Labor Force"
+                    COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Retired') AS "Retired"
                 FROM
                     EMPLOYMENT e
                         LEFT JOIN CITIZEN c ON e.CTZ_ID = c.CTZ_ID

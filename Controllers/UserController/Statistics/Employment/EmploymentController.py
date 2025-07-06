@@ -96,12 +96,12 @@ class EmploymentController(BaseFileController):
             result = self.model.get_overall_employment_stats(from_date, to_date)
 
             if result:
-                employed, unemployed, self_employed, not_in_labor_force = result
+                employed, unemployed, self_employed, retired = result
 
                 self.view.demo_Employed.setText(str(employed))
                 self.view.demo_Unemployed.setText(str(unemployed))
                 self.view.demo_SelfEmployed.setText(str(self_employed))
-                self.view.demo_nilf.setText(str(not_in_labor_force))
+                self.view.demo_nilf.setText(str(retired))
 
         except Exception as e:
             print(f"[ERROR] Failed to display overall employment stats: {e}")
