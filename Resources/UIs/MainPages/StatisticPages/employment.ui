@@ -723,7 +723,7 @@
 </string>
       </property>
       <property name="text">
-       <string>Not in Labor Force:</string>
+       <string>Retired:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1161,7 +1161,7 @@ color: white;
        <second>0</second>
        <year>2023</year>
        <month>12</month>
-       <day>26</day>
+       <day>25</day>
       </datetime>
      </property>
      <property name="displayFormat">
@@ -1209,7 +1209,7 @@ color: white;
        <second>0</second>
        <year>2025</year>
        <month>5</month>
-       <day>7</day>
+       <day>6</day>
       </datetime>
      </property>
      <property name="displayFormat">
