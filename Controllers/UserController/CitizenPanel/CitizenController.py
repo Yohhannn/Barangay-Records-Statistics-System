@@ -163,7 +163,7 @@ class CitizenController(BaseFileController):
             results = cursor.fetchall()
 
             combo = self.part2_popup.register_citizen_comboBox_Relationship
-            combo.clear()
+            # combo.clear()
             for rth_id, rth_name in results:
                 combo.addItem(rth_name, rth_id)  # ✅ Binds display text and rth_id as userData
 
@@ -307,10 +307,12 @@ class CitizenController(BaseFileController):
             )
             results = cursor.fetchall()
 
-            combo = self.part2_popup_update.register_citizen_comboBox_Relationship
-            combo.clear()
+            # print()
+
+            combo_rel = self.part2_popup_update.register_citizen_comboBox_Relationship
+            # combo.clear()
             for rth_id, rth_relationship_name in results:
-                combo.addItem(rth_relationship_name, rth_id)  # ✅ Properly bind ID to item
+                combo_rel.addItem(rth_relationship_name, rth_id)  # ✅ Properly bind ID to item
 
 
             # Populate Philhealth Category ComboBox
@@ -2662,6 +2664,25 @@ class CitizenController(BaseFileController):
             QMessageBox.warning(self.part1_popup_update, "No Selection", "No citizen selected for update.")
             return
         print(self.selected_citizen_id)
+        try:
+            db = Database()
+            cursor = db.get_cursor()
+            cursor.execute(
+                "SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;"
+            )
+            results = cursor.fetchall()
+
+            # print()
+
+            combo_rel = self.part2_popup_update.register_citizen_comboBox_Relationship
+            # combo.clear()
+            for rth_id, rth_relationship_name in results:
+                combo_rel.addItem(rth_relationship_name, rth_id)  # ✅ Properly bind ID to item
+
+        except Exception as e:
+            pass
+        finally:
+            db.close()
 
         try:
             db = Database()
@@ -2809,23 +2830,34 @@ class CitizenController(BaseFileController):
 
                 # NHTS Number
                 nhts_number = result_part2[1] or ""
-                self.part2_popup_update.register_citizen_NHTSNum.setText(nhts_number)
+                if nhts_number == "N/A":
+                    self.part2_popup_update.register_citizen_NHTSNum.setText("")
+                else:
+
+                    self.part2_popup_update.register_citizen_NHTSNum.setText(nhts_number)
 
                 # Household ID
                 household_id = result_part2[2]
                 self.part2_popup_update.register_citizen_HouseholdID.setText(str(household_id) if household_id else "")
 
-                # Relationship
-                print('yawa', result_part2[3])
-                # Now set the index safely
-                relationship_name = result_part2[3]  # This should be the string like "Head"
-                combo = self.part2_popup_update.register_citizen_comboBox_Relationship
-                index = combo.findText(relationship_name or "", Qt.MatchFixedString)
 
-                if index >= 0:
-                    combo.setCurrentIndex(index)
-                else:
-                    print(f"[Debug] Relationship '{relationship_name}' not found in ComboBox items.")
+                # Relationship
+                # print('yawa', result_part2[3])
+                # Now set the index safely
+                rel_set = result_part2[3]
+                # print("Fetched Part 2 citizen data:", rel_set)
+                # rel_index = self.part2_popup_update.register_citizen_comboBox_Relationship.findText(rel_set or "")
+                # print("Fetched Part 2 citizen data:", rel_index)
+                print(rel_set)
+                self.part2_popup_update.register_citizen_comboBox_Relationship.setCurrentText(rel_set)
+                # relationship_name = result_part2[3]  # This should be the string like "Head"
+                # combo = self.part2_popup_update.register_citizen_comboBox_Relationship
+                # index = combo.findText(relationship_name or "", Qt.MatchFixedString)
+                #
+                # if index >= 0: BALIK DIRI
+                #     combo.setCurrentIndex(index)
+                # else:
+                #     print(f"[Debug] Relationship '{relationship_name}' not found in ComboBox items.")
 
                 # Employment Status
                 employment_status = result_part2[4]
