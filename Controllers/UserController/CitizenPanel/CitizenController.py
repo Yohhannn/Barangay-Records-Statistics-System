@@ -193,7 +193,7 @@ class CitizenController(BaseFileController):
             results = cursor.fetchall()
 
             combo = self.part3_popup.register_citizen_health_classification
-            combo.clear()
+            # combo.clear()
             for clah_id, clah_classification_name in results:
                 combo.addItem(clah_classification_name, clah_id)
 
@@ -469,9 +469,9 @@ class CitizenController(BaseFileController):
         return {
             # PART 1
             'first_name': self.part1_popup.register_citizen_firstname.text().strip(),  # REQUIRED
-            'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "None",
+            'middle_name': self.part1_popup.register_citizen_middlename.text().strip() or "",
             'last_name': self.part1_popup.register_citizen_lastname.text().strip(),  # REQUIRED
-            'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "None",
+            'suffix': self.part1_popup.register_citizen_suffix.text().strip() or "",
 
             'civil_status': self.part1_popup.register_citizen_comboBox_CivilStatus.currentText().strip(),  # REQUIRED
             'birth_date': self.part1_popup.register_citizen_date_dob.date().toString("yyyy-MM-dd"),  # REQUIRED
@@ -482,11 +482,11 @@ class CitizenController(BaseFileController):
             'sex': self.radio_button_sex_result(),
             # 'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
 
-            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "None",
-            'email_address': self.part1_popup.register_citizen_Email.text().strip() or "None",
+            'contact_number': self.part1_popup.register_citizen_ContactNumber.text().strip() or "",
+            'email_address': self.part1_popup.register_citizen_Email.text().strip() or "",
 
             'sitio': self.part1_popup.register_citizen_comboBox_Sitio.currentText().strip(),  # REQUIRED
-            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "None",
+            'place_of_birth': self.part1_popup.register_citizen_Pob.text().strip() or "",
 
             # APRT 2
             # PART 2
@@ -505,7 +505,7 @@ class CitizenController(BaseFileController):
             'occupation': self.part2_popup.register_citizen_Occupation.text().strip(),
             'gov_worker': self.radio_button_gov_worker_result(),
             'phil_category': self.part2_popup.register_citizen_comboBox_PhilCat.currentText().strip(),
-            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip() or "None",
+            'phil_id': self.part2_popup.register_citizen_PhilID.text().strip() or "",
             'membership_type': self.part2_popup.register_citizen_comboBox_PhilMemType.currentText().strip(),
 
             # PART 3
@@ -1916,7 +1916,7 @@ class CitizenController(BaseFileController):
             """, (
                 form_data['first_name'], form_data['middle_name'], form_data['last_name'],
                 form_data['suffix'], form_data['birth_date'], form_data['sex'],
-                form_data['civil_status'], form_data['birth_place'], form_data['blood_type'] or 'Unknown',
+                form_data['civil_status'], form_data['birth_place'], form_data['blood_type'] or "Unknown",
                 form_data['sitio_id'], form_data['religion'], form_data['indigenous_group'],
                 form_data['registered_voter'], form_data['is_alive'], form_data['reason_of_death'],
                 form_data['date_of_death'], form_data['socioeco_status'],
@@ -2454,7 +2454,7 @@ class CitizenController(BaseFileController):
                 'M' if form_data['sex'] == 'Male' else 'F',
                 form_data['civil_status'],
                 form_data['place_of_birth'],
-                form_data['blood_type'] or 'Unknown',
+                form_data['blood_type'],
                 True if form_data['is_voter'] == 'Yes' else False,
                 is_alive,
                 date_of_death,
