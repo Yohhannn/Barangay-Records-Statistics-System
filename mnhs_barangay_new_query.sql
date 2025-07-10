@@ -85,7 +85,7 @@ CREATE TYPE blood_type_enum AS ENUM(
 
 
 CREATE TYPE civil_status_type AS ENUM(
-    'Single', 'Married', 'Widowed', 'Separated'
+    'Single', 'Married', 'Widowed', 'Separated', 'Divorced'
     );
 
 -- Table: WATER_SOURCE
@@ -209,7 +209,7 @@ CREATE TABLE CITIZEN (
                          CTZ_REASON_OF_DEATH TEXT,
                          CTZ_IS_REGISTERED_VOTER BOOLEAN DEFAULT FALSE,
                          CTZ_IS_IP BOOLEAN DEFAULT FALSE,
-                         CTZ_PLACE_OF_BIRTH TEXT NOT NULL,
+                         CTZ_PLACE_OF_BIRTH TEXT,
                          CTZ_DATE_ENCODED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          CTZ_LAST_UPDATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          CTZ_IS_DELETED BOOLEAN DEFAULT FALSE,
