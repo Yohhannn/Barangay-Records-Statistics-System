@@ -2759,7 +2759,7 @@
     </property>
     <item>
      <property name="text">
-      <string>None</string>
+      <string>Unknown</string>
      </property>
     </item>
     <item>
