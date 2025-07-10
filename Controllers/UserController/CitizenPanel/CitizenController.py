@@ -478,7 +478,7 @@ class CitizenController(BaseFileController):
 
             'religion': self.part1_popup.register_citizen_comboBox_Religion.currentText().strip(),  # REQUIRED
 
-            'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "None",
+            'blood_type': self.part1_popup.register_citizen_comboBox_BloodType.currentText().strip() or "Unknown",
             'sex': self.radio_button_sex_result(),
             # 'Male' if self.part1_popup.radioButton_male.isChecked(), 'Female' if self.part1_popup.radioButton_female.isChecked(), # REQUIRED
 
@@ -1459,7 +1459,7 @@ class CitizenController(BaseFileController):
             self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
             )
-        elif form_data_part_2['employment_status'] in ['Employed', 'Retired', 'Self Employed']:
+        elif form_data_part_2['employment_status'] in ['Employed', 'Self Employed']:
             if not form_data_part_2['occupation']:
                 errors_part_2.append("Occupation is required.")
                 self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
@@ -1566,7 +1566,7 @@ class CitizenController(BaseFileController):
         #     self.part1_popup.radioButton_female.setStyleSheet("color: rgb(18, 18, 18)")
         #     self.part1_popup.radioButton_male.setStyleSheet("color: rgb(18, 18, 18)")
 
-        if form_data_part_2['employment_status'] == 'Unemployed':
+        if form_data_part_2['employment_status'] in ['Unemployed', 'Not in Labor Force']:
             form_data_part_2['gov_worker'] = 'No'
             self.part2_popup.radioButton_IsGov_Yes.setStyleSheet("color: rgb(18, 18, 18)")
             self.part2_popup.radioButton_IsGov_No.setStyleSheet("color: rgb(18, 18, 18)")
@@ -1725,7 +1725,7 @@ class CitizenController(BaseFileController):
             self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
                 "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: #f2efff"
             )
-        elif emp_status in ['Employed', 'Retired', 'Self Employed']:
+        elif emp_status in ['Employed', 'Self Employed']:
             if not occupation:
                 errors.append("Occupation is required.")
                 self.part2_popup_update.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
@@ -1789,7 +1789,7 @@ class CitizenController(BaseFileController):
         #     self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
         #         "border: 1px solid red; border-radius: 5px; padding: 5px; background-color: rgb(239, 239, 239)"
         #     )
-        # elif form_data_part_2['employment_status'] in ['Employed', 'Retired', 'Self Employed']:
+        # elif form_data_part_2['employment_status'] in ['Employed', 'Not in Labor Force', 'Self Employed']:
         #     if not form_data_part_2['occupation']:
         #         errors_part_2.append("Occupation is required.")
         #         self.part2_popup.register_citizen_comboBox_EmploymentStatus.setStyleSheet(
@@ -1916,7 +1916,7 @@ class CitizenController(BaseFileController):
             """, (
                 form_data['first_name'], form_data['middle_name'], form_data['last_name'],
                 form_data['suffix'], form_data['birth_date'], form_data['sex'],
-                form_data['civil_status'], form_data['birth_place'], form_data['blood_type'],
+                form_data['civil_status'], form_data['birth_place'], form_data['blood_type'] or 'Unknown',
                 form_data['sitio_id'], form_data['religion'], form_data['indigenous_group'],
                 form_data['registered_voter'], form_data['is_alive'], form_data['reason_of_death'],
                 form_data['date_of_death'], form_data['socioeco_status'],
@@ -2454,7 +2454,7 @@ class CitizenController(BaseFileController):
                 'M' if form_data['sex'] == 'Male' else 'F',
                 form_data['civil_status'],
                 form_data['place_of_birth'],
-                form_data['blood_type'] or None,
+                form_data['blood_type'] or 'Unknown',
                 True if form_data['is_voter'] == 'Yes' else False,
                 is_alive,
                 date_of_death,

@@ -13,14 +13,14 @@ class EmploymentModel:
                     COUNT(CASE WHEN es.ES_STATUS_NAME = 'Employed' THEN 1 END) AS "Employed",
                     COUNT(CASE WHEN es.ES_STATUS_NAME = 'Unemployed' THEN 1 END) AS "Unemployed",
                     COUNT(CASE WHEN es.ES_STATUS_NAME = 'Self Employed' THEN 1 END) AS "Self Employed",
-                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Retired' THEN 1 END) AS "Retired"
+                    COUNT(CASE WHEN es.ES_STATUS_NAME = 'Not in Labor Force' THEN 1 END) AS "Not in Labor Force"
                 FROM
                     SITIO s
                         LEFT JOIN
                     CITIZEN c ON s.SITIO_ID = c.SITIO_ID
                         AND c.CTZ_IS_DELETED = FALSE
                         AND c.CTZ_IS_ALIVE = TRUE
-                        AND c.CTZ_LAST_UPDATED BETWEEN %s AND %s
+                        AND c.CTZ_LAST_UPDATED::date BETWEEN %s AND %s
                         LEFT JOIN
                     EMPLOYMENT e ON c.CTZ_ID = e.CTZ_ID
                         LEFT JOIN
@@ -66,7 +66,7 @@ class EmploymentModel:
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Employed') AS "Employed",
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Unemployed') AS "Unemployed",
                     COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Self-Employed') AS "Self-Employed",
-                    COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Retired') AS "Retired"
+                    COUNT(e.EMP_ID) FILTER (WHERE es.ES_STATUS_NAME = 'Not in Labor Force') AS "Not in Labor Force"
                 FROM
                     EMPLOYMENT e
                         LEFT JOIN CITIZEN c ON e.CTZ_ID = c.CTZ_ID
