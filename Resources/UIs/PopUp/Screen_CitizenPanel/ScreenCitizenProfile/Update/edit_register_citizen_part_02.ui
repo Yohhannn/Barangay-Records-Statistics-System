@@ -682,7 +682,7 @@
     </item>
     <item>
      <property name="text">
-      <string>Retired</string>
+      <string>Not in Labor Force</string>
      </property>
     </item>
    </widget>

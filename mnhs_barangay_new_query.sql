@@ -1,4 +1,4 @@
-CREATE DATABASE marigondon_profiling_db;
+-- CREATE DATABASE marigondon_profiling_db;
 
 CREATE SEQUENCE SYS_USER_ID_SEQ START 1001;
 
