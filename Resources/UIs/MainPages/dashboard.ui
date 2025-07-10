@@ -1093,7 +1093,7 @@
      <number>10</number>
     </property>
     <property name="columnCount">
-     <number>8</number>
+     <number>9</number>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -1196,6 +1196,18 @@
     </column>
     <column>
      <property name="text">
+      <string>Middle Name</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>211</red>
+       <green>205</green>
+       <blue>255</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Age</string>
      </property>
      <property name="font">
@@ -1256,8 +1268,8 @@
      </property>
      <property name="background">
       <color>
-       <red>213</red>
-       <green>208</green>
+       <red>211</red>
+       <green>205</green>
        <blue>255</blue>
       </color>
      </property>

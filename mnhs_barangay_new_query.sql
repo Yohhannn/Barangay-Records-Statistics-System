@@ -80,7 +80,7 @@ CREATE TABLE SOCIO_ECONOMIC_STATUS (
 
 
 CREATE TYPE blood_type_enum AS ENUM(
-    'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-','None'
+    'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-','Unknown'
     );
 
 
@@ -1391,7 +1391,7 @@ VALUES
     ('Employed'),
     ('Unemployed'),
     ('Self Employed'),
-    ('Retired');
+    ('Not in Labor Force');
 
 
 
