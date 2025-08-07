@@ -381,7 +381,7 @@ CREATE TABLE EMPLOYMENT (
 CREATE TABLE TRANSACTION_TYPE (
                                   TT_ID SERIAL PRIMARY KEY,
                                   TT_TYPE_NAME VARCHAR(100) NOT NULL,
-                                      TT_IS_DELETED BOOLEAN DEFAULT FALSE
+                                  TT_IS_DELETED BOOLEAN DEFAULT FALSE
 );
 
 CREATE TYPE transaction_status_enum AS ENUM(

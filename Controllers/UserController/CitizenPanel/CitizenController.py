@@ -1391,7 +1391,7 @@ class CitizenController(BaseFileController):
             self.part3_popup.register_citizen_Deceased_No.setStyleSheet("color: rgb(18, 18, 18)")
             self.part3_popup.register_citizen_ReasonOfDeath.setStyleSheet(
                 "border: 1px solid gray; border-radius: 5px; padding: 5px; background-color: #f2efff")
-            form_data_part_3['reason_of_death'] = "None"
+            form_data_part_3['reason_of_death'] = ""
         if not form_data_part_3['is_indig']:
             errors_part_3.append("Indigenous Group is required.")
             self.part3_popup.register_citizen_IndGroup_Yes.setStyleSheet("color: red")

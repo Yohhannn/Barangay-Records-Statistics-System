@@ -311,7 +311,7 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Transaction ID, Requestor Name</string>
+       <string>Search Transaction ID, Requestor Name, Transaction Type</string>
       </property>
      </widget>
      <widget class="QPushButton" name="inst_Transaction_buttonSearch">

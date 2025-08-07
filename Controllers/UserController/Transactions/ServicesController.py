@@ -45,10 +45,8 @@ class ServiceController(BaseFileController):
         self.trans_services_screen.trans_Transact_button_update.clicked.connect(self.show_update_transaction_popup)
         self.trans_services_screen.btn_returnToTransactionPage.clicked.connect(self.goto_transactions_panel)
 
-
-
     def search_transaction_data(self):
-        """Filter transaction data based on ID or Name."""
+        """Filter transaction data based on ID, Name, or Transaction Type."""
         search_term = self.trans_services_screen.trans_TransactionID_fieldSearch.text().strip()
         if not search_term:
             self.load_transaction_data()
@@ -58,6 +56,7 @@ class ServiceController(BaseFileController):
         try:
             connection = Database()
             cursor = connection.cursor
+
             query = """
                 SELECT 
                     TL.tl_id,
@@ -84,13 +83,14 @@ class ServiceController(BaseFileController):
                   AND (
                     CAST(TL.tl_id AS TEXT) ILIKE %s OR
                     TL.tl_fname ILIKE %s OR
-                    TL.tl_lname ILIKE %s
+                    TL.tl_lname ILIKE %s OR
+                    TT.tt_type_name ILIKE %s
                   )
                 ORDER BY TL.tl_id ASC
                 LIMIT 50;
             """
             search_param = f"%{search_term}%"
-            cursor.execute(query, (search_param, search_param, search_param))
+            cursor.execute(query, (search_param, search_param, search_param, search_param))
             rows = cursor.fetchall()
             self._populate_table(rows)
 
@@ -301,7 +301,7 @@ class ServiceController(BaseFileController):
         table = self.trans_services_screen.inst_tableView_List_RegBusiness
         table.setRowCount(len(rows))
         table.setColumnCount(4)
-        table.setHorizontalHeaderLabels(["ID", "Name", "Date Requested", "Status"])
+        table.setHorizontalHeaderLabels(["ID", "Name", "Date Requested", "Transaction Type"])
         # Set column widths
         table.setColumnWidth(0, 50)
         table.setColumnWidth(1, 200)
@@ -315,7 +315,7 @@ class ServiceController(BaseFileController):
             table.setItem(row_idx, 0, QTableWidgetItem(str(row_data[0])))  # ID
             table.setItem(row_idx, 1, QTableWidgetItem(full_name))  # Name
             table.setItem(row_idx, 2, QTableWidgetItem(row_data[3]))  # Date Requested
-            table.setItem(row_idx, 3, QTableWidgetItem(row_data[4] or "N/A"))  # Status
+            table.setItem(row_idx, 3, QTableWidgetItem(row_data[5] or "N/A"))  # Status
 
     def load_transaction_data(self):
         connection = None
@@ -357,7 +357,7 @@ class ServiceController(BaseFileController):
             table = self.trans_services_screen.inst_tableView_List_RegBusiness
             table.setRowCount(len(rows))
             table.setColumnCount(4)
-            table.setHorizontalHeaderLabels(["ID", "Name", "Date Requested", "Status"])
+            table.setHorizontalHeaderLabels(["ID", "Name", "Date Requested", "Transaction Type"])
 
             # Set column widths
             table.setColumnWidth(0, 50)
@@ -371,7 +371,7 @@ class ServiceController(BaseFileController):
                 table.setItem(row_idx, 0, QTableWidgetItem(str(row_data[0])))  # ID
                 table.setItem(row_idx, 1, QTableWidgetItem(full_name))  # Name
                 table.setItem(row_idx, 2, QTableWidgetItem(row_data[3]))  # Date Requested
-                table.setItem(row_idx, 3, QTableWidgetItem(row_data[4] or "N/A"))  # Status
+                table.setItem(row_idx, 3, QTableWidgetItem(row_data[5] or "N/A"))  # Status
 
         except Exception as e:
             QMessageBox.critical(self.trans_services_screen, "Database Error", str(e))
