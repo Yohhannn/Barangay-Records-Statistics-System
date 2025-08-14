@@ -986,87 +986,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QFrame" name="basePopUpTitleFrame">
-   <property name="geometry">
-    <rect>
-     <x>-1</x>
-     <y>-10</y>
-     <width>1181</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#basePopUpTitleFrame {
-	background-color: #141c52;
-}</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Shape::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Shadow::Raised</enum>
-   </property>
-   <widget class="QLabel" name="label_titleFilterOptions">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#label_titleFilterOptions {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>REGISTER PROFILE PAGE</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="filteroptions_label">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>10</y>
-      <width>351</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#filteroptions_label {
-	background-color: transparent;
-	color: #FFFFFF;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>REGISTERING A NEW CITIZEN</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-  </widget>
   <widget class="QPushButton" name="register_buttonConfirmPart1_NextToPart2">
    <property name="geometry">
     <rect>
@@ -3181,6 +3100,147 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="basePopUpTitleFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-10</y>
+     <width>1181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#basePopUpTitleFrame {
+	background-color: #141c52;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_titleFilterOptions">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_titleFilterOptions {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>EDIT CITIZEN PROFILE</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="display_what_ID">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#display_what_ID {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_what_ID">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_what_ID {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>CITIZEN ID : </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteroptions_label">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>10</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#filteroptions_label {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>NOW UPDATING A CITIZEN PROFILE</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>

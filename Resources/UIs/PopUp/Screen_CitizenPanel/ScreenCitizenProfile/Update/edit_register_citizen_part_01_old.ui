@@ -502,7 +502,7 @@
      <x>620</x>
      <y>60</y>
      <width>531</width>
-     <height>421</height>
+     <height>271</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -555,9 +555,9 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_title{
+      <string notr="true">#label_title_3{
 	background-color:transparent;
-	color: rgb(255, 255, 255);
+	color: #FFFFFF;
 }</string>
      </property>
      <property name="text">
@@ -756,36 +756,6 @@
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="register_citizen_labelPermAddress">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_citizen_labelPermAddress {
-	background-color: transparent;
-	color: #4f4f4f;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>Full Address:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="register_citizen_ContactNumber">
     <property name="geometry">
      <rect>
@@ -893,7 +863,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>380</y>
+      <y>230</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -918,36 +888,6 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="register_citizen_FullAddress">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>210</y>
-      <width>331</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_citizen_FullAddress{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="placeholderText">
-     <string>example street 101, place, place, place</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_req_7">
@@ -1031,12 +971,12 @@
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="filteroptions_label">
+   <widget class="QLabel" name="display_what_ID">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>300</x>
       <y>10</y>
-      <width>351</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
@@ -1048,17 +988,17 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#filteroptions_label {
+     <string notr="true">#display_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
     <property name="text">
-     <string>NOW UPDATING A CITIZEN PROFILE</string>
+     <string>N/A</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_what_ID">
@@ -1080,7 +1020,7 @@
     <property name="styleSheet">
      <string notr="true">#label_what_ID {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
@@ -1091,12 +1031,12 @@
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="display_what_ID">
+   <widget class="QLabel" name="filteroptions_label">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>800</x>
       <y>10</y>
-      <width>151</width>
+      <width>351</width>
       <height>41</height>
      </rect>
     </property>
@@ -1108,17 +1048,17 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#display_what_ID {
+     <string notr="true">#filteroptions_label {
 	background-color: transparent;
-	color: #white;
+	color: #FFFFFF;
 }
 </string>
     </property>
     <property name="text">
-     <string>N/A</string>
+     <string>NOW UPDATING A CITIZEN PROFILE</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
   </widget>
@@ -1191,136 +1131,11 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="imageLabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>200</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#imageLabel {
-	background-color: rgb(230, 230, 230);
-	color: #rgb(49, 49, 49);
-	border: 1px solid rgb(0, 0, 0);
-}
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="uploadButton">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>260</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>6</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#uploadButton {
-    background-color: #141c52;
-    color: white;
-    border-radius: 10px;
-    padding: 5px; /* Optional: Adjusts spacing inside the button */
-}
-#uploadButton:hover {
-    background-color: #1a237e; /* Slightly lighter blue when hovered */
-}
-#uploadButton:pressed {
-    background-color: #0f1442; /* Darker blue when clicked */
-}</string>
-    </property>
-    <property name="text">
-     <string>   UPLOAD IMAGE</string>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../../Assets/Icons/icon_upload_image.svg</normaloff>../../../Assets/Icons/icon_upload_image.svg</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>13</width>
-      <height>13</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="captureButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>260</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>6</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#captureButton {
-    background-color: #141c52;
-    color: white;
-    border-radius: 10px;
-    padding: 5px; /* Optional: Adjusts spacing inside the button */
-}
-#captureButton:hover {
-    background-color: #1a237e; /* Slightly lighter blue when hovered */
-}
-#captureButton:pressed {
-    background-color: #0f1442; /* Darker blue when clicked */
-}</string>
-    </property>
-    <property name="text">
-     <string>   TAKE A PHOTO</string>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../../Assets/Icons/icon_camera.svg</normaloff>../../../Assets/Icons/icon_camera.svg</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>13</width>
-      <height>13</height>
-     </size>
-    </property>
-   </widget>
    <widget class="QLabel" name="register_citizen_labelfirstname">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>50</y>
+      <x>20</x>
+      <y>40</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1347,9 +1162,9 @@
    <widget class="QLineEdit" name="register_citizen_firstname">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>50</y>
-      <width>211</width>
+      <x>150</x>
+      <y>40</y>
+      <width>391</width>
       <height>31</height>
      </rect>
     </property>
@@ -1433,8 +1248,8 @@
    <widget class="QLabel" name="register_citizen_labelmiddlename">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>90</y>
+      <x>20</x>
+      <y>80</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1461,9 +1276,9 @@
    <widget class="QLineEdit" name="register_citizen_middlename">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>90</y>
-      <width>211</width>
+      <x>150</x>
+      <y>80</y>
+      <width>391</width>
       <height>31</height>
      </rect>
     </property>
@@ -1497,8 +1312,8 @@
    <widget class="QLabel" name="register_citizen_labellastname">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>130</y>
+      <x>20</x>
+      <y>120</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1525,9 +1340,9 @@
    <widget class="QLineEdit" name="register_citizen_lastname">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>130</y>
-      <width>211</width>
+      <x>150</x>
+      <y>120</y>
+      <width>391</width>
       <height>31</height>
      </rect>
     </property>
@@ -1561,8 +1376,8 @@
    <widget class="QLabel" name="register_citizen_labelcivilstatus">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>220</y>
+      <x>20</x>
+      <y>210</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1589,9 +1404,9 @@
    <widget class="QComboBox" name="register_citizen_comboBox_CivilStatus">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>220</y>
-      <width>211</width>
+      <x>150</x>
+      <y>210</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -1645,9 +1460,9 @@
    <widget class="QDateEdit" name="register_citizen_date_dob">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>260</y>
-      <width>211</width>
+      <x>150</x>
+      <y>250</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -1699,8 +1514,8 @@
    <widget class="QLabel" name="register_citizen_labeldob">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>260</y>
+      <x>20</x>
+      <y>250</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -1729,7 +1544,7 @@
      <rect>
       <x>10</x>
       <y>300</y>
-      <width>111</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -1755,9 +1570,9 @@
    <widget class="QComboBox" name="register_citizen_comboBox_Religion">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>300</y>
-      <width>191</width>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
@@ -1841,8 +1656,8 @@
    <widget class="QLabel" name="register_citizen_labelSex">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>341</y>
+      <x>280</x>
+      <y>211</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -1869,8 +1684,8 @@
    <widget class="QLabel" name="label_req">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>50</y>
+      <x>30</x>
+      <y>40</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -1899,8 +1714,8 @@
    <widget class="QLabel" name="label_req_3">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>130</y>
+      <x>30</x>
+      <y>120</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -1929,8 +1744,8 @@
    <widget class="QRadioButton" name="radioButton_male">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>340</y>
+      <x>420</x>
+      <y>210</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -2422,8 +2237,8 @@
    <widget class="QRadioButton" name="radioButton_female">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>340</y>
+      <x>420</x>
+      <y>250</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -2915,9 +2730,9 @@
    <widget class="QComboBox" name="register_citizen_comboBox_BloodType">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>380</y>
-      <width>211</width>
+      <x>150</x>
+      <y>340</y>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
@@ -2944,12 +2759,7 @@
     </property>
     <item>
      <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>A</string>
+      <string>Unknown</string>
      </property>
     </item>
     <item>
@@ -2964,11 +2774,6 @@
     </item>
     <item>
      <property name="text">
-      <string>B</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
       <string>B-</string>
      </property>
     </item>
@@ -2979,22 +2784,12 @@
     </item>
     <item>
      <property name="text">
-      <string>O</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
       <string>O-</string>
      </property>
     </item>
     <item>
      <property name="text">
       <string>O+</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>AB</string>
      </property>
     </item>
     <item>
@@ -3011,9 +2806,9 @@
    <widget class="QLabel" name="register_citizen_labelbloodtype">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>380</y>
-      <width>111</width>
+      <x>10</x>
+      <y>340</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -3039,9 +2834,9 @@
    <widget class="QLineEdit" name="register_citizen_suffix">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>170</y>
-      <width>211</width>
+      <x>150</x>
+      <y>160</y>
+      <width>391</width>
       <height>31</height>
      </rect>
     </property>
@@ -3075,8 +2870,8 @@
    <widget class="QLabel" name="register_citizen_labelsuffix">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>170</y>
+      <x>20</x>
+      <y>160</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -3103,8 +2898,8 @@
    <widget class="QLabel" name="label_req_4">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>220</y>
+      <x>30</x>
+      <y>210</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -3133,8 +2928,8 @@
    <widget class="QLabel" name="label_req_5">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>260</y>
+      <x>20</x>
+      <y>250</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -3163,8 +2958,8 @@
    <widget class="QLabel" name="label_req_6">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>350</y>
+      <x>340</x>
+      <y>220</y>
       <width>21</width>
       <height>20</height>
      </rect>
@@ -3190,46 +2985,10 @@
      <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="register_citizen_religion_others">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>300</y>
-      <width>231</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#register_citizen_religion_others{
-	border: 1px solid #b3b3b3;  /* Black border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 5px;               /* Inner spacing */
-    background-color: #f2efff;  /* Gray background */
-    color: #000000; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>35</number>
-    </property>
-    <property name="placeholderText">
-     <string>If 'Others' Please Specify</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_req_8">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>300</y>
       <width>21</width>
       <height>31</height>
@@ -3243,7 +3002,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#label_req_5 {
+     <string notr="true">#label_req_8 {
 	background-color: transparent;
 	color: red;
 }
