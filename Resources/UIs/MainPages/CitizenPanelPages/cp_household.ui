@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1350</width>
+    <width>1349</width>
     <height>850</height>
    </rect>
   </property>
@@ -765,7 +765,7 @@
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>9</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -804,7 +804,7 @@
 }</string>
        </property>
        <property name="text">
-        <string>Household Number:</string>
+        <string>Household #:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1824,6 +1824,61 @@
      <size>
       <width>25</width>
       <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_export">
+    <property name="geometry">
+     <rect>
+      <x>1190</x>
+      <y>20</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#btn_export {
+    background-color:  #494b66; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#btn_export:hover {
+    background-color: #696d93; /* Brighter green when hovered */
+    color: white; 
+}
+
+#btn_export:pressed {
+    background-color:  #677f93; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+    </property>
+    <property name="text">
+     <string>   EXPORT</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Icons/FuncIcons/icon_export.svg</normaloff>../../../Icons/FuncIcons/icon_export.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
      </size>
     </property>
    </widget>
