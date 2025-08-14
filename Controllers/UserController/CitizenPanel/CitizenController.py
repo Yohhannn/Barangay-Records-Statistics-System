@@ -299,41 +299,41 @@ class CitizenController(BaseFileController):
         print("-- Update Citizen Part 2 Popup")
 
         # Populate Relationship ComboBox
-        try:
-            db = Database()
-            cursor = db.get_cursor()
-            cursor.execute(
-                "SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;"
-            )
-            results = cursor.fetchall()
-
-            # print()
-
-            combo_rel = self.part2_popup_update.register_citizen_comboBox_Relationship
-            # combo.clear()
-            for rth_id, rth_relationship_name in results:
-                combo_rel.addItem(rth_relationship_name, rth_id)  # ✅ Properly bind ID to item
-
-
-            # Populate Philhealth Category ComboBox
-            cursor.execute("SELECT pc_id, pc_category_name FROM philhealth_category ORDER BY pc_category_name ASC;")
-            results = cursor.fetchall()
-            combo_philcat = self.part2_popup_update.register_citizen_comboBox_PhilCat
-            # combo_philcat.clear()
-            for pc_id, pc_category_name in results:
-                combo_philcat.addItem(pc_category_name, pc_id)
-
-            # Populate Membership Type ComboBox
-            # membership_types = ["Member", "Dependent", "Non-Member"]
-            # combo_memtype = self.part2_popup_update.register_citizen_comboBox_PhilMemType
-            # combo_memtype.clear()
-            # for mem_type in membership_types:
-            #     combo_memtype.addItem(mem_type)
-
-        except Exception as e:
-            print(f"Failed to initialize Part 2 popup: {e}")
-        finally:
-            db.close()
+        # try:
+        #     db = Database()
+        #     cursor = db.get_cursor()
+        #     cursor.execute(
+        #         "SELECT rth_id, rth_relationship_name FROM relationship_type ORDER BY rth_relationship_name ASC;"
+        #     )
+        #     results = cursor.fetchall()
+        #
+        #     # print()
+        #
+        #     combo_rel = self.part2_popup_update.register_citizen_comboBox_Relationship
+        #     # combo.clear()
+        #     for rth_id, rth_relationship_name in results:
+        #         combo_rel.addItem(rth_relationship_name, rth_id)  # ✅ Properly bind ID to item
+        #
+        #
+        #     # Populate Philhealth Category ComboBox
+        #     cursor.execute("SELECT pc_id, pc_category_name FROM philhealth_category ORDER BY pc_category_name ASC;")
+        #     results = cursor.fetchall()
+        #     combo_philcat = self.part2_popup_update.register_citizen_comboBox_PhilCat
+        #     # combo_philcat.clear()
+        #     for pc_id, pc_category_name in results:
+        #         combo_philcat.addItem(pc_category_name, pc_id)
+        #
+        #     # Populate Membership Type ComboBox
+        #     # membership_types = ["Member", "Dependent", "Non-Member"]
+        #     # combo_memtype = self.part2_popup_update.register_citizen_comboBox_PhilMemType
+        #     # combo_memtype.clear()
+        #     # for mem_type in membership_types:
+        #     #     combo_memtype.addItem(mem_type)
+        #
+        # except Exception as e:
+        #     print(f"Failed to initialize Part 2 popup: {e}")
+        # finally:
+        #     db.close()
 
         # Load data after populating combos
         # self.load_citizen_part2_data_for_update()
@@ -344,54 +344,54 @@ class CitizenController(BaseFileController):
         print("-- Update Citizen Part 3 Popup")
         self.part3_popup_update.show()
 
-        try:
-            db = Database()
-            cursor = db.get_cursor()
-            cursor.execute(
-                "SELECT clah_id, clah_classification_name FROM classification_health_risk ORDER BY clah_classification_name ASC;")
-            results = cursor.fetchall()
+        # try:
+        #     db = Database()
+        #     cursor = db.get_cursor()
+        #     cursor.execute(
+        #         "SELECT clah_id, clah_classification_name FROM classification_health_risk ORDER BY clah_classification_name ASC;")
+        #     results = cursor.fetchall()
+        #
+        #     combo = self.part3_popup_update.register_citizen_health_classification
+        #     # combo.clear()
+        #     for clah_id, clah_classification_name in results:
+        #         combo.addItem(clah_classification_name, clah_id)
+        #
+        #
+        #
+        # except Exception as e:
+        #     print(f"Failed to load classitiofat: {e}")
+        # finally:
+        #     db.close()
 
-            combo = self.part3_popup_update.register_citizen_health_classification
-            # combo.clear()
-            for clah_id, clah_classification_name in results:
-                combo.addItem(clah_classification_name, clah_id)
+        # try:
+        #     db = Database()
+        #     cursor = db.get_cursor()
+        #     cursor.execute("SELECT fpm_id, fpm_method FROM family_planning_method ORDER BY fpm_method ASC;")
+        #     results = cursor.fetchall()
+        #
+        #     combo = self.part3_popup_update.register_citizen_comboBox_FamilyPlanningMethod
+        #     for fpm_id, fpm_method in results:
+        #         combo.addItem(fpm_method, fpm_id)
+        #
+        # except Exception as e:
+        #     print(f"Failed to load fpm meyhofd: {e}")
+        # finally:
+        #     db.close()
 
-
-
-        except Exception as e:
-            print(f"Failed to load classitiofat: {e}")
-        finally:
-            db.close()
-
-        try:
-            db = Database()
-            cursor = db.get_cursor()
-            cursor.execute("SELECT fpm_id, fpm_method FROM family_planning_method ORDER BY fpm_method ASC;")
-            results = cursor.fetchall()
-
-            combo = self.part3_popup_update.register_citizen_comboBox_FamilyPlanningMethod
-            for fpm_id, fpm_method in results:
-                combo.addItem(fpm_method, fpm_id)
-
-        except Exception as e:
-            print(f"Failed to load fpm meyhofd: {e}")
-        finally:
-            db.close()
-
-        try:
-            db = Database()
-            cursor = db.get_cursor()
-            cursor.execute("SELECT fpms_id, fpms_status_name FROM fpm_status ORDER BY fpms_status_name ASC;")
-            results = cursor.fetchall()
-
-            combo = self.part3_popup_update.register_citizen_comboBox_FamPlanStatus
-            for fpms_id, fpms_status_name in results:
-                combo.addItem(fpms_status_name, fpms_id)
-
-        except Exception as e:
-            print(f"Failed to load fpm status: {e}")
-        finally:
-            db.close()
+        # try:
+        #     db = Database()
+        #     cursor = db.get_cursor()
+        #     cursor.execute("SELECT fpms_id, fpms_status_name FROM fpm_status ORDER BY fpms_status_name ASC;")
+        #     results = cursor.fetchall()
+        #
+        #     combo = self.part3_popup_update.register_citizen_comboBox_FamPlanStatus
+        #     for fpms_id, fpms_status_name in results:
+        #         combo.addItem(fpms_status_name, fpms_id)
+        #
+        # except Exception as e:
+        #     print(f"Failed to load fpm status: {e}")
+        # finally:
+        #     db.close()
 
         # self.deceased_group.addButton(self.part3_popup_update.register_citizen_Deceased_Yes)
         # self.deceased_group.addButton(self.part3_popup_update.register_citizen_Deceased_No)
