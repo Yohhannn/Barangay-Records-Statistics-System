@@ -51,7 +51,7 @@
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
-   <widget class="QLabel" name="app_title">
+   <widget class="QLabel" name="title_bodyDashboardSystemTitle">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -68,9 +68,9 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#app_title {
+     <string notr="true">#title_bodyDashboardSystemTitle {
 	background-color: transparent;
-	color: #FFFFFF;
+	color: #white;
 }
 </string>
     </property>
@@ -287,7 +287,7 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>611</width>
+        <width>431</width>
         <height>31</height>
        </rect>
       </property>
@@ -311,13 +311,13 @@
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Search Citizen Name, Sitio ID, Citizen ID</string>
+       <string>Search Citizen Name or ID</string>
       </property>
      </widget>
      <widget class="QPushButton" name="cp_CitizenName_buttonSearch">
       <property name="geometry">
        <rect>
-        <x>600</x>
+        <x>420</x>
         <y>40</y>
         <width>31</width>
         <height>31</height>
@@ -433,9 +433,9 @@
        </property>
        <property name="background">
         <color>
-         <red>211</red>
-         <green>205</green>
-         <blue>255</blue>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
         </color>
        </property>
       </column>
@@ -451,9 +451,9 @@
        </property>
        <property name="background">
         <color>
-         <red>211</red>
-         <green>205</green>
-         <blue>255</blue>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
         </color>
        </property>
       </column>
@@ -469,9 +469,9 @@
        </property>
        <property name="background">
         <color>
-         <red>211</red>
-         <green>205</green>
-         <blue>255</blue>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
         </color>
        </property>
       </column>
@@ -487,9 +487,9 @@
        </property>
        <property name="background">
         <color>
-         <red>211</red>
-         <green>205</green>
-         <blue>255</blue>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
         </color>
        </property>
       </column>
@@ -505,13 +505,232 @@
        </property>
        <property name="background">
         <color>
-         <red>211</red>
-         <green>205</green>
-         <blue>255</blue>
+         <red>59</red>
+         <green>57</green>
+         <blue>100</blue>
         </color>
        </property>
       </column>
      </widget>
+     <widget class="QPushButton" name="profileList_buttonFilter">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>40</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#profileList_buttonFilter {
+    background-color:  #474747;
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#profileList_buttonFilter:hover {
+    background-color: #636363;
+    color: white; 
+}
+
+#profileList_buttonFilter:pressed {
+    background-color: #bfbfbf;
+    color: white; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>   FILTER OPTIONS</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Assets/FuncIcons/icon_filter.svg</normaloff>../../../Assets/FuncIcons/icon_filter.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_remove">
+     <property name="geometry">
+      <rect>
+       <x>1070</x>
+       <y>20</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_remove {
+    background-color: #c9302c; /* Default red */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_remove:hover {
+    background-color: #d9534f; /* Brighter red when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_remove:pressed {
+    background-color: #a52a2a; /* Darker red when pressed */
+    color: white; 
+}</string>
+     </property>
+     <property name="text">
+      <string>   REMOVE CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_del.svg</normaloff>../../../Assets/FuncIcons/icon_del.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_register">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>20</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_register {
+    background-color:  #1e7e34; /* Default green */
+    color: white;
+    border: 1px solid #b5b5b5;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_register:hover {
+    background-color: #28a745; /* Brighter green when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_register:pressed {
+    background-color:  #34c759; /* Darker green when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>   REGISTER CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_add.svg</normaloff>../../../Assets/FuncIcons/icon_add.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cp_citizen_button_update">
+     <property name="geometry">
+      <rect>
+       <x>890</x>
+       <y>20</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::FocusPolicy::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cp_citizen_button_update {
+    background-color: #6c757d; /* Default gray */
+    color: white;
+    border: 1px solid #b5b5b5; /* Light gray border */
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+#cp_citizen_button_update:hover {
+    background-color: #838b94; /* Brighter gray when hovered */
+    color: white; 
+}
+
+#cp_citizen_button_update:pressed {
+    background-color: #5a6268; /* Darker gray when pressed */
+    color: white; 
+}
+</string>
+     </property>
+     <property name="text">
+      <string>  UPDATE CITIZEN</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../Assets/FuncIcons/icon_edit.svg</normaloff>../../../Assets/FuncIcons/icon_edit.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
     </widget>
     <widget class="QFrame" name="basePopUpBodyFrame_3">
      <property name="geometry">
@@ -538,10 +757,10 @@
      <widget class="QFrame" name="basePopUpBodyFrame_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>190</x>
         <y>20</y>
-        <width>301</width>
-        <height>121</height>
+        <width>351</width>
+        <height>171</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -591,7 +810,7 @@
         <rect>
          <x>130</x>
          <y>10</y>
-         <width>151</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -619,7 +838,7 @@
         <rect>
          <x>130</x>
          <y>30</y>
-         <width>151</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -705,7 +924,7 @@
         <rect>
          <x>130</x>
          <y>70</y>
-         <width>151</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -733,7 +952,7 @@
         <rect>
          <x>130</x>
          <y>50</y>
-         <width>151</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -785,12 +1004,41 @@
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="cp_labelSex">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>130</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelSex{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sex &amp; Civil Status:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
       <widget class="QLabel" name="cp_displaySuffix">
        <property name="geometry">
         <rect>
          <x>130</x>
          <y>90</y>
-         <width>151</width>
+         <width>201</width>
          <height>31</height>
         </rect>
        </property>
@@ -842,6 +1090,35 @@
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="cp_labelDOB">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelDOB{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Date of Birth &amp; Age:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
       <widget class="QLabel" name="cp_displaySex_2">
        <property name="geometry">
         <rect>
@@ -865,6 +1142,62 @@
        </property>
        <property name="text">
         <string>Male</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayCivilStatus">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>130</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayCivilStatus{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayAge">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>110</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayAge{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1637,58 +1970,83 @@
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelPWD">
+     </widget>
+     <widget class="QFrame" name="basePopUpBodyFrame_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>161</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#basePopUpBodyFrame_7 {
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(194, 194, 194);
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="cp_labelHomeImage">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>290</y>
-         <width>171</width>
-         <height>31</height>
+         <x>10</x>
+         <y>10</y>
+         <width>141</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelHomeImage{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Profile Picture</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="imageLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>141</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_labelPWD{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
+        <string notr="true">#imageLabel {
+	background-color: rgb(230, 230, 230);
+	color: #rgb(49, 49, 49);
+	border: 1px solid rgb(0, 0, 0);
+}
+</string>
        </property>
        <property name="text">
-        <string>Health Classification:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_display_health_classification">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>290</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_display_health_classification{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
+        <string/>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1701,7 +2059,7 @@
         <x>330</x>
         <y>200</y>
         <width>211</width>
-        <height>221</height>
+        <height>321</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1717,12 +2075,12 @@
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <widget class="QLabel" name="cp_displayRegisteredVoter">
+      <widget class="QLabel" name="cp_labelReligion">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>10</y>
-         <width>41</width>
+         <x>20</x>
+         <y>30</y>
+         <width>51</width>
          <height>31</height>
         </rect>
        </property>
@@ -1730,26 +2088,27 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_displayRegisteredVoter{
+        <string notr="true">#cp_labelReligion{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>N/A</string>
+        <string>Religion:</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelRegisteredVoter">
+      <widget class="QLabel" name="cp_displayReligion">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>10</y>
+         <x>80</x>
+         <y>30</y>
          <width>111</width>
          <height>31</height>
         </rect>
@@ -1758,550 +2117,10 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
-         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_labelRegisteredVoter{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>A Registered Voter:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelDeceased">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>50</y>
-         <width>101</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelDeceased{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>A Deceased:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayDeceased">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>50</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayDeceased{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelEducationalAttainment">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>150</y>
-         <width>171</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelEducationalAttainment{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Educ. Attainment</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayEducationalAttainment">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>160</y>
-         <width>171</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>7</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayEducationalAttainment{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>[N/A]</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelSchoolName">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>180</y>
-         <width>111</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelSchoolName{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>School Name</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displaySchoolName">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>200</y>
-         <width>171</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>7</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displaySchoolName{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>[N/A]</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelReasonOfDeath">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>111</y>
-         <width>171</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelReasonOfDeath{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Reason of Death</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayReasonOfDeath">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>130</y>
-         <width>171</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>7</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayReasonOfDeath{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;[N/A]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayDoD">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>99</y>
-         <width>171</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>7</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayDoD{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;[N/A]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelDoD">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>80</y>
-         <width>171</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelDoD{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Date of Death</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelPartOfIndigenousGroup">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelPartOfIndigenousGroup{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Part of Indigenous Grp:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayPartOfIndigenousGroup">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>30</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayPartOfIndigenousGroup{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_12">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>150</y>
-        <width>521</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_12 {
-	background-color: rgb(247, 247, 247);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <widget class="QLabel" name="cp_displayAge">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>0</y>
-         <width>351</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayAge{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelDOB">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>0</y>
-         <width>141</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelDOB{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Date of Birth &amp; Age:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayCivilStatus">
-       <property name="geometry">
-        <rect>
-         <x>350</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayCivilStatus{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelSex">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>141</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelSex{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Sex &amp; Civil Status:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_13">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>20</y>
-        <width>211</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_13 {
-	background-color: rgb(247, 247, 247);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <widget class="QLabel" name="cp_displayBloodType">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>50</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayBloodType{
+        <string notr="true">#cp_displayReligion{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -2342,96 +2161,11 @@
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_displayReligion">
+      <widget class="QLabel" name="cp_displayBloodType">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>30</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayReligion{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displaySitio">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>10</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displaySitio{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelReligion">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>51</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>9</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelReligion{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Religion:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelSitio">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>10</y>
+         <x>100</x>
+         <y>50</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -2440,20 +2174,19 @@
         <font>
          <family>Arial</family>
          <pointsize>9</pointsize>
-         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_labelSitio{
+        <string notr="true">#cp_displayBloodType{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>Sitio:</string>
+        <string>N/A</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="cp_displayStudent">
@@ -2482,6 +2215,35 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelGovWorker">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelGovWorker{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>A Gov. Worker:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="cp_labelStudent">
@@ -2541,11 +2303,96 @@
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelGovWorker">
+      <widget class="QLabel" name="cp_displayRegisteredVoter">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>130</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayRegisteredVoter{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayPWD">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>110</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayPWD{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelRegisteredVoter">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>70</y>
+         <y>130</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelRegisteredVoter{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>A Registered Voter:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelPWD">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -2558,114 +2405,64 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_labelGovWorker{
+        <string notr="true">#cp_labelPWD{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>A Gov. Worker:</string>
+        <string>A PWD:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-     </widget>
-     <widget class="QFrame" name="basePopUpBodyFrame_14">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>430</y>
-        <width>211</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#basePopUpBodyFrame_14 {
-	background-color: rgb(247, 247, 247);
-	border: 1px solid rgb(194, 194, 194);
-	border-radius: 10px;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_DateStarted">
+      <widget class="QLabel" name="cp_labelDeceased">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>50</y>
-         <width>91</width>
-         <height>20</height>
+         <y>150</y>
+         <width>101</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>8</pointsize>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#label_DateStarted{
+        <string notr="true">#cp_labelDeceased{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>Date Started:</string>
+        <string>A Deceased:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_DateEnded">
+      <widget class="QLabel" name="cp_displayStudent_3">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>66</y>
+         <x>180</x>
+         <y>140</y>
          <width>91</width>
-         <height>20</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>8</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#label_DateEnded{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Date Ended:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="display_DateStarted">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>50</y>
-         <width>111</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#display_DateStarted{
+        <string notr="true">#cp_displayStudent{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -2677,23 +2474,23 @@
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="display_DateEnded">
+      <widget class="QLabel" name="cp_displayDeceased">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>65</y>
-         <width>111</width>
-         <height>21</height>
+         <x>150</x>
+         <y>150</y>
+         <width>41</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>8</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#display_DateEnded{
+        <string notr="true">#cp_displayDeceased{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -2705,40 +2502,212 @@
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="labelnotenotenote">
+      <widget class="QLabel" name="cp_labelPhilMem">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>211</width>
-         <height>16</height>
+         <x>20</x>
+         <y>170</y>
+         <width>121</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Arial</family>
-         <pointsize>6</pointsize>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#labelnotenotenote{
+        <string notr="true">#cp_labelPhilMem{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>Family Planning Method</string>
+        <string>A Philhealth Member:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayPhilMem">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>170</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayPhilMem{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelPartOfIndigenousGroup">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>190</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelPartOfIndigenousGroup{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Part of Indigenous Grp:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayPartOfIndigenousGroup">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>190</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayPartOfIndigenousGroup{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelSitio">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelSitio{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sitio:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displaySitio">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>10</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displaySitio{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_labelEducationalAttainment">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>210</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelEducationalAttainment{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>Educ. Attainment</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_labelFamPlanMethod">
+      <widget class="QLabel" name="cp_displayEducationalAttainment">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>9</y>
-         <width>91</width>
+         <y>230</y>
+         <width>171</width>
          <height>31</height>
         </rect>
        </property>
@@ -2749,24 +2718,53 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_labelFamPlanMethod{
+        <string notr="true">#cp_displayEducationalAttainment{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
        </property>
        <property name="text">
-        <string>Family Plan Method:</string>
+        <string>[N/A]</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="cp_displayFamPlanMethod">
+      <widget class="QLabel" name="cp_labelSchoolName">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>10</y>
-         <width>111</width>
+         <x>60</x>
+         <y>250</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_labelSchoolName{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>School Name</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displaySchoolName">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>280</y>
+         <width>171</width>
          <height>31</height>
         </rect>
        </property>
@@ -2777,7 +2775,38 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">#cp_displayFamPlanMethod{
+        <string notr="true">#cp_displaySchoolName{
+	background-color:transparent;
+	color:#4f4f4f;
+}</string>
+       </property>
+       <property name="text">
+        <string>[N/A]</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cp_displayPWD_2">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>130</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#cp_displayPWD{
 	background-color:transparent;
 	color:#4f4f4f;
 }</string>
@@ -2787,62 +2816,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_displayFamPlanStatus">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>30</y>
-         <width>111</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_displayFamPlanStatus{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="cp_labelFamPlanStatus">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#cp_labelFamPlanStatus{
-	background-color:transparent;
-	color:#4f4f4f;
-}</string>
-       </property>
-       <property name="text">
-        <string>Status:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </widget>
@@ -3116,170 +3089,6 @@
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-    </widget>
-    <widget class="QPushButton" name="cp_citizen_button_remove">
-     <property name="geometry">
-      <rect>
-       <x>1070</x>
-       <y>20</y>
-       <width>181</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#cp_citizen_button_remove {
-    background-color: #c9302c; /* Default red */
-    color: white;
-    border: 1px solid #b5b5b5; /* Light gray border */
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#cp_citizen_button_remove:hover {
-    background-color: #d9534f; /* Brighter red when hovered */
-    color: white; 
-}
-
-#cp_citizen_button_remove:pressed {
-    background-color: #a52a2a; /* Darker red when pressed */
-    color: white; 
-}</string>
-     </property>
-     <property name="text">
-      <string>   REMOVE CITIZEN</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../Assets/FuncIcons/icon_del.svg</normaloff>../../../Assets/FuncIcons/icon_del.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="cp_citizen_button_update">
-     <property name="geometry">
-      <rect>
-       <x>890</x>
-       <y>20</y>
-       <width>171</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#cp_citizen_button_update {
-    background-color: #6c757d; /* Default gray */
-    color: white;
-    border: 1px solid #b5b5b5; /* Light gray border */
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#cp_citizen_button_update:hover {
-    background-color: #838b94; /* Brighter gray when hovered */
-    color: white; 
-}
-
-#cp_citizen_button_update:pressed {
-    background-color: #5a6268; /* Darker gray when pressed */
-    color: white; 
-}
-</string>
-     </property>
-     <property name="text">
-      <string>  UPDATE CITIZEN</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../Assets/FuncIcons/icon_edit.svg</normaloff>../../../Assets/FuncIcons/icon_edit.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="cp_citizen_button_register">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>20</y>
-       <width>191</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#cp_citizen_button_register {
-    background-color:  #1e7e34; /* Default green */
-    color: white;
-    border: 1px solid #b5b5b5;
-    border-radius: 10px;
-    padding: 10px; 
-}
-
-#cp_citizen_button_register:hover {
-    background-color: #28a745; /* Brighter green when hovered */
-    color: white; 
-}
-
-#cp_citizen_button_register:pressed {
-    background-color:  #34c759; /* Darker green when pressed */
-    color: white; 
-}
-</string>
-     </property>
-     <property name="text">
-      <string>   REGISTER CITIZEN</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../Assets/FuncIcons/icon_add.svg</normaloff>../../../Assets/FuncIcons/icon_add.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
     </widget>
    </widget>
    <widget class="QToolButton" name="btn_returnToCitizenPanelPage">

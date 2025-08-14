@@ -37,6 +37,8 @@ class CitizenView:
         self.part1_popup.setFixedSize(self.part1_popup.size())
         self.part1_popup.register_buttonPrev.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_prev'))
         self.part1_popup.register_buttonConfirmPart1_NextToPart2.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_next'))
+        self.part1_popup.captureButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_camera.svg'))
+        self.part1_popup.uploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.svg'))
         self.part1_popup.register_buttonConfirmPart1_NextToPart2.clicked.connect(self.controller.validate_part1_fields)
 
         try:
@@ -174,6 +176,8 @@ class CitizenView:
         self.part1_popup_update.register_buttonPrev.setIcon(QIcon('Resources/Icons/FuncIcons/icon_arrow_prev'))
         self.part1_popup_update.register_buttonConfirmPart1_NextToPart2.setIcon(
             QIcon('Resources/Icons/FuncIcons/icon_arrow_next'))
+        # self.part1_popup_update.captureButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_camera.svg'))
+        # self.part1_popup_update.uploadButton.setIcon(QIcon('Resources/Icons/General_Icons/icon_upload_image.svg'))
         self.part1_popup_update.register_buttonConfirmPart1_NextToPart2.clicked.connect(self.controller.update_validate_part1_fields)
 
         try:
