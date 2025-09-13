@@ -32,6 +32,7 @@ class ServiceController(BaseFileController):
         self.trans_services_screen.trans_Transact_button_create.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
         self.trans_services_screen.trans_Transact_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.trans_services_screen.trans_Transact_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
+        self.trans_services_screen.btn_export.setIcon(QIcon('Resources/Icons/FuncIcons/icon_export.svg'))
         # self.trans_services_screen.transactionList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # REGISTER BUTTON
