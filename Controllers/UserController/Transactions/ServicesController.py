@@ -1,7 +1,17 @@
+# File: Controllers/UserController/Transactions/ServicesController.py
+
 from PySide6.QtGui import QIcon, Qt
 from database import Database
 
 from PySide6.QtWidgets import QMessageBox, QPushButton, QTableWidgetItem
+from PySide6.QtWidgets import QMessageBox, QPushButton, QTableWidgetItem, QFileDialog  # Add QFileDialog
+from docx import Document  # Add docx
+from docx.shared import Inches  # Add Inches (optional, for setting width)
+
+# --- NEW IMPORT FOR TEMPLATING ---
+import os
+from docxtpl import DocxTemplate
+# ---------------------------------
 
 from Controllers.BaseFileController import BaseFileController
 from Utils.util_popup import load_popup
@@ -13,7 +23,7 @@ class ServiceController(BaseFileController):
         self.selected_transaction_id = None
         self.user_role = user_role
         self.sys_user_id = sys_user_id
-        
+
         self.stack = stack
         self.trans_services_screen = self.load_ui("Resources/UIs/MainPages/TransactionPages/services.ui")
         self.setup_services_ui()
@@ -26,18 +36,23 @@ class ServiceController(BaseFileController):
         self.setWindowTitle("MaPro: Services")
         self.setWindowIcon(QIcon("Resources/Icons/AppIcons/appicon_active_u.ico"))
 
-    # Set images and icons
-        self.trans_services_screen.btn_returnToTransactionPage.setIcon(QIcon('Resources/Icons/FuncIcons/img_return.png'))
-        self.trans_services_screen.inst_Transaction_buttonSearch.setIcon(QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
+        # Set images and icons
+        self.trans_services_screen.btn_returnToTransactionPage.setIcon(
+            QIcon('Resources/Icons/FuncIcons/img_return.png'))
+        self.trans_services_screen.inst_Transaction_buttonSearch.setIcon(
+            QIcon('Resources/Icons/FuncIcons/icon_search_w.svg'))
         self.trans_services_screen.trans_Transact_button_create.setIcon(QIcon('Resources/Icons/FuncIcons/icon_add.svg'))
-        self.trans_services_screen.trans_Transact_button_update.setIcon(QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
+        self.trans_services_screen.trans_Transact_button_update.setIcon(
+            QIcon('Resources/Icons/FuncIcons/icon_edit.svg'))
         self.trans_services_screen.trans_Transact_button_remove.setIcon(QIcon('Resources/Icons/FuncIcons/icon_del.svg'))
         self.trans_services_screen.btn_export.setIcon(QIcon('Resources/Icons/FuncIcons/icon_export.svg'))
         # self.trans_services_screen.transactionList_buttonFilter.setIcon(QIcon('Resources/Icons/FuncIcons/icon_filter.svg'))
 
         # REGISTER BUTTON
         self.trans_services_screen.trans_Transact_button_create.clicked.connect(self.show_transaction_popup)
-        self.trans_services_screen.inst_tableView_List_RegBusiness.cellClicked.connect(self.handle_row_click_transaction)
+        self.trans_services_screen.btn_export.clicked.connect(self.export_transaction_to_word)
+        self.trans_services_screen.inst_tableView_List_RegBusiness.cellClicked.connect(
+            self.handle_row_click_transaction)
 
         self.trans_services_screen.trans_Transact_button_remove.clicked.connect(self.handle_remove_transaction)
 
@@ -297,7 +312,6 @@ class ServiceController(BaseFileController):
         finally:
             db.close()
 
-
     def _populate_table(self, rows):
         table = self.trans_services_screen.inst_tableView_List_RegBusiness
         table.setRowCount(len(rows))
@@ -390,7 +404,6 @@ class ServiceController(BaseFileController):
         # Store selected transaction ID
         self.selected_transaction_id = selected_id
 
-
         for record in self.transaction_rows:
             if str(record[0]) == selected_id:
                 self.trans_services_screen.trans_displayFirstName.setText(record[1] or "N/A")
@@ -406,13 +419,147 @@ class ServiceController(BaseFileController):
 
                 break
 
+    def get_full_transaction_details(self, tl_id):
+        """Retrieves all transaction details for a given ID."""
+        connection = None
+        try:
+            connection = Database()
+            cursor = connection.cursor
+            # This query is essentially the same as load_transaction_data,
+            # but filtered by ID.
+            query = """
+                SELECT 
+                    TL.tl_id,
+                    TL.tl_fname,
+                    TL.tl_lname,
+                    TO_CHAR(TL.tl_date_requested, 'FMMonth FMDD, YYYY') AS tl_date_requested_formatted,
+                    TL.tl_status,
+                    TT.tt_type_name,
+                    TL.tl_purpose,
+                    TO_CHAR(TL.tl_date_encoded, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_date_encoded_formatted,
+                    SA.SYS_FNAME || ' ' || COALESCE(LEFT(SA.SYS_MNAME, 1) || '. ', '') || SA.SYS_LNAME AS ENCODED_BY,
+                    TO_CHAR(TL.tl_last_updated, 'FMMonth FMDD, YYYY | FMHH:MI AM') AS tl_last_updated_formatted,
+                    CASE 
+                        WHEN SUA.SYS_FNAME IS NULL THEN 'System'
+                        ELSE SUA.SYS_FNAME || ' ' ||
+                             COALESCE(LEFT(SUA.SYS_MNAME, 1) || '. ', '') ||
+                             SUA.SYS_LNAME
+                    END AS LAST_UPDATED_BY_NAME
+                FROM TRANSACTION_LOG TL
+                LEFT JOIN TRANSACTION_TYPE TT ON TL.tt_id = TT.tt_id
+                LEFT JOIN SYSTEM_ACCOUNT SA ON TL.ENCODED_BY_sys_id = SA.SYS_USER_ID
+                LEFT JOIN SYSTEM_ACCOUNT SUA ON TL.LAST_UPDATED_BY_SYS_ID = SUA.SYS_USER_ID
+                WHERE TL.tl_id = %s AND TL.tl_is_deleted = FALSE;
+            """
+            cursor.execute(query, (tl_id,))
+            return cursor.fetchone()
+
+        except Exception as e:
+            QMessageBox.critical(self.trans_services_screen, "Database Error", f"Failed to get details: {str(e)}")
+            return None
+        finally:
+            if connection:
+                connection.close()
+
+    def export_transaction_to_word(self):
+        """Exports the selected transaction details to a Word document using a template."""
+        tl_id = getattr(self, 'selected_transaction_id', None)
+        if not tl_id:
+            QMessageBox.warning(
+                self.trans_services_screen,
+                "No Selection",
+                "Please select a transaction to export."
+            )
+            return
+
+        # 1. Define Template Path
+        # --- ENSURE YOU CREATE THIS FILE AND FOLDER ---
+        template_path = os.path.join("Resources", "Templates", "transaction_template.docx")
+
+        # Check if template exists
+        if not os.path.exists(template_path):
+            QMessageBox.critical(
+                self.trans_services_screen,
+                "Export Error",
+                f"Template file not found at: {template_path}\nPlease create a Word template file."
+            )
+            return
+
+        # 2. Get Transaction Data
+        data = self.get_full_transaction_details(tl_id)
+        if not data:
+            QMessageBox.critical(
+                self.trans_services_screen,
+                "Export Error",
+                f"Could not retrieve data for Transaction ID {tl_id}."
+            )
+            return
+
+        # Unpack data
+        (
+            id, fname, lname, date_req, status, trans_type, purpose,
+            date_encoded, encoded_by, date_updated, updated_by
+        ) = data
+
+        full_name = f"{fname} {lname}"
+
+        # 3. Get Save File Path
+        default_filename = f"Transaction_Report_{id}_{lname}.docx"
+        file_path, _ = QFileDialog.getSaveFileName(
+            self.trans_services_screen,
+            "Save Transaction Report",
+            default_filename,
+            "Word Document (*.docx)"
+        )
+
+        if not file_path:
+            return  # User cancelled the save dialog
+
+        # 4. Use DocxTemplate for replacement
+        try:
+            # Load the template
+            document = DocxTemplate(template_path)
+
+            # Define the context (data dictionary for replacement)
+            # Placeholder in your template must be exactly (FULL_NAME)
+            context = {
+                'FULL_NAME': full_name,
+                # Add other placeholders here as you format your template:
+                # 'TRANSACTION_ID': id,
+                # 'DATE_REQUESTED': date_req,
+                # 'PURPOSE': purpose,
+                # ... etc.
+            }
+
+            # Render the document (performs the replacement)
+            document.render(context)
+
+            # Save the final document
+            document.save(file_path)
+
+            QMessageBox.information(
+                self.trans_services_screen,
+                "Export Success",
+                f"Transaction report successfully saved to:\n{file_path}"
+            )
+
+        except Exception as e:
+            QMessageBox.critical(
+                self.trans_services_screen,
+                "Export Error",
+                f"An error occurred during document creation/templating: {str(e)}"
+            )
+
+    # --- REST OF THE CODE REMAINS THE SAME ---
+
     def show_transaction_popup(self):
         print("-- Create Transaction Popup")
         self.popup = load_popup("Resources/UIs/PopUp/Screen_Transactions/create_transaction.ui", self)
         self.popup.setWindowTitle("Mapro: Create New Transaction")
         self.popup.setFixedSize(self.popup.size())
 
-        self.popup.register_buttonConfirmTransaction_SaveForm.setIcon(QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
+        self.popup.register_buttonConfirmTransaction_SaveForm.setIcon(
+            QIcon('Resources/Icons/FuncIcons/icon_confirm.svg'))
         self.popup.register_buttonConfirmTransaction_SaveForm.clicked.connect(self.validate_transaction_fields)
 
         self.popup.setWindowModality(Qt.ApplicationModal)
@@ -522,7 +669,6 @@ class ServiceController(BaseFileController):
         finally:
             if db:
                 db.close()
-
 
     def validate_transaction_fields(self):
         errors = []
@@ -672,14 +818,13 @@ class ServiceController(BaseFileController):
         finally:
             db.close()
 
-
-
     def goto_transactions_panel(self):
         """Handle navigation to Transactions Panel screen."""
         print("-- Navigating to Transactions")
         if not hasattr(self, 'transactions'):
             from Controllers.UserController.TransactionController import TransactionController
-            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id, self.user_role, self.stack)
+            self.transactions_panel = TransactionController(self.login_window, self.emp_first_name, self.sys_user_id,
+                                                            self.user_role, self.stack)
             self.stack.addWidget(self.transactions_panel.transactions_screen)
 
         self.stack.setCurrentWidget(self.transactions_panel.transactions_screen)

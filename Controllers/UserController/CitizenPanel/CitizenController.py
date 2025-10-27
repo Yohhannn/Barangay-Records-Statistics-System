@@ -228,6 +228,7 @@ class CitizenController(BaseFileController):
         self.part3_popup_update = self.view.show_update_citizen_part_03_popup(self)
 
         self.gov_group = QButtonGroup()
+        
         self.sex_group = QButtonGroup()
 
         self.sex_group.addButton(self.part1_popup_update.radioButton_male)
@@ -2041,11 +2042,11 @@ class CitizenController(BaseFileController):
 
     # GENERAL FUNCTION PART 1
 
-    def setup_image_handlers(self, popup):
-        popup.uploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
-        popup.captureButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_camera.svg"))
-        popup.uploadButton.clicked.connect(lambda: self.upload_image(popup.imageLabel))
-        popup.captureButton.clicked.connect(lambda: self.capture_photo(popup.imageLabel))
+  #  def setup_image_handlers(self, popup):
+    #    popup.uploadButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_upload_image.svg"))
+     #   popup.captureButton.setIcon(QIcon("Resources/Icons/General_Icons/icon_camera.svg"))
+   #     popup.uploadButton.clicked.connect(lambda: self.upload_image(popup.imageLabel))
+   #     popup.captureButton.clicked.connect(lambda: self.capture_photo(popup.imageLabel))
 
     def upload_image(self, image_label):
         file_path, _ = QFileDialog.getOpenFileName(self.part1_popup, "Select an Image", "",
