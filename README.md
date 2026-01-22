@@ -37,7 +37,3 @@ Contributions are welcome! This is an open academic project aimed at improving l
 ---
 
 Built with ❤️ using PyQt6 & Python.
-
----
-
-Let me know if you want a GUI preview screenshot section or additional customization for academic submission!
